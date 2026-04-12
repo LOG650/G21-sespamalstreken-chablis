@@ -100,3 +100,35 @@ python "012 fase 2 - plan\generate_status.py" 2026-04-02
 - JSON-filene er strukturert fra prosjektstyringsplanen, `MS_Project.mpp` og denne statusfilen.
 - WBS-strukturen er delvis avledet, fordi vedlegg B i den konverterte Markdown-filen ikke inneholder en utfylt maskinlesbar WBS.
 - Det er også opprettet `README.md` som forklarer innholdet og bruken av planartefaktene.
+- Datagrunnlaget i `004 data/Bunker Lifting List(Worksheet1) (1).csv` er gjennomgått som grunnlag for modellering.
+- Et separat arbeidsutkast er opprettet i `005 report/Kaylee_rapport.md` med første databeskrivelse og et første modellutkast for beslutningsvariabler, målfunksjon og restriksjoner.
+- Målfunksjonen for første modellversjon er nå også formulert eksplisitt i `005 report/rapport.md`.
+- Det er laget en rense- og aggregeringspipeline i `006 analysis/01_datagrunnlag/clean_and_aggregate_bunker_data.py`.
+- Rensede og aggregerte datafiler er opprettet i `006 analysis/01_datagrunnlag`, inkludert månedlig aggregat per havn.
+- Modellinput for modellversjon 1 er opprettet i `006 analysis/02_modell_v1` med tydelige filnavn for pris, behov, tilgjengelighet og parameter-metadata.
+- En første Pyomo-implementasjon for modellversjon 1 er opprettet i `006 analysis/02_modell_v1/run_model_v1_pyomo.py`.
+
+## Arbeid i dag 2026-04-12
+
+### Ferdigstilt
+
+- Datavask er dokumentert og gjennomført for tilgjengelig bunkringsdata.
+- Strukturering av datasett er gjennomført med egne rensede og aggregerte filer.
+- Beslutningsvariabler for første modellversjon er formulert i `005 report/Kaylee_rapport.md`.
+- Målfunksjonen er formulert i både `005 report/Kaylee_rapport.md` og `005 report/rapport.md`.
+- Modellinput for versjon 1 er etablert i `006 analysis/02_modell_v1`.
+
+### Under arbeid
+
+- Restriksjonene for første modellversjon videreutvikles i `005 report/Kaylee_rapport.md`.
+- Implementering av modellversjon 1 pågår i `006 analysis/02_modell_v1`.
+- Avklaring av hvilke supplerende data som trengs for en mer realistisk operativ modell pågår.
+
+### Anbefalt oppdatering i MS Project
+
+- Marker som fullført: `Datavask`
+- Marker som fullført: `Strukturering av datasett`
+- Marker som fullført: `Definere variabler`
+- Marker som fullført: `Formulere målfunksjon`
+- Marker som under arbeid: `Definere restriksjoner`
+- Marker som under arbeid: `Implementere modell`

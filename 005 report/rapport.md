@@ -274,6 +274,21 @@ Her beskriver du hvilke data du har brukt, hvordan du har fått tak i de og hvor
 
 ## 6.0 Modellering
 
+Prosjektets første modellversjon formuleres som en kvantitativ lineær kostnadsminimeringsmodell. Målet er å minimere totale bunkringskostnader over analyseperioden gitt observerte prisforskjeller mellom havner og et definert drivstoffbehov per periode.
+
+Målfunksjonen kan uttrykkes som:
+
+$\min Z = \sum_{t \in T} \sum_{h \in H} p_{h,t} \cdot x_{h,t}$
+
+der:
+
+- $H$ er mengden havner
+- $T$ er mengden perioder
+- $p_{h,t}$ er pris per enhet drivstoff i havn $h$ i periode $t$
+- $x_{h,t}$ er bunkret volum i havn $h$ i periode $t$
+
+Målfunksjonen innebærer dermed at modellen velger den fordelingen av bunkringsvolum mellom havner og perioder som gir lavest mulig total kostnad. I den første modellversjonen estimeres prisparameteren $p_{h,t}$ fra historiske prisdata aggregert per havn og måned.
+
 ---
 
 ## 7.0 Analyse
