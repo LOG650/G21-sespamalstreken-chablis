@@ -1,0 +1,145 @@
+{
+  "kilder": [
+    "012 fase 2 - plan/Prosjektstyringsplan, Odfjell Tankers.md",
+    "012 fase 2 - plan/status.md"
+  ],
+  "risikostyring": {
+    "tilnærming": "Tradisjonelt risikoregister med løpende oppfølging i ukentlige statusmøter.",
+    "fokusområder": [
+      "Tilgang til og kvalitet på historiske data",
+      "Forsinkelser i datavask og strukturering",
+      "Utfordringer ved matematisk modellering og implementering",
+      "Begrenset tid til testing, validering og sensitivitetsanalyse",
+      "Avhengighet til eksterne innspill fra kunderepresentant og faglige veiledere"
+    ],
+    "økonomisk_risikobudsjett": "Ingen separat økonomisk risikobuffer er etablert.",
+    "tidsbuffer": {
+      "beskrivelse": "Omtrent 10 % av prosjektets totale arbeidstid er satt av som buffer.",
+      "prioriterte_områder": [
+        "Datainnsamling",
+        "Datavask",
+        "Strukturering",
+        "Modellutvikling",
+        "Analyse",
+        "Sensitivitetsanalyse"
+      ]
+    },
+    "samlet_estimert_tidskonsekvens_dager": 29
+  },
+  "risikoer": [
+    {
+      "id": "R1",
+      "beskrivelse": "Historiske data er ufullstendige",
+      "sannsynlighet": "Middels",
+      "konsekvens": "Høy",
+      "estimert_tidskonsekvens_dager": 5,
+      "risikoeier": "Prosjektgruppen",
+      "utløsere": "Manglende datasett eller utilgjengelige prisdata",
+      "forebyggende_tiltak": "Avklare datatilgang tidlig med kunderepresentant",
+      "beredskapsplan": "Redusere analyseperiode eller antall havner"
+    },
+    {
+      "id": "R2",
+      "beskrivelse": "Datakvaliteten er lav",
+      "sannsynlighet": "Middels",
+      "konsekvens": "Høy",
+      "estimert_tidskonsekvens_dager": 4,
+      "risikoeier": "Elisabeth",
+      "utløsere": "Feil eller manglende datapunkter",
+      "forebyggende_tiltak": "Systematisk datavask og kvalitetssjekk",
+      "beredskapsplan": "Ekskludere problematiske datapunkter"
+    },
+    {
+      "id": "R3",
+      "beskrivelse": "Datavask tar lengre tid enn planlagt",
+      "sannsynlighet": "Middels",
+      "konsekvens": "Middels",
+      "estimert_tidskonsekvens_dager": 3,
+      "risikoeier": "Elisabeth",
+      "utløsere": "Mange feil i rådata",
+      "forebyggende_tiltak": "Starte datavask tidlig og standardisere datastruktur",
+      "beredskapsplan": "Prioritere nøkkelvariabler"
+    },
+    {
+      "id": "R4",
+      "beskrivelse": "Den matematiske modellen blir mer kompleks enn forventet",
+      "sannsynlighet": "Middels",
+      "konsekvens": "Høy",
+      "estimert_tidskonsekvens_dager": 4,
+      "risikoeier": "Kaylee",
+      "utløsere": "Vanskelig modellformulering",
+      "forebyggende_tiltak": "Utvikle en enkel grunnmodell først",
+      "beredskapsplan": "Forenkle restriksjoner eller redusere variabler"
+    },
+    {
+      "id": "R5",
+      "beskrivelse": "Problemer med implementering av modellen i analyseverktøy",
+      "sannsynlighet": "Lav",
+      "konsekvens": "Høy",
+      "estimert_tidskonsekvens_dager": 3,
+      "risikoeier": "Kaylee",
+      "utløsere": "Tekniske problemer i verktøyet",
+      "forebyggende_tiltak": "Teste modellstruktur tidlig",
+      "beredskapsplan": "Bruke alternativ implementeringsmetode"
+    },
+    {
+      "id": "R6",
+      "beskrivelse": "Modellen gir urealistiske eller vanskelig tolkelige resultater",
+      "sannsynlighet": "Middels",
+      "konsekvens": "Middels",
+      "estimert_tidskonsekvens_dager": 2,
+      "risikoeier": "Prosjektgruppen",
+      "utløsere": "Store avvik fra historiske data",
+      "forebyggende_tiltak": "Validere modellantakelser",
+      "beredskapsplan": "Justere modellrestriksjoner"
+    },
+    {
+      "id": "R7",
+      "beskrivelse": "Sensitivitetsanalyse blir mer omfattende enn planlagt",
+      "sannsynlighet": "Middels",
+      "konsekvens": "Middels",
+      "estimert_tidskonsekvens_dager": 2,
+      "risikoeier": "Prosjektgruppen",
+      "utløsere": "Mange parametere å analysere",
+      "forebyggende_tiltak": "Avgrense analyseparametere",
+      "beredskapsplan": "Fokusere på nøkkelvariabler"
+    },
+    {
+      "id": "R8",
+      "beskrivelse": "Forsinkede tilbakemeldinger fra kunderepresentant",
+      "sannsynlighet": "Lav",
+      "konsekvens": "Middels",
+      "estimert_tidskonsekvens_dager": 1,
+      "risikoeier": "Prosjektleder",
+      "utløsere": "Lang responstid",
+      "forebyggende_tiltak": "Kontakte kunden tidlig i prosessen",
+      "beredskapsplan": "Gjøre dokumenterte antakelser"
+    },
+    {
+      "id": "R9",
+      "beskrivelse": "Tidsmangel i sluttfasen av prosjektet",
+      "sannsynlighet": "Middels",
+      "konsekvens": "Høy",
+      "estimert_tidskonsekvens_dager": 4,
+      "risikoeier": "Prosjektleder",
+      "utløsere": "Forsinkelser i tidligere aktiviteter",
+      "forebyggende_tiltak": "Starte rapportskriving tidlig",
+      "beredskapsplan": "Prioritere hovedleveranser"
+    },
+    {
+      "id": "R10",
+      "beskrivelse": "Tekniske problemer med analyseverktøy eller filer",
+      "sannsynlighet": "Lav",
+      "konsekvens": "Middels",
+      "estimert_tidskonsekvens_dager": 1,
+      "risikoeier": "Prosjektgruppen",
+      "utløsere": "Programvarefeil eller filkorrupsjon",
+      "forebyggende_tiltak": "Lagre sikkerhetskopier",
+      "beredskapsplan": "Gjenopprette tidligere versjoner"
+    }
+  ],
+  "antagelser": [
+    "Det finnes ikke en separat maskinlesbar risikofil i repoet, så innholdet er strukturert direkte fra risikoregisteret i prosjektstyringsplanen.",
+    "Prosjektleder er beholdt som rolle der navngitt person ikke fremgår eksplisitt av risikoregisteret."
+  ]
+}

@@ -1,0 +1,276 @@
+{
+  "kilder": [
+    "012 fase 2 - plan/MS_Project.mpp",
+    "012 fase 2 - plan/status.md",
+    "012 fase 2 - plan/generate_status.py",
+    "012 fase 2 - plan/Prosjektstyringsplan, Odfjell Tankers.md"
+  ],
+  "baseline": {
+    "prosjektstart": "2026-01-23",
+    "prosjektslutt_tekstplan": "2026-05-31",
+    "prosjektslutt_mpp": "2026-06-02",
+    "styrende_sluttdato": "2026-06-02",
+    "merknad": "Statusfilen oppgir at MPP-planen inkluderer prosjektbuffer og derfor brukes som styrende dato når den avviker fra tekstplanen."
+  },
+  "milepæler": [
+    {
+      "navn": "Proposal godkjent",
+      "dato": "2026-02-08",
+      "status_per_2026-04-02": "Passert"
+    },
+    {
+      "navn": "Planleggingsfase ferdig",
+      "dato": "2026-03-09",
+      "status_per_2026-04-02": "Passert"
+    },
+    {
+      "navn": "Datagrunnlag ferdig",
+      "dato": "2026-03-29",
+      "status_per_2026-04-02": "Passert"
+    },
+    {
+      "navn": "Modelltesting ferdig",
+      "dato": "2026-04-28",
+      "status_per_2026-04-02": "Kommende"
+    },
+    {
+      "navn": "Innlevering",
+      "dato": "2026-06-02",
+      "status_per_2026-04-02": "Kommende"
+    }
+  ],
+  "aktiviteter": [
+    {
+      "fase": "Datagrunnlag",
+      "navn": "Datainnsamling",
+      "start": "2026-03-10",
+      "slutt": "2026-03-17",
+      "status_per_2026-04-02": "Fullført",
+      "grunnlag": "Dokumentert i repo",
+      "avhenger_av": []
+    },
+    {
+      "fase": "Datagrunnlag",
+      "navn": "Datavask",
+      "start": "2026-03-18",
+      "slutt": "2026-03-23",
+      "status_per_2026-04-02": "Bør være ferdig",
+      "grunnlag": "Ingen tydelig dokumentasjon funnet i repo",
+      "avhenger_av": [
+        "Datainnsamling"
+      ]
+    },
+    {
+      "fase": "Datagrunnlag",
+      "navn": "Strukturering av datasett",
+      "start": "2026-03-24",
+      "slutt": "2026-03-26",
+      "status_per_2026-04-02": "Bør være ferdig",
+      "grunnlag": "Ingen tydelig dokumentasjon funnet i repo",
+      "avhenger_av": [
+        "Datavask"
+      ]
+    },
+    {
+      "fase": "Datagrunnlag",
+      "navn": "Deskriptiv analyse",
+      "start": "2026-03-27",
+      "slutt": "2026-03-29",
+      "status_per_2026-04-02": "Bør være ferdig",
+      "grunnlag": "Ingen tydelig dokumentasjon funnet i repo",
+      "avhenger_av": [
+        "Strukturering av datasett"
+      ]
+    },
+    {
+      "fase": "Modellutvikling",
+      "navn": "Definere variabler",
+      "start": "2026-03-30",
+      "slutt": "2026-04-01",
+      "status_per_2026-04-02": "Bør være ferdig",
+      "grunnlag": "Ingen tydelig dokumentasjon funnet i repo",
+      "avhenger_av": [
+        "Deskriptiv analyse"
+      ]
+    },
+    {
+      "fase": "Modellutvikling",
+      "navn": "Formulere målfunksjon",
+      "start": "2026-04-02",
+      "slutt": "2026-04-03",
+      "status_per_2026-04-02": "Pågår",
+      "grunnlag": "Planlagt aktivitet nå (2026-04-02-2026-04-03)",
+      "avhenger_av": [
+        "Definere variabler"
+      ]
+    },
+    {
+      "fase": "Modellutvikling",
+      "navn": "Definere restriksjoner",
+      "start": "2026-04-04",
+      "slutt": "2026-04-08",
+      "status_per_2026-04-02": "Kommende",
+      "grunnlag": "Starter 2026-04-04",
+      "avhenger_av": [
+        "Formulere målfunksjon"
+      ]
+    },
+    {
+      "fase": "Modellutvikling",
+      "navn": "Implementere modell",
+      "start": "2026-04-09",
+      "slutt": "2026-04-20",
+      "status_per_2026-04-02": "Kommende",
+      "grunnlag": "Starter 2026-04-09",
+      "avhenger_av": [
+        "Definere restriksjoner"
+      ]
+    },
+    {
+      "fase": "Modellutvikling",
+      "navn": "Teste modell",
+      "start": "2026-04-21",
+      "slutt": "2026-04-28",
+      "status_per_2026-04-02": "Kommende",
+      "grunnlag": "Starter 2026-04-21",
+      "avhenger_av": [
+        "Implementere modell"
+      ]
+    },
+    {
+      "fase": "Analyse",
+      "navn": "Basiskjøring",
+      "start": "2026-04-29",
+      "slutt": "2026-05-01",
+      "status_per_2026-04-02": "Kommende",
+      "grunnlag": "Starter 2026-04-29",
+      "avhenger_av": [
+        "Teste modell"
+      ]
+    },
+    {
+      "fase": "Analyse",
+      "navn": "Sensitivitetsanalyse",
+      "start": "2026-05-02",
+      "slutt": "2026-05-06",
+      "status_per_2026-04-02": "Kommende",
+      "grunnlag": "Starter 2026-05-02",
+      "avhenger_av": [
+        "Basiskjøring"
+      ]
+    },
+    {
+      "fase": "Analyse",
+      "navn": "Resultattolkning",
+      "start": "2026-05-07",
+      "slutt": "2026-05-11",
+      "status_per_2026-04-02": "Kommende",
+      "grunnlag": "Starter 2026-05-07",
+      "avhenger_av": [
+        "Sensitivitetsanalyse"
+      ]
+    },
+    {
+      "fase": "Rapportering",
+      "navn": "Skrive resultater",
+      "start": "2026-05-09",
+      "slutt": "2026-05-14",
+      "status_per_2026-04-02": "Kommende",
+      "grunnlag": "Starter 2026-05-09",
+      "avhenger_av": [
+        "Resultattolkning"
+      ]
+    },
+    {
+      "fase": "Rapportering",
+      "navn": "Diskusjon",
+      "start": "2026-05-12",
+      "slutt": "2026-05-17",
+      "status_per_2026-04-02": "Kommende",
+      "grunnlag": "Starter 2026-05-12",
+      "avhenger_av": [
+        "Skrive resultater"
+      ]
+    },
+    {
+      "fase": "Rapportering",
+      "navn": "Ferdigstille rapport",
+      "start": "2026-05-18",
+      "slutt": "2026-05-23",
+      "status_per_2026-04-02": "Kommende",
+      "grunnlag": "Starter 2026-05-18",
+      "avhenger_av": [
+        "Diskusjon"
+      ]
+    },
+    {
+      "fase": "Rapportering",
+      "navn": "Revisjon",
+      "start": "2026-05-24",
+      "slutt": "2026-05-29",
+      "status_per_2026-04-02": "Kommende",
+      "grunnlag": "Starter 2026-05-24",
+      "avhenger_av": [
+        "Ferdigstille rapport"
+      ]
+    },
+    {
+      "fase": "Rapportering",
+      "navn": "Språkvask / referanser",
+      "start": "2026-05-26",
+      "slutt": "2026-05-30",
+      "status_per_2026-04-02": "Kommende",
+      "grunnlag": "Starter 2026-05-26",
+      "avhenger_av": [
+        "Revisjon"
+      ]
+    },
+    {
+      "fase": "Avslutning",
+      "navn": "Prosjektbuffer",
+      "start": "2026-05-31",
+      "slutt": "2026-06-02",
+      "status_per_2026-04-02": "Kommende",
+      "grunnlag": "Starter 2026-05-31",
+      "avhenger_av": [
+        "Språkvask / referanser"
+      ]
+    },
+    {
+      "fase": "Avslutning",
+      "navn": "Innlevering",
+      "start": "2026-06-02",
+      "slutt": "2026-06-02",
+      "status_per_2026-04-02": "Kommende",
+      "grunnlag": "Starter 2026-06-02",
+      "avhenger_av": [
+        "Prosjektbuffer"
+      ]
+    }
+  ],
+  "kritisk_linje": [
+    "Datainnsamling",
+    "Datavask",
+    "Strukturering av datasett",
+    "Deskriptiv analyse",
+    "Definere variabler",
+    "Formulere målfunksjon",
+    "Definere restriksjoner",
+    "Implementere modell",
+    "Teste modell",
+    "Basiskjøring",
+    "Sensitivitetsanalyse",
+    "Resultattolkning",
+    "Skrive resultater",
+    "Diskusjon",
+    "Ferdigstille rapport",
+    "Revisjon",
+    "Språkvask / referanser",
+    "Innlevering"
+  ],
+  "antagelser": [
+    "Eksplisitte aktivitetsdatoer er hentet fra statusgeneratoren og statusfilen, som igjen er laget fra `MS_Project.mpp`.",
+    "Avhengigheter er modellert som hovedsakelig sekvensielle basert på beskrivelsen av kritisk linje og rekkefølgen i statusfilen.",
+    "Rapporteringsaktivitetene kan i praksis overlappe mer enn det JSON-en uttrykker, men her er de gjort maskinlesbare som en enkel styringsrekkefølge."
+  ]
+}

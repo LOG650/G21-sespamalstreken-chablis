@@ -1,0 +1,237 @@
+{
+  "kilder": [
+    "012 fase 2 - plan/Prosjektstyringsplan, Odfjell Tankers.md",
+    "012 fase 2 - plan/MS_Project.mpp",
+    "012 fase 2 - plan/status.md"
+  ],
+  "wbs": {
+    "id": "0",
+    "navn": "Minimering av drivstoffkostnader hos Odfjell Tankers",
+    "type": "Prosjekt",
+    "barn": [
+      {
+        "id": "1",
+        "navn": "Prosjektledelse og styring",
+        "type": "Hovedfase",
+        "barn": [
+          {
+            "id": "1.1",
+            "navn": "Initiering",
+            "type": "Arbeidspakke",
+            "barn": [
+              {
+                "id": "1.1.1",
+                "navn": "Første kontakt med Odfjell SE",
+                "type": "Milepælsnær aktivitet"
+              },
+              {
+                "id": "1.1.2",
+                "navn": "Samarbeid bekreftet",
+                "type": "Milepælsnær aktivitet"
+              },
+              {
+                "id": "1.1.3",
+                "navn": "Proposal sendt og godkjent",
+                "type": "Arbeidspakke"
+              }
+            ]
+          },
+          {
+            "id": "1.2",
+            "navn": "Planlegging",
+            "type": "Arbeidspakke",
+            "barn": [
+              {
+                "id": "1.2.1",
+                "navn": "Prosjektplan etablert",
+                "type": "Leveranse"
+              },
+              {
+                "id": "1.2.2",
+                "navn": "Kravspesifikasjon etablert",
+                "type": "Leveranse"
+              },
+              {
+                "id": "1.2.3",
+                "navn": "Fremdriftsplan etablert",
+                "type": "Leveranse"
+              }
+            ]
+          },
+          {
+            "id": "1.3",
+            "navn": "Løpende oppfølging",
+            "type": "Arbeidspakke",
+            "barn": [
+              {
+                "id": "1.3.1",
+                "navn": "Ukentlige statusmøter",
+                "type": "Styringsaktivitet"
+              },
+              {
+                "id": "1.3.2",
+                "navn": "Risikooppfølging",
+                "type": "Styringsaktivitet"
+              },
+              {
+                "id": "1.3.3",
+                "navn": "Endringskontroll",
+                "type": "Styringsaktivitet"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "navn": "Datagrunnlag",
+        "type": "Hovedfase",
+        "barn": [
+          {
+            "id": "2.1",
+            "navn": "Datainnsamling",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "2.2",
+            "navn": "Datavask",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "2.3",
+            "navn": "Strukturering av datasett",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "2.4",
+            "navn": "Deskriptiv analyse",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "2.5",
+            "navn": "Datagrunnlag ferdig",
+            "type": "Milepæl"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "navn": "Modellutvikling",
+        "type": "Hovedfase",
+        "barn": [
+          {
+            "id": "3.1",
+            "navn": "Definere variabler",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "3.2",
+            "navn": "Formulere målfunksjon",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "3.3",
+            "navn": "Definere restriksjoner",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "3.4",
+            "navn": "Implementere modell",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "3.5",
+            "navn": "Teste modell",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "3.6",
+            "navn": "Modell ferdig utviklet",
+            "type": "Milepæl"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "navn": "Analyse",
+        "type": "Hovedfase",
+        "barn": [
+          {
+            "id": "4.1",
+            "navn": "Basiskjøring",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "4.2",
+            "navn": "Sensitivitetsanalyse",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "4.3",
+            "navn": "Resultattolkning",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "4.4",
+            "navn": "Analyse ferdig",
+            "type": "Milepæl"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "navn": "Rapportering",
+        "type": "Hovedfase",
+        "barn": [
+          {
+            "id": "5.1",
+            "navn": "Skrive resultater",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "5.2",
+            "navn": "Diskusjon",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "5.3",
+            "navn": "Ferdigstille rapport",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "5.4",
+            "navn": "Revisjon",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "5.5",
+            "navn": "Språkvask / referanser",
+            "type": "Aktivitet"
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "navn": "Avslutning",
+        "type": "Hovedfase",
+        "barn": [
+          {
+            "id": "6.1",
+            "navn": "Prosjektbuffer",
+            "type": "Buffer"
+          },
+          {
+            "id": "6.2",
+            "navn": "Innlevering",
+            "type": "Milepæl"
+          }
+        ]
+      }
+    ]
+  },
+  "antagelser": [
+    "Vedlegg B i den konverterte prosjektstyringsplanen inneholder ikke en utfylt WBS-tabell eller et maskinlesbart diagram.",
+    "WBS-strukturen over er derfor avledet fra den beskrevne faseinndelingen i prosjektstyringsplanen og aktivitetslisten i `MS_Project.mpp`/`status.md`.",
+    "Prosjektledelse og styring er lagt inn som egen hovedfase fordi prosjektplanen beskriver dette som en av de fem hovedfasene, selv om detaljaktivitetene ikke er listet eksplisitt i statusfilen."
+  ]
+}

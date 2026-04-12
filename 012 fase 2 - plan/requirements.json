@@ -1,0 +1,408 @@
+{
+  "kilder": [
+    "012 fase 2 - plan/Prosjektstyringsplan, Odfjell Tankers.md"
+  ],
+  "kravkategorier": [
+    "Målkrav",
+    "Datakrav",
+    "Modellkrav",
+    "Avgrensningskrav",
+    "Analysekrav",
+    "Valideringskrav",
+    "Leveransekrav",
+    "Kvalitetskrav",
+    "Suksesskriterier"
+  ],
+  "krav": [
+    {
+      "id": "MK-01",
+      "type": "Målkrav",
+      "krav": "Prosjektet skal utvikle en matematisk optimaliseringsmodell som minimerer totale drivstoffkostnader over valgt planleggingshorisont.",
+      "gantt_aktivitet": "Implementere modell",
+      "eier": "Prosjektgruppen",
+      "leveranse": "Optimaliseringsmodell for bunkring",
+      "testtilfelle": "Modellen genererer løsning som minimerer totale drivstoffkostnader",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "MK-02",
+      "type": "Målkrav",
+      "krav": "Modellen skal kunne anvendes på historiske data fra de 10 mest benyttede bunkringshavnene.",
+      "gantt_aktivitet": "Datainnsamling",
+      "eier": "Datagrunnlag",
+      "leveranse": "Datasett med historiske bunkringsdata",
+      "testtilfelle": "Modellen kan kjøres på datasettet uten feil",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "MK-03",
+      "type": "Målkrav",
+      "krav": "Resultatene skal gi beslutningsrelevant innsikt for valg av havn og volum for bunkring.",
+      "gantt_aktivitet": "Resultattolkning",
+      "eier": "Analyse",
+      "leveranse": "Anbefalt bunkringsstrategi",
+      "testtilfelle": "Resultater viser optimal havn og volum",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "DK-01",
+      "type": "Datakrav",
+      "krav": "Prosjektet skal benytte historiske data fra de siste 3-5 årene.",
+      "gantt_aktivitet": "Datainnsamling",
+      "eier": "Datagrunnlag",
+      "leveranse": "Historisk datasett (3-5 år)",
+      "testtilfelle": "Datasettet inneholder nødvendige tidsperioder",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "DK-02",
+      "type": "Datakrav",
+      "krav": "Følgende datasett skal inngå: bunkerspris per havn og tidsperiode, volum bunkret per havn, frekvens for anløp og historiske prisvariasjoner.",
+      "gantt_aktivitet": "Strukturering av datasett",
+      "eier": "Datagrunnlag",
+      "leveranse": "Strukturert datasett",
+      "testtilfelle": "Variabler samsvarer med krav i modellen",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "DK-03",
+      "type": "Datakrav",
+      "krav": "Dataene skal være konsistente, renset og dokumentert.",
+      "gantt_aktivitet": "Datavask",
+      "eier": "Datagrunnlag",
+      "leveranse": "Renset datasett",
+      "testtilfelle": "Kontroll av manglende verdier og inkonsistenser",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "DK-04",
+      "type": "Datakrav",
+      "krav": "Eventuelle mangler eller usikkerheter i datagrunnlaget skal beskrives eksplisitt.",
+      "gantt_aktivitet": "Datavask",
+      "eier": "Datagrunnlag",
+      "leveranse": "Dokumentasjon av datakvalitet",
+      "testtilfelle": "Manglende verdier eller usikkerhet er dokumentert",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "MOD-01",
+      "type": "Modellkrav",
+      "krav": "Modellen skal inkludere beslutningsvariabler for valg av havn, mengde bunkret drivstoff og tidspunkt for bunkring.",
+      "gantt_aktivitet": "Definere variabler",
+      "eier": "Modellutvikling",
+      "leveranse": "Beslutningsvariabler definert",
+      "testtilfelle": "Variabler for havn, volum og tidspunkt finnes i modellen",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "MOD-02",
+      "type": "Modellkrav",
+      "krav": "Modellen skal inkludere en målfunksjon som minimerer totale drivstoffkostnader.",
+      "gantt_aktivitet": "Formulere målfunksjon",
+      "eier": "Modellutvikling",
+      "leveranse": "Målfunksjon formulert",
+      "testtilfelle": "Målfunksjon minimerer totale drivstoffkostnader",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "MOD-03",
+      "type": "Modellkrav",
+      "krav": "Modellen skal inneholde relevante restriksjoner, inkludert etterspørsel/forbruk, lager-/tankkapasitet og anløpsfrekvens.",
+      "gantt_aktivitet": "Definere restriksjoner",
+      "eier": "Modellutvikling",
+      "leveranse": "Restriksjoner implementert",
+      "testtilfelle": "Modell respekterer etterspørsel og kapasitet",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "MOD-04",
+      "type": "Modellkrav",
+      "krav": "Forutsetninger som lik kvalitet og tilgjengelighet skal være eksplisitt formulert.",
+      "gantt_aktivitet": "Implementere modell",
+      "eier": "Modellutvikling",
+      "leveranse": "Modellforutsetninger dokumentert",
+      "testtilfelle": "Alle antakelser er eksplisitt beskrevet",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "MOD-05",
+      "type": "Modellkrav",
+      "krav": "Modellen skal implementeres i et egnet analyseverktøy slik at den kan kjøres på historiske datasett.",
+      "gantt_aktivitet": "Implementere modell",
+      "eier": "Modellutvikling",
+      "leveranse": "Implementert optimaliseringsmodell",
+      "testtilfelle": "Modellen kan kjøres på datasettet og genererer en optimal bunkringsløsning",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "AK-01",
+      "type": "Avgrensningskrav",
+      "krav": "Kun de 10 mest brukte havnene skal inkluderes i modellen.",
+      "gantt_aktivitet": "Strukturering av datasett",
+      "eier": "Prosjektgruppen",
+      "leveranse": "Avgrenset havneliste",
+      "testtilfelle": "Kun 10 havner inkludert i modellinput",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "AK-02",
+      "type": "Avgrensningskrav",
+      "krav": "Det antas at drivstofftilgjengeligheten i de inkluderte havnene er tilstrekkelig og ikke begrenser bunkringsbeslutninger.",
+      "gantt_aktivitet": "Definere restriksjoner",
+      "eier": "Prosjektgruppen",
+      "leveranse": "Modellforutsetning",
+      "testtilfelle": "Alle havner antas å ha tilstrekkelig drivstoff",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "AK-03",
+      "type": "Avgrensningskrav",
+      "krav": "Kvalitetsforskjeller mellom havnene skal ikke modelleres.",
+      "gantt_aktivitet": "Definere restriksjoner",
+      "eier": "Prosjektgruppen",
+      "leveranse": "Modellavgrensning",
+      "testtilfelle": "Kvalitetsforskjeller mellom havner ikke inkludert",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "AK-04",
+      "type": "Avgrensningskrav",
+      "krav": "Regulatoriske kostnader som EU ETS og FuelEU inkluderes ikke med mindre datatilgang tillater det.",
+      "gantt_aktivitet": "Resultattolkning",
+      "eier": "Prosjektgruppen",
+      "leveranse": "Avgrensning dokumentert",
+      "testtilfelle": "Regulatoriske kostnader ikke modellert",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "AN-01",
+      "type": "Analysekrav",
+      "krav": "Prosjektet skal gjennomføre sensitivitetsanalyse på prisendringer, volumendringer og etterspørselsvariasjon.",
+      "gantt_aktivitet": "Sensitivitetsanalyse",
+      "eier": "Analyse",
+      "leveranse": "Sensitivitetsanalyse",
+      "testtilfelle": "Modell kjøres med endrede drivstoffpriser",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "AN-02",
+      "type": "Analysekrav",
+      "krav": "Resultatene skal sammenlignes med faktisk historisk praksis.",
+      "gantt_aktivitet": "Resultattolkning",
+      "eier": "Analyse",
+      "leveranse": "Sammenligning med historiske beslutninger",
+      "testtilfelle": "Modellresultater sammenlignes med historiske bunkringer",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "AN-03",
+      "type": "Analysekrav",
+      "krav": "Potensielt kostnadsbesparelsespotensial skal estimeres.",
+      "gantt_aktivitet": "Resultattolkning",
+      "eier": "Analyse",
+      "leveranse": "Kostnadsbesparelsesestimat",
+      "testtilfelle": "Beregning av potensielle besparelser",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "VAL-01",
+      "type": "Valideringskrav",
+      "krav": "Modellen skal testes på historiske perioder.",
+      "gantt_aktivitet": "Teste modell",
+      "eier": "Analyse",
+      "leveranse": "Modelltest på historiske data",
+      "testtilfelle": "Modellen kjøres på tidligere perioder",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "VAL-02",
+      "type": "Valideringskrav",
+      "krav": "Modellens resultater skal vurderes opp mot realistiske operasjonelle forhold.",
+      "gantt_aktivitet": "Resultattolkning",
+      "eier": "Analyse",
+      "leveranse": "Realismevurdering",
+      "testtilfelle": "Resultater vurderes opp mot operasjonelle forhold",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "VAL-03",
+      "type": "Valideringskrav",
+      "krav": "Begrensninger ved modellen skal diskuteres.",
+      "gantt_aktivitet": "Diskusjon",
+      "eier": "Rapportering",
+      "leveranse": "Diskusjon av modellbegrensninger",
+      "testtilfelle": "Begrensninger beskrevet i rapport",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "VAL-04",
+      "type": "Valideringskrav",
+      "krav": "Modellens ytelse skal evalueres ved å sammenligne modellens bunkringsbeslutninger og totale drivstoffkostnader med historiske bunkringsvalg.",
+      "gantt_aktivitet": "Resultattolkning",
+      "eier": "Analyse",
+      "leveranse": "Sammenligningsanalyse mellom modell og historiske data",
+      "testtilfelle": "Beregne totale drivstoffkostnader for historiske beslutninger og modellens anbefalinger",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "LEV-01",
+      "type": "Leveransekrav",
+      "krav": "Full matematisk formulering av modellen.",
+      "gantt_aktivitet": "Ferdigstille rapport",
+      "eier": "Rapportering",
+      "leveranse": "Matematisk modellformulering",
+      "testtilfelle": "Modell presentert i metodekapittel",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "LEV-02",
+      "type": "Leveransekrav",
+      "krav": "Forklaring av variabler og parametere.",
+      "gantt_aktivitet": "Ferdigstille rapport",
+      "eier": "Rapportering",
+      "leveranse": "Variabel- og parameterbeskrivelse",
+      "testtilfelle": "Variabler forklart i rapport",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "LEV-03",
+      "type": "Leveransekrav",
+      "krav": "Dokumentasjon av datagrunnlag.",
+      "gantt_aktivitet": "Ferdigstille rapport",
+      "eier": "Rapportering",
+      "leveranse": "Dokumentasjon av datagrunnlag",
+      "testtilfelle": "Datakilder beskrevet",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "LEV-04",
+      "type": "Leveransekrav",
+      "krav": "Resultater og tolkning.",
+      "gantt_aktivitet": "Skrive resultater",
+      "eier": "Rapportering",
+      "leveranse": "Resultatkapittel",
+      "testtilfelle": "Modellresultater presentert",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "LEV-05",
+      "type": "Leveransekrav",
+      "krav": "Sensitivitetsanalyse.",
+      "gantt_aktivitet": "Sensitivitetsanalyse",
+      "eier": "Rapportering",
+      "leveranse": "Sensitivitetsanalyse",
+      "testtilfelle": "Sensitivitetsresultater presentert",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "LEV-06",
+      "type": "Leveransekrav",
+      "krav": "Diskusjon av implikasjoner for Odfjell Tankers.",
+      "gantt_aktivitet": "Diskusjon",
+      "eier": "Rapportering",
+      "leveranse": "Diskusjon",
+      "testtilfelle": "Implikasjoner for Odfjell diskutert",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "LEV-07",
+      "type": "Leveransekrav",
+      "krav": "Modellens struktur, variabler, parametere og restriksjoner skal dokumenteres slik at modellen kan reproduseres.",
+      "gantt_aktivitet": "Ferdigstille rapport",
+      "eier": "Rapportering",
+      "leveranse": "Dokumentert modellbeskrivelse",
+      "testtilfelle": "Modellformulering og variabeldefinisjoner presentert i metodekapittel",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "KVAL-01",
+      "type": "Kvalitetskrav",
+      "krav": "Prosjektet skal være metodisk forankret i operasjonsanalyse og optimaliseringsteori.",
+      "gantt_aktivitet": "Deskriptiv analyse",
+      "eier": "Prosjektgruppen",
+      "leveranse": "Teoretisk rammeverk",
+      "testtilfelle": "Referanser til operasjonsanalyse",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "KVAL-02",
+      "type": "Kvalitetskrav",
+      "krav": "Alle antakelser skal være eksplisitt dokumentert.",
+      "gantt_aktivitet": "Definere restriksjoner",
+      "eier": "Prosjektgruppen",
+      "leveranse": "Dokumenterte antakelser",
+      "testtilfelle": "Antakelser forklart i metode",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "KVAL-03",
+      "type": "Kvalitetskrav",
+      "krav": "Modellen skal være reproduserbar.",
+      "gantt_aktivitet": "Teste modell",
+      "eier": "Prosjektgruppen",
+      "leveranse": "Reproduserbar modell",
+      "testtilfelle": "Modell kan kjøres på nytt datasett",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "KVAL-04",
+      "type": "Kvalitetskrav",
+      "krav": "Rapporten skal være akademisk strukturert og referanseført.",
+      "gantt_aktivitet": "Ferdigstille rapport",
+      "eier": "Rapportering",
+      "leveranse": "Strukturert akademisk rapport",
+      "testtilfelle": "Rapport følger vitenskapelig struktur",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "KVAL-05",
+      "type": "Kvalitetskrav",
+      "krav": "Modellens antakelser og begrensninger skal tydelig diskuteres i lys av reelle operasjonelle forhold.",
+      "gantt_aktivitet": "Diskusjon",
+      "eier": "Rapportering",
+      "leveranse": "Diskusjon av modellens begrensninger",
+      "testtilfelle": "Antakelser og begrensninger diskutert i diskusjonskapittel",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "SUK-01",
+      "type": "Suksesskriterier",
+      "krav": "Modellen gir realistiske og tolkningsbare resultater.",
+      "gantt_aktivitet": "Resultattolkning",
+      "eier": "Analyse",
+      "leveranse": "Tolkningsbare resultater",
+      "testtilfelle": "Resultater kan forklares",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "SUK-02",
+      "type": "Suksesskriterier",
+      "krav": "Det identifiseres et potensielt kostnadsbesparelsespotensial.",
+      "gantt_aktivitet": "Resultattolkning",
+      "eier": "Analyse",
+      "leveranse": "Kostnadsbesparelsesestimat",
+      "testtilfelle": "Besparelse kan kvantifiseres",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "SUK-03",
+      "type": "Suksesskriterier",
+      "krav": "Modellen demonstrerer beslutningsstøtteverdi.",
+      "gantt_aktivitet": "Resultattolkning",
+      "eier": "Analyse",
+      "leveranse": "Beslutningsstøtte",
+      "testtilfelle": "Modell gir konkrete anbefalinger",
+      "teststatus": "Planned"
+    },
+    {
+      "id": "SUK-04",
+      "type": "Suksesskriterier",
+      "krav": "Begrensninger og videre utviklingsmuligheter er tydelig diskutert.",
+      "gantt_aktivitet": "Diskusjon",
+      "eier": "Rapportering",
+      "leveranse": "Diskusjon av videre arbeid",
+      "testtilfelle": "Videre utviklingsmuligheter beskrevet",
+      "teststatus": "Planned"
+    }
+  ]
+}

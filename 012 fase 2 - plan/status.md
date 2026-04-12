@@ -93,3 +93,10 @@ Hvis du vil oppdatere for en bestemt dato, bruk:
 ```powershell
 python "012 fase 2 - plan\generate_status.py" 2026-04-02
 ```
+
+## Manuell merknad 2026-04-12
+
+- Følgende planartefakter er opprettet i `012 fase 2 - plan`: `core.json`, `requirements.json`, `risk.json`, `schedule.json` og `wbs.json`.
+- JSON-filene er strukturert fra prosjektstyringsplanen, `MS_Project.mpp` og denne statusfilen.
+- WBS-strukturen er delvis avledet, fordi vedlegg B i den konverterte Markdown-filen ikke inneholder en utfylt maskinlesbar WBS.
+- Det er også opprettet `README.md` som forklarer innholdet og bruken av planartefaktene.

@@ -1,0 +1,119 @@
+{
+  "kilder": [
+    "012 fase 2 - plan/Prosjektstyringsplan, Odfjell Tankers.md",
+    "012 fase 2 - plan/MS_Project.mpp",
+    "012 fase 2 - plan/status.md"
+  ],
+  "prosjekt": {
+    "navn": "Minimering av drivstoffkostnader hos Odfjell Tankers",
+    "organisasjon": "Odfjell Tankers",
+    "fag": "LOG650",
+    "type": "Akademisk analyse- og modellutviklingsprosjekt",
+    "dokumentdato": "2026-02-24",
+    "baseline_statusdato": "2026-04-02"
+  },
+  "bakgrunn": {
+    "behov": "Odfjell Tankers har betydelige drivstoffkostnader og trenger bedre beslutningsstøtte for hvor og når bunkring bør gjennomføres.",
+    "forretningscase": "Selv små forbedringer i bunkringsbeslutninger kan gi betydelige økonomiske gevinster. Prosjektet gjennomføres uten direkte investeringskostnader for kunden innenfor rammene av LOG650.",
+    "forventet_nytte": [
+      "Reduserte drivstoffkostnader",
+      "Bedre beslutningsgrunnlag for bunkring",
+      "Raskere og mer strukturert analysearbeid",
+      "Bedre forståelse av prisvariasjoner mellom havner og over tid",
+      "Strategisk støtte til valg mellom kontrakt og spotmarked"
+    ]
+  },
+  "mål": {
+    "hovedmål": "Utvikle og anvende en optimaliseringsmodell som minimerer totale drivstoffkostnader for Odfjell Tankers ved å identifisere optimale bunkringsbeslutninger på tvers av de ti mest benyttede havnene basert på historiske data.",
+    "leveranser": [
+      "Strukturert analyse av historiske bunkersdata fra de 10 mest brukte havnene",
+      "Matematisk optimaliseringsmodell for minimering av totale drivstoffkostnader",
+      "Implementert modell i egnet analyseverktøy",
+      "Sensitivitetsanalyse",
+      "Dokumentasjon av metode, antakelser og resultater",
+      "Ferdig akademisk rapport"
+    ]
+  },
+  "roller": {
+    "sponsor": "Per Kristian Rekdal",
+    "faglige_veiledere": [
+      "Bård Inge Pettersen",
+      "Eirik Langlo"
+    ],
+    "kunde": {
+      "organisasjon": "Odfjell SE / Odfjell Tankers",
+      "kontaktperson": "Odd Jarle Pollen",
+      "rolle": "Faglig representant for drivstoffinnkjøp"
+    },
+    "prosjektgruppe": [
+      "Kaylee Floden",
+      "Elisabeth Orlien"
+    ]
+  },
+  "omfang": {
+    "inkludert": [
+      "Analyse av historiske bunkersdata fra de 10 mest brukte havnene",
+      "Utvikling av en beslutningsstøttemodell",
+      "Implementering og testing av modellen i analyseverktøy",
+      "Sensitivitetsanalyse",
+      "Dokumentasjon og rapportering"
+    ],
+    "utenfor_omfang": [
+      "Endring av eksisterende beslutningsstøttesystemer som imarex",
+      "Reforhandling av leverandørkontrakter",
+      "Analyse av flere enn de 10 mest brukte bunkringshavnene",
+      "Operasjonell implementering av modellen hos kunden",
+      "Regulatorisk optimalisering utover det som ligger i historiske kostnadsdata"
+    ]
+  },
+  "forutsetninger": [
+    "Historiske data fra de siste 3-5 årene er tilgjengelige og av tilfredsstillende kvalitet.",
+    "Drivstoffkvaliteten i de inkluderte havnene er lik.",
+    "Det er tilstrekkelig drivstofftilgjengelighet i alle inkluderte havner.",
+    "Skipenes drivstofforbruk kan estimeres pålitelig fra historiske data.",
+    "Operasjonelle forhold som rutevalg, kontrakter, vær og havnebegrensninger holdes konstante eller behandles som eksterne faktorer.",
+    "Modellen utvikles som beslutningsstøtte og implementeres ikke operativt i prosjektperioden."
+  ],
+  "begrensninger": [
+    "Kun de 10 mest brukte bunkringshavnene inngår.",
+    "Kun historiske data fra de siste 3-5 årene brukes.",
+    "Regulatoriske kostnader inkluderes ikke med mindre pålitelige data finnes.",
+    "Dynamiske markedsendringer utenfor historiske observasjoner modelleres ikke eksplisitt.",
+    "Prosjektet inkluderer ikke kontraktsreforhandling.",
+    "Prosjektet utvikler primært en deterministisk modell."
+  ],
+  "interessenter": [
+    {
+      "navn": "Odfjell Tankers",
+      "rolle": "Ekstern samarbeidspartner og casebedrift",
+      "behov": "Praktisk relevante analyser og realistiske resultater"
+    },
+    {
+      "navn": "Faglærer (LOG650)",
+      "rolle": "Akademisk veileder",
+      "behov": "Faglig kvalitet og riktig metodebruk"
+    },
+    {
+      "navn": "Prosjektgruppen",
+      "rolle": "Gjennomfører prosjektet",
+      "behov": "Fremdrift, kvalitet og godt samarbeid"
+    },
+    {
+      "navn": "Høgskolen i Molde / LOG650",
+      "rolle": "Faglig rammeverk",
+      "behov": "At prosjektet oppfyller læringsmål og akademiske krav"
+    }
+  ],
+  "verifikasjon": [
+    "Gjennomgang av leveranser mot kravspesifikasjonen",
+    "Intern kvalitetssikring i prosjektgruppen",
+    "Faglig veiledning fra emneansvarlig og faglærere",
+    "Testing og analyse av modellen på historiske data",
+    "Sammenligning med historisk praksis",
+    "Sensitivitetsanalyse"
+  ],
+  "antagelser": [
+    "Fase- og aktivitetsstrukturen er hentet fra kombinasjonen av prosjektstyringsplanen, statusfilen og oppgaveoversikten i eksisterende statusgenerator.",
+    "Datoene i schedule-beskrivelsen følger `MS_Project.mpp` der denne avviker fra tekstplanen, i tråd med merknaden i `status.md`."
+  ]
+}
