@@ -352,57 +352,126 @@ Her beskriver du hvilke data du har brukt, hvordan du har fått tak i de og hvor
 
 ### 6.1 Modellversjon 1: Lineær kostnadsminimeringsmodell
 
-#### Problemets struktur
+#### Problemets struktur: Fra operativ virkelighet til matematikk
 
-Modellen søker å svare på: Gitt etterspørsel (D[t], totalt bunkringsbehov per måned), priser (c[h,t] per havn og måned), og tilgjengelighet (f[h,t], indikator for om havn h har vært brukt i måned t), hvilken fordeling av bunkring på tvers av havner minimerer totale innkjøpskostnader?
+Odfjell Tankers sitt bunkringsproblem kan rekonstrueres som følgende optimeringsoppgave:
 
-#### Beslutningsvariabler
+> **Gitt:** Historiske priser per havn og måned, månedsvis etterspørsel etter drivstoff, og hvilke havner som har vært tilgjengelige.
+> 
+> **Spørsmål:** Hvilken fordeling av bunkring på de fire havnene minimerer totale innkjøpskostnader samtidig som etterspørselen dekkes?
 
-- $x_{h,t}$ = mengde drivstoff (tonn) bunkret i havn $h$ i måned $t$
-  - Domene: reelle, ikke-negative tall ($x_{h,t} \geq 0$)
-  - $h \in H = \{P001, P002, P003, P004\}$
-  - $t \in T = \{2020-01, 2020-02, ..., 2025-01\}$
+Dette er et klassisk ressursfordelingsproblem (assignment problem) som kan formuleres som en lineær program.
 
-#### Målfunksjon
+#### Beslutningsvariabler: Hva besluttes?
+
+$x_{h,t}$ = mengde drivstoff (tonn) som bunkres i havn $h$ i måned $t$
+
+**Indekser:**
+- $h \in H = \{P001, P002, P003, P004\}$ (de fire havnene)
+- $t \in T = \{2020\text{-}01, 2020\text{-}02, ..., 2025\text{-}01\}$ (61 måneder)
+
+**Domene:** Alle $x_{h,t} \geq 0$ (volumer er ikke-negative).
+
+Intuitivt: For hver kombinasjon av havn og måned, modellen avgjør hvor mye som skal kjøpes.
+
+#### Målfunksjon: Hva skal optimeres?
 
 $$\min Z = \sum_{h \in H} \sum_{t \in T} c_{h,t} \cdot x_{h,t}$$
 
-der $c_{h,t}$ er gjennomsnittlig pris per tonn i havn $h$ måned $t$.
+der $c_{h,t}$ er gjennomsnittlig pris per tonn i havn $h$ måned $t$ (estimert fra historisk data).
 
-Målet er å minimiere totale drivstoffinnkjøpskostnader over hele analyseperioden.
+**Tolking:** Minimiser samlet drivstoffkostnad over alle havner og alle måneder. Denne kostnaden er summen av (pris × mengde) for hver havn-måned-kombinasjon.
 
-#### Restriksjoner
+#### Restriksjoner: Hva tillates?
 
-**1. Etterspørselsbeholdning**
+**Restriksjon 1: Etterspørselsbeholdning (demand satisfaction)**
+
 $$\sum_{h \in H} x_{h,t} \geq D_t \quad \forall t \in T$$
 
-Samlet bunkring i hver måned må dekke månedens etterspørsel (estimert som observert bunkringsbehov i historikken).
+**Betydning:** I hver måned $t$ må samlet bunkring fra alle havner oppfylle eller overskride månedsetterspørsel $D_t$. 
 
-**2. Havnetilgjengelighet**
+$D_t$ estimeres som total observert bunkringsmengde i måned $t$ historisk (aggregert fra rensede data).
+
+**Praktisk tolking:** Vi kan ikke bunkre mindre enn skipene trenger.
+
+---
+
+**Restriksjon 2: Havnetilgjengelighet (port availability constraint)**
+
 $$x_{h,t} \leq M \cdot f_{h,t} \quad \forall h \in H, \forall t \in T$$
 
-der $M = 1{,}000{,}000$ (tilstrekkelig stor grense) og $f_{h,t} \in \{0, 1\}$ er en indikator: $f_{h,t} = 1$ hvis havn $h$ har observert transaksjoner i måned $t$ (historisk tilgjengelig), ellers 0.
+der:
+- $M = 1{,}000{,}000$ (tilstrekkelig stor grense, f.eks. maksimalt bunkringsvolum per måned)
+- $f_{h,t} \in \{0, 1\}$ er en binær indikator: $f_{h,t} = 1$ hvis havn $h$ har observert minst én transaksjon i måned $t$, ellers $f_{h,t} = 0$
 
-Denne restrisjonen sikrer at bunkring bare kan skje på havner som er kjent å være tilgjengelige.
+**Betydning:** Bunkring kan bare skje ved havner som er kjent å være tilgjengelige (historisk bevist).
 
-**3. Ikke-negativitetsbetingelse**
+**Praktisk tolking:** Vi kan ikke bunkre på en havn som er stengt eller som skipene ikke seiler til.
+
+---
+
+**Restriksjon 3: Ikke-negativitet**
+
 $$x_{h,t} \geq 0 \quad \forall h \in H, \forall t \in T$$
 
-Volumer kan ikke være negative.
+**Betydning:** Volumer kan ikke være negative (selvfølgelig).
 
-#### Forsimplifisering og antagelser i v1
+#### Parametrisering: Hvordan settes tallene inn?
 
-Modell v1 er enhavn-basert og ignorerer dynamikk:
-- Ingen tilstandsvariabel for tankbeholdning (skip-nivå).
-- Ingen eksplisitt modellering av forbruk mellom havner.
-- Beslutninger er desentralisert per måned; ingen tidskobling.
-- Deterministisk; historiske middelverdier brukes som parametere.
+| Parameter | Definisjon | Kilde |
+| --- | --- | --- |
+| $c_{h,t}$ | Pris per tonn, havn $h$, måned $t$ | Vektet gjennomsnittspris fra `tab_bunker_monthly_by_port.csv` |
+| $D_t$ | Etterspørsel (tonn), måned $t$ | Sum av faktuelle bunkringsvolumet for måned $t$ |
+| $f_{h,t}$ | Tilgjengelighetindikator ($1$ eller $0$) | $1$ hvis `transaction_count > 0` for den kombinasjonen, ellers $0$ |
+| $M$ | Big-M-konstant | $1{,}000{,}000$ tonn (realistisk øvre grense) |
 
-Disse forenklinger gjøres for at modellen skal være løsbar og forståelig, men de betyr at løsningen representerer et teoretisk nedre grense for kostnader under ideelle betingelser, ikke en faktisk operativ plan.
+#### Forenklingerforutsetninger (why v1 is simplified)
 
-#### Implementering
+Modell v1 er bevisst forenklet for å være løsbar og forståelig:
 
-Modellen implementeres i Pyomo (Python Optimization Modeling Objects) og løses med GLPK eller CBC LP-solver. Koden finnes i `006 analysis/02_modell_v1/run_model_v1_pyomo.py`.
+1. **Ingen tankbeholdning:** Modellen behandler hver måned isolert og anta at drivstoffet er forbrukt på slutten av måneden. I virkeligheten kan skip ha drivstoff lagret som påvirker neste periode.
+
+2. **Linjætr kostnader:** Kostnader er proporsjonale med volum (ingen rabatter eller stordriftsfordeler). Virkeligheten kan ha volume-baserte priser.
+
+3. **Deterministisk:** Prisene antas kjente med sikkerhet (bruker historisk gjennomsnitt). Reelle bunkringsbeslutninger må ofte tas under usikkerhet.
+
+4. **Enkelt etterspørsel:** Etterspørsel fastsettes som observert volum. I virkeligheten kan etterspørselen variere basert på værforhold, ruter, og fartøytype.
+
+Disse simpliseringene er **akseptable for første iterasjon** fordi:
+- De gjør modellen håndterbar og løsbar.
+- De gir en nedre grense (lower bound) på minimalmulig kostnad — dvs. modellens resultat viser best case.
+- Resultatene er fortsatt relevante for strategiske beslutninger.
+
+#### Implementering: Teknisk oppbygning
+
+**Språk og rammeverk:** Pyomo (Python Optim
+
+ization Modeling Objects)
+- Pyomo gjør det mulig å definer modeller programmatisk og løse dem med ulike solvere.
+
+**LP-solver:** GLPK eller CBC
+- Er standard open-source solvere for lineær programmering.
+
+**Kodfilstruktur:**
+- `run_model_v1_pyomo.py` — hovedskript som bygger, løser og skriver resultater
+- Inputfiler: `tab_model_v1_price_by_port_month.csv`, `tab_model_v1_demand_by_month.csv`, `data_model_v1_parameters.json`
+- Outputfiler: `res_model_v1_solution_by_port_month.csv`, `res_model_v1_summary.json`
+
+#### Løsingsprosess: Hva gjør solveren?
+
+1. **Input:** Solveren mottar målfunksjon, restriksjoner, og parametere.
+2. **Optimering:** Solveren søker etter kombinasjonen av $x_{h,t}$-verdier som minimerer kostnaden samtidig som alle restriksjoner er oppfylt.
+3. **Output:** En løsning (vektor av optimale mengder), eller en status som sier "infeasible" eller "unbounded" hvis ingen løsning finnes.
+4. **Validering:** Vi sjekker at løsningen oppfyller alle restriksjoner og sammenligner den med faktisk praksis.
+
+#### Tolking av resultater
+
+Resultatet av modellen er:
+- **Optimal kostnad:** Total minimert drivstoffkostnad.
+- **Allokeringsplan:** For hver havn og måned, hvor mye som optimalt bunkres der.
+- **Kostnadssammenligning:** Differensen mellom optimal kostnad og hva som faktisk ble brukt (demonstrerer sparingspotensial).
+
+Hvis modellen anbefaler å bunkre mer i P003 (som er billigst) og mindre i P002 (som er dyrest), reflekterer dette kostnadsoptimering.
 
 Prosjektets første modellversjon formuleres som en kvantitativ lineær kostnadsminimeringsmodell. Målet er å minimere totale bunkringskostnader over analyseperioden gitt observerte prisforskjeller mellom havner og et definert drivstoffbehov per periode.
 
