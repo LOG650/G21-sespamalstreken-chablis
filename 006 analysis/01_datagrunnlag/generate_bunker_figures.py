@@ -23,7 +23,7 @@ PORT_COLORS = {
     "P001": "#0B3C5D",
     "P002": "#328CC1",
     "P003": "#D9B310",
-    "P004": "#1D2731",
+    "P004": "#B24C00",
 }
 
 
@@ -56,14 +56,27 @@ def plot_total_volume_by_month(monthly_rows: list[dict[str, str]]) -> Path:
     months = sorted(totals, key=parse_month)
     x_values = [parse_month(month) for month in months]
     y_values = [totals[month] for month in months]
+    avg_volume = sum(y_values) / len(y_values)
 
-    plt.figure(figsize=(12, 5))
-    plt.plot(x_values, y_values, color="#0B3C5D", linewidth=2.4)
+    fig, ax = plt.subplots(figsize=(13, 5.8))
+    ax.plot(x_values, y_values, color="#0B3C5D", linewidth=2.4, label="Månedlig volum")
     plt.fill_between(x_values, y_values, color="#328CC1", alpha=0.18)
-    plt.title("Samlet bunkret volum per måned")
-    plt.xlabel("Måned")
-    plt.ylabel("Volum")
-    plt.grid(alpha=0.25, linestyle="--")
+    ax.axhline(
+        avg_volume,
+        color="#D95F02",
+        linewidth=1.8,
+        linestyle="--",
+        label=f"Gjennomsnitt: {avg_volume:.0f}",
+    )
+    ax.set_title("Samlet bunkret volum per måned")
+    ax.set_xlabel("Måned")
+    ax.set_ylabel("Volum")
+    ax.grid(alpha=0.25, linestyle="--")
+    tick_positions = x_values[::2]
+    tick_labels = [date.strftime("%Y-%m") for date in tick_positions]
+    ax.set_xticks(tick_positions)
+    ax.set_xticklabels(tick_labels, rotation=45, ha="right")
+    ax.legend(frameon=False, loc="upper left")
     return save_figure("fig_bunker_total_qty_by_month.png")
 
 
@@ -72,12 +85,12 @@ def plot_weighted_price_by_port(monthly_rows: list[dict[str, str]]) -> Path:
     for row in monthly_rows:
         rows_by_port[row["port"]].append(row)
 
-    plt.figure(figsize=(12, 5.8))
+    fig, ax = plt.subplots(figsize=(13, 5.8))
     for port in sorted(rows_by_port):
         rows = sorted(rows_by_port[port], key=lambda row: parse_month(row["delivery_month"]))
         x_values = [parse_month(row["delivery_month"]) for row in rows]
         y_values = [float(row["weighted_avg_price"]) for row in rows]
-        plt.plot(
+        ax.plot(
             x_values,
             y_values,
             label=port,
@@ -85,11 +98,16 @@ def plot_weighted_price_by_port(monthly_rows: list[dict[str, str]]) -> Path:
             color=PORT_COLORS.get(port),
         )
 
-    plt.title("Vektet gjennomsnittspris per havn og måned")
-    plt.xlabel("Måned")
-    plt.ylabel("Pris")
-    plt.grid(alpha=0.25, linestyle="--")
-    plt.legend(title="Havn", ncols=4, frameon=False)
+    all_months = sorted({parse_month(row["delivery_month"]) for row in monthly_rows})
+    tick_positions = all_months[::2]
+    tick_labels = [date.strftime("%Y-%m") for date in tick_positions]
+    ax.set_title("Vektet gjennomsnittspris per havn og måned")
+    ax.set_xlabel("Måned")
+    ax.set_ylabel("Pris")
+    ax.set_xticks(tick_positions)
+    ax.set_xticklabels(tick_labels, rotation=45, ha="right")
+    ax.grid(alpha=0.25, linestyle="--")
+    ax.legend(title="Havn", ncols=4, frameon=False, loc="upper left")
     return save_figure("fig_bunker_weighted_price_by_port_month.png")
 
 
@@ -116,9 +134,9 @@ def plot_season_profile(monthly_rows: list[dict[str, str]]) -> Path:
         weight = price_weight_by_calendar_month.get(month, 0.0)
         weighted_prices.append(price_sum_by_calendar_month[month] / weight if weight else 0.0)
 
-    fig, ax1 = plt.subplots(figsize=(12, 5.8))
+    fig, ax1 = plt.subplots(figsize=(13, 5.8))
     bars = ax1.bar(month_names, avg_volumes, color="#328CC1", alpha=0.85)
-    ax1.set_title("Sesongprofil for volum og pris")
+    ax1.set_title("Sesongprofil for volum og pris\nGjennomsnitt per kalendermåned, 2020-01 til 2025-01")
     ax1.set_xlabel("Kalendermåned")
     ax1.set_ylabel("Gjennomsnittlig volum")
     ax1.grid(axis="y", alpha=0.25, linestyle="--")
@@ -129,27 +147,6 @@ def plot_season_profile(monthly_rows: list[dict[str, str]]) -> Path:
 
     ax1.bar_label(bars, fmt="%.0f", padding=2, fontsize=8)
     return save_figure("fig_bunker_season_profile.png")
-
-
-def plot_price_distribution_by_port(cleaned_rows: list[dict[str, str]]) -> Path:
-    prices_by_port: dict[str, list[float]] = defaultdict(list)
-    for row in cleaned_rows:
-        prices_by_port[row["port"]].append(float(row["effective_price"]))
-
-    ports = sorted(prices_by_port)
-    series = [prices_by_port[port] for port in ports]
-
-    plt.figure(figsize=(9.5, 5.5))
-    box = plt.boxplot(series, patch_artist=True, labels=ports, showfliers=False)
-    for port, patch in zip(ports, box["boxes"], strict=True):
-        patch.set_facecolor(PORT_COLORS.get(port, "#A7B6C2"))
-        patch.set_alpha(0.75)
-
-    plt.title("Prisfordeling per havn")
-    plt.xlabel("Havn")
-    plt.ylabel("Pris")
-    plt.grid(axis="y", alpha=0.25, linestyle="--")
-    return save_figure("fig_bunker_price_distribution_by_port.png")
 
 
 def write_figure_guide(figure_paths: list[Path]) -> None:
@@ -163,7 +160,6 @@ def write_figure_guide(figure_paths: list[Path]) -> None:
         f"- `{figure_paths[0].name}`: viser total historisk bunkringsmengde per måned og egner seg i kapittel 4.2 om historisk utvikling.",
         f"- `{figure_paths[1].name}`: viser prisutvikling per havn over tid og egner seg til å forklare geografiske prisforskjeller i casekapitlet.",
         f"- `{figure_paths[2].name}`: viser sesongprofil for både volum og pris og egner seg i kapittel 4.3 om sesongmønster.",
-        f"- `{figure_paths[3].name}`: viser prisfordeling per havn og gjør det enklere å diskutere variasjon og usikkerhet i datagrunnlaget i kapittel 5.2.",
         "",
         "## Kjøring",
         "",
@@ -180,14 +176,12 @@ def write_figure_guide(figure_paths: list[Path]) -> None:
 
 def main() -> None:
     ensure_figure_dir()
-    cleaned_rows = read_csv(CLEANED_CSV)
     monthly_rows = read_csv(MONTHLY_CSV)
 
     figure_paths = [
         plot_total_volume_by_month(monthly_rows),
         plot_weighted_price_by_port(monthly_rows),
         plot_season_profile(monthly_rows),
-        plot_price_distribution_by_port(cleaned_rows),
     ]
     write_figure_guide(figure_paths)
 

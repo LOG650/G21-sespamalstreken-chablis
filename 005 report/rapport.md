@@ -223,18 +223,57 @@ Teoridelen din skal rett og slett beskrive grunnlaget for studiet ditt, og danne
 
 ## 4.0 Casebeskrivelse
 
-Her skal problemstillingen utbroderes for den bedriften du samarbeidet med eller det . Ta med all relevant informasjon som er nødvendig for å få en full forståelse av problemet, men ikke mer. Husk å holde den røde tråden til problemstillingen, unødvendig informasjon trekker ned. Man kan gjerne beskrive om en bransje eller en teori hvis problemstillingen ikke omhandler en spesifikk bedrift.
+Dette prosjektet tar utgangspunkt i Odfjell Tankers sitt behov for bedre beslutningsstøtte i bunkringsarbeidet. Drivstoff er en stor kostnadspost i maritim drift, og prisforskjeller mellom havner og over tid kan få betydning når kjøpene gjentas mange ganger gjennom året. Casebeskrivelsen i dette kapittelet bygger derfor på historiske bunkringstransaksjoner og brukes til å forklare hvorfor datasettet er relevant som grunnlag for videre modellering.
 
-#### Eksempel:
+### 4.1 Odfjell Tankers og beslutningssituasjonen
 
-Anta vi f.eks. har som problemstilling og forbedre gjennomlløpstiden for en vare i en produksjonsbedrift:
+Odfjell Tankers opererer i en maritim kontekst der bunkringsbeslutninger må tas med begrenset og spredt informasjon om priser, tilgjengelighet og framtidig behov. I denne oppgaven er målet ikke å beskrive alle operative detaljer i selskapets drift, men å undersøke om historiske pris- og volumdata kan brukes til å etablere et første datadrevet beslutningsgrunnlag for hvor bunkring bør skje.
 
-- Type bedrift og hvorfor produktet har lav gjennomløpstid.
-- Beskrivelse av produktets oppbygning i komponenter.
-- Hvordan bedriften gjennomfører produksjonen av produktet i dag?
-- Hvilke faktorer som påvirker gjennomlløpstiden.
-- Hvilke data som bedriften har for prosessen.
-- Hva bedriften tror som forårsakker lav gjennomlløpstid.
+Det tilgjengelige materialet dekker drivstofftypen `LSF` og de fire mest brukte havnene i datasettet: `P001`, `P002`, `P003` og `P004`. Dette er en relevant avgrensing fordi disse havnene representerer de observerte beslutningsalternativene som foreløpig er best dokumentert i datagrunnlaget. Siden vi fortsatt venter på mer detaljerte operative data fra Odfjell Tankers, arbeider vi videre med disse 61 månedene og de fire havnene vi allerede har tilgang til.
+
+### 4.2 Historisk utvikling i volum og pris
+
+Et sentralt spørsmål i casebeskrivelsen er om datasettet faktisk viser variasjon som kan begrunne videre analyse og modellering. Hvis volum og pris er helt stabile, vil verdien av et beslutningsstøtteverktøy være mer begrenset. Hvis det derimot finnes tydelige svingninger, styrker det begrunnelsen for å bruke modellering.
+
+Figur 4.1 viser samlet bunkret volum måned for måned gjennom hele analyseperioden fra januar 2020 til januar 2025. Hvert punkt på kurven representerer altså én faktisk måned i tidsserien, ikke et gjennomsnitt på tvers av flere år. Volumet varierer betydelig mellom månedene, med en topp i januar 2023 på 22 316,23 og et bunnpunkt i februar 2020 på 4 726,55. Dette tyder på at aktivitetsnivået ikke er konstant, og at modellen må bygge på et datagrunnlag som håndterer variasjon over tid.
+
+<div align="center">
+  <img src="../006%20analysis/01_datagrunnlag/figures/fig_bunker_total_qty_by_month.png" alt="Historisk bunkret volum per måned" width="80%">
+  <p align="center"><small><i>Figur 4.1 Samlet bunkret volum for hver enkelt måned i perioden 2020-01 til 2025-01.</i></small></p>
+</div>
+
+Prisnivået varierer også tydelig mellom havnene. Figur 4.2 viser vektet gjennomsnittspris per havn for hver enkelt måned i perioden. Også her er figuren en tidsserie, der hver observasjon er knyttet til en konkret måned mellom januar 2020 og januar 2025. Figuren viser at havnene ikke bare har ulike gjennomsnittspriser, men også ulike prisbaner over tid. Dette er et sentralt premiss for videre modellering, fordi det innebærer at havnevalg kan påvirke totale bunkringskostnader.
+
+<div align="center">
+  <img src="../006%20analysis/01_datagrunnlag/figures/fig_bunker_weighted_price_by_port_month.png" alt="Pris per havn og måned" width="80%">
+  <p align="center"><small><i>Figur 4.2 Vektet gjennomsnittspris per havn for hver enkelt måned i perioden 2020-01 til 2025-01.</i></small></p>
+</div>
+
+Tabell 4.1 oppsummerer forskjellene mellom havnene og dokumenterer både aktivitetsnivå og prisnivå i analyseperioden.
+
+| Havn | Antall observasjoner | Total mengde | Vektet gjennomsnittspris | Antall måneder med observasjon |
+| --- | --- | --- | --- | --- |
+| P001 | 209 | 113606.88 | 578.75 | 61 |
+| P002 | 286 | 181419.36 | 610.29 | 46 |
+| P003 | 369 | 253591.20 | 540.84 | 61 |
+| P004 | 517 | 320932.69 | 577.04 | 61 |
+
+`Tabell 4.1` viser at `P004` er den mest brukte havnen målt i antall observasjoner, mens `P003` har lavest vektet gjennomsnittspris. `P002` fremstår som den dyreste havnen i utvalget og har dessuten færre måneder med observasjoner enn de øvrige havnene. Dette understøtter at både prisnivå og datadekning varierer mellom havnene.
+
+### 4.3 Sesongmønster i bunkringsdataene
+
+For å vurdere om det finnes et mønster som gjentar seg gjennom kalenderåret, er volum og pris også aggregert per kalendermåned. Figur 4.3 er derfor ikke en tidsserie for ett bestemt år. I stedet viser den et gjennomsnitt på tvers av analyseperioden, der alle januar-måneder er slått sammen, alle februar-måneder er slått sammen, og så videre. Stolpene representerer gjennomsnittlig volum per kalendermåned, mens linjen viser vektet gjennomsnittspris for samme kalendermåned når hele perioden ses under ett.
+
+<div align="center">
+  <img src="../006%20analysis/01_datagrunnlag/figures/fig_bunker_season_profile.png" alt="Sesongprofil for volum og pris" width="80%">
+  <p align="center"><small><i>Figur 4.3 Gjennomsnittlig volum og pris per kalendermåned, aggregert på tvers av perioden 2020-01 til 2025-01.</i></small></p>
+</div>
+
+Figuren viser at aktivitetsnivået i gjennomsnitt er høyest rundt mars og juli, mens prisnivået i gjennomsnitt er relativt høyt i februar, mars og juni og lavere i mai og desember. Mønsteret er ikke så sterkt at det alene kan forklare alle beslutninger, men det viser at både volum og pris varierer systematisk nok til at sesong bør beskrives eksplisitt i caset.
+
+### 4.4 Konsekvenser av begrenset beslutningsgrunnlag
+
+Når prisene varierer mellom havner og over tid, mens volumet samtidig svinger gjennom analyseperioden, øker behovet for et mer strukturert beslutningsgrunnlag. Uten en systematisk sammenstilling av slike mønstre risikerer virksomheten å basere bunkringsbeslutninger på enkelthendelser eller lokal erfaring alene. Det betyr ikke at historiske data kan erstatte operativ vurdering, men det betyr at historiske transaksjoner kan brukes til å synliggjøre hvor det finnes et potensial for kostnadsreduksjon og bedre prioritering mellom havner.
 
 ---
 
@@ -256,11 +295,46 @@ Vi har bedt Odfjell Tankers om mer detaljerte operative data, blant annet knytte
 
 Datagrunnlaget består av historiske bunkringstransaksjoner fra filen `004 data/Bunker Lifting List(Worksheet1) (1).csv`. Datasettet dekker de siste 61 månedene i perioden fra januar 2020 til januar 2025 og er avgrenset til de fire mest brukte havnene i materialet: `P001`, `P002`, `P003` og `P004`. Hver observasjon representerer en bunkringshendelse og inneholder blant annet informasjon om fartøy, voyage, havn, leveringsdato, bestilt mengde, fakturert mengde, ordrepris, fakturapris, leverandør og supplier.
 
+Tabell 5.1 oppsummerer datagrunnlaget og avgrensningen som brukes videre i analysen.
+
+| Element | Verdi |
+| --- | --- |
+| Periode | 2020-01-04 til 2025-01-30 |
+| Antall rå observasjoner | 1389 |
+| Antall rensede observasjoner | 1381 |
+| Antall forkastede observasjoner | 8 |
+| Drivstofftype | LSF |
+| Antall havner | 4 |
+| Havner inkludert | P001, P002, P003, P004 |
+| Antall måneder | 61 |
+
 Det opprinnelige datasettet inneholder 1389 observasjoner. Gjennomgangen viser at de sentrale identifikasjonsfeltene er komplette, men at enkelte verdi- og prisfelt har mangler eller ugyldige verdier. Det finnes 10 observasjoner uten `Invoice Price`, 10 observasjoner uten `Invoiced Qty`, 2 observasjoner uten `Supplier`, samt 8 observasjoner med ikke-positivt volum. Etter rensing ble 1381 observasjoner beholdt, mens 8 observasjoner ble forkastet på grunn av ikke-positivt volum. Oppsummeringen av rensingen er dokumentert i `006 analysis/01_datagrunnlag/tab_bunker_summary.md`.
+
+Tabell 5.2 dokumenterer rensevalg og datakvalitet i materialet.
+
+| Kontrollpunkt | Antall / regel | Konsekvens |
+| --- | --- | --- |
+| Manglende `Invoice Price` | 10 observasjoner | Håndteres med fallback til `Order Price` |
+| Manglende `Invoiced Qty` | 10 observasjoner | Håndteres med fallback til `Ordered Qty` |
+| Fallback-regel for pris | `Invoice Price` først | Bevarer observasjoner med manglende fakturapris |
+| Fallback-regel for volum | `Invoiced Qty` først | Bevarer observasjoner med manglende fakturert volum |
+| Forkastet pga. ikke-positivt volum | 8 observasjoner | Tas ut av analysegrunnlaget |
+| Forkastet pga. ikke-positiv pris | 0 observasjoner | Ingen observasjoner fjernet av denne grunnen |
+| Manglende `Supplier` | 2 observasjoner | Har liten betydning for modellversjon 1 |
+| Endelig antall beholdte observasjoner | 1381 | Brukes videre i renset og aggregert datasett |
 
 For analyse- og modelleringsformål er dataene strukturert i to filer. `tab_bunker_cleaned.csv` inneholder rensede transaksjoner på detaljnivå, mens `tab_bunker_monthly_by_port.csv` inneholder månedlig aggregat per havn. Aggregatet består av 229 havn-måned-kombinasjoner fordelt over 61 måneder. For hver kombinasjon beregnes blant annet `transaction_count`, `total_qty`, `weighted_avg_price`, `simple_avg_price`, `min_price`, `max_price`, `unique_vessels` og `unique_suppliers`.
 
 En oppsummering av materialet viser tydelige forskjeller mellom havnene. `P004` er den mest brukte havnen målt i antall observasjoner, mens `P003` har lavest vektet gjennomsnittspris i utvalget. `P002` fremstår som den dyreste havnen. Dette indikerer at havnevalg har potensial til å påvirke totale drivstoffkostnader og støtter relevansen av å utvikle en optimeringsmodell basert på datasettet.
+
+Tabell 5.3 oppsummerer den strukturerte havneinformasjonen som videreføres til modellgrunnlaget.
+
+| Havn | Antall observasjoner | Total mengde | Vektet gjennomsnittspris | Antall måneder med observasjon |
+| --- | --- | --- | --- | --- |
+| P001 | 209 | 113606.88 | 578.75 | 61 |
+| P002 | 286 | 181419.36 | 610.29 | 46 |
+| P003 | 369 | 253591.20 | 540.84 | 61 |
+| P004 | 517 | 320932.69 | 577.04 | 61 |
 
 Datakvaliteten vurderes som tilstrekkelig for en første modellversjon, men datasettet har klare begrensninger. Det omfatter bare fire havner og én drivstofftype, og inneholder ikke eksplisitte variabler for tankkapasitet, minimumsbeholdning, faktisk drivstofforbruk mellom havner, havnesekvens eller kontraktsmessige bindinger. Vi har bedt om slike supplerende data, men fordi de ennå ikke er mottatt, baseres det videre arbeidet på dagens datagrunnlag. Resultatene må derfor tolkes som et første analytisk beslutningsgrunnlag, ikke som en fullstendig operativ modell av bunkringsbeslutningene.
 
