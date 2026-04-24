@@ -19,6 +19,9 @@
   - `Analyse/Resultat`: brukes først når faktisk prognoseanalyse og modellvurdering er gjort.
 - Beskrivende figurer for historisk salg skal inn i casekapitlet, ikke i analysekapitlet.
 - Datatabeller som dokumenterer datasettet skal inn i datakapitlet.
+- Beskrivende historiske figurer for bunkringsdata skal ligge i kapittel 4, mens dokumentasjon av datasett, datakvalitet og train/test-splitt skal ligge i kapittel 5.
+- Modellnære forklaringer, parametere, restriksjoner og kobling til modellfiler skal ligge i kapittel 6, ikke i casekapitlet.
+- Når train/test-splitt omtales i rapporten, skal det beskrives eksplisitt at splitten er kronologisk etter `Delivery Date`, med de tidligste 80 % som trening og de siste 20 % som test.
 
 ## Rapportstruktur
 
@@ -88,6 +91,8 @@ Les også filen @000 templates\Mal prosjekt LOG650 v2.docx for mer detaljert tip
 ```
 
 - Figurteksten skal være kort og nøktern, ikke en hel forklaring.
+- I dette repoet brukes nå også `style="font-size: 0.9em;"` på figurteksten for å gjøre den litt mindre enn brødteksten når Markdown-visningen støtter det.
+- Figurtekstene skal tydelig si om figuren viser en tidsserie for hver enkelt måned eller et gjennomsnitt aggregert på tvers av flere år.
 
 ## Tabeller i rapporten
 
@@ -102,6 +107,10 @@ Les også filen @000 templates\Mal prosjekt LOG650 v2.docx for mer detaljert tip
 - Ett felles `uv`-prosjekt brukes for hele `006 analysis`.
 - Skript, figurer og resultatfiler skal ligge i samme aktivitetsmappe.
 - Filnavn i analyseartefakter skal være korte, ryddige og prefikset med `fig_` og `tab_`.
+- `006 analysis` er nå organisert i hovedmappene `01_datagrunnlag`, `02_modellutvikling` og `03_analyse`, med undermapper per aktivitet i planen.
+- Innen hver aktivitetsmappe skal man så langt som mulig skille mellom `src`, `input`/`data`, `output`, `figures` og `metadata`.
+- Behold versjonsmerking som `v1` i filnavn og metadata når relevant, men la mappestrukturen følge aktivitetene i prosjektplanen heller enn modellversjoner.
+- Når datasett splittes i trening og test, skal originalfilen beholdes urørt, og nye filer opprettes som egne filer med tydelige navn.
 
 ## Review av aktiviteter
 
@@ -112,3 +121,5 @@ Les også filen @000 templates\Mal prosjekt LOG650 v2.docx for mer detaljert tip
 - Når noe er fullført i prosjektet, oppdater både planfiler og `status.md`.
 - Nye arbeidssteg bør legges inn i planen før aktiviteten lukkes.
 - Når noe bare er en antagelse, skriv det eksplisitt som antagelse og ikke som verifisert fakta.
+- `status.md` skal fungere som et levende styringsdokument med innholdsfortegnelse, neste steg, Gantt/milepæler og sjekklister, ikke bare som en statisk logg.
+- Når et nytt mellomsteg oppstår i arbeidet, som datasplitt eller dokumentasjon i rapporten før neste aktivitet, skal det legges inn som egen task i planfilene før hovedaktiviteten lukkes.

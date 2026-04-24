@@ -15,7 +15,6 @@ Denne filen er generert fra:
 - [Aktivitetsstatus](#aktivitetsstatus)
 - [Aktivitetssjekklister](#aktivitetssjekklister)
 - [Spor i repoet](#spor-i-repoet)
-- [Oppdatering](#oppdatering)
 - [Manuelle merknader](#manuelle-merknader)
 
 ## Statusdashboard
@@ -283,33 +282,9 @@ Status: **Fullført**
 
 [Til toppen](#innholdsfortegnelse)
 
-## Oppdatering
-
-### Merknad om datoer
+## Manuelle merknader
 
 Tekstplanen nevner endelig innlevering **2026-05-31**, mens `MS_Project.mpp` viser **2026-06-02** inkludert prosjektbuffer. Statusen under følger datoene i `MS_Project.mpp`.
-
-### Oppdater statusfilen manuelt
-
-Bruk en av disse kommandoene:
-
-```powershell
-python "012 fase 2 - plan\generate_status.py"
-```
-
-```powershell
-.\012 fase 2 - plan\oppdater_status.ps1
-```
-
-Hvis du vil oppdatere for en bestemt dato, bruk:
-
-```powershell
-python "012 fase 2 - plan\generate_status.py" 2026-04-24
-```
-
-[Til toppen](#innholdsfortegnelse)
-
-## Manuelle merknader
 
 ### Manuell merknad 2026-04-12
 
@@ -358,6 +333,7 @@ python "012 fase 2 - plan\generate_status.py" 2026-04-24
 - Modellinput for versjon 1 er regenerert i `006 analysis/02_modellutvikling/04_implementere_modell/input`.
 - Simulert modelltest er gjennomført i `006 analysis/02_modellutvikling/05_teste_modell`, og resultatfiler er opprettet i `output`.
 - Rådatasettet i `004 data` er splittet i en treningsfil og en testfil med 80/20-splitt etter tidligste og siste observasjoner.
+- Datakvalitet er omtalt eksplisitt i `005 report/rapport.md` med en antagelse om at datasettet allerede er kvalitetssjekket av Odfjell Tankers før overlevering til prosjektgruppen.
 
 ### Arbeid i dag 2026-04-24
 

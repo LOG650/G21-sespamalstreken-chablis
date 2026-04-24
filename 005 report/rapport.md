@@ -122,102 +122,86 @@ Oppgaver som er unntatt offentlighet eller båndlagt vil ikke bli publisert.
 
 ## 1.0 Innledning
 
-Introduksjonen bør ikke være for lang, mellom 1-4 sider, helst kun 1-2. For mye skrift her kan være et tegn på at man sliter med å være presis. Ta utgangspunkt i et generelt tema og deretter beskriv den aktuelle problemstillingen.
+Drivstoffkostnader er en av de største og mest variable kostnadskomponentene i maritim drift. For et rederi som Odfjell Tankers, der bunkring skjer gjentatte ganger over mange havner og perioder, kan selv moderate prisforskjeller per enhet gi store utslag i totale kostnader over tid. Samtidig tas slike beslutninger i en operativ virkelighet preget av begrenset informasjon, tidspress og praktiske hensyn. Dette gjør bunkringsbeslutninger til et relevant område for beslutningsstøtte basert på data og optimering.
 
-Svar på følgende spørsmål:
+Temaet er aktuelt fordi historiske transaksjonsdata gir mulighet til å undersøke om det finnes systematiske mønstre i pris og volum som kan utnyttes bedre enn i en mer erfaringsbasert beslutningsprosess. Dersom slike mønstre kan dokumenteres og knyttes til en enkel og transparent modell, kan analysen gi Odfjell Tankers et bedre grunnlag for å vurdere hvor bunkring bør skje under gitte forutsetninger.
 
-- Hvilket tema handler oppgaven om?
-- Hvorfor er tema aktuelt?
-- Hva har blitt gjort tidligere (de mest vesentlige referansene)?
-- Hva er rapportens problemstilling (eget underavsnitt)?
-- Hvilke avgrensinger gjøres (eget underavsnitt)?
+Rapporten er forankret i et konkret case der prosjektgruppen har fått tilgang til historiske bunkringstransaksjoner for drivstofftypen `LSF` i de fire mest brukte havnene i datasettet. Datagrunnlaget dekker 61 måneder fra januar 2020 til januar 2025. Formålet er ikke å utvikle en fullstendig operativ planleggingsmodell i første omgang, men å etablere et første analysemessig beslutningsgrunnlag som kan danne utgangspunkt for videre modellutvikling.
 
-### Viktige momenter:
+Tidligere forskning og praksis innen operasjonsanalyse viser at lineær programmering er godt egnet til å analysere ressursallokering og kostnadsminimering under restriksjoner. I en maritim sammenheng er dette relevant fordi bunkringsbeslutninger kan forstås som et valg mellom alternative havner, priser og tidspunkter. Denne rapporten knytter derfor historiske bunkringsdata til en første lineær kostnadsminimeringsmodell og vurderer hvordan dagens datagrunnlag kan brukes til dette formålet.
 
-- Skap nysgjerrighet slik at leseren ønsker å lese videre. Kunsten er ofte å aktualisere temaet for deretter å peke på konsekvenser som resultatet kan gi. Men unngå å brodere ut hvordan resultatet oppnås – for da må leseren lese videre.
-- Prøv å gi leseren innblikk i strukturen til rapporten gjennom hele introduksjonen.
-
-### Eksempler på god innledning:
-
-- «Lakseprisens volatilitet påvirker svært mange aktører som…»
-- «Ref 1 har vist at lakseprisen er avhengig av…»
-- «Derimot argumenter Ref 2 at volatiliteten også påvirkes av»
-- «Litteraturstudiet vårt viser at ingen har inkludert faktorer som …»
-- «For Maritech skaper volatiliteten utfordringer for kundene fordi…»
-- «Med bedre modeller kan Maritech gi fordel til sine kunder ved at…»
-- «Vi har brukt bedriftens salgsdata for å kartlegge hvilke faktorer som…»
-- «Basert på statistisk regresjonsteori har vi beskrevet en ny modell som…»
-- «I analysen har vi identifisert interessante funn som bl.a…»
-- «Konklusjonen er derfor at…»
-
-Det er lurt å henvise tilbake til introduksjonen indirekte ved å f.eks. bruke setninger som gjentar litt det som ble sagt i introduksjonen. På den måten skappes det en rød tråd hos leseren gjennom hele rapporten hvor hen minnes på hvorfor rapporten er interessant.
+Rapporten er strukturert slik at case og historiske data presenteres før den matematiske modellen formuleres. Dette gjør det mulig å bygge en tydelig sammenheng mellom den faktiske beslutningssituasjonen, datagrunnlaget, modellforenklingene og den videre analysen.
 
 ### 1.1 Problemstilling
 
-Problemstillingen din er avgjørende for et godt resultat. Dette skal ikke være et «hva»- eller «hvilket»-spørsmål.
-
-Sørg for at du har en «hvordan»- eller «hvorfor»-spørsmål, noe som vil gjøre problemstillingen din mye mer omfattende.
-
-En god problemstilling danner grunnlaget for hele oppgaven din, så her er det verdt å tenke seg nøye om.
-
-Kan godt gjenta noe av det som ble sagt i innledningen.
-
-#### Her er det viktig at du:
-
-- er så spesifikk som mulig
-- er svært nøye med formuleringene
-- ikke skriver noe du ikke svarer på (dangerzone)
-- ikke svarer på noe mer enn det som står i problemstillingen (da burde det enten vært tatt ut eller vært inkludert i problemstillingen (dangerzone))
+Hvordan kan en lineær optimaliseringsmodell brukes til å minimere totale drivstoffkostnader for Odfjell Tankers ved å fordele bunkringsvolum mellom de fire mest brukte havnene på grunnlag av historiske pris- og volumdata?
 
 ### 1.2 Delproblemer (valgfri)
 
-Du kan om nødvendig dele opp problemstillingen din i flere delproblemer, dersom problemstillingen er komplisert eller omfattende. Det er da viktig at disse delproblemene blir fremstilt i en logisk rekkefølge som gir mening for hovedproblemstillingen. Vær også tydelig til leseren hvilket delproblem du svarer på til enhver tid.
+Hovedproblemstillingen kan presiseres gjennom tre delspørsmål:
+
+- Hvordan kan historiske bunkringsdata renses, struktureres og beskrives slik at de gir et konsistent grunnlag for modellering?
+- I hvilken grad er dagens datagrunnlag tilstrekkelig for å formulere og implementere en første lineær kostnadsminimeringsmodell?
+- Hvordan kan modellen vurderes mot senere historiske observasjoner gjennom en enkel splitt mellom treningsdata og testdata?
 
 ### 1.3 Avgrensinger
 
-Avgrensing er en svært viktig måte å snevre inn en problemstilling. Her forklarer du hvorfor du ikke har tatt med det og det. Pass på at du ikke avgrenser noe uten å forklare hvorfor, og husk aldri skriv at du ikke har nok tid e.l. det er et stort tegn på en for vidt formulert problemstilling.
+Rapporten er avgrenset til de fire mest brukte havnene i datasettet, `P001`, `P002`, `P003` og `P004`, fordi det er disse havnene som foreløpig har den tydeligste historiske datadekningen. Videre er analysen avgrenset til drivstofftypen `LSF`, slik at modell og datagrunnlag bygger på én konsistent produktkategori. Tidsmessig er arbeidet avgrenset til perioden januar 2020 til januar 2025, som gir 61 måneder med historiske observasjoner.
 
-#### Eksempler:
-
-- «Vi avgrenser oppgaven til kun ett produkt siden…»
-- «Vi analyserer 80% av kundene da de resterende ikke…»
-- «Oppgaven omfatter kun Norge, da det utenlandske markedet ikke…»
+Modellen er også bevisst avgrenset til en første lineær og aggregert formulering på havn- og månedsnivå. Dette betyr at fartøyspesifikk beholdning, rutevalg, tankkapasitet og kontraktsmessige bindinger ikke er modellert eksplisitt, fordi disse forholdene ikke er tilstrekkelig dokumentert i dagens datagrunnlag.
 
 ### 1.4 Antagelser
 
-Antagelser er en måte å presisere en problemstilling på. En antagelser er ikke det samme som avgrensing. En avgrensing snevrer inn omfanget, mens en antagelse presiserer situasjonen som analyseres. Man må forklare hvorfor man har tatt antagelsen, og hvilke konsekvenser den får på aktualiteten til analysen.
+Rapporten bygger på flere eksplisitte antagelser. For det første antas det at historiske prisobservasjoner gir et rimelig grunnlag for å beskrive relative prisforskjeller mellom havnene i analyseperioden. For det andre antas det at datasettet som er mottatt fra Odfjell Tankers allerede er grunnleggende kvalitetssjekket av dataleverandøren, selv om prosjektgruppen ikke har mottatt en separat datakvalitetsrapport. For det tredje antas det i modellversjon 1 at månedlig observert bunkringsmengde kan brukes som en enkel proxy for behov per periode.
 
-#### Eksempler:
-
-- «Vi antar at antall innkommende ordrer er Poissonfordelt fordi…dette gjør at…»
-- «Vi antar at vi kan se vekk fra effekten av prisene i Sverige fordi…dette gjør at…»
+Disse antagelsene er nødvendige for å kunne arbeide videre med dagens datagrunnlag, men de innebærer også begrensninger. Analysen må derfor tolkes som et første beslutningsstøttende modellforsøk og ikke som en full operativ anbefaling uten videre validering.
 
 ---
 
 ## 2.0 Litteratur
 
-Diskuter de viktigste bidragene de 5 siste årene innen temaet du har valgt. Prøv å trekk tråder til din problemstilling og beskriv hvor og hvordan din rapport forholder seg til disse. Pass på at referanser blir korrekte.
-
-Det er ikke alltid nødvendig å ha et eget kapittel for litteratur, det viktigste av alt er at man aldri, aldri siterer noen eller kommer med fakta eller påstander, uten at det refereres til hvor du har denne påstanden ifra. Dette kaller vi synsing, og synsing trekker ned karakteren kraftig.
-
-Det kan ofte skje at man henviser til samme rapport flere ganger i teksten. Unngå da å repetere funnene i rapporten, men ha med selve referansen.
+Litteraturgrunnlaget for denne rapporten ligger i skjæringspunktet mellom operasjonsanalyse, lineær programmering og maritim beslutningsstøtte. Det mest relevante fra litteraturen er ikke nødvendigvis studier som er identiske med dette caset, men bidrag som viser hvordan kostnadsminimering, ressursallokering og modellbasert beslutningsstøtte kan brukes i praktiske driftsmiljøer.
 
 ### Husk en referanse har to hensikter:
 
 1. Kreditere resultatet til de som fant det.
 2. Gi leseren en mulighet til å sjekke opp en påstand eller fakta som du bygger rapporten din på.
 
+Innen operasjonsanalyse er lineær programmering et etablert rammeverk for å formulere problemer der en aktør ønsker å minimere kostnader eller maksimere nytte under et sett av begrensninger. Denne litteraturen er relevant fordi bunkringsproblemet kan forstås nettopp som et slikt valgproblem: et gitt drivstoffbehov skal dekkes ved å fordele innkjøp mellom alternative havner og perioder med ulike priser.
+
+Litteratur om logistikk og maritim planlegging peker samtidig på at modeller sjelden bør vurderes isolert fra operativ kontekst. I praksis vil forhold som tilgjengelighet, kapasitet, forbruk, ruter og kontrakter påvirke hvilke løsninger som faktisk er gjennomførbare. Dette er relevant for denne rapporten fordi datagrunnlaget foreløpig ikke inneholder alle slike variabler. Dermed må modellens rolle avgrenses til å være et første analytisk beslutningsstøtteverktøy, ikke en fullstendig operativ sannhetsmodell.
+
+Et annet relevant litteraturspor handler om modellvalidering og bruk av historiske data. Her er et sentralt poeng at modeller bør testes mot observerte data og vurderes opp mot realistiske driftsforhold. Dette støtter rapportens videre opplegg med en eksplisitt datasplitt mellom treningsdata og testdata, slik at modellutvikling og modellvurdering ikke blandes sammen.
+
+Denne rapporten plasserer seg dermed i en anvendt tradisjon: den bruker etablerte prinsipper fra lineær programmering og modellbasert analyse, men anvender dem på et konkret maritimt case med et begrenset, men reelt datagrunnlag fra Odfjell Tankers. Den viktigste faglige ambisjonen er derfor ikke å introdusere en ny teori, men å vise hvordan kjent metode kan brukes systematisk på et praktisk beslutningsproblem.
+
 ---
 
 ## 3.0 Teori
 
-Når du skal skrive en bacheloroppgave, er det også viktig å inkludere en teoridel. Her skal du beskrive teoretisk perspektiv, tidligere litteratur som beskriver samme tema og hva forskere eventuelt er uenige om.
+### Lineær programmering som teoretisk rammeverk
 
-Du kan også nevne hvorvidt tidligere forskning kan ha oversett noen faktorer, og plassere egen problemstilling i lys av tidligere litteratur på fagfeltet.
+Lineær programmering er en matematisk metode for å finne den beste løsningen på et problem der både målfunksjonen og restriksjonene kan uttrykkes lineært. Et standard lineært programmeringsproblem består av beslutningsvariabler, en målfunksjon og et sett av begrensninger. I denne oppgaven er teorien relevant fordi bunkringsbeslutninger kan beskrives som et valg mellom alternative havner og perioder, der målet er å minimere totale kostnader.
 
-Pass på at du får frem hva problemstillingen din belyser, som ikke tidligere forskning allerede har gjennomgått.
+Det teoretiske poenget med lineær programmering i denne sammenhengen er at metoden gjør det mulig å gå fra en intuitiv problemforståelse til en eksplisitt og etterprøvbar beslutningsmodell. Når modellens antagelser og restriksjoner er tydelige, kan både styrker og begrensninger diskuteres på en faglig ryddig måte.
 
-Teoridelen din skal rett og slett beskrive grunnlaget for studiet ditt, og danner utgangspunktet for videre metodevalg.
+### Beslutningsvariabler, parametere og restriksjoner
+
+Et sentralt teoretisk skille i optimeringslitteraturen går mellom beslutningsvariabler og parametere. Beslutningsvariablene beskriver hva modellen skal velge, mens parametrene beskriver størrelser som antas gitt. I denne rapporten brukes dette skillet for å definere bunkret volum som beslutningsvariabel, mens pris, behov og tilgjengelighet behandles som parametere i den første modellversjonen.
+
+Restriksjoner er like viktige som målfunksjonen, fordi de avgjør hvilke løsninger som er gyldige. Teoretisk sett er dette nødvendig for at en modell ikke bare skal finne den billigste løsningen, men den billigste løsningen innenfor de rammene som er definert. I praksis betyr det at modellens verdi avhenger av hvor godt restriksjonene representerer den faktiske beslutningssituasjonen.
+
+### Modellforenkling og operativ relevans
+
+All anvendt modellering innebærer forenklinger. En modell er derfor ikke en kopi av virkeligheten, men en analytisk representasjon av utvalgte forhold som anses viktigst for beslutningen. I denne oppgaven er dette særlig relevant fordi datagrunnlaget ikke inneholder alle operative variabler som i prinsippet burde inngå i en full bunkringsmodell.
+
+Teoretisk innebærer dette at modellversjon 1 må forstås som en aggregert og deterministisk modell. Den arbeider på havn- og månedsnivå, ikke på fartøynivå, og den bruker historisk observert mengde som et mål på behov. Dette gjør modellen enklere å formulere og lettere å tolke, men stiller samtidig krav om at forenklingene dokumenteres tydelig.
+
+### Datagrunnlag, trening og testing
+
+Når historiske data brukes både til å bygge og vurdere en modell, oppstår det en risiko for at vurderingen blir for optimistisk hvis de samme observasjonene brukes i begge steg. Et vanlig prinsipp i analyse og modellutvikling er derfor å skille mellom data brukt til utvikling og data brukt til kontroll eller testing. I denne rapporten er dette prinsippet relevant fordi datasettet nå er splittet i en treningsdel og en testdel basert på kronologisk rekkefølge.
+
+Den teoretiske begrunnelsen for en slik splitt er at modellen skal vurderes på senere observasjoner enn dem som først brukes som analysegrunnlag. I tidsavhengige data er det særlig viktig at splittingen følger tidsrekkefølgen, slik at en testperiode faktisk representerer senere observasjoner og ikke bare en tilfeldig delmengde av de samme årene.
 
 ---
 
@@ -239,14 +223,14 @@ Figur 4.1 viser samlet bunkret volum måned for måned gjennom hele analyseperio
 
 <div align="center">
   <img src="../006%20analysis/01_datagrunnlag/04_deskriptiv_analyse/figures/fig_bunker_total_qty_by_month.png" alt="Historisk bunkret volum per måned" width="80%">
-  <p align="center"><small><i>Figur 4.1 Samlet bunkret volum for hver enkelt måned i perioden 2020-01 til 2025-01.</i></small></p>
+  <p align="center" style="font-size: 0.9em;"><i>Figur 4.1 Samlet bunkret volum for hver enkelt måned i perioden 2020-01 til 2025-01.</i></p>
 </div>
 
 Prisnivået varierer også tydelig mellom havnene. Figur 4.2 viser vektet gjennomsnittspris per havn for hver enkelt måned i perioden. Også her er figuren en tidsserie, der hver observasjon er knyttet til en konkret måned mellom januar 2020 og januar 2025. Figuren viser at havnene ikke bare har ulike gjennomsnittspriser, men også ulike prisbaner over tid. Dette er et sentralt premiss for videre modellering, fordi det innebærer at havnevalg kan påvirke totale bunkringskostnader.
 
 <div align="center">
   <img src="../006%20analysis/01_datagrunnlag/04_deskriptiv_analyse/figures/fig_bunker_weighted_price_by_port_month.png" alt="Pris per havn og måned" width="80%">
-  <p align="center"><small><i>Figur 4.2 Vektet gjennomsnittspris per havn for hver enkelt måned i perioden 2020-01 til 2025-01.</i></small></p>
+  <p align="center" style="font-size: 0.9em;"><i>Figur 4.2 Vektet gjennomsnittspris per havn for hver enkelt måned i perioden 2020-01 til 2025-01.</i></p>
 </div>
 
 Tabell 4.1 oppsummerer forskjellene mellom havnene og dokumenterer både aktivitetsnivå og prisnivå i analyseperioden.
@@ -266,7 +250,7 @@ For å vurdere om det finnes et mønster som gjentar seg gjennom kalenderåret, 
 
 <div align="center">
   <img src="../006%20analysis/01_datagrunnlag/04_deskriptiv_analyse/figures/fig_bunker_season_profile.png" alt="Sesongprofil for volum og pris" width="80%">
-  <p align="center"><small><i>Figur 4.3 Gjennomsnittlig volum og pris per kalendermåned, aggregert på tvers av perioden 2020-01 til 2025-01.</i></small></p>
+  <p align="center" style="font-size: 0.9em;"><i>Figur 4.3 Gjennomsnittlig volum og pris per kalendermåned, aggregert på tvers av perioden 2020-01 til 2025-01.</i></p>
 </div>
 
 Figuren viser at aktivitetsnivået i gjennomsnitt er høyest rundt mars og juli, mens prisnivået i gjennomsnitt er relativt høyt i februar, mars og juni og lavere i mai og desember. Mønsteret er ikke så sterkt at det alene kan forklare alle beslutninger, men det viser at både volum og pris varierer systematisk nok til at sesong bør beskrives eksplisitt i caset.
@@ -274,6 +258,14 @@ Figuren viser at aktivitetsnivået i gjennomsnitt er høyest rundt mars og juli,
 ### 4.4 Konsekvenser av begrenset beslutningsgrunnlag
 
 Når prisene varierer mellom havner og over tid, mens volumet samtidig svinger gjennom analyseperioden, øker behovet for et mer strukturert beslutningsgrunnlag. Uten en systematisk sammenstilling av slike mønstre risikerer virksomheten å basere bunkringsbeslutninger på enkelthendelser eller lokal erfaring alene. Det betyr ikke at historiske data kan erstatte operativ vurdering, men det betyr at historiske transaksjoner kan brukes til å synliggjøre hvor det finnes et potensial for kostnadsreduksjon og bedre prioritering mellom havner.
+
+### 4.5 Utfordringer dårlige prognoser medfører i bedriften
+
+Selv om denne oppgaven foreløpig arbeider med en forenklet modell, er den underliggende utfordringen i bedriften bredere enn bare historiske prisforskjeller. Når prognoser for behov, prisutvikling eller framtidig bunkringsmønster er svake, blir beslutninger lettere preget av kortsiktige vurderinger og mindre av systematisk analyse. Dette kan føre til at bunkring skjer i havner som i ettertid viser seg å være relativt dyre, eller at volum fordeles på en måte som ikke utnytter prisvariasjonene godt nok.
+
+For bedriften kan dårlige prognoser skape flere praktiske problemer. For det første øker risikoen for høyere drivstoffkostnader fordi valg av havn og tidspunkt i større grad blir reaktive enn planlagte. For det andre blir det vanskeligere å vurdere hvilke kostnadsforskjeller som faktisk skyldes markedet, og hvilke som skyldes beslutningsmønsteret i virksomheten. For det tredje svekkes grunnlaget for læring over tid, fordi historiske beslutninger ikke blir vurdert systematisk opp mot alternative løsninger.
+
+I en virksomhet som Odfjell Tankers får dette betydning utover enkeltkjøp. Når bunkerrelaterte valg gjentas mange ganger gjennom året, kan selv små avvik mellom faktisk praksis og en mer kostnadseffektiv løsning gi betydelige samlede utslag. En analysemodell som synliggjør historiske mønstre, estimerer kostnadskonsekvenser og peker på mulige forbedringer, er derfor relevant ikke bare som et teknisk verktøy, men som støtte for bedre planlegging og mer konsistente beslutninger i bedriften.
 
 ---
 
@@ -325,6 +317,8 @@ Tabell 5.2 dokumenterer rensevalg og datakvalitet i materialet.
 
 For analyse- og modelleringsformål er dataene strukturert i to filer. `006 analysis/01_datagrunnlag/02_datavask/output/tab_bunker_cleaned.csv` inneholder rensede transaksjoner på detaljnivå, mens `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_bunker_monthly_by_port.csv` inneholder månedlig aggregat per havn. Aggregatet består av 229 havn-måned-kombinasjoner fordelt over 61 måneder. For hver kombinasjon beregnes blant annet `transaction_count`, `total_qty`, `weighted_avg_price`, `simple_avg_price`, `min_price`, `max_price`, `unique_vessels` og `unique_suppliers`.
 
+For å skille mellom data brukt til utvikling og data brukt til senere vurdering, er rådatasettet også splittet i en treningsdel og en testdel. Splittingen er gjort kronologisk etter `Delivery Date`, slik at de tidligste 80 % av observasjonene brukes til trening og de siste 20 % brukes til testing. Dette gir en treningsfil med 1111 observasjoner fra 2020-01-04 til 2023-12-15 og en testfil med 278 observasjoner fra 2023-12-17 til 2025-01-30. Filene er lagret som `004 data/Bunker Lifting List(Worksheet1) (1)_train_80.csv` og `004 data/Bunker Lifting List(Worksheet1) (1)_test_20.csv`.
+
 En oppsummering av materialet viser tydelige forskjeller mellom havnene. `P004` er den mest brukte havnen målt i antall observasjoner, mens `P003` har lavest vektet gjennomsnittspris i utvalget. `P002` fremstår som den dyreste havnen. Dette indikerer at havnevalg har potensial til å påvirke totale drivstoffkostnader og støtter relevansen av å utvikle en optimeringsmodell basert på datasettet.
 
 Tabell 5.3 oppsummerer den strukturerte havneinformasjonen som videreføres til modellgrunnlaget.
@@ -337,6 +331,8 @@ Tabell 5.3 oppsummerer den strukturerte havneinformasjonen som videreføres til 
 | P004 | 517 | 320932.69 | 577.04 | 61 |
 
 Datakvaliteten vurderes som tilstrekkelig for en første modellversjon, men datasettet har klare begrensninger. Det omfatter bare fire havner og én drivstofftype, og inneholder ikke eksplisitte variabler for tankkapasitet, minimumsbeholdning, faktisk drivstofforbruk mellom havner, havnesekvens eller kontraktsmessige bindinger. Vi har bedt om slike supplerende data, men fordi de ennå ikke er mottatt, baseres det videre arbeidet på dagens datagrunnlag. Resultatene må derfor tolkes som et første analytisk beslutningsgrunnlag, ikke som en fullstendig operativ modell av bunkringsbeslutningene.
+
+Det finnes samtidig ingen separat datakvalitetsrapport eller annen direkte dokumentasjon fra Odfjell Tankers som beskriver kvalitetssikringsprosessen for det mottatte datasettet. I denne oppgaven legges det derfor inn en eksplisitt antagelse om at datasettet allerede er kvalitetssjekket av aktøren som leverte det, det vil si Odfjell Tankers, før det ble delt med prosjektgruppen. Denne antagelsen betyr ikke at datasettet anses som feilfritt, men at vi legger til grunn at grunnleggende kontroller av innhold, format og relevans allerede er utført hos dataleverandøren. Vår egen datavask må derfor forstås som en sekundær kontroll tilpasset analyse- og modellformål, ikke som en full revisjon av hele datagrunnlaget.
 
 ---
 
@@ -418,13 +414,19 @@ Vi har derfor etterspurt supplerende data fra Odfjell Tankers. De viktigste data
 
 Disse dataene er ennå ikke mottatt. Inntil videre arbeider vi derfor videre med modellversjon 1 basert på de 61 månedene og de fire havnene vi allerede har data for.
 
-### 6.6 Faglig vurdering av modellversjon 1
+### 6.6 Kobling mellom datasplitt og modelltesting
+
+Datasplitt mellom trening og testing brukes som et metodisk skille mellom data brukt til utvikling og data brukt til senere kontroll av modellens oppførsel. Treningsdelen består av de tidligste 80 % av observasjonene og skal brukes som hovedgrunnlag for modellutvikling, parameterforståelse og deskriptiv kartlegging. Testdelen består av de siste 20 % av observasjonene og skal brukes når modellen skal vurderes opp mot senere historiske observasjoner.
+
+I denne oppgaven betyr ikke datasplitt at modellen foreløpig trenes maskinelt i statistisk forstand. Splittingen brukes i stedet for å sikre en ryddig vurdering av om modellens logikk og parameterbruk gir mening når den sammenholdes med senere data enn dem som først ble brukt som analysegrunnlag. Dette er særlig viktig fordi datasettet er tidsavhengig og fordi senere observasjoner er mer relevante som kontrollgrunnlag enn en tilfeldig delmengde av de samme årene.
+
+### 6.7 Faglig vurdering av modellversjon 1
 
 Modellversjon 1 er en bevisst forenklet modell. Den arbeider på aggregert nivå, skiller ikke mellom fartøy, modellerer ikke beholdning om bord og bruker månedlig observert bunkringsmengde som proxy for behov. Tilgjengelighet er dessuten definert ut fra observerte data, ikke fra faktisk operativ havnetilgang.
 
 Likevel er modellen metodisk forsvarlig som første analysemodell i prosjektet. Den er kvantitativ, transparent og direkte koblet til det datagrunnlaget vi faktisk har. Den kan implementeres direkte med dagens data, den er lineær og enkel å løse i Pyomo, og den gir et tydelig første svar på hvordan prisforskjeller mellom havnene påvirker totale bunkringskostnader. I rapporten bør den derfor presenteres som et første beslutningsstøtteverktøy, samtidig som det presiseres at en mer realistisk operativ modell krever de supplerende dataene vi fortsatt venter på.
 
-### 6.7 Kobling til modellfiler
+### 6.8 Kobling til modellfiler
 
 For å gjøre modellstrukturen operasjonell er modellinput for versjon 1 opprettet i `006 analysis/02_modellutvikling/04_implementere_modell/input`. Følgende filer hører til denne modellversjonen:
 
