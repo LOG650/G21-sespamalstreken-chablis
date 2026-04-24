@@ -122,11 +122,11 @@ Oppgaver som er unntatt offentlighet eller båndlagt vil ikke bli publisert.
 
 ## 1.0 Innledning
 
-Drivstoffkostnader er en av de største og mest variable kostnadskomponentene i maritim drift. For et rederi som Odfjell Tankers, der bunkring skjer løpende for en stor global flåte, kan selv moderate prisforskjeller per enhet gi store utslag i totale kostnader over tid. Beslutningene tas samtidig i en operativ virkelighet preget av prisvariasjon mellom havner, ulike innkjøpsformer og behov for å balansere kostnad, tilgjengelighet, kvalitet og regulatoriske rammer. Dette gjør bunkringsbeslutninger til et relevant område for beslutningsstøtte basert på data og optimering.
+Drivstoffkostnader er en av de største og mest variable kostnadskomponentene i maritim drift. For et rederi som Odfjell Tankers, der bunkring skjer løpende for en stor global flåte, kan selv moderate prisforskjeller per enhet gi store utslag i totale kostnader over tid. Beslutningene tas samtidig i en operativ virkelighet preget av prisvariasjon mellom havner, ulike innkjøpsformer og behov for å balansere kostnad, tilgjengelighet, kvalitet og regulatoriske rammer (`FuelEU Guidance Document for Shipping Companies`, 2025). Dette gjør bunkringsbeslutninger til et relevant område for beslutningsstøtte basert på data og optimering.
 
 Temaet er aktuelt fordi historiske transaksjonsdata gir mulighet til å undersøke om det finnes systematiske mønstre i pris og volum som kan utnyttes bedre enn i en mer erfaringsbasert beslutningsprosess. Dersom slike mønstre kan dokumenteres og knyttes til en enkel og transparent modell, kan analysen gi Odfjell Tankers et bedre grunnlag for å vurdere hvor bunkring bør skje under gitte forutsetninger.
 
-Rapporten er forankret i et konkret case der prosjektgruppen har fått tilgang til historiske bunkringstransaksjoner for drivstofftypen `LSF` i de fire mest brukte havnene i datasettet. Datagrunnlaget dekker 61 måneder fra januar 2020 til januar 2025. Formålet er ikke å utvikle en fullstendig operativ planleggingsmodell i første omgang, men å etablere et første analysemessig beslutningsgrunnlag som kan danne utgangspunkt for videre modellutvikling.
+Rapporten er forankret i et konkret case der prosjektgruppen har fått tilgang til historiske bunkringstransaksjoner for drivstofftypen `LSF` i de fire mest brukte havnene i datasettet. Dette er den drivstoffkategorien rapporten faktisk analyserer, selv om den operative bunkringsvirkeligheten i selskapet er bredere. Datagrunnlaget dekker 61 måneder fra januar 2020 til januar 2025. Formålet er ikke å utvikle en fullstendig operativ planleggingsmodell i første omgang, men å etablere et første analysemessig beslutningsgrunnlag som kan danne utgangspunkt for videre modellutvikling.
 
 Tidligere forskning og praksis innen operasjonsanalyse viser at lineær programmering er godt egnet til å analysere ressursallokering og kostnadsminimering under restriksjoner. I en maritim sammenheng er dette relevant fordi bunkringsbeslutninger kan forstås som et valg mellom alternative havner, priser og tidspunkter. Denne rapporten knytter derfor historiske bunkringsdata til en første lineær kostnadsminimeringsmodell og vurderer hvordan dagens datagrunnlag kan brukes til dette formålet.
 
@@ -146,11 +146,11 @@ Hovedproblemstillingen kan presiseres gjennom tre delspørsmål:
 
 ### 1.3 Avgrensinger
 
-Rapporten er avgrenset til de fire mest brukte havnene i datasettet, `P001`, `P002`, `P003` og `P004`, fordi det er disse havnene som foreløpig har den tydeligste historiske datadekningen. Videre er analysen avgrenset til drivstofftypen `LSF`, slik at modell og datagrunnlag bygger på én konsistent produktkategori. Tidsmessig er arbeidet avgrenset til perioden januar 2020 til januar 2025, som gir 61 måneder med historiske observasjoner.
+Rapporten er avgrenset til de fire mest brukte havnene i datasettet, `P001`, `P002`, `P003` og `P004`, fordi det er disse havnene som foreløpig har den tydeligste historiske datadekningen. Videre er analysen avgrenset til drivstofftypen `LSF`, slik den er registrert i det mottatte datasettet, slik at modell og datagrunnlag bygger på én konsistent produktkategori. Tidsmessig er arbeidet avgrenset til perioden januar 2020 til januar 2025, som gir 61 måneder med historiske observasjoner.
 
 Modellen er også bevisst avgrenset til en første lineær og aggregert formulering på havn- og månedsnivå. Dette betyr at fartøyspesifikk beholdning, rutevalg, tankkapasitet og kontraktsmessige bindinger ikke er modellert eksplisitt, fordi disse forholdene ikke er tilstrekkelig dokumentert i dagens datagrunnlag.
 
-Selv om den operative bunkringsvirkeligheten omfatter flere drivstofftyper, kontraktsforhold, spotkjøp og regulatoriske hensyn, er analysen i denne rapporten avgrenset til det historiske datagrunnlaget som faktisk er tilgjengelig for prosjektgruppen.
+Selv om den operative bunkringsvirkeligheten omfatter flere drivstofftyper, kontraktsforhold, spotkjøp og regulatoriske hensyn, er analysen i denne rapporten avgrenset til det historiske datagrunnlaget som faktisk er tilgjengelig for prosjektgruppen. `LSGO` og biodrivstoff omtales derfor kun som bakgrunnsinformasjon om casebedriften og inngår ikke i modellgrunnlaget.
 
 ### 1.4 Antagelser
 
@@ -217,11 +217,9 @@ Odfjell Tankers opererer i en maritim kontekst der bunkringsbeslutninger må tas
 
 Den operative beslutningssituasjonen er bredere enn det datasettet i denne rapporten direkte dekker. Ifølge kontaktpersonen med ansvar for innkjøp av marint drivstoff kjøper Odfjell Tankers drivstoff til rundt 70 tankskip som opererer globalt. I 2025 utgjorde dette om lag 400 000 metriske tonn, med en samlet verdi på rundt 250 millioner USD. Dette illustrerer at selv små forbedringer i innkjøpsbeslutningene kan få betydelige økonomiske konsekvenser over tid.
 
-I den daglige driften brukes flere drivstofftyper. Hovedtyngden består av `VLSFO` (`Very Low Sulphur Fuel Oil`), men flåten bruker også `LSGO` (`Low Sulphur Gasoil`) og noe biodrivstoff. Bruken av biodrivstoff er ikke bare et kommersielt valg, men henger også sammen med krav i EU-regelverket knyttet til utslipp. Drivstoffvalget påvirkes dermed i praksis både av pris, tilgjengelighet, kvalitet og regulatoriske rammer. Den faktiske beslutningssituasjonen er derfor mer sammensatt enn den avgrensede analysen i denne rapporten.
+I den daglige driften brukes flere drivstofftyper. Hovedtyngden består av `VLSFO` (`Very Low Sulphur Fuel Oil`), mens flåten også bruker `LSGO` (`Low Sulphur Gasoil`) og noe biodrivstoff (`Everything You Need To Know About Marine Fuels`, u.å.). I denne rapporten fungerer `LSGO` og biodrivstoff likevel bare som bakgrunnsinformasjon. Det mottatte analysegrunnlaget dekker kun transaksjoner for drivstofftypen `LSF`, og det er denne kategorien som ligger til grunn for videre analyse og modellering.
 
-*Merknad for videre arbeid: Når `Everything You Need To Know About Marine Fuels.pdf` er tilgjengelig, kan denne delen strammes inn med en kort og kildebasert forklaring av `VLSFO`, `LSGO` og biodrivstoff.*
-
-*Merknad for videre arbeid: Når veiledningen om EU-regelverket er tilgjengelig, bør formuleringen om biodrivstoff og utslippskrav presiseres med mer nøyaktig begrepsbruk.*
+Bruken av biodrivstoff er heller ikke bare et kommersielt valg, men må sees i lys av regulatoriske krav knyttet til utslipp og etterlevelse av europeisk regelverk (`FuelEU Guidance Document for Shipping Companies`, 2025). Drivstoffvalget påvirkes dermed i praksis både av pris, tilgjengelighet, kvalitet og regulatoriske rammer. Den faktiske beslutningssituasjonen er derfor mer sammensatt enn den avgrensede analysen i denne rapporten.
 
 Innkjøpene skjer også under ulike markedsbetingelser. I noen havner har selskapet kontrakt med en leverandør for å sikre tilgjengelighet og/eller kvalitet, mens drivstoff i andre havner kjøpes i spotmarkedet. Dette betyr at bunkringsbeslutninger i praksis ikke bare handler om å velge lavest mulig pris, men også om å håndtere leveringssikkerhet, kvalitet og markedsforhold.
 
@@ -302,6 +300,8 @@ Vi har bedt Odfjell Tankers om mer detaljerte operative data, blant annet knytte
 ### 5.2 Data
 
 Datagrunnlaget består av historiske bunkringstransaksjoner fra filen `004 data/Bunker Lifting List(Worksheet1) (1).csv`. Datasettet dekker de siste 61 månedene i perioden fra januar 2020 til januar 2025 og er avgrenset til de fire mest brukte havnene i materialet: `P001`, `P002`, `P003` og `P004`. Hver observasjon representerer en bunkringshendelse og inneholder blant annet informasjon om fartøy, voyage, havn, leveringsdato, bestilt mengde, fakturert mengde, ordrepris, fakturapris, leverandør og supplier.
+
+Selve analysegrunnlaget omfatter kun transaksjoner for drivstofftypen `LSF`, slik denne er registrert i rådataene. Andre drivstofftyper som `LSGO` og biodrivstoff er relevante for å forstå den bredere operative beslutningssituasjonen i Odfjell Tankers, men de inngår ikke i datasettet som brukes i denne oppgaven og påvirker derfor heller ikke modellgrunnlaget direkte.
 
 Tabell 5.1 oppsummerer datagrunnlaget og avgrensningen som brukes videre i analysen.
 
@@ -479,6 +479,14 @@ Det er også laget en første kjørbar modellfil i `006 analysis/02_modellutvikl
 
 ## 11.0 Bibliografi
 
+*Everything You Need To Know About Marine Fuels*. (u.å.). PDF-dokument i `003 references/Everything You Need To Know About Marine Fuels.pdf`.
+
+*FuelEU Guidance Document for Shipping Companies*. (2025, 8. oktober). PDF-dokument i `003 references/fueleu_guidance_document_for_shipping_companies_2025-10-08.pdf`.
+
 ---
 
 ## 12.0 Vedlegg
+
+**Vedlegg A.** `Everything You Need To Know About Marine Fuels.pdf` brukes som støttedokument for korte forklaringer av drivstofftypene `VLSFO`, `LSGO` og biodrivstoff i casebeskrivelsen.
+
+**Vedlegg B.** `fueleu_guidance_document_for_shipping_companies_2025-10-08.pdf` brukes som støttedokument for omtalen av regulatoriske rammer og hvorfor biodrivstoff også må forstås i lys av utslippskrav.
