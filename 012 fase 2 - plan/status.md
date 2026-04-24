@@ -27,7 +27,7 @@ Denne filen er generert fra:
 | Planperiode nå | 2026-04-21 til 2026-04-28 |
 | Neste aktivitet | `Basiskjøring` |
 | Neste milepæl | `Modelltesting ferdig` 2026-04-28 |
-| Fullførte aktiviteter | 8 av 18 |
+| Fullførte aktiviteter | 9 av 19 |
 | Aktiviteter pågår | 1 |
 | Aktiviteter kommende | 9 |
 | Fremdriftsvurdering | Prosjektet ser ut til å ligge på plan, men `Teste modell` mangler fortsatt en kort testoppsummering før aktiviteten kan lukkes |
@@ -95,6 +95,7 @@ Forklaring:
 | Datagrunnlag | Datainnsamling | 2026-03-10–2026-03-17 | Fullført | `██` |
 | Datagrunnlag | Datavask | 2026-03-18–2026-03-23 | Fullført | `██` |
 | Datagrunnlag | Strukturering av datasett | 2026-03-24–2026-03-26 | Fullført | `██` |
+| Datagrunnlag | Datasplitt trening/test | 2026-04-24 | Fullført | `██` |
 | Datagrunnlag | Deskriptiv analyse | 2026-03-27–2026-03-29 | Fullført | `██` |
 | Modellutvikling | Definere variabler | 2026-03-30–2026-04-01 | Fullført | `██` |
 | Modellutvikling | Formulere målfunksjon | 2026-04-02–2026-04-03 | Fullført | `██` |
@@ -123,7 +124,8 @@ gantt
     Datainnsamling                 :done, a1, 2026-03-10, 2026-03-17
     Datavask                       :done, a2, 2026-03-18, 2026-03-23
     Strukturering av datasett      :done, a3, 2026-03-24, 2026-03-26
-    Deskriptiv analyse             :done, a4, 2026-03-27, 2026-03-29
+    Datasplitt trening/test        :done, a4, 2026-04-24, 2026-04-24
+    Deskriptiv analyse             :done, a5, 2026-03-27, 2026-03-29
 
     section Modellutvikling
     Definere variabler             :done, b1, 2026-03-30, 2026-04-01
@@ -156,6 +158,7 @@ gantt
 | Datagrunnlag | Datainnsamling | 2026-03-10 | 2026-03-17 | Fullført | Dokumentert i repo |
 | Datagrunnlag | Datavask | 2026-03-18 | 2026-03-23 | Fullført | Dokumentert i `006 analysis/01_datagrunnlag/02_datavask` med rensepipeline og renset fil |
 | Datagrunnlag | Strukturering av datasett | 2026-03-24 | 2026-03-26 | Fullført | Dokumentert i `006 analysis/01_datagrunnlag/03_strukturering_av_datasett` med aggregert datasett og metadata |
+| Datagrunnlag | Datasplitt trening/test | 2026-04-24 | 2026-04-24 | Fullført | Trenings- og testfiler er opprettet i `004 data` med 80/20-splitt sortert etter `Delivery Date` |
 | Datagrunnlag | Deskriptiv analyse | 2026-03-27 | 2026-03-29 | Fullført | Dokumentert i `006 analysis/01_datagrunnlag/04_deskriptiv_analyse` med figurer, figurguide og bruk i `rapport.md` |
 | Modellutvikling | Definere variabler | 2026-03-30 | 2026-04-01 | Fullført | Dokumentert i modellkapitlet i `005 report/rapport.md` og støttet av modellinput |
 | Modellutvikling | Formulere målfunksjon | 2026-04-02 | 2026-04-03 | Fullført | Dokumentert i `005 report/rapport.md` og reflektert i modellskriptene |
@@ -242,6 +245,24 @@ Status: **Pågår**
 - [ ] Vurder om modellen oppfører seg konsistent med forventet logikk
 - [ ] Henvis eksplisitt til resultatfilene i `006 analysis/02_modellutvikling/05_teste_modell/output`
 - [ ] Konkluder kort med om modellen er klar for `Basiskjøring`
+
+### Datasplitt trening/test
+
+Status: **Fullført**
+
+#### Fullførte aktiviteter
+
+- [x] Rådatasettet er sortert etter `Delivery Date` for å sikre kronologisk splitt
+- [x] De tidligste 80 % av observasjonene er lagt i treningsfil
+- [x] De siste 20 % av observasjonene er lagt i testfil
+- [x] Originalfilen `004 data/Bunker Lifting List(Worksheet1) (1).csv` er beholdt uendret
+- [x] Treningsfil er opprettet: `004 data/Bunker Lifting List(Worksheet1) (1)_train_80.csv`
+- [x] Testfil er opprettet: `004 data/Bunker Lifting List(Worksheet1) (1)_test_20.csv`
+
+#### Vurdering
+
+- [x] Datasplitt trening/test er gjennomført og dokumentert
+- [x] Steget kan behandles som fullført støtteaktivitet i datagrunnlaget
 
 [Til toppen](#innholdsfortegnelse)
 
@@ -336,12 +357,14 @@ python "012 fase 2 - plan\generate_status.py" 2026-04-24
 - Modellkapitlet i `005 report/rapport.md` er utvidet og samordnet med faktisk analysearbeid og dagens datagrunnlag.
 - Modellinput for versjon 1 er regenerert i `006 analysis/02_modellutvikling/04_implementere_modell/input`.
 - Simulert modelltest er gjennomført i `006 analysis/02_modellutvikling/05_teste_modell`, og resultatfiler er opprettet i `output`.
+- Rådatasettet i `004 data` er splittet i en treningsfil og en testfil med 80/20-splitt etter tidligste og siste observasjoner.
 
 ### Arbeid i dag 2026-04-24
 
 #### Ferdigstilt
 
 - Deskriptiv analyse er dokumentert med egne figurer og tabeller.
+- Datasplitt trening/test er gjennomført med egne train/test-filer i `004 data`.
 - `Definere variabler`, `Formulere målfunksjon` og `Definere restriksjoner` er dokumentert i rapporten og støttet av modellstrukturen.
 - `Implementere modell` er gjennomført med egen aktivitetsmappe, modellinput og Pyomo-implementasjon.
 - Struktur for `006 analysis` følger nå prosjektplanens aktiviteter og er ryddet opp for videre arbeid.

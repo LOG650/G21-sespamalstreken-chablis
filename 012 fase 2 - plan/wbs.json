@@ -104,11 +104,16 @@
           },
           {
             "id": "2.4",
-            "navn": "Deskriptiv analyse",
+            "navn": "Datasplitt trening/test",
             "type": "Aktivitet"
           },
           {
             "id": "2.5",
+            "navn": "Deskriptiv analyse",
+            "type": "Aktivitet"
+          },
+          {
+            "id": "2.6",
             "navn": "Datagrunnlag ferdig",
             "type": "Milepæl"
           }
