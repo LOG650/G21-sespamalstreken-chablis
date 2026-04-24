@@ -2,7 +2,7 @@
 
 **Tittel (norsk og/eller engelsk)**
 
-**Forfatter(e)**
+**Forfattere : Elisabeth Kirkeland Orlien og Kaylee Floden**
 
 **Totalt antall sider inkludert forsiden:**
 
