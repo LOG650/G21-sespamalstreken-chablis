@@ -244,50 +244,122 @@ Litt avhengig av omfanget, kan det være lurt å vurdere om du skal splitte kapi
 
 ### 5.1 Metode
 
-I oppgavens metodedel skal du beskrive valgt metode. Dette skal beskrives så nøyaktig at andre skal kunne klare å gjenta prosessen. Metodedelen gir leseren mulighet til å vurdere hvorvidt oppgaven kan inneholde feil i framgangsmåten.
+Studien er gjennomført som en kvantitativ caseanalyse av Odfjell Tankers, der historiske bunkringstransaksjoner brukes som grunnlag for å utvikle en første optimeringsmodell for beslutningsstøtte. Arbeidet er lagt opp i fem steg: innlesing og kvalitetssikring av rådata, rensing og strukturering av datasettet, deskriptiv analyse av pris- og volummønstre, formulering av en første lineær modell og etablering av modellinput som kan brukes i videre implementering og analyse.
 
-Oppgi paradigme betraktninger, forskningsperspektiv, forskningsdesign, innsamlingsmetode for data, utvalgskriterier, utvalgsmetode, utvalgsstørrelse og analysemetoder.
+Rådataene er behandlet i en egen rensepipeline i `006 analysis/01_datagrunnlag/clean_and_aggregate_bunker_data.py`. Her standardiseres datoer og numeriske felt, samtidig som volum- og prisvariabler harmoniseres ved å bruke `Invoiced Qty` og `Invoice Price` som hovedkilder, med fallback til `Ordered Qty` og `Order Price` når fakturerte verdier mangler. Observasjoner med ikke-positivt volum eller ikke-positiv pris forkastes for å unngå at ugyldige transaksjoner påvirker analysen og de estimerte modellparametrene.
 
-Du kan også ta opp eventuelle etiske spørsmål og potensielle feilkilder.
+Etter rensing ble dataene strukturert i to nivåer. Først ble et renset transaksjonsdatasett etablert. Deretter ble transaksjonene aggregert per havn og måned for å skape et enklere og mer robust analysegrunnlag for modellversjon 1. Dette aggregatet gir blant annet total mengde, antall transaksjoner, vektet gjennomsnittspris, minimums- og maksimumspris, samt antall unike fartøy og leverandører per kombinasjon av havn og måned. Metodevalget innebærer en bevisst forenkling av den operative virkeligheten, men gir et transparent og reproduserbart grunnlag for første modellversjon.
 
-#### Eksempel:
-
-- Hvilken forskningsmetode er valgt?
-  - For de fleste er det case-metode
-- Kvantitativ eller kvalitativ?
-- Hva slags data (spørreskjema, intervju, fra ERP systemet)
-- Teori rundt det å lage spørreskjema
-- Teori rundt det med nøyaktigheten av data fra ERP system
-- Metode for analyse, kvantitativ, kvalitativ
-- Kort beskrivelse av den metoden som er valgt
-- Statistisk metode? regresjon?
-- Kort beskrivelse (bruk lærebøker)
-- Dataverktøy for eksempel SPSS eller excel
+Vi har bedt Odfjell Tankers om mer detaljerte operative data, blant annet knyttet til tankkapasitet, forbruk, beholdning om bord og rute- eller havnesekvens. Disse dataene er spesifisert nærmere i det personlige arbeidsutkastet, men er per nå ikke mottatt. Analysen videreføres derfor med det datagrunnlaget vi allerede har tilgjengelig, det vil si historiske bunkringsdata for de siste 61 månedene fra de fire mest brukte havnene. Dette gjør at den første modellen må avgrenses til en aggregert og forenklet beslutningssituasjon.
 
 ### 5.2 Data
 
-Her beskriver du hvilke data du har brukt, hvordan du har fått tak i de og hvordan leser evt. kan få tak i dataene om nødvendig.
+Datagrunnlaget består av historiske bunkringstransaksjoner fra filen `004 data/Bunker Lifting List(Worksheet1) (1).csv`. Datasettet dekker de siste 61 månedene i perioden fra januar 2020 til januar 2025 og er avgrenset til de fire mest brukte havnene i materialet: `P001`, `P002`, `P003` og `P004`. Hver observasjon representerer en bunkringshendelse og inneholder blant annet informasjon om fartøy, voyage, havn, leveringsdato, bestilt mengde, fakturert mengde, ordrepris, fakturapris, leverandør og supplier.
 
-#### Hvordan er data samlet inn:
+Det opprinnelige datasettet inneholder 1389 observasjoner. Gjennomgangen viser at de sentrale identifikasjonsfeltene er komplette, men at enkelte verdi- og prisfelt har mangler eller ugyldige verdier. Det finnes 10 observasjoner uten `Invoice Price`, 10 observasjoner uten `Invoiced Qty`, 2 observasjoner uten `Supplier`, samt 8 observasjoner med ikke-positivt volum. Etter rensing ble 1381 observasjoner beholdt, mens 8 observasjoner ble forkastet på grunn av ikke-positivt volum. Oppsummeringen av rensingen er dokumentert i `006 analysis/01_datagrunnlag/tab_bunker_summary.md`.
+
+For analyse- og modelleringsformål er dataene strukturert i to filer. `tab_bunker_cleaned.csv` inneholder rensede transaksjoner på detaljnivå, mens `tab_bunker_monthly_by_port.csv` inneholder månedlig aggregat per havn. Aggregatet består av 229 havn-måned-kombinasjoner fordelt over 61 måneder. For hver kombinasjon beregnes blant annet `transaction_count`, `total_qty`, `weighted_avg_price`, `simple_avg_price`, `min_price`, `max_price`, `unique_vessels` og `unique_suppliers`.
+
+En oppsummering av materialet viser tydelige forskjeller mellom havnene. `P004` er den mest brukte havnen målt i antall observasjoner, mens `P003` har lavest vektet gjennomsnittspris i utvalget. `P002` fremstår som den dyreste havnen. Dette indikerer at havnevalg har potensial til å påvirke totale drivstoffkostnader og støtter relevansen av å utvikle en optimeringsmodell basert på datasettet.
+
+Datakvaliteten vurderes som tilstrekkelig for en første modellversjon, men datasettet har klare begrensninger. Det omfatter bare fire havner og én drivstofftype, og inneholder ikke eksplisitte variabler for tankkapasitet, minimumsbeholdning, faktisk drivstofforbruk mellom havner, havnesekvens eller kontraktsmessige bindinger. Vi har bedt om slike supplerende data, men fordi de ennå ikke er mottatt, baseres det videre arbeidet på dagens datagrunnlag. Resultatene må derfor tolkes som et første analytisk beslutningsgrunnlag, ikke som en fullstendig operativ modell av bunkringsbeslutningene.
 
 ---
 
 ## 6.0 Modellering
 
-Prosjektets første modellversjon formuleres som en kvantitativ lineær kostnadsminimeringsmodell. Målet er å minimere totale bunkringskostnader over analyseperioden gitt observerte prisforskjeller mellom havner og et definert drivstoffbehov per periode.
+Prosjektets første modellversjon formuleres som en kvantitativ lineær kostnadsminimeringsmodell. Målet er å minimere totale bunkringskostnader over analyseperioden gitt historiske prisforskjeller mellom havnene og et definert drivstoffbehov per periode. Siden vi foreløpig ikke har mottatt de supplerende operative dataene vi har etterspurt, er modellversjon 1 bevisst avgrenset til det dagens datasett faktisk støtter direkte.
 
-Målfunksjonen kan uttrykkes som:
+### 6.1 Modellversjon 1 basert på dagens data
+
+Med dagens datagrunnlag er det mest metodisk forsvarlige å arbeide på aggregert nivå per havn og måned, ikke på fartøy- og rutenivå. Modellversjon 1 svarer derfor på følgende spørsmål:
+
+Hvordan kan et gitt bunkringsbehov i hver måned fordeles mellom de fire observerte havnene slik at totale kostnader blir lavest mulig, gitt historiske prisforskjeller og en enkel definisjon av tilgjengelighet?
+
+Denne formuleringen gjør det mulig å etablere en første beslutningsstøttemodell uten å innføre ubegrunnede detaljer om fartøysforbruk, beholdning eller rutevalg som vi ennå ikke har data til å modellere pålitelig.
+
+### 6.2 Sett, parametere og beslutningsvariabel
+
+La:
+
+- $H$ være mengden havner, der $H = \{P001, P002, P003, P004\}$
+- $T$ være mengden perioder, definert som månedene fra januar 2020 til januar 2025
+
+Følgende parametere kan etableres direkte fra dagens datagrunnlag:
+
+- $p_{h,t}$ = historisk pris i havn $h$ i periode $t$
+- $D_t$ = samlet drivstoffbehov i periode $t$
+- $f_{h,t}$ = 1 dersom havn $h$ er tilgjengelig i periode $t$, ellers 0
+
+Prisparameteren $p_{h,t}$ hentes fra `weighted_avg_price` i det månedlige aggregatet. Behovsparameteren $D_t$ settes i første modellversjon lik samlet observert bunkret volum i måned $t$ på tvers av de fire havnene. Dette er en forenkling, men det gir modellen et definert behov per periode som kan brukes til å analysere en kostnadsminimerende fordeling. Tilgjengelighetsparameteren $f_{h,t}$ settes til 1 dersom havnen har en observert transaksjon i perioden, og 0 ellers.
+
+Beslutningsvariabelen defineres som:
+
+$x_{h,t}$ = mengde drivstoff som skal bunkres i havn $h$ i periode $t$
+
+der $x_{h,t} \geq 0$ for alle $h \in H$ og $t \in T$.
+
+### 6.3 Målfunksjon
+
+Målet er å minimere totale bunkringskostnader over hele analyseperioden:
 
 $\min Z = \sum_{t \in T} \sum_{h \in H} p_{h,t} \cdot x_{h,t}$
 
-der:
+Målfunksjonen innebærer at modellen velger den fordelingen av bunkringsvolum mellom havner og perioder som gir lavest mulig total kostnad. I modellversjon 1 er dette direkte knyttet til observerte historiske prisforskjeller mellom havnene.
 
-- $H$ er mengden havner
-- $T$ er mengden perioder
-- $p_{h,t}$ er pris per enhet drivstoff i havn $h$ i periode $t$
-- $x_{h,t}$ er bunkret volum i havn $h$ i periode $t$
+### 6.4 Restriksjoner
 
-Målfunksjonen innebærer dermed at modellen velger den fordelingen av bunkringsvolum mellom havner og perioder som gir lavest mulig total kostnad. I den første modellversjonen estimeres prisparameteren $p_{h,t}$ fra historiske prisdata aggregert per havn og måned.
+Den grunnleggende restriksjonsstrukturen i modellversjon 1 er:
+
+**Dekke behov i hver periode**
+
+$\sum_{h \in H} x_{h,t} \geq D_t \quad \forall t \in T$
+
+Denne restriksjonen sikrer at samlet bunkret volum i hver måned er tilstrekkelig til å dekke det definerte behovet.
+
+**Kun bunkre i tilgjengelige havner**
+
+$x_{h,t} \leq M \cdot f_{h,t} \quad \forall h \in H, t \in T$
+
+der $M$ er en stor konstant. Restriksjonen gjør at modellen bare kan velge bunkring i havner og perioder der vi faktisk har prisgrunnlag eller har definert havnen som tilgjengelig.
+
+**Ikke-negativitet**
+
+$x_{h,t} \geq 0 \quad \forall h \in H, t \in T$
+
+Dette er tilstrekkelig for en første lineær modellversjon.
+
+### 6.5 Hva datasettet støtter direkte og hva som mangler
+
+Det nåværende datasettet støtter særlig godt estimering av prisparametere, historiske volum og sammenligning mot faktisk praksis. Det støtter derimot ikke alene en full operativ modell, fordi sentrale størrelser som tankkapasitet, faktisk drivstoffbeholdning, minimumsbuffer, forbruk mellom to beslutningspunkter og reell havnetilgjengelighet ikke er direkte observert.
+
+Vi har derfor etterspurt supplerende data fra Odfjell Tankers. De viktigste datatypene er:
+
+- tankkapasitet per fartøy
+- estimert eller historisk forbruk per fartøy og voyage
+- startbeholdning eller `remaining on board` ved bunkringstidspunkt
+- rutedata eller havnesekvens per voyage
+- forklaring på hva `Invoice Price` inkluderer
+- informasjon om kontrakt versus spot for kjøpene
+
+Disse dataene er ennå ikke mottatt. Inntil videre arbeider vi derfor videre med modellversjon 1 basert på de 61 månedene og de fire havnene vi allerede har data for.
+
+### 6.6 Faglig vurdering av modellversjon 1
+
+Modellversjon 1 er en bevisst forenklet modell. Den arbeider på aggregert nivå, skiller ikke mellom fartøy, modellerer ikke beholdning om bord og bruker månedlig observert bunkringsmengde som proxy for behov. Tilgjengelighet er dessuten definert ut fra observerte data, ikke fra faktisk operativ havnetilgang.
+
+Likevel er modellen metodisk forsvarlig som første analysemodell i prosjektet. Den er kvantitativ, transparent og direkte koblet til det datagrunnlaget vi faktisk har. Den kan implementeres direkte med dagens data, den er lineær og enkel å løse i Pyomo, og den gir et tydelig første svar på hvordan prisforskjeller mellom havnene påvirker totale bunkringskostnader. I rapporten bør den derfor presenteres som et første beslutningsstøtteverktøy, samtidig som det presiseres at en mer realistisk operativ modell krever de supplerende dataene vi fortsatt venter på.
+
+### 6.7 Kobling til modellfiler
+
+For å gjøre modellstrukturen operasjonell er modellinput for versjon 1 opprettet i `006 analysis/02_modell_v1`. Følgende filer hører til denne modellversjonen:
+
+- `tab_model_v1_price_by_port_month.csv` for prisparameteren $p_{h,t}$
+- `tab_model_v1_demand_by_month.csv` for behovsparameteren $D_t$
+- `tab_model_v1_availability_by_port_month.csv` for tilgjengelighetsparameteren $f_{h,t}$
+- `data_model_v1_parameters.json` for samlet metadata og definisjoner
+
+Det er også laget en første kjørbar modellfil i `006 analysis/02_modell_v1/run_model_v1_pyomo.py`, som leser disse modellfilene direkte når `pyomo` og en solver er tilgjengelig.
 
 ---
 

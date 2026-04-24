@@ -13,14 +13,13 @@ Denne filen er generert fra:
 - Aktiviteten som er planlagt akkurat nå er **Formulere målfunksjon** (2026-04-02–2026-04-03).
 - Planunderlaget er dokumentert i både prosjektstyringsplanen og `MS_Project.mpp`.
 - Repoet inneholder rådata i `004 data`, så datainnsamling ser ut til å være startet eller gjennomført.
-- Det finnes foreløpig ingen tydelig fil for renset/strukturert datasett, så datavask må dokumenteres bedre.
-- Det finnes foreløpig ingen tydelig modellfil i repoet, så modellutvikling er ikke dokumentert ennå.
-- Rapportmappen er fortsatt tom, så rapportskrivingen ser ikke ut til å ha startet.
+- Repoet inneholder nå tydelige filer for renset og strukturert datasett i `006 analysis/01_datagrunnlag`.
+- Repoet inneholder nå modellinput og en første modellimplementasjon i `006 analysis/02_modell_v1`.
+- Rapportarbeidet er startet i `005 report`, inkludert første utkast til modell- og databeskrivelse.
 
 ## Hva vi må gjøre nå
 
 - Formulere målfunksjon: pågår innen perioden 2026-04-02–2026-04-03.
-- Dokumenter datavask og datastruktur i egne filer før modellimplementeringen fortsetter.
 - Opprett første modellutkast før `Implementere modell` starter 2026-04-09.
 
 ## Fremdrift mot milepæler
@@ -38,8 +37,8 @@ Denne filen er generert fra:
 | Fase | Aktivitet | Start | Slutt | Status 2026-04-02 | Grunnlag |
 | --- | --- | --- | --- | --- | --- |
 | Datagrunnlag | Datainnsamling | 2026-03-10 | 2026-03-17 | Fullført | Dokumentert i repo |
-| Datagrunnlag | Datavask | 2026-03-18 | 2026-03-23 | Bør være ferdig | Ingen tydelig dokumentasjon funnet i repo |
-| Datagrunnlag | Strukturering av datasett | 2026-03-24 | 2026-03-26 | Bør være ferdig | Ingen tydelig dokumentasjon funnet i repo |
+| Datagrunnlag | Datavask | 2026-03-18 | 2026-03-23 | Fullført | Dokumentert i `006 analysis/01_datagrunnlag` med rensepipeline, renset fil og oppsummeringsfil |
+| Datagrunnlag | Strukturering av datasett | 2026-03-24 | 2026-03-26 | Fullført | Dokumentert i `006 analysis/01_datagrunnlag` med aggregert datasett og videre kobling til modellinput |
 | Datagrunnlag | Deskriptiv analyse | 2026-03-27 | 2026-03-29 | Bør være ferdig | Ingen tydelig dokumentasjon funnet i repo |
 | Modellutvikling | Definere variabler | 2026-03-30 | 2026-04-01 | Bør være ferdig | Ingen tydelig dokumentasjon funnet i repo |
 | Modellutvikling | Formulere målfunksjon | 2026-04-02 | 2026-04-03 | Pågår | Planlagt aktivitet nå (2026-04-02–2026-04-03) |
@@ -57,12 +56,58 @@ Denne filen er generert fra:
 | Avslutning | Prosjektbuffer | 2026-05-31 | 2026-06-02 | Kommende | Starter 2026-05-31 |
 | Avslutning | Innlevering | 2026-06-02 | 2026-06-02 | Kommende | Starter 2026-06-02 |
 
+## Sjekkliste for å lukke aktiviteten `Rense og strukturere data`
+
+Denne sjekklisten konkretiserer hva som må være på plass for å kunne markere `Datavask` og `Strukturering av datasett` som fullført i planen. Listen inkluderer både aktiviteter som er ferdigstilt, kontrollpunkter som er oppfylt, og gjenstående opprydding før aktiviteten kan lukkes formelt.
+
+### Fullførte aktiviteter
+
+- [x] Rådatafilen er identifisert og brukes konsekvent som kilde: `004 data/Bunker Lifting List(Worksheet1) (1).csv`
+- [x] Rensepipeline er etablert i `006 analysis/01_datagrunnlag/clean_and_aggregate_bunker_data.py`
+- [x] Renselogikken leser inn transaksjonsrader og filtrerer bort tomme eller ugyldige rader
+- [x] Datoer og tallfelt parses eksplisitt i rensepipen
+- [x] `Invoiced Qty` brukes som hovedvolum med fallback til `Ordered Qty`
+- [x] `Invoice Price` brukes som hovedpris med fallback til `Order Price`
+- [x] Observasjoner med manglende pris eller volum etter fallback håndteres eksplisitt i rensepipen
+- [x] Observasjoner med ikke-positivt volum forkastes eksplisitt i rensepipen
+- [x] Observasjoner med ikke-positiv pris forkastes eksplisitt i rensepipen
+- [x] Rensede variabler som `delivery_month`, `delivery_year`, `effective_qty`, `effective_price` og `cost_value` opprettes
+- [x] Renset transaksjonsfil er generert: `006 analysis/01_datagrunnlag/tab_bunker_cleaned.csv`
+- [x] Aggregert datasett per `måned × havn` er generert: `006 analysis/01_datagrunnlag/tab_bunker_monthly_by_port.csv`
+- [x] Aggregatet inneholder sentrale strukturvariabler som transaksjonsantall, total mengde, vektet snittpris, enkelt snitt, minimum, maksimum og antall unike fartøy og leverandører
+- [x] Oppsummeringsfil med nøkkeltall og renseutfall er generert: `006 analysis/01_datagrunnlag/tab_bunker_summary.md`
+- [x] Det aggregerte datasettet brukes videre som kilde til modellinput i `006 analysis/02_modell_v1/generate_model_v1_inputs.py`
+- [x] Modellinput er generert videre til pris-, behovs- og tilgjengelighetsfiler i `006 analysis/02_modell_v1`
+
+### Kontrollpunkter som er oppfylt
+
+- [x] Filene i `006 analysis/01_datagrunnlag` finnes og samsvarer med rense- og aggregeringsløpet
+- [x] Kolonnenavnene i renset fil og aggregert fil er konsistente med videre bruk i modellinput
+- [x] Antall observasjoner etter rensing er dokumentert i oppsummeringsfilen
+- [x] Antall forkastede observasjoner er dokumentert i oppsummeringsfilen
+- [x] Tidsperioden i aggregatet er dokumentert og brukt videre i modellinput
+- [x] Havnene i aggregatet stemmer med havnene som brukes i modellversjon 1
+- [x] Datastrukturen er tilstrekkelig moden til å støtte arbeidet med `Definere variabler`, `Formulere målfunksjon` og `Implementere modell`
+
+### Verifisert opprydding før lukking av aktiviteten
+
+- [x] `006 analysis/01_datagrunnlag/tab_bunker_summary.md` er kontrollert direkte som UTF-8 og viser korrekt norsk tekst
+- [x] `006 analysis/02_modell_v1/README.md` er kontrollert direkte som UTF-8 og viser korrekt norsk tekst
+- [x] Statusgrunnlaget i denne filen er oppdatert slik at `Datavask` og `Strukturering av datasett` står som fullført
+- [x] Det er lagt inn en kort metodebeskrivelse i rapportens kapittel `5 Metode og data` som forklarer rense- og aggregeringsløpet
+
+### Vurdering
+
+- Datavask er gjennomført og dokumentert.
+- Strukturering av datasett er gjennomført og dokumentert.
+- Aktiviteten `Rense og strukturere data` kan nå lukkes faglig i prosjektplanen.
+
 ## Spor i repoet
 
 - Siste datafil: `004 data/Bunker Lifting List(Worksheet1) (1).csv` sist endret 2026-03-31 15:32
-- Siste analysefil: Ingen filer funnet
-- Siste modellfil: Ingen filer funnet
-- Siste rapportfil: Ingen filer funnet
+- Siste analysefil: `006 analysis/01_datagrunnlag/tab_bunker_summary.md`
+- Siste modellfil: `006 analysis/02_modell_v1/simulate_model_v1_results.py`
+- Siste rapportfil: `005 report/rapport.md`
 
 ### Siste git-aktivitet
 

@@ -1,0 +1,11 @@
+[project]
+name = "log650-analysis"
+version = "0.1.0"
+description = "Analyseartefakter for LOG650-prosjektet"
+requires-python = ">=3.12"
+dependencies = [
+  "matplotlib>=3.10,<4.0",
+]
+
+[tool.uv]
+package = false
