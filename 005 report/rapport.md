@@ -122,7 +122,7 @@ Oppgaver som er unntatt offentlighet eller båndlagt vil ikke bli publisert.
 
 ## 1.0 Innledning
 
-Drivstoffkostnader er en av de største og mest variable kostnadskomponentene i maritim drift. For et rederi som Odfjell Tankers, der bunkring skjer gjentatte ganger over mange havner og perioder, kan selv moderate prisforskjeller per enhet gi store utslag i totale kostnader over tid. Samtidig tas slike beslutninger i en operativ virkelighet preget av begrenset informasjon, tidspress og praktiske hensyn. Dette gjør bunkringsbeslutninger til et relevant område for beslutningsstøtte basert på data og optimering.
+Drivstoffkostnader er en av de største og mest variable kostnadskomponentene i maritim drift. For et rederi som Odfjell Tankers, der bunkring skjer løpende for en stor global flåte, kan selv moderate prisforskjeller per enhet gi store utslag i totale kostnader over tid. Beslutningene tas samtidig i en operativ virkelighet preget av prisvariasjon mellom havner, ulike innkjøpsformer og behov for å balansere kostnad, tilgjengelighet, kvalitet og regulatoriske rammer. Dette gjør bunkringsbeslutninger til et relevant område for beslutningsstøtte basert på data og optimering.
 
 Temaet er aktuelt fordi historiske transaksjonsdata gir mulighet til å undersøke om det finnes systematiske mønstre i pris og volum som kan utnyttes bedre enn i en mer erfaringsbasert beslutningsprosess. Dersom slike mønstre kan dokumenteres og knyttes til en enkel og transparent modell, kan analysen gi Odfjell Tankers et bedre grunnlag for å vurdere hvor bunkring bør skje under gitte forutsetninger.
 
@@ -149,6 +149,8 @@ Hovedproblemstillingen kan presiseres gjennom tre delspørsmål:
 Rapporten er avgrenset til de fire mest brukte havnene i datasettet, `P001`, `P002`, `P003` og `P004`, fordi det er disse havnene som foreløpig har den tydeligste historiske datadekningen. Videre er analysen avgrenset til drivstofftypen `LSF`, slik at modell og datagrunnlag bygger på én konsistent produktkategori. Tidsmessig er arbeidet avgrenset til perioden januar 2020 til januar 2025, som gir 61 måneder med historiske observasjoner.
 
 Modellen er også bevisst avgrenset til en første lineær og aggregert formulering på havn- og månedsnivå. Dette betyr at fartøyspesifikk beholdning, rutevalg, tankkapasitet og kontraktsmessige bindinger ikke er modellert eksplisitt, fordi disse forholdene ikke er tilstrekkelig dokumentert i dagens datagrunnlag.
+
+Selv om den operative bunkringsvirkeligheten omfatter flere drivstofftyper, kontraktsforhold, spotkjøp og regulatoriske hensyn, er analysen i denne rapporten avgrenset til det historiske datagrunnlaget som faktisk er tilgjengelig for prosjektgruppen.
 
 ### 1.4 Antagelser
 
@@ -213,6 +215,18 @@ Dette prosjektet tar utgangspunkt i Odfjell Tankers sitt behov for bedre beslutn
 
 Odfjell Tankers opererer i en maritim kontekst der bunkringsbeslutninger må tas med begrenset og spredt informasjon om priser, tilgjengelighet og framtidig behov. I denne oppgaven er målet ikke å beskrive alle operative detaljer i selskapets drift, men å undersøke om historiske pris- og volumdata kan brukes til å etablere et første datadrevet beslutningsgrunnlag for hvor bunkring bør skje.
 
+Den operative beslutningssituasjonen er bredere enn det datasettet i denne rapporten direkte dekker. Ifølge kontaktpersonen med ansvar for innkjøp av marint drivstoff kjøper Odfjell Tankers drivstoff til rundt 70 tankskip som opererer globalt. I 2025 utgjorde dette om lag 400 000 metriske tonn, med en samlet verdi på rundt 250 millioner USD. Dette illustrerer at selv små forbedringer i innkjøpsbeslutningene kan få betydelige økonomiske konsekvenser over tid.
+
+I den daglige driften brukes flere drivstofftyper. Hovedtyngden består av `VLSFO` (`Very Low Sulphur Fuel Oil`), men flåten bruker også `LSGO` (`Low Sulphur Gasoil`) og noe biodrivstoff. Bruken av biodrivstoff er ikke bare et kommersielt valg, men henger også sammen med krav i EU-regelverket knyttet til utslipp. Drivstoffvalget påvirkes dermed i praksis både av pris, tilgjengelighet, kvalitet og regulatoriske rammer. Den faktiske beslutningssituasjonen er derfor mer sammensatt enn den avgrensede analysen i denne rapporten.
+
+*Merknad for videre arbeid: Når `Everything You Need To Know About Marine Fuels.pdf` er tilgjengelig, kan denne delen strammes inn med en kort og kildebasert forklaring av `VLSFO`, `LSGO` og biodrivstoff.*
+
+*Merknad for videre arbeid: Når veiledningen om EU-regelverket er tilgjengelig, bør formuleringen om biodrivstoff og utslippskrav presiseres med mer nøyaktig begrepsbruk.*
+
+Innkjøpene skjer også under ulike markedsbetingelser. I noen havner har selskapet kontrakt med en leverandør for å sikre tilgjengelighet og/eller kvalitet, mens drivstoff i andre havner kjøpes i spotmarkedet. Dette betyr at bunkringsbeslutninger i praksis ikke bare handler om å velge lavest mulig pris, men også om å håndtere leveringssikkerhet, kvalitet og markedsforhold.
+
+Odfjell Tankers bruker dessuten `imarex` som beslutningsstøtte i det operative arbeidet. Systemet brukes til å predikere framtidige priser i ulike havner og støtter særlig vurderinger av når innkjøp bør gjennomføres. Samtidig er denne støtten avgrenset til ordinært fossilt drivstoff, det vil si `VLSFO` og `LSGO`, og omfatter ikke biodrivstoff. Dette understreker at dagens beslutningsstøtte er nyttig, men ikke nødvendigvis dekkende for hele bredden i bunkringsarbeidet.
+
 Det tilgjengelige materialet dekker drivstofftypen `LSF` og de fire mest brukte havnene i datasettet: `P001`, `P002`, `P003` og `P004`. Dette er en relevant avgrensing fordi disse havnene representerer de observerte beslutningsalternativene som foreløpig er best dokumentert i datagrunnlaget. Siden vi fortsatt venter på mer detaljerte operative data fra Odfjell Tankers, arbeider vi videre med disse 61 månedene og de fire havnene vi allerede har tilgang til.
 
 ### 4.2 Historisk utvikling i volum og pris
@@ -242,6 +256,8 @@ Tabell 4.1 oppsummerer forskjellene mellom havnene og dokumenterer både aktivit
 | P003 | 369 | 253591.20 | 540.84 | 61 |
 | P004 | 517 | 320932.69 | 577.04 | 61 |
 
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 4.1 Oversikt over aktivitetsnivå og prisnivå for de fire mest brukte havnene i analyseperioden.</i></small></p>
+
 `Tabell 4.1` viser at `P004` er den mest brukte havnen målt i antall observasjoner, mens `P003` har lavest vektet gjennomsnittspris. `P002` fremstår som den dyreste havnen i utvalget og har dessuten færre måneder med observasjoner enn de øvrige havnene. Dette understøtter at både prisnivå og datadekning varierer mellom havnene.
 
 ### 4.3 Sesongmønster i bunkringsdataene
@@ -261,7 +277,7 @@ Når prisene varierer mellom havner og over tid, mens volumet samtidig svinger g
 
 ### 4.5 Utfordringer dårlige prognoser medfører i bedriften
 
-Selv om denne oppgaven foreløpig arbeider med en forenklet modell, er den underliggende utfordringen i bedriften bredere enn bare historiske prisforskjeller. Når prognoser for behov, prisutvikling eller framtidig bunkringsmønster er svake, blir beslutninger lettere preget av kortsiktige vurderinger og mindre av systematisk analyse. Dette kan føre til at bunkring skjer i havner som i ettertid viser seg å være relativt dyre, eller at volum fordeles på en måte som ikke utnytter prisvariasjonene godt nok.
+Selv om selskapet allerede bruker beslutningsstøtte for deler av bunkringsarbeidet, er beslutningssituasjonen fortsatt kompleks fordi ulike drivstofftyper, kontraktsforhold, spotkjøp og regulatoriske krav gjør at ikke alle valg kan støttes på samme måte. Den underliggende utfordringen i bedriften er derfor bredere enn bare historiske prisforskjeller. Når prognoser for behov, prisutvikling eller framtidig bunkringsmønster er svake, blir beslutninger lettere preget av kortsiktige vurderinger og mindre av systematisk analyse. Dette kan føre til at bunkring skjer i havner som i ettertid viser seg å være relativt dyre, eller at volum fordeles på en måte som ikke utnytter prisvariasjonene godt nok.
 
 For bedriften kan dårlige prognoser skape flere praktiske problemer. For det første øker risikoen for høyere drivstoffkostnader fordi valg av havn og tidspunkt i større grad blir reaktive enn planlagte. For det andre blir det vanskeligere å vurdere hvilke kostnadsforskjeller som faktisk skyldes markedet, og hvilke som skyldes beslutningsmønsteret i virksomheten. For det tredje svekkes grunnlaget for læring over tid, fordi historiske beslutninger ikke blir vurdert systematisk opp mot alternative løsninger.
 
@@ -300,6 +316,8 @@ Tabell 5.1 oppsummerer datagrunnlaget og avgrensningen som brukes videre i analy
 | Havner inkludert | P001, P002, P003, P004 |
 | Antall måneder | 61 |
 
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.1 Oppsummering av datagrunnlag og avgrensning for analysen.</i></small></p>
+
 Det opprinnelige datasettet inneholder 1389 observasjoner. Gjennomgangen viser at de sentrale identifikasjonsfeltene er komplette, men at enkelte verdi- og prisfelt har mangler eller ugyldige verdier. Det finnes 10 observasjoner uten `Invoice Price`, 10 observasjoner uten `Invoiced Qty`, 2 observasjoner uten `Supplier`, samt 8 observasjoner med ikke-positivt volum. Etter rensing ble 1381 observasjoner beholdt, mens 8 observasjoner ble forkastet på grunn av ikke-positivt volum. Oppsummeringen av rensingen er dokumentert i `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/metadata/tab_bunker_summary.md`.
 
 Tabell 5.2 dokumenterer rensevalg og datakvalitet i materialet.
@@ -315,6 +333,8 @@ Tabell 5.2 dokumenterer rensevalg og datakvalitet i materialet.
 | Manglende `Supplier` | 2 observasjoner | Har liten betydning for modellversjon 1 |
 | Endelig antall beholdte observasjoner | 1381 | Brukes videre i renset og aggregert datasett |
 
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.2 Oversikt over rensevalg, fallback-regler og vurdert datakvalitet i materialet.</i></small></p>
+
 For analyse- og modelleringsformål er dataene strukturert i to filer. `006 analysis/01_datagrunnlag/02_datavask/output/tab_bunker_cleaned.csv` inneholder rensede transaksjoner på detaljnivå, mens `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_bunker_monthly_by_port.csv` inneholder månedlig aggregat per havn. Aggregatet består av 229 havn-måned-kombinasjoner fordelt over 61 måneder. For hver kombinasjon beregnes blant annet `transaction_count`, `total_qty`, `weighted_avg_price`, `simple_avg_price`, `min_price`, `max_price`, `unique_vessels` og `unique_suppliers`.
 
 For å skille mellom data brukt til utvikling og data brukt til senere vurdering, er rådatasettet også splittet i en treningsdel og en testdel. Splittingen er gjort kronologisk etter `Delivery Date`, slik at de tidligste 80 % av observasjonene brukes til trening og de siste 20 % brukes til testing. Dette gir en treningsfil med 1111 observasjoner fra 2020-01-04 til 2023-12-15 og en testfil med 278 observasjoner fra 2023-12-17 til 2025-01-30. Filene er lagret som `004 data/Bunker Lifting List(Worksheet1) (1)_train_80.csv` og `004 data/Bunker Lifting List(Worksheet1) (1)_test_20.csv`.
@@ -329,6 +349,8 @@ Tabell 5.3 oppsummerer den strukturerte havneinformasjonen som videreføres til 
 | P002 | 286 | 181419.36 | 610.29 | 46 |
 | P003 | 369 | 253591.20 | 540.84 | 61 |
 | P004 | 517 | 320932.69 | 577.04 | 61 |
+
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.3 Strukturert havneoversikt brukt videre i modellgrunnlaget.</i></small></p>
 
 Datakvaliteten vurderes som tilstrekkelig for en første modellversjon, men datasettet har klare begrensninger. Det omfatter bare fire havner og én drivstofftype, og inneholder ikke eksplisitte variabler for tankkapasitet, minimumsbeholdning, faktisk drivstofforbruk mellom havner, havnesekvens eller kontraktsmessige bindinger. Vi har bedt om slike supplerende data, men fordi de ennå ikke er mottatt, baseres det videre arbeidet på dagens datagrunnlag. Resultatene må derfor tolkes som et første analytisk beslutningsgrunnlag, ikke som en fullstendig operativ modell av bunkringsbeslutningene.
 
@@ -460,4 +482,3 @@ Det er også laget en første kjørbar modellfil i `006 analysis/02_modellutvikl
 ---
 
 ## 12.0 Vedlegg
-

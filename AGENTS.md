@@ -99,7 +99,18 @@ Les også filen @000 templates\Mal prosjekt LOG650 v2.docx for mer detaljert tip
 - Tabeller kan limes inn direkte som Markdown-tabeller når de er små og lesbare.
 - Tabeller skal ha en kort introduksjonssetning i brødteksten før de settes inn.
 - Bruk tabellnummer i teksten, for eksempel `Tabell 4.1`.
-- Tabeller som trenger tabelltekst kan få samme stil som figurtekster: sentrert, liten skrift og kursiv under tabellen.
+- Tabeller skal ha tabelltekst under tabellen, med samme format som figurtekster.
+- Tabellteksten skal være:
+  - sentrert
+  - liten skrift
+  - kursiv
+- Foretrukket mønster:
+
+```html
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell X Kort tabelltekst.</i></small></p>
+```
+
+- Tabellteksten skal være kort og nøktern, ikke en hel forklaring.
 
 ## Kode og analyse
 
