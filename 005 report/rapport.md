@@ -238,14 +238,14 @@ Et sentralt spørsmål i casebeskrivelsen er om datasettet faktisk viser variasj
 Figur 4.1 viser samlet bunkret volum måned for måned gjennom hele analyseperioden fra januar 2020 til januar 2025. Hvert punkt på kurven representerer altså én faktisk måned i tidsserien, ikke et gjennomsnitt på tvers av flere år. Volumet varierer betydelig mellom månedene, med en topp i januar 2023 på 22 316,23 og et bunnpunkt i februar 2020 på 4 726,55. Dette tyder på at aktivitetsnivået ikke er konstant, og at modellen må bygge på et datagrunnlag som håndterer variasjon over tid.
 
 <div align="center">
-  <img src="../006%20analysis/01_datagrunnlag/figures/fig_bunker_total_qty_by_month.png" alt="Historisk bunkret volum per måned" width="80%">
+  <img src="../006%20analysis/01_datagrunnlag/04_deskriptiv_analyse/figures/fig_bunker_total_qty_by_month.png" alt="Historisk bunkret volum per måned" width="80%">
   <p align="center"><small><i>Figur 4.1 Samlet bunkret volum for hver enkelt måned i perioden 2020-01 til 2025-01.</i></small></p>
 </div>
 
 Prisnivået varierer også tydelig mellom havnene. Figur 4.2 viser vektet gjennomsnittspris per havn for hver enkelt måned i perioden. Også her er figuren en tidsserie, der hver observasjon er knyttet til en konkret måned mellom januar 2020 og januar 2025. Figuren viser at havnene ikke bare har ulike gjennomsnittspriser, men også ulike prisbaner over tid. Dette er et sentralt premiss for videre modellering, fordi det innebærer at havnevalg kan påvirke totale bunkringskostnader.
 
 <div align="center">
-  <img src="../006%20analysis/01_datagrunnlag/figures/fig_bunker_weighted_price_by_port_month.png" alt="Pris per havn og måned" width="80%">
+  <img src="../006%20analysis/01_datagrunnlag/04_deskriptiv_analyse/figures/fig_bunker_weighted_price_by_port_month.png" alt="Pris per havn og måned" width="80%">
   <p align="center"><small><i>Figur 4.2 Vektet gjennomsnittspris per havn for hver enkelt måned i perioden 2020-01 til 2025-01.</i></small></p>
 </div>
 
@@ -265,7 +265,7 @@ Tabell 4.1 oppsummerer forskjellene mellom havnene og dokumenterer både aktivit
 For å vurdere om det finnes et mønster som gjentar seg gjennom kalenderåret, er volum og pris også aggregert per kalendermåned. Figur 4.3 er derfor ikke en tidsserie for ett bestemt år. I stedet viser den et gjennomsnitt på tvers av analyseperioden, der alle januar-måneder er slått sammen, alle februar-måneder er slått sammen, og så videre. Stolpene representerer gjennomsnittlig volum per kalendermåned, mens linjen viser vektet gjennomsnittspris for samme kalendermåned når hele perioden ses under ett.
 
 <div align="center">
-  <img src="../006%20analysis/01_datagrunnlag/figures/fig_bunker_season_profile.png" alt="Sesongprofil for volum og pris" width="80%">
+  <img src="../006%20analysis/01_datagrunnlag/04_deskriptiv_analyse/figures/fig_bunker_season_profile.png" alt="Sesongprofil for volum og pris" width="80%">
   <p align="center"><small><i>Figur 4.3 Gjennomsnittlig volum og pris per kalendermåned, aggregert på tvers av perioden 2020-01 til 2025-01.</i></small></p>
 </div>
 
@@ -285,7 +285,7 @@ Litt avhengig av omfanget, kan det være lurt å vurdere om du skal splitte kapi
 
 Studien er gjennomført som en kvantitativ caseanalyse av Odfjell Tankers, der historiske bunkringstransaksjoner brukes som grunnlag for å utvikle en første optimeringsmodell for beslutningsstøtte. Arbeidet er lagt opp i fem steg: innlesing og kvalitetssikring av rådata, rensing og strukturering av datasettet, deskriptiv analyse av pris- og volummønstre, formulering av en første lineær modell og etablering av modellinput som kan brukes i videre implementering og analyse.
 
-Rådataene er behandlet i en egen rensepipeline i `006 analysis/01_datagrunnlag/clean_and_aggregate_bunker_data.py`. Her standardiseres datoer og numeriske felt, samtidig som volum- og prisvariabler harmoniseres ved å bruke `Invoiced Qty` og `Invoice Price` som hovedkilder, med fallback til `Ordered Qty` og `Order Price` når fakturerte verdier mangler. Observasjoner med ikke-positivt volum eller ikke-positiv pris forkastes for å unngå at ugyldige transaksjoner påvirker analysen og de estimerte modellparametrene.
+Rådataene er behandlet i en egen rensepipeline i `006 analysis/01_datagrunnlag/02_datavask/src/clean_and_aggregate_bunker_data.py`. Her standardiseres datoer og numeriske felt, samtidig som volum- og prisvariabler harmoniseres ved å bruke `Invoiced Qty` og `Invoice Price` som hovedkilder, med fallback til `Ordered Qty` og `Order Price` når fakturerte verdier mangler. Observasjoner med ikke-positivt volum eller ikke-positiv pris forkastes for å unngå at ugyldige transaksjoner påvirker analysen og de estimerte modellparametrene.
 
 Etter rensing ble dataene strukturert i to nivåer. Først ble et renset transaksjonsdatasett etablert. Deretter ble transaksjonene aggregert per havn og måned for å skape et enklere og mer robust analysegrunnlag for modellversjon 1. Dette aggregatet gir blant annet total mengde, antall transaksjoner, vektet gjennomsnittspris, minimums- og maksimumspris, samt antall unike fartøy og leverandører per kombinasjon av havn og måned. Metodevalget innebærer en bevisst forenkling av den operative virkeligheten, men gir et transparent og reproduserbart grunnlag for første modellversjon.
 
@@ -308,7 +308,7 @@ Tabell 5.1 oppsummerer datagrunnlaget og avgrensningen som brukes videre i analy
 | Havner inkludert | P001, P002, P003, P004 |
 | Antall måneder | 61 |
 
-Det opprinnelige datasettet inneholder 1389 observasjoner. Gjennomgangen viser at de sentrale identifikasjonsfeltene er komplette, men at enkelte verdi- og prisfelt har mangler eller ugyldige verdier. Det finnes 10 observasjoner uten `Invoice Price`, 10 observasjoner uten `Invoiced Qty`, 2 observasjoner uten `Supplier`, samt 8 observasjoner med ikke-positivt volum. Etter rensing ble 1381 observasjoner beholdt, mens 8 observasjoner ble forkastet på grunn av ikke-positivt volum. Oppsummeringen av rensingen er dokumentert i `006 analysis/01_datagrunnlag/tab_bunker_summary.md`.
+Det opprinnelige datasettet inneholder 1389 observasjoner. Gjennomgangen viser at de sentrale identifikasjonsfeltene er komplette, men at enkelte verdi- og prisfelt har mangler eller ugyldige verdier. Det finnes 10 observasjoner uten `Invoice Price`, 10 observasjoner uten `Invoiced Qty`, 2 observasjoner uten `Supplier`, samt 8 observasjoner med ikke-positivt volum. Etter rensing ble 1381 observasjoner beholdt, mens 8 observasjoner ble forkastet på grunn av ikke-positivt volum. Oppsummeringen av rensingen er dokumentert i `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/metadata/tab_bunker_summary.md`.
 
 Tabell 5.2 dokumenterer rensevalg og datakvalitet i materialet.
 
@@ -323,7 +323,7 @@ Tabell 5.2 dokumenterer rensevalg og datakvalitet i materialet.
 | Manglende `Supplier` | 2 observasjoner | Har liten betydning for modellversjon 1 |
 | Endelig antall beholdte observasjoner | 1381 | Brukes videre i renset og aggregert datasett |
 
-For analyse- og modelleringsformål er dataene strukturert i to filer. `tab_bunker_cleaned.csv` inneholder rensede transaksjoner på detaljnivå, mens `tab_bunker_monthly_by_port.csv` inneholder månedlig aggregat per havn. Aggregatet består av 229 havn-måned-kombinasjoner fordelt over 61 måneder. For hver kombinasjon beregnes blant annet `transaction_count`, `total_qty`, `weighted_avg_price`, `simple_avg_price`, `min_price`, `max_price`, `unique_vessels` og `unique_suppliers`.
+For analyse- og modelleringsformål er dataene strukturert i to filer. `006 analysis/01_datagrunnlag/02_datavask/output/tab_bunker_cleaned.csv` inneholder rensede transaksjoner på detaljnivå, mens `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_bunker_monthly_by_port.csv` inneholder månedlig aggregat per havn. Aggregatet består av 229 havn-måned-kombinasjoner fordelt over 61 måneder. For hver kombinasjon beregnes blant annet `transaction_count`, `total_qty`, `weighted_avg_price`, `simple_avg_price`, `min_price`, `max_price`, `unique_vessels` og `unique_suppliers`.
 
 En oppsummering av materialet viser tydelige forskjeller mellom havnene. `P004` er den mest brukte havnen målt i antall observasjoner, mens `P003` har lavest vektet gjennomsnittspris i utvalget. `P002` fremstår som den dyreste havnen. Dette indikerer at havnevalg har potensial til å påvirke totale drivstoffkostnader og støtter relevansen av å utvikle en optimeringsmodell basert på datasettet.
 
@@ -426,14 +426,14 @@ Likevel er modellen metodisk forsvarlig som første analysemodell i prosjektet. 
 
 ### 6.7 Kobling til modellfiler
 
-For å gjøre modellstrukturen operasjonell er modellinput for versjon 1 opprettet i `006 analysis/02_modell_v1`. Følgende filer hører til denne modellversjonen:
+For å gjøre modellstrukturen operasjonell er modellinput for versjon 1 opprettet i `006 analysis/02_modellutvikling/04_implementere_modell/input`. Følgende filer hører til denne modellversjonen:
 
 - `tab_model_v1_price_by_port_month.csv` for prisparameteren $p_{h,t}$
 - `tab_model_v1_demand_by_month.csv` for behovsparameteren $D_t$
 - `tab_model_v1_availability_by_port_month.csv` for tilgjengelighetsparameteren $f_{h,t}$
 - `data_model_v1_parameters.json` for samlet metadata og definisjoner
 
-Det er også laget en første kjørbar modellfil i `006 analysis/02_modell_v1/run_model_v1_pyomo.py`, som leser disse modellfilene direkte når `pyomo` og en solver er tilgjengelig.
+Det er også laget en første kjørbar modellfil i `006 analysis/02_modellutvikling/04_implementere_modell/src/run_model_v1_pyomo.py`, som leser disse modellfilene direkte når `pyomo` og en solver er tilgjengelig.
 
 ---
 

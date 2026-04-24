@@ -6,15 +6,23 @@ from collections import defaultdict
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[2]
-SOURCE = ROOT / "006 analysis" / "01_datagrunnlag" / "tab_bunker_monthly_by_port.csv"
-OUT_DIR = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[4]
+SOURCE = (
+    ROOT
+    / "006 analysis"
+    / "01_datagrunnlag"
+    / "03_strukturering_av_datasett"
+    / "data"
+    / "tab_bunker_monthly_by_port.csv"
+)
+ACTIVITY_DIR = Path(__file__).resolve().parent.parent
+INPUT_DIR = ACTIVITY_DIR / "input"
 
-PRICE_CSV = OUT_DIR / "tab_model_v1_price_by_port_month.csv"
-DEMAND_CSV = OUT_DIR / "tab_model_v1_demand_by_month.csv"
-AVAILABILITY_CSV = OUT_DIR / "tab_model_v1_availability_by_port_month.csv"
-PARAMETERS_JSON = OUT_DIR / "data_model_v1_parameters.json"
-README_MD = OUT_DIR / "README.md"
+PRICE_CSV = INPUT_DIR / "tab_model_v1_price_by_port_month.csv"
+DEMAND_CSV = INPUT_DIR / "tab_model_v1_demand_by_month.csv"
+AVAILABILITY_CSV = INPUT_DIR / "tab_model_v1_availability_by_port_month.csv"
+PARAMETERS_JSON = INPUT_DIR / "data_model_v1_parameters.json"
+README_MD = ACTIVITY_DIR / "README_model_v1.md"
 
 
 def read_monthly_rows() -> list[dict[str, str]]:
@@ -158,7 +166,7 @@ def main() -> None:
     rows = read_monthly_rows()
     price_rows, demand_rows, availability_rows, parameters = build_outputs(rows)
 
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    INPUT_DIR.mkdir(parents=True, exist_ok=True)
     write_csv(PRICE_CSV, price_rows)
     write_csv(DEMAND_CSV, demand_rows)
     write_csv(AVAILABILITY_CSV, availability_rows)

@@ -12,12 +12,26 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 
-ROOT = Path(__file__).resolve().parents[2]
-DATA_DIR = Path(__file__).resolve().parent
-CLEANED_CSV = DATA_DIR / "tab_bunker_cleaned.csv"
-MONTHLY_CSV = DATA_DIR / "tab_bunker_monthly_by_port.csv"
-FIG_DIR = DATA_DIR / "figures"
-FIG_GUIDE = DATA_DIR / "fig_bunker_guide.md"
+ROOT = Path(__file__).resolve().parents[4]
+ACTIVITY_DIR = Path(__file__).resolve().parent.parent
+CLEANED_CSV = (
+    ROOT
+    / "006 analysis"
+    / "01_datagrunnlag"
+    / "02_datavask"
+    / "output"
+    / "tab_bunker_cleaned.csv"
+)
+MONTHLY_CSV = (
+    ROOT
+    / "006 analysis"
+    / "01_datagrunnlag"
+    / "03_strukturering_av_datasett"
+    / "data"
+    / "tab_bunker_monthly_by_port.csv"
+)
+FIG_DIR = ACTIVITY_DIR / "figures"
+FIG_GUIDE = ACTIVITY_DIR / "metadata" / "fig_bunker_guide.md"
 
 PORT_COLORS = {
     "P001": "#0B3C5D",
@@ -166,10 +180,10 @@ def write_figure_guide(figure_paths: list[Path]) -> None:
         "Bruk denne kommandoen fra repo-roten:",
         "",
         "```powershell",
-        "uv run --project \"006 analysis\" python \"006 analysis\\01_datagrunnlag\\generate_bunker_figures.py\"",
+        "uv run --project \"006 analysis\" python \"006 analysis\\01_datagrunnlag\\04_deskriptiv_analyse\\src\\generate_bunker_figures.py\"",
         "```",
         "",
-        "Figurene skrives til `006 analysis/01_datagrunnlag/figures`.",
+        "Figurene skrives til `006 analysis/01_datagrunnlag/04_deskriptiv_analyse/figures`.",
     ]
     FIG_GUIDE.write_text("\n".join(lines) + "\n", encoding="utf-8")
 

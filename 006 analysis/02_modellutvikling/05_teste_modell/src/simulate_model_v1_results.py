@@ -8,13 +8,23 @@ import json
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[2]
-MODEL_DIR = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[4]
+ACTIVITY_DIR = Path(__file__).resolve().parent.parent
+MODEL_INPUT_DIR = (
+    ROOT / "006 analysis" / "02_modellutvikling" / "04_implementere_modell" / "input"
+)
 
-MONTHLY_CSV = ROOT / "006 analysis" / "01_datagrunnlag" / "tab_bunker_monthly_by_port.csv"
-PARAMETERS_JSON = MODEL_DIR / "data_model_v1_parameters.json"
-RESULT_CSV = MODEL_DIR / "res_model_v1_solution_by_port_month.csv"
-RESULT_JSON = MODEL_DIR / "res_model_v1_summary.json"
+MONTHLY_CSV = (
+    ROOT
+    / "006 analysis"
+    / "01_datagrunnlag"
+    / "03_strukturering_av_datasett"
+    / "data"
+    / "tab_bunker_monthly_by_port.csv"
+)
+PARAMETERS_JSON = MODEL_INPUT_DIR / "data_model_v1_parameters.json"
+RESULT_CSV = ACTIVITY_DIR / "output" / "res_model_v1_solution_by_port_month.csv"
+RESULT_JSON = ACTIVITY_DIR / "output" / "res_model_v1_summary.json"
 
 
 def load_monthly_data():
@@ -134,6 +144,7 @@ def main():
     ports = parameters["sets"]["ports"]
     months = parameters["sets"]["months"]
     
+    RESULT_CSV.parent.mkdir(parents=True, exist_ok=True)
     write_results(solution, total_cost, monthly_costs, months, ports)
     
     print("Modellsimulasjon gjennomført.")

@@ -13,7 +13,7 @@ Disse figurene er laget fra renset og aggregert bunkringsdata og kan brukes dire
 Bruk denne kommandoen fra repo-roten:
 
 ```powershell
-uv run --project "006 analysis" python "006 analysis\01_datagrunnlag\generate_bunker_figures.py"
+uv run --project "006 analysis" python "006 analysis\01_datagrunnlag\04_deskriptiv_analyse\src\generate_bunker_figures.py"
 ```
 
-Figurene skrives til `006 analysis/01_datagrunnlag/figures`.
+Figurene skrives til `006 analysis/01_datagrunnlag/04_deskriptiv_analyse/figures`.

@@ -6,15 +6,17 @@ import json
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[2]
-MODEL_DIR = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[4]
+ACTIVITY_DIR = Path(__file__).resolve().parent.parent
+INPUT_DIR = ACTIVITY_DIR / "input"
+OUTPUT_DIR = ACTIVITY_DIR / "output"
 
-PRICE_CSV = MODEL_DIR / "tab_model_v1_price_by_port_month.csv"
-DEMAND_CSV = MODEL_DIR / "tab_model_v1_demand_by_month.csv"
-AVAILABILITY_CSV = MODEL_DIR / "tab_model_v1_availability_by_port_month.csv"
-PARAMETERS_JSON = MODEL_DIR / "data_model_v1_parameters.json"
-RESULT_CSV = MODEL_DIR / "res_model_v1_solution_by_port_month.csv"
-RESULT_JSON = MODEL_DIR / "res_model_v1_summary.json"
+PRICE_CSV = INPUT_DIR / "tab_model_v1_price_by_port_month.csv"
+DEMAND_CSV = INPUT_DIR / "tab_model_v1_demand_by_month.csv"
+AVAILABILITY_CSV = INPUT_DIR / "tab_model_v1_availability_by_port_month.csv"
+PARAMETERS_JSON = INPUT_DIR / "data_model_v1_parameters.json"
+RESULT_CSV = OUTPUT_DIR / "res_model_v1_solution_by_port_month.csv"
+RESULT_JSON = OUTPUT_DIR / "res_model_v1_summary.json"
 
 
 def load_price_data() -> dict[tuple[str, str], float]:
@@ -166,6 +168,7 @@ def main() -> None:
         )
 
     result = solver.solve(model, tee=False)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     write_results(model, value, ports, months)
 
     print("Løste modellversjon 1.")

@@ -6,12 +6,26 @@ from datetime import datetime
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[4]
 SOURCE = ROOT / "004 data" / "Bunker Lifting List(Worksheet1) (1).csv"
-OUT_DIR = Path(__file__).resolve().parent
-CLEANED_CSV = OUT_DIR / "tab_bunker_cleaned.csv"
-MONTHLY_CSV = OUT_DIR / "tab_bunker_monthly_by_port.csv"
-SUMMARY_MD = OUT_DIR / "tab_bunker_summary.md"
+ACTIVITY_DIR = Path(__file__).resolve().parent.parent
+CLEANED_CSV = ACTIVITY_DIR / "output" / "tab_bunker_cleaned.csv"
+MONTHLY_CSV = (
+    ROOT
+    / "006 analysis"
+    / "01_datagrunnlag"
+    / "03_strukturering_av_datasett"
+    / "data"
+    / "tab_bunker_monthly_by_port.csv"
+)
+SUMMARY_MD = (
+    ROOT
+    / "006 analysis"
+    / "01_datagrunnlag"
+    / "03_strukturering_av_datasett"
+    / "metadata"
+    / "tab_bunker_summary.md"
+)
 
 
 def parse_number(value: str | None) -> float | None:
@@ -238,6 +252,9 @@ def main() -> None:
     raw_rows = read_rows()
     cleaned_rows, counters = clean_rows(raw_rows)
     monthly_rows = aggregate_monthly(cleaned_rows)
+    CLEANED_CSV.parent.mkdir(parents=True, exist_ok=True)
+    MONTHLY_CSV.parent.mkdir(parents=True, exist_ok=True)
+    SUMMARY_MD.parent.mkdir(parents=True, exist_ok=True)
     write_cleaned_csv(cleaned_rows)
     write_monthly_csv(monthly_rows)
     write_summary_md(raw_rows, cleaned_rows, monthly_rows, counters)

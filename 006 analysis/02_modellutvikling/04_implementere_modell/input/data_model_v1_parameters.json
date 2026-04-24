@@ -1,7 +1,7 @@
 {
   "model_version": "v1",
   "description": "Forenklet kostnadsminimeringsmodell basert på havn og måned.",
-  "source_file": "006 analysis/01_datagrunnlag/tab_bunker_monthly_by_port.csv",
+  "source_file": "006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_bunker_monthly_by_port.csv",
   "sets": {
     "ports": [
       "P001",
@@ -74,9 +74,9 @@
     ]
   },
   "parameter_files": {
-    "prices": "006 analysis/02_modell_v1/tab_model_v1_price_by_port_month.csv",
-    "demand": "006 analysis/02_modell_v1/tab_model_v1_demand_by_month.csv",
-    "availability": "006 analysis/02_modell_v1/tab_model_v1_availability_by_port_month.csv"
+    "prices": "006 analysis/02_modellutvikling/04_implementere_modell/input/tab_model_v1_price_by_port_month.csv",
+    "demand": "006 analysis/02_modellutvikling/04_implementere_modell/input/tab_model_v1_demand_by_month.csv",
+    "availability": "006 analysis/02_modellutvikling/04_implementere_modell/input/tab_model_v1_availability_by_port_month.csv"
   },
   "price_fallback_rule": "Hvis en havn mangler observasjon i en måned, brukes havnens vektede gjennomsnittspris over hele analyseperioden.",
   "demand_rule": "Månedlig behov settes lik samlet observert bunkret mengde på tvers av de fire havnene i perioden.",

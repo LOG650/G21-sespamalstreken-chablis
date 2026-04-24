@@ -8,7 +8,6 @@ Denne mappen inneholder modellparametere som hører til den forenklede modellver
 - `tab_model_v1_demand_by_month.csv`: behovsparameter `D[t]`
 - `tab_model_v1_availability_by_port_month.csv`: tilgjengelighetsparameter `f[h,t]`
 - `data_model_v1_parameters.json`: samlet metadata og parameterbeskrivelse
-- `run_model_v1_pyomo.py`: første kjørbare Pyomo-implementasjon av modellversjon 1
 
 ## Definisjon
 
@@ -19,9 +18,3 @@ Denne mappen inneholder modellparametere som hører til den forenklede modellver
 - Tilgjengelighetsregel: available_flag = 1 hvis havnen har observert transaksjon i måneden, ellers 0.
 
 Filnavnene starter med `tab_model_v1_` eller `data_model_v1_` for å gjøre det enkelt å se at de tilhører modellversjon 1.
-
-For å kjøre modellen når `pyomo` og en solver er installert:
-
-```powershell
-python "006 analysis\02_modell_v1\run_model_v1_pyomo.py" --solver glpk
-```
