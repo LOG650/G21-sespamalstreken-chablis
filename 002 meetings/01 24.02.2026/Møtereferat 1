@@ -1,0 +1,175 @@
+**Møtereferat**
+
+**Prosjekt:** Minimering av drivstoffkostnader i Odfjell Tankers
+
+**Emne:** LOG650
+
+**Dato:** 24.02
+
+**Deltakere:** Kaylee Floden og Elisabeth Kirkeland Orlien
+
+**Roller:** Begge fungerer som prosjektleder (delt prosjektlederansvar)
+
+ 
+
+***1. Formål med møtet***
+
+Formålet med møtet var å: 
+
+- Gjennomgå status på prosjektplanen 
+
+- Avklare hva som må ferdigstilles før innlevering 9. mars 
+
+- Strukturere videre arbeid knyttet til datainnsamling og modellutvikling 
+
+- Fordele ansvar og konkretisere neste steg 
+
+ 
+
+***2. Prosjektplan – gjennomgang og oppdateringer***
+
+Det ble gjennomført en systematisk gjennomgang av prosjektplanen. Følgende ble besluttet: 
+
+****2.1 Budsjett****
+
+Budsjettkapittelet fjernes, da prosjektet gjennomføres innenfor rammene av LOG650 og ikke innebærer faktiske investeringskostnader for kunden. 
+
+****2.2 Sammendrag****
+
+Sammendraget skal ferdigstilles basert på godkjent proposal og inkludere: 
+
+- Bakgrunn for prosjektet 
+
+- Problemstilling 
+
+- Prosjektmål 
+
+Dette skal være konsistent med det som tidligere er godkjent. 
+
+ 
+
+***3. Omfang***
+
+Følgende elementer skal ferdigstilles senest 3. mars: 
+
+- Kravspesifikasjon 
+
+- Beskrivelse av løsning (optimaliseringsmodell) 
+
+- WBS (Work Breakdown Structure) 
+
+- WBS skal brukes som direkte input til Gantt-diagrammet i MS Project. 
+
+ 
+
+***4. Tidsplan***
+
+Det ble besluttet å: 
+
+- Utarbeide Gantt-diagram i MS Project 
+
+- Identifisere milepæler 
+
+- Definere kritisk sti 
+
+Følgende milepæler skal inkluderes: 
+
+- mars – Innlevering prosjektplan 
+
+- april – Fase 3 
+
+ - mai – Sluttleveranse 
+
+
+***5. Datainnsamling***
+
+Status: 
+
+- Historiske transaksjonsdata er mottatt 
+
+- Det må avklares om ytterligere data (f.eks. sensordata/IoT-data) er relevante eller nødvendige for analysen 
+
+Videre arbeid: 
+
+- Strukturering og rensing av datasett 
+
+- Kontroll av antagelser 
+
+Antagelser skal vurderes gjennom: 
+
+- Grafisk analyse 
+
+- Eventuelt statistiske tester 
+
+ 
+
+***6. Modell***
+
+Det ble diskutert behov for: 
+
+- Klargjøring av beslutningsvariabler 
+
+- Definering av målfunksjon 
+
+- Definering av restriksjoner 
+
+Dette skal konkretiseres før Fase 3. 
+
+
+***7. Risiko***
+
+Det skal etableres et risikoregister med: 
+
+- Identifiserte risikoer 
+
+- Sannsynlighet og konsekvens 
+
+- Tiltak 
+
+Særlig fokus på: 
+
+- Datakvalitet 
+
+- Tidsrisiko før Fase 3 
+
+- Modellkompleksitet 
+
+ 
+
+***8. Ressurser***
+
+Avklart: 
+
+- Begge fungerer som prosjektledere 
+
+- Arbeidsoppgaver fordeles fortløpende 
+
+- MS Project benyttes for fremdriftsstyring 
+
+- Analyseverktøy (Excel/Python) benyttes for modellering 
+
+ 
+
+***9. Kommunikasjon***
+
+Kommunikasjonsstruktur: 
+
+- Teams-kanal for prosjektarbeid 
+
+- Løpende dialog internt 
+
+- Planlagte arbeidsøkter 
+
+- Statusoppdateringer ved behov 
+
+ 
+
+***10. Neste steg***
+
+- Ferdigstille prosjektplan (senest 3. mars) 
+
+- Lage MS Project Gantt 
+
+- Strukturere datagrunnlag 
+
+- Starte konkret modellformulering 
