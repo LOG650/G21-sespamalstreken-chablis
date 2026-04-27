@@ -60,6 +60,7 @@ def calculate_optimal_solution(monthly_data, parameters):
     demands = parameters.get("demands", {})
     
     solution = {}
+    selected_prices = {}
     total_cost = 0.0
     monthly_costs = {}
     
@@ -88,21 +89,22 @@ def calculate_optimal_solution(monthly_data, parameters):
             continue
         
         solution[(month, cheapest_port)] = demand
+        selected_prices[(month, cheapest_port)] = cheapest_price
         cost = demand * cheapest_price
         total_cost += cost
         monthly_costs[month] = cost
     
-    return solution, total_cost, monthly_costs
+    return solution, selected_prices, total_cost, monthly_costs
 
 
-def write_results(solution, total_cost, monthly_costs, months, ports):
+def write_results(solution, selected_prices, total_cost, monthly_costs, months, ports):
     """Write results to CSV and JSON."""
     rows = []
     
     for month in months:
         for port in ports:
             qty = solution.get((month, port), 0.0)
-            price = 0.0  # Would need to look up from data
+            price = selected_prices.get((month, port), 0.0)
             
             rows.append({
                 "delivery_month": month,
@@ -139,13 +141,13 @@ def main():
     monthly_data = load_monthly_data()
     parameters = load_parameters()
     
-    solution, total_cost, monthly_costs = calculate_optimal_solution(monthly_data, parameters)
+    solution, selected_prices, total_cost, monthly_costs = calculate_optimal_solution(monthly_data, parameters)
     
     ports = parameters["sets"]["ports"]
     months = parameters["sets"]["months"]
     
     RESULT_CSV.parent.mkdir(parents=True, exist_ok=True)
-    write_results(solution, total_cost, monthly_costs, months, ports)
+    write_results(solution, selected_prices, total_cost, monthly_costs, months, ports)
     
     print("Modellsimulasjon gjennomført.")
     print(f"Antall løsningsvariable: {len(solution)}")

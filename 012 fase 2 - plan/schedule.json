@@ -16,27 +16,27 @@
     {
       "navn": "Proposal godkjent",
       "dato": "2026-02-08",
-      "status_per_2026-04-02": "Passert"
+      "status_per_2026-04-27": "Passert"
     },
     {
       "navn": "Planleggingsfase ferdig",
       "dato": "2026-03-09",
-      "status_per_2026-04-02": "Passert"
+      "status_per_2026-04-27": "Passert"
     },
     {
       "navn": "Datagrunnlag ferdig",
       "dato": "2026-03-29",
-      "status_per_2026-04-02": "Passert"
+      "status_per_2026-04-27": "Passert"
     },
     {
       "navn": "Modelltesting ferdig",
       "dato": "2026-04-28",
-      "status_per_2026-04-02": "Kommende"
+      "status_per_2026-04-27": "Kommende"
     },
     {
       "navn": "Innlevering",
       "dato": "2026-06-02",
-      "status_per_2026-04-02": "Kommende"
+      "status_per_2026-04-27": "Kommende"
     }
   ],
   "aktiviteter": [
@@ -45,7 +45,8 @@
       "navn": "Datainnsamling",
       "start": "2026-03-10",
       "slutt": "2026-03-17",
-      "status_per_2026-04-02": "Fullført",
+      "status_per_2026-04-27": "Fullført",
+      "mpp_prosent_fullført": 100,
       "grunnlag": "Dokumentert i repo",
       "avhenger_av": []
     },
@@ -54,8 +55,9 @@
       "navn": "Datavask",
       "start": "2026-03-18",
       "slutt": "2026-03-23",
-      "status_per_2026-04-02": "Bør være ferdig",
-      "grunnlag": "Ingen tydelig dokumentasjon funnet i repo",
+      "status_per_2026-04-27": "Fullført",
+      "mpp_prosent_fullført": 100,
+      "grunnlag": "Dokumentert i `006 analysis/01_datagrunnlag/02_datavask` med rensepipeline og renset fil",
       "avhenger_av": [
         "Datainnsamling"
       ]
@@ -65,32 +67,33 @@
       "navn": "Strukturering av datasett",
       "start": "2026-03-24",
       "slutt": "2026-03-26",
-      "status_per_2026-04-02": "Bør være ferdig",
-      "grunnlag": "Ingen tydelig dokumentasjon funnet i repo",
+      "status_per_2026-04-27": "Fullført",
+      "mpp_prosent_fullført": 100,
+      "grunnlag": "Dokumentert i `006 analysis/01_datagrunnlag/03_strukturering_av_datasett` med aggregert datasett og metadata",
       "avhenger_av": [
         "Datavask"
       ]
     },
     {
       "fase": "Datagrunnlag",
-      "navn": "Datasplitt trening/test",
-      "start": "2026-04-24",
-      "slutt": "2026-04-24",
-      "status_per_2026-04-24": "Fullført",
-      "grunnlag": "Trenings- og testfiler er opprettet i `004 data` med 80/20-splitt på tidligste/siste observasjoner",
-      "avhenger_av": [
-        "Strukturering av datasett"
-      ]
+      "navn": "Datasplit trening/test",
+      "start": "2026-01-23",
+      "slutt": "2026-01-23",
+      "status_per_2026-04-27": "Fullført",
+      "mpp_prosent_fullført": 100,
+      "grunnlag": "Ligger som egen aktivitet i gjeldende `MS_Project.mpp`; trenings- og testfiler finnes i `004 data` med kronologisk 80/20-splitt etter `Delivery Date`.",
+      "avhenger_av": []
     },
     {
       "fase": "Datagrunnlag",
       "navn": "Deskriptiv analyse",
       "start": "2026-03-27",
       "slutt": "2026-03-29",
-      "status_per_2026-04-02": "Bør være ferdig",
-      "grunnlag": "Ingen tydelig dokumentasjon funnet i repo",
+      "status_per_2026-04-27": "Fullført",
+      "mpp_prosent_fullført": 100,
+      "grunnlag": "Dokumentert i `006 analysis/01_datagrunnlag/04_deskriptiv_analyse` med figurer, figurguide og bruk i rapport",
       "avhenger_av": [
-        "Datasplitt trening/test"
+        "Strukturering av datasett"
       ]
     },
     {
@@ -98,8 +101,9 @@
       "navn": "Definere variabler",
       "start": "2026-03-30",
       "slutt": "2026-04-01",
-      "status_per_2026-04-02": "Bør være ferdig",
-      "grunnlag": "Ingen tydelig dokumentasjon funnet i repo",
+      "status_per_2026-04-27": "Fullført",
+      "mpp_prosent_fullført": 100,
+      "grunnlag": "Dokumentert i rapport og støttet av modellinput",
       "avhenger_av": [
         "Deskriptiv analyse"
       ]
@@ -109,8 +113,9 @@
       "navn": "Formulere målfunksjon",
       "start": "2026-04-02",
       "slutt": "2026-04-03",
-      "status_per_2026-04-02": "Pågår",
-      "grunnlag": "Planlagt aktivitet nå (2026-04-02-2026-04-03)",
+      "status_per_2026-04-27": "Fullført",
+      "mpp_prosent_fullført": 100,
+      "grunnlag": "Dokumentert i rapport og reflektert i modellskriptene",
       "avhenger_av": [
         "Definere variabler"
       ]
@@ -120,8 +125,9 @@
       "navn": "Definere restriksjoner",
       "start": "2026-04-04",
       "slutt": "2026-04-08",
-      "status_per_2026-04-02": "Kommende",
-      "grunnlag": "Starter 2026-04-04",
+      "status_per_2026-04-27": "Statusavvik",
+      "mpp_prosent_fullført": 0,
+      "grunnlag": "MPP viser 0 % fullført, mens repoet har restriksjonsstruktur dokumentert i rapport og reflektert i `run_model_v1_pyomo.py`",
       "avhenger_av": [
         "Formulere målfunksjon"
       ]
@@ -131,8 +137,9 @@
       "navn": "Implementere modell",
       "start": "2026-04-09",
       "slutt": "2026-04-20",
-      "status_per_2026-04-02": "Kommende",
-      "grunnlag": "Starter 2026-04-09",
+      "status_per_2026-04-27": "Statusavvik",
+      "mpp_prosent_fullført": 0,
+      "grunnlag": "MPP viser 0 % fullført, mens repoet har modellinput, Pyomo-implementasjon og aktivitetsstruktur etablert",
       "avhenger_av": [
         "Definere restriksjoner"
       ]
@@ -142,8 +149,9 @@
       "navn": "Teste modell",
       "start": "2026-04-21",
       "slutt": "2026-04-28",
-      "status_per_2026-04-02": "Kommende",
-      "grunnlag": "Starter 2026-04-21",
+      "status_per_2026-04-27": "Pågår",
+      "mpp_prosent_fullført": 0,
+      "grunnlag": "Solver-uavhengig simulering er kjørt og dokumentert; endelig solver-avklaring gjenstår",
       "avhenger_av": [
         "Implementere modell"
       ]
@@ -153,7 +161,7 @@
       "navn": "Basiskjøring",
       "start": "2026-04-29",
       "slutt": "2026-05-01",
-      "status_per_2026-04-02": "Kommende",
+      "status_per_2026-04-27": "Kommende",
       "grunnlag": "Starter 2026-04-29",
       "avhenger_av": [
         "Teste modell"
@@ -164,7 +172,7 @@
       "navn": "Sensitivitetsanalyse",
       "start": "2026-05-02",
       "slutt": "2026-05-06",
-      "status_per_2026-04-02": "Kommende",
+      "status_per_2026-04-27": "Kommende",
       "grunnlag": "Starter 2026-05-02",
       "avhenger_av": [
         "Basiskjøring"
@@ -175,7 +183,7 @@
       "navn": "Resultattolkning",
       "start": "2026-05-07",
       "slutt": "2026-05-11",
-      "status_per_2026-04-02": "Kommende",
+      "status_per_2026-04-27": "Kommende",
       "grunnlag": "Starter 2026-05-07",
       "avhenger_av": [
         "Sensitivitetsanalyse"
@@ -186,7 +194,7 @@
       "navn": "Skrive resultater",
       "start": "2026-05-09",
       "slutt": "2026-05-14",
-      "status_per_2026-04-02": "Kommende",
+      "status_per_2026-04-27": "Kommende",
       "grunnlag": "Starter 2026-05-09",
       "avhenger_av": [
         "Resultattolkning"
@@ -197,7 +205,7 @@
       "navn": "Diskusjon",
       "start": "2026-05-12",
       "slutt": "2026-05-17",
-      "status_per_2026-04-02": "Kommende",
+      "status_per_2026-04-27": "Kommende",
       "grunnlag": "Starter 2026-05-12",
       "avhenger_av": [
         "Skrive resultater"
@@ -208,7 +216,7 @@
       "navn": "Ferdigstille rapport",
       "start": "2026-05-18",
       "slutt": "2026-05-23",
-      "status_per_2026-04-02": "Kommende",
+      "status_per_2026-04-27": "Kommende",
       "grunnlag": "Starter 2026-05-18",
       "avhenger_av": [
         "Diskusjon"
@@ -219,7 +227,7 @@
       "navn": "Revisjon",
       "start": "2026-05-24",
       "slutt": "2026-05-29",
-      "status_per_2026-04-02": "Kommende",
+      "status_per_2026-04-27": "Kommende",
       "grunnlag": "Starter 2026-05-24",
       "avhenger_av": [
         "Ferdigstille rapport"
@@ -230,7 +238,7 @@
       "navn": "Språkvask / referanser",
       "start": "2026-05-26",
       "slutt": "2026-05-30",
-      "status_per_2026-04-02": "Kommende",
+      "status_per_2026-04-27": "Kommende",
       "grunnlag": "Starter 2026-05-26",
       "avhenger_av": [
         "Revisjon"
@@ -241,7 +249,7 @@
       "navn": "Prosjektbuffer",
       "start": "2026-05-31",
       "slutt": "2026-06-02",
-      "status_per_2026-04-02": "Kommende",
+      "status_per_2026-04-27": "Kommende",
       "grunnlag": "Starter 2026-05-31",
       "avhenger_av": [
         "Språkvask / referanser"
@@ -252,7 +260,7 @@
       "navn": "Innlevering",
       "start": "2026-06-02",
       "slutt": "2026-06-02",
-      "status_per_2026-04-02": "Kommende",
+      "status_per_2026-04-27": "Kommende",
       "grunnlag": "Starter 2026-06-02",
       "avhenger_av": [
         "Prosjektbuffer"
@@ -263,7 +271,6 @@
     "Datainnsamling",
     "Datavask",
     "Strukturering av datasett",
-    "Datasplitt trening/test",
     "Deskriptiv analyse",
     "Definere variabler",
     "Formulere målfunksjon",
@@ -281,8 +288,10 @@
     "Innlevering"
   ],
   "antagelser": [
-    "Eksplisitte aktivitetsdatoer er hentet fra statusgeneratoren og statusfilen, som igjen er laget fra `MS_Project.mpp`.",
+    "Eksplisitte aktivitetsdatoer er kontrollert mot gjeldende `MS_Project.mpp` 2026-04-27.",
     "Avhengigheter er modellert som hovedsakelig sekvensielle basert på beskrivelsen av kritisk linje og rekkefølgen i statusfilen.",
-    "Rapporteringsaktivitetene kan i praksis overlappe mer enn det JSON-en uttrykker, men her er de gjort maskinlesbare som en enkel styringsrekkefølge."
+    "Rapporteringsaktivitetene kan i praksis overlappe mer enn det JSON-en uttrykker, men her er de gjort maskinlesbare som en enkel styringsrekkefølge.",
+    "`Datasplit trening/test` ligger nå som egen aktivitet i gjeldende MPP-baseline, men uten avhengighet til øvrige datagrunnlagsaktiviteter.",
+    "MPP viser 0 % fullført for `Definere restriksjoner` og `implementere modell`, mens repoet har dokumentasjon og modellartefakter for disse aktivitetene. Dette er derfor markert som statusavvik."
   ]
 }

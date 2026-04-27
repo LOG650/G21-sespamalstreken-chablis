@@ -10,7 +10,7 @@
     "fag": "LOG650",
     "type": "Akademisk analyse- og modellutviklingsprosjekt",
     "dokumentdato": "2026-02-24",
-    "baseline_statusdato": "2026-04-02"
+    "baseline_statusdato": "2026-04-27"
   },
   "bakgrunn": {
     "behov": "Odfjell Tankers har betydelige drivstoffkostnader og trenger bedre beslutningsstøtte for hvor og når bunkring bør gjennomføres.",
@@ -114,6 +114,7 @@
   ],
   "antagelser": [
     "Fase- og aktivitetsstrukturen er hentet fra kombinasjonen av prosjektstyringsplanen, statusfilen og oppgaveoversikten i eksisterende statusgenerator.",
-    "Datoene i schedule-beskrivelsen følger `MS_Project.mpp` der denne avviker fra tekstplanen, i tråd med merknaden i `status.md`."
+    "Datoene i schedule-beskrivelsen følger `MS_Project.mpp` der denne avviker fra tekstplanen, i tråd med merknaden i `status.md`.",
+    "`Datasplit trening/test` ligger i gjeldende MPP-baseline som egen aktivitet og er dokumentert i repoet som datasplitt trening/test."
   ]
 }

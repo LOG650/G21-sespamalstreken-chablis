@@ -89,6 +89,7 @@ Bruk denne filen når du vil visualisere prosjektstrukturen eller knytte leveran
 
 - `MS_Project.mpp` er brukt som styrende kilde for fremdriftsdatoer der den avviker fra tekstplanen.
 - `wbs.json` er delvis avledet, fordi vedlegg B i den konverterte prosjektstyringsplanen ikke inneholder en utfylt maskinlesbar WBS.
+- `Datasplit trening/test` ligger nå som egen aktivitet i gjeldende `MS_Project.mpp` og er dokumentert i JSON- og statusfilene.
 - Flere felt er skrevet på norsk for å være konsistente med prosjektets arbeidsregler i repoet.
 
 ## Vedlikehold

@@ -1,6 +1,6 @@
 # Status - Minimering av drivstoffkostnader hos Odfjell Tankers
 
-_Sist oppdatert automatisk: 2026-04-24_
+_Sist oppdatert: 2026-04-27_
 
 Denne filen er generert fra:
 - `012 fase 2 - plan/Prosjektstyringsplan, Odfjell Tankers.md`
@@ -26,14 +26,17 @@ Denne filen er generert fra:
 | Planperiode nå | 2026-04-21 til 2026-04-28 |
 | Neste aktivitet | `Basiskjøring` |
 | Neste milepæl | `Modelltesting ferdig` 2026-04-28 |
-| Fullførte aktiviteter | 9 av 19 |
+| Fullførte aktiviteter | 7 av 19 viste planaktiviteter i MPP, uten prosjektbuffer |
 | Aktiviteter pågår | 1 |
 | Aktiviteter kommende | 9 |
-| Fremdriftsvurdering | Prosjektet ser ut til å ligge på plan, men `Teste modell` mangler fortsatt en kort testoppsummering før aktiviteten kan lukkes |
+| Aktiviteter med statusavvik | 2 |
+| Fremdriftsvurdering | Prosjektet ligger i MPP-perioden for `Teste modell`. Ny MPP viser `Datasplit trening/test` som fullført aktivitet, men viser 0 % for `Definere restriksjoner` og `implementere modell` selv om repoet har artefakter for begge |
 
 - Planunderlaget er dokumentert i både prosjektstyringsplanen og `MS_Project.mpp`.
 - Repoet inneholder rådata i `004 data`, renset og strukturert datasett i `006 analysis/01_datagrunnlag`, samt modellinput og modellimplementasjon i `006 analysis/02_modellutvikling`.
 - Deskriptive figurer og tabeller er nå dokumentert i `006 analysis/01_datagrunnlag/04_deskriptiv_analyse` og brukt i `005 report/rapport.md`.
+- `Datasplit trening/test` ligger nå som egen fullført aktivitet i `MS_Project.mpp` med dato 2026-01-23.
+- `Definere restriksjoner` og `implementere modell` er markert som statusavvik fordi MPP viser 0 % fullført, mens repoet inneholder dokumentasjon og modellartefakter.
 
 [Til toppen](#innholdsfortegnelse)
 
@@ -45,19 +48,21 @@ Denne filen er generert fra:
 - [x] Modellinput for versjon 1 er etablert
 - [x] Første modellimplementasjon finnes i `006 analysis/02_modellutvikling/04_implementere_modell`
 - [x] Simulert modelltest er kjørt og outputfiler finnes i `006 analysis/02_modellutvikling/05_teste_modell/output`
-- [ ] Skriv et kort testnotat som beskriver hva som er kjørt
-- [ ] Skriv en kort vurdering av om modellen oppfører seg som forventet
-- [ ] Legg inn en eksplisitt konklusjon om at modellen er klar for `Basiskjøring`
+- [x] Testnotat er skrevet i `006 analysis/02_modellutvikling/05_teste_modell/README.md`
+- [x] Simulert resultat-CSV er korrigert slik at valgt pris og beregnet kostnad vises per måned og havn
+- [ ] Avklar om MPP-prosentene for `Definere restriksjoner` og `implementere modell` skal oppdateres til å speile repoarbeidet
+- [ ] Avklar om endelig testgrunnlag skal være Pyomo med faktisk solver eller solver-uavhengig simulering
 
 ### For å lukke neste aktivitet
 
 Neste aktivitet som naturlig kan lukkes er `Teste modell`.
 
 For å markere `Teste modell` som fullført bør dere minst ha:
-- [ ] en kort testbeskrivelse av hva som er kjørt
-- [ ] en vurdering av om modellen oppfører seg konsistent med forventet logikk
-- [ ] en eksplisitt henvisning til resultatfilene i `006 analysis/02_modellutvikling/05_teste_modell/output`
-- [ ] en kort konklusjon om at modellen er klar for `Basiskjøring`
+- [x] en kort testbeskrivelse av hva som er kjørt
+- [x] en vurdering av om modellen oppfører seg konsistent med forventet logikk
+- [x] en eksplisitt henvisning til resultatfilene i `006 analysis/02_modellutvikling/05_teste_modell/output`
+- [x] en kort konklusjon om at modellen kan tas videre til `Basiskjøring`
+- [ ] en endelig beslutning om solver-kjøring eller simulering som valideringsgrunnlag
 
 ### Etterpå
 
@@ -88,18 +93,19 @@ Forklaring:
 - `██` = fullført
 - `▓▓` = pågår
 - `··` = kommende
+- `!!` = statusavvik mellom MPP og repo
 
 | Fase | Aktivitet | Periode | Status | Tidslinje |
 | --- | --- | --- | --- | --- |
+| Datagrunnlag | Datasplit trening/test | 2026-01-23 | Fullført | `██` |
 | Datagrunnlag | Datainnsamling | 2026-03-10–2026-03-17 | Fullført | `██` |
 | Datagrunnlag | Datavask | 2026-03-18–2026-03-23 | Fullført | `██` |
 | Datagrunnlag | Strukturering av datasett | 2026-03-24–2026-03-26 | Fullført | `██` |
-| Datagrunnlag | Datasplitt trening/test | 2026-04-24 | Fullført | `██` |
 | Datagrunnlag | Deskriptiv analyse | 2026-03-27–2026-03-29 | Fullført | `██` |
 | Modellutvikling | Definere variabler | 2026-03-30–2026-04-01 | Fullført | `██` |
 | Modellutvikling | Formulere målfunksjon | 2026-04-02–2026-04-03 | Fullført | `██` |
-| Modellutvikling | Definere restriksjoner | 2026-04-04–2026-04-08 | Fullført | `██` |
-| Modellutvikling | Implementere modell | 2026-04-09–2026-04-20 | Fullført | `██` |
+| Modellutvikling | Definere restriksjoner | 2026-04-04–2026-04-08 | Statusavvik | `!!` |
+| Modellutvikling | Implementere modell | 2026-04-09–2026-04-20 | Statusavvik | `!!` |
 | Modellutvikling | Teste modell | 2026-04-21–2026-04-28 | Pågår | `▓▓` |
 | Analyse | Basiskjøring | 2026-04-29–2026-05-01 | Kommende | `··` |
 | Analyse | Sensitivitetsanalyse | 2026-05-02–2026-05-06 | Kommende | `··` |
@@ -115,22 +121,22 @@ Forklaring:
 
 ```mermaid
 gantt
-    title Fremdrift per 2026-04-24
+    title Fremdrift per 2026-04-27
     dateFormat  YYYY-MM-DD
     axisFormat  %d.%m
 
     section Datagrunnlag
+    Datasplit trening/test        :done, a0, 2026-01-23, 2026-01-23
     Datainnsamling                 :done, a1, 2026-03-10, 2026-03-17
     Datavask                       :done, a2, 2026-03-18, 2026-03-23
     Strukturering av datasett      :done, a3, 2026-03-24, 2026-03-26
-    Datasplitt trening/test        :done, a4, 2026-04-24, 2026-04-24
-    Deskriptiv analyse             :done, a5, 2026-03-27, 2026-03-29
+    Deskriptiv analyse             :done, a4, 2026-03-27, 2026-03-29
 
     section Modellutvikling
     Definere variabler             :done, b1, 2026-03-30, 2026-04-01
     Formulere målfunksjon          :done, b2, 2026-04-02, 2026-04-03
-    Definere restriksjoner         :done, b3, 2026-04-04, 2026-04-08
-    Implementere modell            :done, b4, 2026-04-09, 2026-04-20
+    Definere restriksjoner         :crit, b3, 2026-04-04, 2026-04-08
+    Implementere modell            :crit, b4, 2026-04-09, 2026-04-20
     Teste modell                   :active, b5, 2026-04-21, 2026-04-28
 
     section Analyse
@@ -152,18 +158,18 @@ gantt
 
 ## Aktivitetsstatus
 
-| Fase | Aktivitet | Start | Slutt | Status 2026-04-24 | Neste handling / grunnlag |
+| Fase | Aktivitet | Start | Slutt | Status 2026-04-27 | Neste handling / grunnlag |
 | --- | --- | --- | --- | --- | --- |
+| Datagrunnlag | Datasplit trening/test | 2026-01-23 | 2026-01-23 | Fullført | Ny MPP-aktivitet med 100 % fullført; repoet har train/test-filer i `004 data` |
 | Datagrunnlag | Datainnsamling | 2026-03-10 | 2026-03-17 | Fullført | Dokumentert i repo |
 | Datagrunnlag | Datavask | 2026-03-18 | 2026-03-23 | Fullført | Dokumentert i `006 analysis/01_datagrunnlag/02_datavask` med rensepipeline og renset fil |
 | Datagrunnlag | Strukturering av datasett | 2026-03-24 | 2026-03-26 | Fullført | Dokumentert i `006 analysis/01_datagrunnlag/03_strukturering_av_datasett` med aggregert datasett og metadata |
-| Datagrunnlag | Datasplitt trening/test | 2026-04-24 | 2026-04-24 | Fullført | Trenings- og testfiler er opprettet i `004 data` med 80/20-splitt sortert etter `Delivery Date` |
 | Datagrunnlag | Deskriptiv analyse | 2026-03-27 | 2026-03-29 | Fullført | Dokumentert i `006 analysis/01_datagrunnlag/04_deskriptiv_analyse` med figurer, figurguide og bruk i `rapport.md` |
 | Modellutvikling | Definere variabler | 2026-03-30 | 2026-04-01 | Fullført | Dokumentert i modellkapitlet i `005 report/rapport.md` og støttet av modellinput |
 | Modellutvikling | Formulere målfunksjon | 2026-04-02 | 2026-04-03 | Fullført | Dokumentert i `005 report/rapport.md` og reflektert i modellskriptene |
-| Modellutvikling | Definere restriksjoner | 2026-04-04 | 2026-04-08 | Fullført | Restriksjonsstruktur er dokumentert i `rapport.md` og reflektert i `run_model_v1_pyomo.py` |
-| Modellutvikling | Implementere modell | 2026-04-09 | 2026-04-20 | Fullført | Modellinput, Pyomo-implementasjon og aktivitetsstruktur er etablert i `006 analysis/02_modellutvikling/04_implementere_modell` |
-| Modellutvikling | Teste modell | 2026-04-21 | 2026-04-28 | Pågår | Skriv kort testoppsummering og vurdering av modellatferd før aktiviteten lukkes |
+| Modellutvikling | Definere restriksjoner | 2026-04-04 | 2026-04-08 | Statusavvik | MPP viser 0 %, men restriksjonsstruktur er dokumentert i `rapport.md` og reflektert i `run_model_v1_pyomo.py` |
+| Modellutvikling | Implementere modell | 2026-04-09 | 2026-04-20 | Statusavvik | MPP viser 0 %, men modellinput, Pyomo-implementasjon og aktivitetsstruktur er etablert i `006 analysis/02_modellutvikling/04_implementere_modell` |
+| Modellutvikling | Teste modell | 2026-04-21 | 2026-04-28 | Pågår | MPP viser 0 %; testnotat og simulert output foreligger, men solvergrunnlag må avklares før aktiviteten lukkes |
 | Analyse | Basiskjøring | 2026-04-29 | 2026-05-01 | Kommende | Starter når `Teste modell` er lukket |
 | Analyse | Sensitivitetsanalyse | 2026-05-02 | 2026-05-06 | Kommende | Avhenger av `Basiskjøring` |
 | Analyse | Resultattolkning | 2026-05-07 | 2026-05-11 | Kommende | Avhenger av `Sensitivitetsanalyse` |
@@ -236,21 +242,25 @@ Status: **Pågår**
 - [x] Simulert testskript finnes i `006 analysis/02_modellutvikling/05_teste_modell/src/simulate_model_v1_results.py`
 - [x] Testoutput er opprettet i `006 analysis/02_modellutvikling/05_teste_modell/output`
 - [x] Simulert modellsammendrag er generert i `res_model_v1_summary.json`
+- [x] Testnotat er skrevet i `006 analysis/02_modellutvikling/05_teste_modell/README.md`
+- [x] `res_model_v1_solution_by_port_month.csv` viser nå valgt pris og beregnet kostnad for valgte havner
 
 #### Må gjøres før aktiviteten kan lukkes
 
-- [ ] Skriv et kort testnotat som beskriver hva som er kjørt
-- [ ] Beskriv om testgrunnlaget er solver-kjøring, simulert test eller begge deler
-- [ ] Vurder om modellen oppfører seg konsistent med forventet logikk
-- [ ] Henvis eksplisitt til resultatfilene i `006 analysis/02_modellutvikling/05_teste_modell/output`
-- [ ] Konkluder kort med om modellen er klar for `Basiskjøring`
+- [x] Skriv et kort testnotat som beskriver hva som er kjørt
+- [x] Beskriv om testgrunnlaget er solver-kjøring, simulert test eller begge deler
+- [x] Vurder om modellen oppfører seg konsistent med forventet logikk
+- [x] Henvis eksplisitt til resultatfilene i `006 analysis/02_modellutvikling/05_teste_modell/output`
+- [x] Konkluder kort med om modellen kan tas videre til `Basiskjøring`
+- [ ] Avklar om endelig validering skal bygge på Pyomo med faktisk solver eller på solver-uavhengig simulering
 
-### Datasplitt trening/test
+### Datasplit trening/test
 
 Status: **Fullført**
 
 #### Fullførte aktiviteter
 
+- [x] Aktiviteten ligger nå som egen MPP-aktivitet med dato 2026-01-23 og 100 % fullført
 - [x] Rådatasettet er sortert etter `Delivery Date` for å sikre kronologisk splitt
 - [x] De tidligste 80 % av observasjonene er lagt i treningsfil
 - [x] De siste 20 % av observasjonene er lagt i testfil
@@ -261,7 +271,7 @@ Status: **Fullført**
 #### Vurdering
 
 - [x] Datasplitt trening/test er gjennomført og dokumentert
-- [x] Steget kan behandles som fullført støtteaktivitet i datagrunnlaget
+- [x] Steget behandles som fullført aktivitet i datagrunnlaget i `schedule.json`, `wbs.json`, `requirements.json` og `status.md`
 
 [Til toppen](#innholdsfortegnelse)
 
@@ -269,7 +279,7 @@ Status: **Fullført**
 
 - Siste datafil: `004 data/Bunker Lifting List(Worksheet1) (1).csv` sist endret 2026-03-31 15:32
 - Siste analysefil: `006 analysis/01_datagrunnlag/04_deskriptiv_analyse/figures/fig_bunker_weighted_price_by_port_month.png` sist endret 2026-04-24 09:58
-- Siste modellfil: `006 analysis/02_modellutvikling/05_teste_modell/output/res_model_v1_summary.json` sist endret 2026-04-24 10:16
+- Siste modellfil: `006 analysis/02_modellutvikling/05_teste_modell/output/res_model_v1_solution_by_port_month.csv` sist endret 2026-04-27 20:39
 - Siste rapportfil: `005 report/rapport.md` sist endret 2026-04-24 10:15
 
 ### Siste git-aktivitet
@@ -371,5 +381,32 @@ Tekstplanen nevner endelig innlevering **2026-05-31**, mens `MS_Project.mpp` vis
 - Marker som fullført: `Definere restriksjoner`
 - Marker som fullført: `Implementere modell`
 - Marker som under arbeid: `Teste modell`
+
+### Manuell merknad 2026-04-27, før ny MPP-endring
+
+- Gjeldende `MS_Project.mpp` er lest direkte via Microsoft Project COM. MPP-baselinen inneholder ikke `Datasplitt trening/test` som egen Gantt-aktivitet.
+- `Datasplitt trening/test` er derfor beholdt som fullført støtteaktivitet i `schedule.json`, `wbs.json`, `requirements.json` og denne statusfilen, men fjernet fra Gantt-visningen og kritisk linje.
+- MPP-baselinen viser fortsatt `Teste modell` i perioden 2026-04-21 til 2026-04-28, etterfulgt av `Basiskjøring` 2026-04-29 til 2026-05-01.
+- Simulert modelltest er dokumentert i `006 analysis/02_modellutvikling/05_teste_modell/README.md`.
+- `006 analysis/02_modellutvikling/05_teste_modell/src/simulate_model_v1_results.py` er korrigert slik at test-CSV-en viser pris og beregnet kostnad for valgte havner.
+
+#### Anbefalt oppdatering i MS Project
+
+- Behold `Teste modell` som under arbeid frem til prosjektgruppen har valgt endelig valideringsgrunnlag.
+- Ikke legg `Datasplitt trening/test` inn i MPP med mindre gruppen ønsker å re-baseline planen; steget er allerede dokumentert som støtteaktivitet i repoet.
+
+### Manuell merknad 2026-04-27, etter ny MPP-endring
+
+- `MS_Project.mpp` er lest på nytt etter at filen ble endret 2026-04-27 20:29.
+- Den nye MPP-filen inneholder nå `Datasplit trening/test` som egen aktivitet under `Datagrunnlag`, datert 2026-01-23 og markert 100 % fullført.
+- Planfilene er derfor oppdatert slik at datasplitten ikke lenger behandles som støtteaktivitet, men som ordinær MPP-aktivitet.
+- MPP viser 100 % fullført for `Definere variabler` og `Formulere målfunksjon`, men 0 % for `Definere restriksjoner`, `implementere modell` og `Teste modell`.
+- Repoet inneholder likevel dokumentasjon og artefakter for restriksjoner, implementering og modelltest. Statusen markerer derfor `Definere restriksjoner` og `Implementere modell` som statusavvik, ikke som ordinært fullført.
+
+#### Anbefalt oppfølging i MS Project
+
+- Avklar om `Definere restriksjoner` og `implementere modell` skal settes til fullført i MPP, siden repoet har ferdige artefakter for begge.
+- Behold `Teste modell` som under arbeid eller 0 % til endelig valideringsgrunnlag er valgt.
+- Vurder om `Datasplit trening/test` bør ha en logisk avhengighet til `Strukturering av datasett`; i MPP ligger aktiviteten nå uten predecessor og med start 2026-01-23.
 
 [Til toppen](#innholdsfortegnelse)

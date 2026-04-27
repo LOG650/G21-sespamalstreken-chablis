@@ -88,7 +88,7 @@
       "id": "DK-05",
       "type": "Datakrav",
       "krav": "Datasettet skal splittes i en treningsdel og en testdel der de tidligste 80 % av observasjonene brukes til trening og de siste 20 % brukes til testing.",
-      "gantt_aktivitet": "Datasplitt trening/test",
+      "gantt_aktivitet": "Datasplit trening/test",
       "eier": "Datagrunnlag",
       "leveranse": "Train/test-filer i `004 data`",
       "testtilfelle": "Treningsfil og testfil er opprettet med 80/20-splitt etter `Delivery Date`",

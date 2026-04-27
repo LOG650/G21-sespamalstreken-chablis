@@ -104,8 +104,9 @@
           },
           {
             "id": "2.4",
-            "navn": "Datasplitt trening/test",
-            "type": "Aktivitet"
+            "navn": "Datasplit trening/test",
+            "type": "Aktivitet",
+            "merknad": "Navnet følger gjeldende MS Project-fil. Aktiviteten er fullført i MPP og dokumentert i repoet som datasplitt trening/test."
           },
           {
             "id": "2.5",
