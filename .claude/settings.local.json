@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(iconv -f cp1252 -t utf-8 '/c/Users/janso/OneDrive/Desktop/LOG650/G21-sespamalstreken-chablis/004 data/Bunker Lifting List\\(Worksheet1\\) \\(1\\).csv')"
+    ]
+  }
+}

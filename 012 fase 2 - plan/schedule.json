@@ -31,7 +31,7 @@
     {
       "navn": "Modelltesting ferdig",
       "dato": "2026-04-28",
-      "status_per_2026-04-27": "Kommende"
+      "status_per_2026-04-28": "Fullført i repo"
     },
     {
       "navn": "Innlevering",
@@ -197,9 +197,9 @@
       "navn": "Teste modell",
       "start": "2026-04-21",
       "slutt": "2026-04-28",
-      "status_per_2026-04-27": "Pågår",
+      "status_per_2026-04-28": "Fullført i repo",
       "mpp_prosent_fullført": 0,
-      "grunnlag": "Solver-uavhengig simulering er kjørt og dokumentert; endelig solver-avklaring gjenstår",
+      "grunnlag": "Solver-uavhengig simulering er kjørt på nytt 2026-04-28 og valgt som endelig valideringsgrunnlag for modellversjon 1; testnotat og outputfiler foreligger",
       "avhenger_av": [
         "Implementere modell"
       ]
