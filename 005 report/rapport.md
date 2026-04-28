@@ -295,7 +295,7 @@ Rådataene er behandlet i en egen rensepipeline i `006 analysis/01_datagrunnlag/
 
 Etter rensing ble dataene strukturert i to nivåer. Først ble et renset transaksjonsdatasett etablert. Deretter ble transaksjonene aggregert per havn og måned for å skape et enklere og mer robust analysegrunnlag for modellversjon 1. Dette aggregatet gir blant annet total mengde, antall transaksjoner, vektet gjennomsnittspris, minimums- og maksimumspris, samt antall unike fartøy og leverandører per kombinasjon av havn og måned. Metodevalget innebærer en bevisst forenkling av den operative virkeligheten, men gir et transparent og reproduserbart grunnlag for første modellversjon.
 
-Prosjektgruppen har i tillegg mottatt supplerende operative 2025-data for åtte anonymiserte fartøyfiler fordelt på klassene `C001` til `C005`. Filene inneholder blant annet dato, rapporttype, seilt distanse, tidsbruk, voyage fra/til, voyage-nummer, forbruksfelt og `ROB_Fuel_Total`. Voyage-kodene er oppgitt som UN/Locode, der de to første bokstavene angir landet havnen ligger i. Det er også oppgitt tankkapasitet per fartøyklasse og informasjon om at selskapet har bunkerskontrakt i Singapore og Sør-Korea, samt VLSFO-kontrakt i Rotterdam. Tilleggsdataene er strukturert til hendelses-, etappe- og kapasitetstabeller, men første modellversjon videreføres som en aggregert og forenklet beslutningssituasjon basert på pris- og volumdatasettet for de fire mest brukte havnene.
+Prosjektgruppen har i tillegg mottatt supplerende operative 2025-data for åtte anonymiserte fartøyfiler fordelt på klassene `C001` til `C005`. Filene inneholder blant annet dato, rapporttype, seilt distanse, tidsbruk, voyage fra/til, voyage-nummer, forbruksfelt og `ROB_Fuel_Total`. Voyage-havnene var opprinnelig oppgitt som UN/Locode, men analysefilene i repoet er pseudonymisert videre slik at havner vises som `Pxxx` og voyage-numre som `VGxxx`. Det er også oppgitt tankkapasitet per fartøyklasse og informasjon om at selskapet har bunkerskontrakt i Singapore og Sør-Korea, samt VLSFO-kontrakt i Rotterdam. Tilleggsdataene er strukturert til hendelses-, etappe- og kapasitetstabeller, men første modellversjon videreføres som en aggregert og forenklet beslutningssituasjon basert på pris- og volumdatasettet for de fire mest brukte havnene.
 
 ### 5.2 Data
 
@@ -354,7 +354,7 @@ Tabell 5.3 oppsummerer den strukturerte havneinformasjonen som videreføres til 
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.3 Strukturert havneoversikt brukt videre i modellgrunnlaget.</i></small></p>
 
-Etter den første datavasken er det mottatt et supplerende datasett med åtte anonymiserte fartøyfiler fra 2025. Filene ligger i `004 data` og er navngitt etter fartøyklasse og løpenummer, for eksempel `C001 - 1.csv`. Det samlede tilleggsdatasettet har 3893 rapporteringsrader fra 2025-01-01 til 2025-12-30. Foreløpig gjennomgang viser 69 unike UN/Locode-havnekoder og 26 landprefiks i voyage-feltene. Siden filene inneholder forbruk, seilt distanse, rapporterte voyage-koder og `ROB_Fuel_Total`, kan de på sikt brukes til å estimere $d_{v,t}$ og initialisere beholdningsvariabler mer realistisk enn i modellversjon 1.
+Etter den første datavasken er det mottatt et supplerende datasett med åtte anonymiserte fartøyfiler fra 2025. Filene ligger i `004 data` og er navngitt etter fartøyklasse og løpenummer, for eksempel `C001 - 1.csv`. Det samlede tilleggsdatasettet har 3893 rapporteringsrader fra 2025-01-01 til 2025-12-30. De opprinnelige havnekodene er erstattet med 70 interne P-koder, og voyage-numrene er erstattet med 244 interne VG-koder. Siden filene inneholder forbruk, seilt distanse, rapporterte voyage-koder og `ROB_Fuel_Total`, kan de på sikt brukes til å estimere $d_{v,t}$ og initialisere beholdningsvariabler mer realistisk enn i modellversjon 1.
 
 Tabell 5.4 oppsummerer de oppgitte tankkapasitetene for de anonymiserte fartøyklassene. Tallene er oppgitt som verifiserte 2025-tall fra dataleverandøren.
 
@@ -449,7 +449,7 @@ Supplerende data fra Odfjell Tankers dekker nå deler av dette behovet:
 
 - tankkapasitet per anonymisert fartøyklasse
 - historisk forbruk og `ROB_Fuel_Total` i åtte anonymiserte 2025-filer
-- voyage fra/til og voyage-nummer med UN/Locode-koder
+- voyage fra/til som P-koder og voyage-nummer som VG-koder
 - informasjon om bunkerskontrakt i Singapore og Sør-Korea
 - informasjon om VLSFO-kontrakt i Rotterdam
 

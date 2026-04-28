@@ -54,6 +54,7 @@ Denne filen er generert fra:
 - [x] Tilleggsdata fra 2025 er dokumentert med fartøyklasser, tankkapasitet, voyage-koder, ROB-felt og kontraktskontekst
 - [x] Tilleggsdata fra 2025 er strukturert til modellklare hendelses-, etappe- og kapasitetstabeller
 - [x] Voyage-råfilene fra 2025 er splittet kronologisk 80/20 før videre rensing
+- [x] Voyage-havner og voyage-numre fra 2025 er pseudonymisert på plass med P- og VG-koder
 - [ ] Avklar om MPP-prosentene for `Definere restriksjoner` og `implementere modell` skal oppdateres til å speile repoarbeidet
 - [ ] Avklar om endelig testgrunnlag skal være Pyomo med faktisk solver eller solver-uavhengig simulering
 
@@ -418,7 +419,7 @@ Tekstplanen nevner endelig innlevering **2026-05-31**, mens `MS_Project.mpp` vis
 
 - Det er mottatt åtte supplerende anonymiserte fartøyfiler for 2025: `C001 - 1.csv`, `C001 - 2.csv`, `C002 - 1.csv`, `C003 - 1.csv`, `C004 - 1.csv`, `C004 - 2.csv`, `C004 - 3.csv` og `C005 - 1.csv`.
 - Filene inneholder samlet 3893 rapporteringsrader fra 2025-01-01 til 2025-12-30, med blant annet forbruk, `ROB_Fuel_Total`, voyage fra/til og voyage-nummer.
-- Voyage-kodene er dokumentert som UN/Locode, der de to første bokstavene angir landet havnen ligger i.
+- Voyage-havnene var opprinnelig dokumentert som UN/Locode, men filene i repoet er nå pseudonymisert på plass med P-koder for havn og VG-koder for voyage-nummer.
 - Verifisert bunkerskapasitet per fartøyklasse er dokumentert for `C001` til `C005`.
 - Det er dokumentert at selskapet har bunkerskontrakt i Singapore og Sør-Korea, samt VLSFO-kontrakt i Rotterdam.
 - `005 report/rapport.md` og `005 report/Kaylee_rapport.md` er oppdatert slik at tilleggsdataene omtales som mottatt og strukturert, men ikke brukt som grunnlag for modellversjon 1.
@@ -428,6 +429,9 @@ Tekstplanen nevner endelig innlevering **2026-05-31**, mens `MS_Project.mpp` vis
 - Voyage-råfilene er splittet kronologisk 80/20 med `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/src/split_voyage_raw_train_test_2025.py`.
 - Splitten er gjort separat per råfil etter `Date_UTC` og `Time_UTC`, med originalfilene beholdt urørt.
 - Splitten ga 3110 train-rader og 783 test-rader fordelt på åtte train-filer og åtte test-filer i `004 data`.
+- Voyage-havner og voyage-numre er pseudonymisert på plass med `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/src/anonymize_voyage_ports_2025.py`.
+- Eksisterende filer i `004 data` er oppdatert direkte. Havner vises som `Pxxx`, voyage-numre som `VGxxx`, og de strukturerte tabellene bruker `from_port_P00X`, `to_port_P00X` og `available_ports_P00X`.
+- Intern portmapping ligger i `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_port_mapping_confidential.csv` og skal ikke publiseres som rapportvedlegg.
 
 #### Anbefalt neste steg
 

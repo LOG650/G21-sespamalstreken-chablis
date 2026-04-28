@@ -19,14 +19,14 @@ Denne filen dokumenterer modellklare tabeller generert fra de anonymiserte voyag
 | `event_datetime_utc` | Kombinert dato og tid i UTC |
 | `event_type` | Rapportert hendelsestype |
 | `voyage_number` | Voyage-identifikator |
-| `from_port_unlocode`, `to_port_unlocode` | Rapportert start- og slutthavn som UN/Locode |
-| `from_country`, `to_country` | Landprefiks hentet fra første to tegn i UN/Locode |
+| `from_port_P00X`, `to_port_P00X` | Anonymisert start- og slutthavn |
+| `from_country`, `to_country` | Landprefiks fra opprinnelig UN/Locode når tabellen genereres fra ikke-pseudonymiserte rådata; tomt ved P-koder |
 | `hours_since_previous_report` | Timer siden forrige rapport |
 | `distance_nm` | Rapportert distanse, antatt nautiske mil |
 | `me_consumption`, `ae_consumption`, `boiler_consumption`, `other_consumption` | Forbruk gruppert etter maskin-/forbrukstype |
 | `total_consumption` | Sum modellrelevant forbruk for raden |
 | `rob_fuel_total` | Total remaining on board etter rapportering |
-| `contract_port_flag` | 1 dersom raden berører Singapore, Sør-Korea eller Rotterdam (`NLRTM`) |
+| `contract_port_flag` | 1 dersom raden berører kontraktsrelevant havn basert på intern portmapping |
 | `data_quality_flag` | Enkel kvalitetsmarkør for manglende voyage, port, ROB eller kapasitetsavvik |
 
 ## Kolonner i `tab_voyage_legs_2025.csv`
@@ -35,15 +35,15 @@ Denne filen dokumenterer modellklare tabeller generert fra de anonymiserte voyag
 | --- | --- |
 | `vessel_class`, `vessel_file_id`, `voyage_number` | Identifikasjon av anonymisert fartøy og voyage |
 | `leg_sequence` | Kronologisk løpenummer innen fartøyfil |
-| `from_port_unlocode`, `to_port_unlocode` | Etappens start- og slutthavn |
+| `from_port_P00X`, `to_port_P00X` | Etappens anonymiserte start- og slutthavn |
 | `departure_datetime_utc`, `arrival_datetime_utc` | Første og siste tidspunkt i etappen |
 | `period_month` | Måned brukt for kobling mot prisdata |
 | `distance_nm_total`, `duration_hours_total` | Aggregert distanse og varighet |
 | `fuel_consumption_total` | Aggregert forbruk, kandidat for $d_{v,t}$ |
 | `rob_start`, `rob_end` | Første og siste observerte ROB i etappen |
 | `bunkering_inferred` | 1 dersom ROB øker innen etappen |
-| `available_ports` | Observerte havner i etappen, separert med `|` |
-| `contract_port_flag` | 1 dersom en observert havn er Singapore, Sør-Korea eller Rotterdam (`NLRTM`) |
+| `available_ports_P00X` | Observerte anonymiserte havner i etappen, separert med `|` |
+| `contract_port_flag` | 1 dersom en observert havn er kontraktsrelevant basert på intern portmapping |
 | `data_quality_flag` | Oppsummerte kvalitetsflagg fra rapporteringsradene |
 
 ## Omfang og kontroller
@@ -71,5 +71,6 @@ Denne filen dokumenterer modellklare tabeller generert fra de anonymiserte voyag
 - $K_v$ hentes fra `tab_vessel_class_capacity.csv`.
 - $d_{v,t}$ kan hentes fra `fuel_consumption_total` i `tab_voyage_legs_2025.csv`.
 - $I_{v,t}$ kan initialiseres eller kontrolleres med `rob_start` og `rob_end`.
-- Reell havnetilgjengelighet kan avledes fra `from_port_unlocode`, `to_port_unlocode` og `available_ports`.
+- Reell havnetilgjengelighet kan avledes fra `from_port_P00X`, `to_port_P00X` og `available_ports_P00X`.
+- Intern kobling mellom opprinnelige havnekoder og P-koder ligger i `data/tab_port_mapping_confidential.csv` og skal ikke publiseres som rapportvedlegg.
 - `contract_port_flag` er et første teknisk flagg og må valideres mot faktisk kontraktsomfang før det brukes som hard restriksjon.

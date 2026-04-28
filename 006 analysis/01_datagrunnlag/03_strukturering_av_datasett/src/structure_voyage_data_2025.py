@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import re
 from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
@@ -16,6 +17,7 @@ EVENTS_CSV = OUTPUT_DIR / "tab_voyage_events_2025.csv"
 LEGS_CSV = OUTPUT_DIR / "tab_voyage_legs_2025.csv"
 CAPACITY_CSV = OUTPUT_DIR / "tab_vessel_class_capacity.csv"
 GUIDE_MD = METADATA_DIR / "tab_voyage_structure_guide.md"
+PORT_MAPPING_CSV = OUTPUT_DIR / "tab_port_mapping_confidential.csv"
 
 CAPACITY_M3 = {
     "C001": 2087.006,
@@ -59,6 +61,8 @@ def parse_datetime(date_value: str, time_value: str) -> str:
 
 def country_from_unlocode(value: str) -> str:
     value = value.strip()
+    if re.fullmatch(r"P\d{3}", value):
+        return ""
     return value[:2] if len(value) >= 2 else ""
 
 
@@ -113,10 +117,29 @@ def row_consumption(row: dict[str, str]) -> tuple[float, float, float, float, fl
     )
 
 
+def contract_port_codes() -> set[str]:
+    ports = {"NLRTM", "SGSIN", "P003", "P004"}
+    if not PORT_MAPPING_CSV.exists():
+        return ports
+
+    with PORT_MAPPING_CSV.open("r", encoding="utf-8-sig", newline="") as handle:
+        for row in csv.DictReader(handle):
+            original = (row.get("original_port_code") or "").strip()
+            anonymized = (row.get("anonymized_port_code") or "").strip()
+            if original == "NLRTM" or original == "SGSIN" or original[:2] in {"SG", "KR"}:
+                ports.add(original)
+                if anonymized:
+                    ports.add(anonymized)
+    return ports
+
+
+CONTRACT_PORT_CODES = contract_port_codes()
+
+
 def contract_flag(*ports: str) -> str:
     for port in ports:
         port = port.strip()
-        if port == "NLRTM" or country_from_unlocode(port) in {"SG", "KR"}:
+        if port in CONTRACT_PORT_CODES or country_from_unlocode(port) in {"SG", "KR"}:
             return "1"
     return "0"
 
@@ -125,7 +148,7 @@ def data_quality_flag(row: dict[str, object], capacity: float | None) -> str:
     flags: list[str] = []
     if row["voyage_number"] == "":
         flags.append("missing_voyage")
-    if row["from_port_unlocode"] == "" or row["to_port_unlocode"] == "":
+    if row["from_port_P00X"] == "" or row["to_port_P00X"] == "":
         flags.append("missing_port")
     if row["rob_fuel_total"] in {"", None}:
         flags.append("missing_rob")
@@ -153,8 +176,8 @@ def read_voyage_events() -> list[dict[str, object]]:
                     "event_time_utc": row["Time_UTC"].strip(),
                     "event_type": row.get("Event", "").strip(),
                     "voyage_number": row.get("Voyage_Number", "").strip(),
-                    "from_port_unlocode": row.get("Voyage_From", "").strip(),
-                    "to_port_unlocode": row.get("Voyage_To", "").strip(),
+                    "from_port_P00X": row.get("Voyage_From", "").strip(),
+                    "to_port_P00X": row.get("Voyage_To", "").strip(),
                     "from_country": country_from_unlocode(row.get("Voyage_From", "")),
                     "to_country": country_from_unlocode(row.get("Voyage_To", "")),
                     "hours_since_previous_report": round(
@@ -188,8 +211,8 @@ def aggregate_legs(events: list[dict[str, object]]) -> list[dict[str, object]]:
         key = (
             str(event["vessel_file_id"]),
             str(event["voyage_number"]),
-            str(event["from_port_unlocode"]),
-            str(event["to_port_unlocode"]),
+            str(event["from_port_P00X"]),
+            str(event["to_port_P00X"]),
         )
         grouped[key].append(event)
 
@@ -232,14 +255,14 @@ def aggregate_legs(events: list[dict[str, object]]) -> list[dict[str, object]]:
 
             ports = sorted(
                 {
-                    str(row["from_port_unlocode"])
+                    str(row["from_port_P00X"])
                     for row in rows
-                    if str(row["from_port_unlocode"]).strip()
+                    if str(row["from_port_P00X"]).strip()
                 }
                 | {
-                    str(row["to_port_unlocode"])
+                    str(row["to_port_P00X"])
                     for row in rows
-                    if str(row["to_port_unlocode"]).strip()
+                    if str(row["to_port_P00X"]).strip()
                 }
             )
 
@@ -249,8 +272,8 @@ def aggregate_legs(events: list[dict[str, object]]) -> list[dict[str, object]]:
                     "vessel_file_id": vessel_file_id,
                     "voyage_number": key[1],
                     "leg_sequence": sequence,
-                    "from_port_unlocode": key[2],
-                    "to_port_unlocode": key[3],
+                    "from_port_P00X": key[2],
+                    "to_port_P00X": key[3],
                     "departure_datetime_utc": first["event_datetime_utc"],
                     "arrival_datetime_utc": last["event_datetime_utc"],
                     "period_month": str(first["event_datetime_utc"])[:7],
@@ -264,7 +287,7 @@ def aggregate_legs(events: list[dict[str, object]]) -> list[dict[str, object]]:
                     "rob_start": "" if not rob_values else rob_values[0],
                     "rob_end": "" if not rob_values else rob_values[-1],
                     "bunkering_inferred": bunkering_inferred,
-                    "available_ports": "|".join(ports),
+                    "available_ports_P00X": "|".join(ports),
                     "contract_port_flag": contract_flag(*ports),
                     "data_quality_flag": "ok"
                     if not quality_flags
@@ -328,14 +351,14 @@ def write_guide(events: list[dict[str, object]], legs: list[dict[str, object]]) 
         "| `event_datetime_utc` | Kombinert dato og tid i UTC |",
         "| `event_type` | Rapportert hendelsestype |",
         "| `voyage_number` | Voyage-identifikator |",
-        "| `from_port_unlocode`, `to_port_unlocode` | Rapportert start- og slutthavn som UN/Locode |",
-        "| `from_country`, `to_country` | Landprefiks hentet fra første to tegn i UN/Locode |",
+        "| `from_port_P00X`, `to_port_P00X` | Anonymisert start- og slutthavn |",
+        "| `from_country`, `to_country` | Landprefiks fra opprinnelig UN/Locode når tabellen genereres fra ikke-pseudonymiserte rådata; tomt ved P-koder |",
         "| `hours_since_previous_report` | Timer siden forrige rapport |",
         "| `distance_nm` | Rapportert distanse, antatt nautiske mil |",
         "| `me_consumption`, `ae_consumption`, `boiler_consumption`, `other_consumption` | Forbruk gruppert etter maskin-/forbrukstype |",
         "| `total_consumption` | Sum modellrelevant forbruk for raden |",
         "| `rob_fuel_total` | Total remaining on board etter rapportering |",
-        "| `contract_port_flag` | 1 dersom raden berører Singapore, Sør-Korea eller Rotterdam (`NLRTM`) |",
+        "| `contract_port_flag` | 1 dersom raden berører kontraktsrelevant havn basert på intern portmapping |",
         "| `data_quality_flag` | Enkel kvalitetsmarkør for manglende voyage, port, ROB eller kapasitetsavvik |",
         "",
         "## Kolonner i `tab_voyage_legs_2025.csv`",
@@ -344,15 +367,15 @@ def write_guide(events: list[dict[str, object]], legs: list[dict[str, object]]) 
         "| --- | --- |",
         "| `vessel_class`, `vessel_file_id`, `voyage_number` | Identifikasjon av anonymisert fartøy og voyage |",
         "| `leg_sequence` | Kronologisk løpenummer innen fartøyfil |",
-        "| `from_port_unlocode`, `to_port_unlocode` | Etappens start- og slutthavn |",
+        "| `from_port_P00X`, `to_port_P00X` | Etappens anonymiserte start- og slutthavn |",
         "| `departure_datetime_utc`, `arrival_datetime_utc` | Første og siste tidspunkt i etappen |",
         "| `period_month` | Måned brukt for kobling mot prisdata |",
         "| `distance_nm_total`, `duration_hours_total` | Aggregert distanse og varighet |",
         "| `fuel_consumption_total` | Aggregert forbruk, kandidat for $d_{v,t}$ |",
         "| `rob_start`, `rob_end` | Første og siste observerte ROB i etappen |",
         "| `bunkering_inferred` | 1 dersom ROB øker innen etappen |",
-        "| `available_ports` | Observerte havner i etappen, separert med `|` |",
-        "| `contract_port_flag` | 1 dersom en observert havn er Singapore, Sør-Korea eller Rotterdam (`NLRTM`) |",
+        "| `available_ports_P00X` | Observerte anonymiserte havner i etappen, separert med `|` |",
+        "| `contract_port_flag` | 1 dersom en observert havn er kontraktsrelevant basert på intern portmapping |",
         "| `data_quality_flag` | Oppsummerte kvalitetsflagg fra rapporteringsradene |",
         "",
         "## Omfang og kontroller",
@@ -389,7 +412,8 @@ def write_guide(events: list[dict[str, object]], legs: list[dict[str, object]]) 
             "- $K_v$ hentes fra `tab_vessel_class_capacity.csv`.",
             "- $d_{v,t}$ kan hentes fra `fuel_consumption_total` i `tab_voyage_legs_2025.csv`.",
             "- $I_{v,t}$ kan initialiseres eller kontrolleres med `rob_start` og `rob_end`.",
-            "- Reell havnetilgjengelighet kan avledes fra `from_port_unlocode`, `to_port_unlocode` og `available_ports`.",
+            "- Reell havnetilgjengelighet kan avledes fra `from_port_P00X`, `to_port_P00X` og `available_ports_P00X`.",
+            "- Intern kobling mellom opprinnelige havnekoder og P-koder ligger i `data/tab_port_mapping_confidential.csv` og skal ikke publiseres som rapportvedlegg.",
             "- `contract_port_flag` er et første teknisk flagg og må valideres mot faktisk kontraktsomfang før det brukes som hard restriksjon.",
         ]
     )
@@ -411,8 +435,8 @@ def main() -> None:
         "event_time_utc",
         "event_type",
         "voyage_number",
-        "from_port_unlocode",
-        "to_port_unlocode",
+        "from_port_P00X",
+        "to_port_P00X",
         "from_country",
         "to_country",
         "hours_since_previous_report",
@@ -434,8 +458,8 @@ def main() -> None:
         "vessel_file_id",
         "voyage_number",
         "leg_sequence",
-        "from_port_unlocode",
-        "to_port_unlocode",
+        "from_port_P00X",
+        "to_port_P00X",
         "departure_datetime_utc",
         "arrival_datetime_utc",
         "period_month",
@@ -445,7 +469,7 @@ def main() -> None:
         "rob_start",
         "rob_end",
         "bunkering_inferred",
-        "available_ports",
+        "available_ports_P00X",
         "contract_port_flag",
         "data_quality_flag",
     ]

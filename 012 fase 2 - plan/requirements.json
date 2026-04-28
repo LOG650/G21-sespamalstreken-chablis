@@ -115,6 +115,16 @@
       "teststatus": "Completed"
     },
     {
+      "id": "DK-08",
+      "type": "Datakrav",
+      "krav": "Supplerende voyage-data fra 2025 skal pseudonymiseres før videre bruk, slik at havner vises som P-koder og voyage-numre som VG-koder i arbeidsfilene.",
+      "gantt_aktivitet": "Pseudonymisere voyage-data 2025",
+      "eier": "Datagrunnlag",
+      "leveranse": "Oppdaterte voyage-filer og strukturert tabell med P-/VG-koder",
+      "testtilfelle": "Voyage_From, Voyage_To, from_port_P00X, to_port_P00X og voyage_number inneholder bare interne P-/VG-koder",
+      "teststatus": "Completed"
+    },
+    {
       "id": "MOD-01",
       "type": "Modellkrav",
       "krav": "Modellen skal inkludere beslutningsvariabler for valg av havn, mengde bunkret drivstoff og tidspunkt for bunkring.",

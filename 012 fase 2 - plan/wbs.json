@@ -121,6 +121,12 @@
             "merknad": "De åtte supplerende voyage-råfilene fra 2025 er splittet kronologisk 80/20 etter Date_UTC og Time_UTC før videre rensing. Originalfilene er beholdt urørt."
           },
           {
+            "id": "2.5.2",
+            "navn": "Pseudonymisere voyage-data 2025",
+            "type": "Fullført støtteaktivitet",
+            "merknad": "Eksisterende voyage-filer i repoet er oppdatert på plass med P-koder for havn og VG-koder for voyage-nummer. Intern mapping ligger i konfidensiell datafil."
+          },
+          {
             "id": "2.6",
             "navn": "Deskriptiv analyse",
             "type": "Aktivitet"

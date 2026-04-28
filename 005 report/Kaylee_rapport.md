@@ -160,7 +160,7 @@ $x_{v,t,p} = 0$ dersom havn $p$ ikke er relevant eller tilgjengelig for fartøy 
 
 Det opprinnelige pris- og volumdatasettet støtter spesielt godt estimering av prisparametere, historiske volum og sammenligning mot faktisk praksis. Datasettet støtter derimot ikke alene en full operativ modell, fordi sentrale størrelser som faktisk drivstoffbeholdning, minimumsbuffer og forbruk mellom to beslutningspunkter ikke er direkte observert.
 
-Etter den første gjennomgangen er det mottatt supplerende 2025-data for åtte anonymiserte fartøyfiler fordelt på klassene `C001` til `C005`. Filene inneholder blant annet forbruk, `ROB_Fuel_Total`, voyage fra/til og voyage-nummer. Voyage-kodene er UN/Locode, der de to første bokstavene representerer landet havnen ligger i. I tillegg er det mottatt verifiserte bunkerskapasiteter per klasse og informasjon om bunkerskontrakt i Singapore og Sør-Korea, samt VLSFO-kontrakt i Rotterdam.
+Etter den første gjennomgangen er det mottatt supplerende 2025-data for åtte anonymiserte fartøyfiler fordelt på klassene `C001` til `C005`. Filene inneholder blant annet forbruk, `ROB_Fuel_Total`, voyage fra/til og voyage-nummer. Voyage-havnene var opprinnelig UN/Locode, men analysefilene i repoet er pseudonymisert videre slik at havner vises som `Pxxx` og voyage-numre som `VGxxx`. I tillegg er det mottatt verifiserte bunkerskapasiteter per klasse og informasjon om bunkerskontrakt i Singapore og Sør-Korea, samt VLSFO-kontrakt i Rotterdam.
 
 Tilleggsdataene er nå strukturert til hendelses-, etappe- og kapasitetstabeller. De styrker grunnlaget for en senere fartøy- og rutebasert modell, men må valideres mot kontraktsomfang og drivstofftypekobling før de kan erstatte den aggregerte modellversjonen.
 
@@ -184,7 +184,7 @@ Følgende supplerende data er nå mottatt fra Odfjell Tankers eller intern datal
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell 6.1 Verifisert bunkerskapasitet per anonymisert fartøyklasse.</i></small></p>
 
-De åtte filene `C001 - 1.csv`, `C001 - 2.csv`, `C002 - 1.csv`, `C003 - 1.csv`, `C004 - 1.csv`, `C004 - 2.csv`, `C004 - 3.csv` og `C005 - 1.csv` dekker 2025 og inneholder samlet 3893 rapporteringsrader. Foreløpig teknisk gjennomgang viser at filene dekker 69 unike UN/Locode-havnekoder og 26 landprefiks.
+De åtte filene `C001 - 1.csv`, `C001 - 2.csv`, `C002 - 1.csv`, `C003 - 1.csv`, `C004 - 1.csv`, `C004 - 2.csv`, `C004 - 3.csv` og `C005 - 1.csv` dekker 2025 og inneholder samlet 3893 rapporteringsrader. De opprinnelige havnekodene er erstattet med 70 interne P-koder, og voyage-numrene er erstattet med 244 interne VG-koder.
 
 Dette svarer på flere av punktene som tidligere manglet:
 
