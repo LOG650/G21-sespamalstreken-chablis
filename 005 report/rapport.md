@@ -126,9 +126,9 @@ Drivstoffkostnader er en av de største og mest variable kostnadskomponentene i 
 
 Temaet er aktuelt fordi historiske transaksjonsdata gir mulighet til å undersøke om det finnes systematiske mønstre i pris og volum som kan utnyttes bedre enn i en mer erfaringsbasert beslutningsprosess. Dersom slike mønstre kan dokumenteres og knyttes til en enkel og transparent modell, kan analysen gi Odfjell Tankers et bedre grunnlag for å vurdere hvor bunkring bør skje under gitte forutsetninger.
 
-Rapporten er forankret i et konkret case der prosjektgruppen har fått tilgang til historiske bunkringstransaksjoner for drivstofftypen `LSF` i de fire mest brukte havnene i datasettet. Dette er den drivstoffkategorien rapporten faktisk analyserer, selv om den operative bunkringsvirkeligheten i selskapet er bredere. Datagrunnlaget dekker 61 måneder fra januar 2020 til januar 2025. Formålet er ikke å utvikle en fullstendig operativ planleggingsmodell i første omgang, men å etablere et første analysemessig beslutningsgrunnlag som kan danne utgangspunkt for videre modellutvikling.
+Rapporten er forankret i et konkret case der prosjektgruppen har fått tilgang til historiske bunkringstransaksjoner for drivstofftypen `LSF` i de fire mest brukte havnene i datasettet. Dette er den drivstoffkategorien rapporten faktisk analyserer, selv om den operative bunkringsvirkeligheten i selskapet er bredere. Datagrunnlaget dekker 61 måneder fra januar 2020 til januar 2025. Formålet er ikke å utvikle en fullstendig operativ planleggingsmodell, men å etablere et analysemessig beslutningsgrunnlag som kan vise hvordan historiske pris- og volumdata kan brukes til kostnadsminimering.
 
-Tidligere forskning og praksis innen operasjonsanalyse viser at lineær programmering er godt egnet til å analysere ressursallokering og kostnadsminimering under restriksjoner. I en maritim sammenheng er dette relevant fordi bunkringsbeslutninger kan forstås som et valg mellom alternative havner, priser og tidspunkter. Denne rapporten knytter derfor historiske bunkringsdata til en første lineær kostnadsminimeringsmodell og vurderer hvordan dagens datagrunnlag kan brukes til dette formålet.
+Tidligere forskning og praksis innen operasjonsanalyse viser at lineær programmering er godt egnet til å analysere ressursallokering og kostnadsminimering under restriksjoner. I en maritim sammenheng er dette relevant fordi bunkringsbeslutninger kan forstås som et valg mellom alternative havner, priser og tidspunkter. Denne rapporten knytter derfor historiske bunkringsdata til en lineær kostnadsminimeringsmodell og vurderer hvordan pris- og volumdatasettet kan brukes til dette formålet.
 
 Rapporten er strukturert slik at case og historiske data presenteres før den matematiske modellen formuleres. Dette gjør det mulig å bygge en tydelig sammenheng mellom den faktiske beslutningssituasjonen, datagrunnlaget, modellforenklingene og den videre analysen.
 
@@ -141,22 +141,22 @@ Hvordan kan en lineær optimaliseringsmodell brukes til å minimere totale drivs
 Hovedproblemstillingen kan presiseres gjennom tre delspørsmål:
 
 - Hvordan kan historiske bunkringsdata renses, struktureres og beskrives slik at de gir et konsistent grunnlag for modellering?
-- I hvilken grad er dagens datagrunnlag tilstrekkelig for å formulere og implementere en første lineær kostnadsminimeringsmodell?
+- I hvilken grad er pris- og volumdatasettet tilstrekkelig for å formulere og implementere en lineær kostnadsminimeringsmodell?
 - Hvordan kan modellen vurderes mot senere historiske observasjoner gjennom en enkel splitt mellom treningsdata og testdata?
 
 ### 1.3 Avgrensinger
 
-Rapporten er avgrenset til de fire mest brukte havnene i datasettet, `P001`, `P002`, `P003` og `P004`, fordi det er disse havnene som foreløpig har den tydeligste historiske datadekningen. Videre er analysen avgrenset til drivstofftypen `LSF`, slik den er registrert i det mottatte datasettet, slik at modell og datagrunnlag bygger på én konsistent produktkategori. Tidsmessig er arbeidet avgrenset til perioden januar 2020 til januar 2025, som gir 61 måneder med historiske observasjoner.
+Rapporten er avgrenset til de fire mest brukte havnene i pris- og volumdatasettet, `P001`, `P002`, `P003` og `P004`, fordi det er disse havnene som har den tydeligste historiske datadekningen. Videre er modellgrunnlaget avgrenset til drivstofftypen `LSF`, slik den er registrert i pris- og volumdatasettet, slik at modell og datagrunnlag bygger på én konsistent produktkategori. Tidsmessig er arbeidet avgrenset til perioden januar 2020 til januar 2025, som gir 61 måneder med historiske observasjoner.
 
-Modellen er også bevisst avgrenset til en første lineær og aggregert formulering på havn- og månedsnivå. Dette betyr at fartøyspesifikk beholdning, rutevalg, tankkapasitet og kontraktsmessige bindinger ikke er modellert eksplisitt i modellversjon 1. Prosjektgruppen har senere mottatt supplerende 2025-data for anonymiserte fartøyklasser, men disse brukes foreløpig som dokumentasjon av videre modellbehov og ikke som ferdig integrert modellinput.
+Modellen er også bevisst avgrenset til en lineær og aggregert formulering på havn- og månedsnivå. Dette betyr at fartøyspesifikk beholdning, rutevalg, tankkapasitet og kontraktsmessige bindinger ikke modelleres eksplisitt. Prosjektgruppen har mottatt, strukturert og kvalitetssjekket supplerende 2025-data for anonymiserte fartøyklasser, men disse brukes i denne rapporten som kvantitativ operasjonell støtte og som grunnlag for diskusjon av videre modellutvikling. De inngår derfor ikke som direkte beslutningsvariabler, restriksjoner eller kostnadsparametere i modellen.
 
 Selv om den operative bunkringsvirkeligheten omfatter flere drivstofftyper, kontraktsforhold, spotkjøp og regulatoriske hensyn, er analysen i denne rapporten avgrenset til det historiske datagrunnlaget som faktisk er tilgjengelig for prosjektgruppen. `LSGO` og biodrivstoff omtales derfor kun som bakgrunnsinformasjon om casebedriften og inngår ikke i modellgrunnlaget.
 
 ### 1.4 Antagelser
 
-Rapporten bygger på flere eksplisitte antagelser. For det første antas det at historiske prisobservasjoner gir et rimelig grunnlag for å beskrive relative prisforskjeller mellom havnene i analyseperioden. For det andre antas det at datasettet som er mottatt fra Odfjell Tankers allerede er grunnleggende kvalitetssjekket av dataleverandøren, selv om prosjektgruppen ikke har mottatt en separat datakvalitetsrapport. For det tredje antas det i modellversjon 1 at månedlig observert bunkringsmengde kan brukes som en enkel proxy for behov per periode.
+Rapporten bygger på flere eksplisitte antagelser. For det første antas det at historiske prisobservasjoner gir et rimelig grunnlag for å beskrive relative prisforskjeller mellom havnene i analyseperioden. For det andre antas det at pris- og volumdatasettet som er mottatt fra Odfjell Tankers allerede er grunnleggende kvalitetssjekket av dataleverandøren, selv om prosjektgruppen ikke har mottatt en separat datakvalitetsrapport for dette datasettet. For det tredje antas det i modellen at månedlig observert bunkringsmengde kan brukes som en enkel proxy for behov per periode.
 
-Disse antagelsene er nødvendige for å kunne arbeide videre med dagens datagrunnlag, men de innebærer også begrensninger. Analysen må derfor tolkes som et første beslutningsstøttende modellforsøk og ikke som en full operativ anbefaling uten videre validering.
+Disse antagelsene er nødvendige for å kunne arbeide videre med pris- og volumdatasettet, men de innebærer også begrensninger. Analysen må derfor tolkes som et beslutningsstøttende modellforsøk og ikke som en full operativ anbefaling uten videre validering.
 
 ---
 
@@ -171,7 +171,7 @@ Litteraturgrunnlaget for denne rapporten ligger i skjæringspunktet mellom opera
 
 Innen operasjonsanalyse er lineær programmering et etablert rammeverk for å formulere problemer der en aktør ønsker å minimere kostnader eller maksimere nytte under et sett av begrensninger. Denne litteraturen er relevant fordi bunkringsproblemet kan forstås nettopp som et slikt valgproblem: et gitt drivstoffbehov skal dekkes ved å fordele innkjøp mellom alternative havner og perioder med ulike priser.
 
-Litteratur om logistikk og maritim planlegging peker samtidig på at modeller sjelden bør vurderes isolert fra operativ kontekst. I praksis vil forhold som tilgjengelighet, kapasitet, forbruk, ruter og kontrakter påvirke hvilke løsninger som faktisk er gjennomførbare. Dette er relevant for denne rapporten fordi datagrunnlaget foreløpig ikke inneholder alle slike variabler. Dermed må modellens rolle avgrenses til å være et første analytisk beslutningsstøtteverktøy, ikke en fullstendig operativ sannhetsmodell.
+Litteratur om logistikk og maritim planlegging peker samtidig på at modeller sjelden bør vurderes isolert fra operativ kontekst. I praksis vil forhold som tilgjengelighet, kapasitet, forbruk, ruter og kontrakter påvirke hvilke løsninger som faktisk er gjennomførbare. Dette er relevant for denne rapporten fordi pris- og volumdatasettet ikke inneholder alle slike variabler. Dermed må modellens rolle avgrenses til å være et analytisk beslutningsstøtteverktøy, ikke en fullstendig operativ sannhetsmodell.
 
 Et annet relevant litteraturspor handler om modellvalidering og bruk av historiske data. Her er et sentralt poeng at modeller bør testes mot observerte data og vurderes opp mot realistiske driftsforhold. Dette støtter rapportens videre opplegg med en eksplisitt datasplitt mellom treningsdata og testdata, slik at modellutvikling og modellvurdering ikke blandes sammen.
 
@@ -189,7 +189,7 @@ Det teoretiske poenget med lineær programmering i denne sammenhengen er at meto
 
 ### Beslutningsvariabler, parametere og restriksjoner
 
-Et sentralt teoretisk skille i optimeringslitteraturen går mellom beslutningsvariabler og parametere. Beslutningsvariablene beskriver hva modellen skal velge, mens parametrene beskriver størrelser som antas gitt. I denne rapporten brukes dette skillet for å definere bunkret volum som beslutningsvariabel, mens pris, behov og tilgjengelighet behandles som parametere i den første modellversjonen.
+Et sentralt teoretisk skille i optimeringslitteraturen går mellom beslutningsvariabler og parametere. Beslutningsvariablene beskriver hva modellen skal velge, mens parametrene beskriver størrelser som antas gitt. I denne rapporten brukes dette skillet for å definere bunkret volum som beslutningsvariabel, mens pris, behov og tilgjengelighet behandles som parametere i modellen.
 
 Restriksjoner er like viktige som målfunksjonen, fordi de avgjør hvilke løsninger som er gyldige. Teoretisk sett er dette nødvendig for at en modell ikke bare skal finne den billigste løsningen, men den billigste løsningen innenfor de rammene som er definert. I praksis betyr det at modellens verdi avhenger av hvor godt restriksjonene representerer den faktiske beslutningssituasjonen.
 
@@ -197,7 +197,7 @@ Restriksjoner er like viktige som målfunksjonen, fordi de avgjør hvilke løsni
 
 All anvendt modellering innebærer forenklinger. En modell er derfor ikke en kopi av virkeligheten, men en analytisk representasjon av utvalgte forhold som anses viktigst for beslutningen. I denne oppgaven er dette særlig relevant fordi datagrunnlaget ikke inneholder alle operative variabler som i prinsippet burde inngå i en full bunkringsmodell.
 
-Teoretisk innebærer dette at modellversjon 1 må forstås som en aggregert og deterministisk modell. Den arbeider på havn- og månedsnivå, ikke på fartøynivå, og den bruker historisk observert mengde som et mål på behov. Dette gjør modellen enklere å formulere og lettere å tolke, men stiller samtidig krav om at forenklingene dokumenteres tydelig.
+Teoretisk innebærer dette at modellen må forstås som en aggregert og deterministisk modell. Den arbeider på havn- og månedsnivå, ikke på fartøynivå, og den bruker historisk observert mengde som et mål på behov. Dette gjør modellen enklere å formulere og lettere å tolke, men stiller samtidig krav om at forenklingene dokumenteres tydelig.
 
 ### Datagrunnlag, trening og testing
 
@@ -225,7 +225,7 @@ Innkjøpene skjer også under ulike markedsbetingelser. I noen havner har selska
 
 Odfjell Tankers bruker dessuten `imarex` som beslutningsstøtte i det operative arbeidet. Systemet brukes til å predikere framtidige priser i ulike havner og støtter særlig vurderinger av når innkjøp bør gjennomføres. Samtidig er denne støtten avgrenset til ordinært fossilt drivstoff, det vil si `VLSFO` og `LSGO`, og omfatter ikke biodrivstoff. Dette understreker at dagens beslutningsstøtte er nyttig, men ikke nødvendigvis dekkende for hele bredden i bunkringsarbeidet.
 
-Det opprinnelige analysegrunnlaget dekker drivstofftypen `LSF` og de fire mest brukte havnene i datasettet: `P001`, `P002`, `P003` og `P004`. Dette er en relevant avgrensing fordi disse havnene representerer de observerte beslutningsalternativene som foreløpig er best dokumentert i pris- og volumdatasettet. Prosjektgruppen har i tillegg mottatt og strukturert supplerende 2025-data med anonymiserte fartøyklasser, forbruk, voyage-koder, `ROB_Fuel_Total`, tankkapasitet og kontraktskontekst. Disse dataene brukes som kvantitativ operasjonell støtte i rapporten og viser hvilke forhold en senere fartøybasert modell bør håndtere, men de erstatter ikke pris- og volumdatasettet som grunnlag for modellversjon 1.
+Det opprinnelige analysegrunnlaget dekker drivstofftypen `LSF` og de fire mest brukte havnene i datasettet: `P001`, `P002`, `P003` og `P004`. Dette er en relevant avgrensing fordi disse havnene representerer de observerte beslutningsalternativene som er best dokumentert i pris- og volumdatasettet. Prosjektgruppen har i tillegg mottatt og strukturert supplerende 2025-data med anonymiserte fartøyklasser, forbruk, voyage-koder, `ROB_Fuel_Total`, tankkapasitet og kontraktskontekst. Disse dataene brukes som kvantitativ operasjonell støtte i rapporten og viser hvilke forhold en senere fartøybasert modell bør håndtere, men de erstatter ikke pris- og volumdatasettet som grunnlag for kostnadsminimeringsmodellen.
 
 ### 4.2 Historisk utvikling i volum og pris
 
@@ -289,13 +289,13 @@ Litt avhengig av omfanget, kan det være lurt å vurdere om du skal splitte kapi
 
 ### 5.1 Metode
 
-Studien er gjennomført som en kvantitativ caseanalyse av Odfjell Tankers, der historiske bunkringstransaksjoner brukes som grunnlag for å utvikle en første optimeringsmodell for beslutningsstøtte. Arbeidet er lagt opp i fem steg: innlesing og kvalitetssikring av rådata, rensing og strukturering av datasettet, deskriptiv analyse av pris- og volummønstre, formulering av en første lineær modell og etablering av modellinput som kan brukes i videre implementering og analyse.
+Studien er gjennomført som en kvantitativ caseanalyse av Odfjell Tankers, der historiske bunkringstransaksjoner brukes som grunnlag for å utvikle en optimeringsmodell for beslutningsstøtte. Arbeidet er lagt opp i fem steg: innlesing og kvalitetssikring av rådata, rensing og strukturering av datasettet, deskriptiv analyse av pris- og volummønstre, formulering av en lineær modell og etablering av modellinput som kan brukes i videre implementering og analyse.
 
 Rådataene er behandlet i en egen rensepipeline i `006 analysis/01_datagrunnlag/02_datavask/src/clean_and_aggregate_bunker_data.py`. Her standardiseres datoer og numeriske felt, samtidig som volum- og prisvariabler harmoniseres ved å bruke `Invoiced Qty` og `Invoice Price` som hovedkilder, med fallback til `Ordered Qty` og `Order Price` når fakturerte verdier mangler. Observasjoner med ikke-positivt volum eller ikke-positiv pris forkastes for å unngå at ugyldige transaksjoner påvirker analysen og de estimerte modellparametrene.
 
-Etter rensing ble dataene strukturert i to nivåer. Først ble et renset transaksjonsdatasett etablert. Deretter ble transaksjonene aggregert per havn og måned for å skape et enklere og mer robust analysegrunnlag for modellversjon 1. Dette aggregatet gir blant annet total mengde, antall transaksjoner, vektet gjennomsnittspris, minimums- og maksimumspris, samt antall unike fartøy og leverandører per kombinasjon av havn og måned. Metodevalget innebærer en bevisst forenkling av den operative virkeligheten, men gir et transparent og reproduserbart grunnlag for første modellversjon.
+Etter rensing ble dataene strukturert i to nivåer. Først ble et renset transaksjonsdatasett etablert. Deretter ble transaksjonene aggregert per havn og måned for å skape et enklere og mer robust analysegrunnlag for modellen. Dette aggregatet gir blant annet total mengde, antall transaksjoner, vektet gjennomsnittspris, minimums- og maksimumspris, samt antall unike fartøy og leverandører per kombinasjon av havn og måned. Metodevalget innebærer en bevisst forenkling av den operative virkeligheten, men gir et transparent og reproduserbart grunnlag for kostnadsminimeringsmodellen.
 
-Prosjektgruppen har i tillegg mottatt supplerende operative 2025-data for åtte anonymiserte fartøyfiler fordelt på klassene `C001` til `C005`. Filene inneholder blant annet dato, rapporttype, seilt distanse, tidsbruk, voyage fra/til, voyage-nummer, forbruksfelt og `ROB_Fuel_Total`. Voyage-havnene var opprinnelig oppgitt som UN/Locode, men analysefilene i repoet er pseudonymisert videre slik at havner vises som `Pxxx` og voyage-numre som `VGxxx`. Det er også oppgitt tankkapasitet per fartøyklasse og informasjon om at selskapet har bunkerskontrakt i Singapore og Sør-Korea, samt VLSFO-kontrakt i Rotterdam. Tilleggsdataene brukes i denne rapporten som kvantitativ operasjonell støtte for å vurdere forbruk, ROB, tankkapasitet og havnetilgjengelighet. Første modellversjon videreføres som en aggregert kostnadsminimeringsmodell basert på pris- og volumdatasettet for de fire mest brukte havnene.
+Prosjektgruppen har i tillegg mottatt supplerende operative 2025-data for åtte anonymiserte fartøyfiler fordelt på klassene `C001` til `C005`. Filene inneholder blant annet dato, rapporttype, seilt distanse, tidsbruk, voyage fra/til, voyage-nummer, forbruksfelt og `ROB_Fuel_Total`. Voyage-havnene var opprinnelig oppgitt som UN/Locode, men analysefilene i repoet er pseudonymisert videre slik at havner vises som `Pxxx` og voyage-numre som `VGxxx`. Det er også oppgitt tankkapasitet per fartøyklasse og informasjon om at selskapet har bunkerskontrakt i Singapore og Sør-Korea, samt VLSFO-kontrakt i Rotterdam. Tilleggsdataene brukes i denne rapporten som kvantitativ operasjonell støtte for å vurdere forbruk, ROB, tankkapasitet og havnetilgjengelighet. Selve optimaliseringsmodellen videreføres som en aggregert kostnadsminimeringsmodell basert på pris- og volumdatasettet for de fire mest brukte havnene.
 
 ### 5.2 Data
 
@@ -303,7 +303,7 @@ Datagrunnlaget består av historiske bunkringstransaksjoner fra filen `004 data/
 
 Selve analysegrunnlaget omfatter kun transaksjoner for drivstofftypen `LSF`, slik denne er registrert i rådataene. Andre drivstofftyper som `LSGO` og biodrivstoff er relevante for å forstå den bredere operative beslutningssituasjonen i Odfjell Tankers, men de inngår ikke i datasettet som brukes i denne oppgaven og påvirker derfor heller ikke modellgrunnlaget direkte.
 
-Tabell 5.1 oppsummerer datagrunnlaget og avgrensningen som brukes videre i analysen.
+Tabell 5.1 oppsummerer pris- og volumdatasettet som brukes som modellens primære datagrunnlag.
 
 | Element | Verdi |
 | --- | --- |
@@ -316,7 +316,7 @@ Tabell 5.1 oppsummerer datagrunnlaget og avgrensningen som brukes videre i analy
 | Havner inkludert | P001, P002, P003, P004 |
 | Antall måneder | 61 |
 
-<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.1 Oppsummering av datagrunnlag og avgrensning for analysen.</i></small></p>
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.1 Oppsummering av pris- og volumdatasettet som brukes som modellgrunnlag.</i></small></p>
 
 Det opprinnelige datasettet inneholder 1389 observasjoner. Gjennomgangen viser at de sentrale identifikasjonsfeltene er komplette, men at enkelte verdi- og prisfelt har mangler eller ugyldige verdier. Det finnes 10 observasjoner uten `Invoice Price`, 10 observasjoner uten `Invoiced Qty`, 2 observasjoner uten `Supplier`, samt 8 observasjoner med ikke-positivt volum. Etter rensing ble 1381 observasjoner beholdt, mens 8 observasjoner ble forkastet på grunn av ikke-positivt volum. Oppsummeringen av rensingen er dokumentert i `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/metadata/tab_bunker_summary.md`.
 
@@ -330,7 +330,7 @@ Tabell 5.2 dokumenterer rensevalg og datakvalitet i materialet.
 | Fallback-regel for volum | `Invoiced Qty` først | Bevarer observasjoner med manglende fakturert volum |
 | Forkastet pga. ikke-positivt volum | 8 observasjoner | Tas ut av analysegrunnlaget |
 | Forkastet pga. ikke-positiv pris | 0 observasjoner | Ingen observasjoner fjernet av denne grunnen |
-| Manglende `Supplier` | 2 observasjoner | Har liten betydning for modellversjon 1 |
+| Manglende `Supplier` | 2 observasjoner | Har liten betydning for modellen |
 | Endelig antall beholdte observasjoner | 1381 | Brukes videre i renset og aggregert datasett |
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.2 Oversikt over rensevalg, fallback-regler og vurdert datakvalitet i materialet.</i></small></p>
@@ -354,9 +354,9 @@ Tabell 5.3 oppsummerer den strukturerte havneinformasjonen som videreføres til 
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.3 Strukturert havneoversikt brukt videre i modellgrunnlaget.</i></small></p>
 
-Etter den første datavasken er det mottatt et supplerende datasett med åtte anonymiserte fartøyfiler fra 2025. Filene ligger i `004 data` og er navngitt etter fartøyklasse og løpenummer, for eksempel `C001 - 1.csv`. Det samlede tilleggsdatasettet har 3893 rapporteringsrader fra 2025-01-01 til 2025-12-30. De opprinnelige havnekodene er erstattet med 70 interne P-koder, og voyage-numrene er erstattet med 244 interne VG-koder. Siden filene inneholder forbruk, seilt distanse, rapporterte voyage-koder og `ROB_Fuel_Total`, kan de på sikt brukes til å estimere $d_{v,t}$ og initialisere beholdningsvariabler mer realistisk enn i modellversjon 1.
+Etter den første datavasken er det mottatt et supplerende datasett med åtte anonymiserte fartøyfiler fra 2025. Filene ligger i `004 data` og er navngitt etter fartøyklasse og løpenummer, for eksempel `C001 - 1.csv`. Det samlede tilleggsdatasettet har 3893 rapporteringsrader fra 2025-01-01 til 2025-12-30. De opprinnelige havnekodene er erstattet med 70 interne P-koder, og voyage-numrene er erstattet med 244 interne VG-koder. Siden filene inneholder forbruk, seilt distanse, rapporterte voyage-koder og `ROB_Fuel_Total`, brukes de som kvantitativ støtte for å vurdere hvilke operasjonelle forhold modellen ikke fanger opp direkte.
 
-Tabell 5.4 oppsummerer de oppgitte tankkapasitetene for de anonymiserte fartøyklassene. Tallene er oppgitt som verifiserte 2025-tall fra dataleverandøren.
+Tabell 5.4 oppsummerer de oppgitte tankkapasitetene for de anonymiserte fartøyklassene. Tallene er oppgitt som verifiserte 2025-tall fra dataleverandøren og brukes som operasjonell støtte, ikke som kapasitetsrestriksjoner i modellen.
 
 | Fartøyklasse | Bunkerskapasitet |
 | --- | --- |
@@ -368,11 +368,30 @@ Tabell 5.4 oppsummerer de oppgitte tankkapasitetene for de anonymiserte fartøyk
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.4 Verifisert bunkerskapasitet per anonymisert fartøyklasse i tilleggsdataene.</i></small></p>
 
-Datakvaliteten i det opprinnelige pris- og volumdatasettet vurderes som tilstrekkelig for en første modellversjon, men datasettet har klare begrensninger. Det omfatter bare fire havner og én drivstofftype, og inneholder ikke eksplisitte variabler for minimumsbeholdning, faktisk drivstofforbruk mellom havner, havnesekvens eller kontraktsmessige bindinger. Tilleggsdataene reduserer noen av disse manglene, særlig for tankkapasitet, forbruk og voyage-sekvens.
+Tabell 5.5 oppsummerer de supplerende voyage-dataene. Tabellen dokumenterer omfang, kvalitet og mulig analytisk bruk, men dataene inngår ikke som beslutningsvariabler, restriksjoner eller kostnadsparametere i modellen.
 
-Tilleggsdataene er strukturert i tre arbeidstabeller for operasjonell støtte og videre modellutvikling. `tab_voyage_events_2025.csv` inneholder rapporteringshendelser, `tab_voyage_legs_2025.csv` inneholder aggregerte voyage-etapper, og `tab_vessel_class_capacity.csv` inneholder kapasitetsparameter per anonymisert fartøyklasse. Foreløpig strukturering ga 3893 rapporteringsrader og 486 voyage-etapper. En egen datakvalitetskontroll av voyage-dataene identifiserer 43 avvik: 3 tilfeller med manglende ROB og 40 rapporteringsrader med nullforbruk. Det er ikke identifisert negativt forbruk, negativ varighet eller ROB over oppgitt tankkapasitet. Resultatene fra modellversjon 1 må derfor fortsatt tolkes som et første analytisk beslutningsgrunnlag basert på pris- og volumdata, mens voyage-dataene brukes kvantitativt til å vurdere modellens operative begrensninger og mulige videreutvikling.
+| Element | Verdi | Bruk i rapporten |
+| --- | --- | --- |
+| Periode | 2025-01-01 til 2025-12-30 | Operasjonell støtte |
+| Antall rapporteringsrader | 3893 | Omfang av voyage-data |
+| Antall voyage-etapper | 486 | Grunnlag for rute- og forbruksvurdering |
+| Antall fartøyklasser | 5 | Kapasitetsvurdering |
+| Antall interne havnekoder | 70 | Havnetilgjengelighet og rutespredning |
+| Antall interne voyage-koder | 244 | Voyage-struktur |
+| Train-rader | 3110 | Senere modellutvidelse |
+| Test-rader | 783 | Senere modellutvidelse |
+| Datakvalitetsavvik | 43 | Kvalitetsvurdering |
+| Manglende ROB | 3 | Begrensning |
+| Nullforbruk | 40 | Begrensning |
+| Modellrolle | Operasjonell støtte | Ikke direkte modellinput |
 
-Train/test-splitt av de åtte supplerende voyage-råfilene ga samlet 3110 train-rader og 783 test-rader. Dette gjør at en senere modellversjon kan renses og vurderes på train/test-grunnlag uten at testperioden påvirker treningsgrunnlaget.
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.5 Oppsummering av supplerende voyage-data brukt som kvantitativ operasjonell støtte.</i></small></p>
+
+Datakvaliteten i det opprinnelige pris- og volumdatasettet vurderes som tilstrekkelig for modellen, men datasettet har klare begrensninger. Det omfatter bare fire havner og én drivstofftype, og inneholder ikke eksplisitte variabler for minimumsbeholdning, faktisk drivstofforbruk mellom havner, havnesekvens eller kontraktsmessige bindinger. Tilleggsdataene reduserer noen av disse manglene, særlig for tankkapasitet, forbruk og voyage-sekvens.
+
+Tilleggsdataene er strukturert i tre arbeidstabeller for operasjonell støtte og videre modellutvikling. `tab_voyage_events_2025.csv` inneholder rapporteringshendelser, `tab_voyage_legs_2025.csv` inneholder aggregerte voyage-etapper, og `tab_vessel_class_capacity.csv` inneholder kapasitetsparameter per anonymisert fartøyklasse. Struktureringen ga 3893 rapporteringsrader og 486 voyage-etapper. En egen datakvalitetskontroll av voyage-dataene identifiserer 43 avvik: 3 tilfeller med manglende ROB og 40 rapporteringsrader med nullforbruk. Det er ikke identifisert negativt forbruk, negativ varighet eller ROB over oppgitt tankkapasitet. Resultatene fra modellen må derfor tolkes som et analytisk beslutningsgrunnlag basert på pris- og volumdata, mens voyage-dataene brukes kvantitativt til å vurdere modellens operative begrensninger og mulige videreutvikling.
+
+Train/test-splitt av de åtte supplerende voyage-råfilene ga samlet 3110 train-rader og 783 test-rader. Dette gjør at en senere modellutvidelse kan renses og vurderes på train/test-grunnlag uten at testperioden påvirker treningsgrunnlaget.
 
 Det finnes samtidig ingen separat datakvalitetsrapport eller annen direkte dokumentasjon fra Odfjell Tankers som beskriver kvalitetssikringsprosessen for det opprinnelige pris- og volumdatasettet. I denne oppgaven legges det derfor inn en eksplisitt antagelse om at dette datasettet allerede er kvalitetssjekket av aktøren som leverte det, det vil si Odfjell Tankers, før det ble delt med prosjektgruppen. Denne antagelsen betyr ikke at datasettet anses som feilfritt, men at vi legger til grunn at grunnleggende kontroller av innhold, format og relevans allerede er utført hos dataleverandøren. Vår egen datavask må derfor forstås som en sekundær kontroll tilpasset analyse- og modellformål, ikke som en full revisjon av hele datagrunnlaget. For de supplerende voyage-dataene er det i tillegg gjennomført en egen teknisk datakvalitetskontroll i prosjektet.
 
@@ -380,15 +399,15 @@ Det finnes samtidig ingen separat datakvalitetsrapport eller annen direkte dokum
 
 ## 6.0 Modellering
 
-Prosjektets første modellversjon formuleres som en kvantitativ lineær kostnadsminimeringsmodell. Målet er å minimere totale bunkringskostnader over analyseperioden gitt historiske prisforskjeller mellom havnene og et definert drivstoffbehov per periode. Selv om prosjektgruppen har mottatt supplerende voyage-data, er modellversjon 1 bevisst avgrenset til pris- og volumdatasettet fordi dette er datagrunnlaget som direkte kobler havn, mengde og pris.
+Prosjektets modell formuleres som en kvantitativ lineær kostnadsminimeringsmodell. Målet er å minimere totale bunkringskostnader over analyseperioden gitt historiske prisforskjeller mellom havnene og et definert drivstoffbehov per periode. Selv om prosjektgruppen har mottatt supplerende voyage-data, er modellen bevisst avgrenset til pris- og volumdatasettet fordi dette er datagrunnlaget som direkte kobler havn, mengde og pris.
 
-### 6.1 Modellversjon 1 basert på dagens data
+### 6.1 Modellens datagrunnlag og beslutningsnivå
 
-Med dagens datagrunnlag er det mest metodisk forsvarlige å arbeide på aggregert nivå per havn og måned, ikke på fartøy- og rutenivå. Modellversjon 1 svarer derfor på følgende spørsmål:
+Med pris- og volumdatasettet er det mest metodisk forsvarlige å arbeide på aggregert nivå per havn og måned, ikke på fartøy- og rutenivå. Modellen svarer derfor på følgende spørsmål:
 
 Hvordan kan et gitt bunkringsbehov i hver måned fordeles mellom de fire observerte havnene slik at totale kostnader blir lavest mulig, gitt historiske prisforskjeller og en enkel definisjon av tilgjengelighet?
 
-Denne formuleringen gjør det mulig å etablere en første beslutningsstøttemodell uten å innføre ubegrunnede detaljer om fartøysforbruk, beholdning eller rutevalg som vi ennå ikke har data til å modellere pålitelig.
+Denne formuleringen gjør det mulig å etablere en beslutningsstøttemodell uten å innføre ubegrunnede detaljer om fartøysforbruk, beholdning eller rutevalg som vi ennå ikke har data til å modellere pålitelig.
 
 ### 6.2 Sett, parametere og beslutningsvariabel
 
@@ -397,13 +416,13 @@ La:
 - $H$ være mengden havner, der $H = \{P001, P002, P003, P004\}$
 - $T$ være mengden perioder, definert som månedene fra januar 2020 til januar 2025
 
-Følgende parametere kan etableres direkte fra dagens datagrunnlag:
+Følgende parametere kan etableres direkte fra pris- og volumdatasettet:
 
 - $p_{h,t}$ = historisk pris i havn $h$ i periode $t$
 - $D_t$ = samlet drivstoffbehov i periode $t$
 - $f_{h,t}$ = 1 dersom havn $h$ er tilgjengelig i periode $t$, ellers 0
 
-Prisparameteren $p_{h,t}$ hentes fra `weighted_avg_price` i det månedlige aggregatet. Behovsparameteren $D_t$ settes i første modellversjon lik samlet observert bunkret volum i måned $t$ på tvers av de fire havnene. Dette er en forenkling, men det gir modellen et definert behov per periode som kan brukes til å analysere en kostnadsminimerende fordeling. Tilgjengelighetsparameteren $f_{h,t}$ settes til 1 dersom havnen har en observert transaksjon i perioden, og 0 ellers.
+Prisparameteren $p_{h,t}$ hentes fra `weighted_avg_price` i det månedlige aggregatet. Behovsparameteren $D_t$ settes lik samlet observert bunkret volum i måned $t$ på tvers av de fire havnene. Dette er en forenkling, men det gir modellen et definert behov per periode som kan brukes til å analysere en kostnadsminimerende fordeling. Tilgjengelighetsparameteren $f_{h,t}$ settes til 1 dersom havnen har en observert transaksjon i perioden, og 0 ellers.
 
 Beslutningsvariabelen defineres som:
 
@@ -417,11 +436,11 @@ Målet er å minimere totale bunkringskostnader over hele analyseperioden:
 
 $\min Z = \sum_{t \in T} \sum_{h \in H} p_{h,t} \cdot x_{h,t}$
 
-Målfunksjonen innebærer at modellen velger den fordelingen av bunkringsvolum mellom havner og perioder som gir lavest mulig total kostnad. I modellversjon 1 er dette direkte knyttet til observerte historiske prisforskjeller mellom havnene.
+Målfunksjonen innebærer at modellen velger den fordelingen av bunkringsvolum mellom havner og perioder som gir lavest mulig total kostnad. Dette er direkte knyttet til observerte historiske prisforskjeller mellom havnene.
 
 ### 6.4 Restriksjoner
 
-Den grunnleggende restriksjonsstrukturen i modellversjon 1 er:
+Den grunnleggende restriksjonsstrukturen i modellen er:
 
 **Dekke behov i hver periode**
 
@@ -439,7 +458,7 @@ der $M$ er en stor konstant. Restriksjonen gjør at modellen bare kan velge bunk
 
 $x_{h,t} \geq 0 \quad \forall h \in H, t \in T$
 
-Dette er tilstrekkelig for en første lineær modellversjon.
+Dette er tilstrekkelig for den lineære modellen som analyseres i rapporten.
 
 ### 6.5 Hva datasettet støtter direkte og hva som mangler
 
@@ -453,30 +472,30 @@ Supplerende data fra Odfjell Tankers dekker nå deler av dette behovet:
 - informasjon om bunkerskontrakt i Singapore og Sør-Korea
 - informasjon om VLSFO-kontrakt i Rotterdam
 
-Det som fortsatt må avklares før en full operativ modell kan etableres, er blant annet hvordan de anonymiserte fartøyklassene skal kobles til pris- og volumdatasettet, hvilke drivstofftyper de enkelte forbruks- og ROB-feltene representerer, hvordan minimumsbeholdning skal defineres, og hvordan kontraktsinformasjonen skal oversettes til tilgjengelighets- eller prisrestriksjoner. I denne rapporten brukes voyage-dataene derfor som kvantitativ støtte i vurderingen av operasjonell realisme, mens modellversjon 1 videreføres med de 61 månedene og de fire havnene som allerede er renset og aggregert.
+Det som fortsatt må avklares før en full operativ modell kan etableres, er blant annet hvordan de anonymiserte fartøyklassene skal kobles til pris- og volumdatasettet, hvilke drivstofftyper de enkelte forbruks- og ROB-feltene representerer, hvordan minimumsbeholdning skal defineres, og hvordan kontraktsinformasjonen skal oversettes til tilgjengelighets- eller prisrestriksjoner. I denne rapporten brukes voyage-dataene derfor som kvantitativ støtte i vurderingen av operasjonell realisme, mens optimaliseringsmodellen videreføres med de 61 månedene og de fire havnene som allerede er renset og aggregert.
 
 ### 6.6 Kobling mellom datasplitt og modelltesting
 
 Datasplitt mellom trening og testing brukes som et metodisk skille mellom data brukt til utvikling og data brukt til senere kontroll av modellens oppførsel. Treningsdelen består av de tidligste 80 % av observasjonene og skal brukes som hovedgrunnlag for modellutvikling, parameterforståelse og deskriptiv kartlegging. Testdelen består av de siste 20 % av observasjonene og skal brukes når modellen skal vurderes opp mot senere historiske observasjoner.
 
-I denne oppgaven betyr ikke datasplitt at modellen foreløpig trenes maskinelt i statistisk forstand. Splittingen brukes i stedet for å sikre en ryddig vurdering av om modellens logikk og parameterbruk gir mening når den sammenholdes med senere data enn dem som først ble brukt som analysegrunnlag. Dette er særlig viktig fordi datasettet er tidsavhengig og fordi senere observasjoner er mer relevante som kontrollgrunnlag enn en tilfeldig delmengde av de samme årene.
+I denne oppgaven betyr ikke datasplitt at modellen trenes maskinelt i statistisk forstand. Splittingen brukes i stedet for å sikre en ryddig vurdering av om modellens logikk og parameterbruk gir mening når den sammenholdes med senere data enn dem som først ble brukt som analysegrunnlag. Dette er særlig viktig fordi datasettet er tidsavhengig og fordi senere observasjoner er mer relevante som kontrollgrunnlag enn en tilfeldig delmengde av de samme årene.
 
-### 6.7 Faglig vurdering av modellversjon 1
+### 6.7 Faglig vurdering av modellen
 
-Modellversjon 1 er en bevisst forenklet modell. Den arbeider på aggregert nivå, skiller ikke mellom fartøy, modellerer ikke beholdning om bord og bruker månedlig observert bunkringsmengde som proxy for behov. Tilgjengelighet er dessuten definert ut fra observerte data, ikke fra faktisk operativ havnetilgang.
+Modellen er bevisst forenklet. Den arbeider på aggregert nivå, skiller ikke mellom fartøy, modellerer ikke beholdning om bord og bruker månedlig observert bunkringsmengde som proxy for behov. Tilgjengelighet er dessuten definert ut fra observerte data, ikke fra faktisk operativ havnetilgang.
 
-Likevel er modellen metodisk forsvarlig som første analysemodell i prosjektet. Den er kvantitativ, transparent og direkte koblet til det datagrunnlaget som allerede er renset og strukturert. Den kan implementeres direkte med dagens modellinput, den er lineær og enkel å løse i Pyomo, og den gir et tydelig første svar på hvordan prisforskjeller mellom havnene påvirker totale bunkringskostnader. Den presenteres derfor som et første beslutningsstøtteverktøy, samtidig som voyage-dataene brukes som kvantitativ støtte for å vise hvilke operative forhold en senere fartøybasert modell bør inkludere.
+Likevel er modellen metodisk forsvarlig som analysemodell i prosjektet. Den er kvantitativ, transparent og direkte koblet til det datagrunnlaget som allerede er renset og strukturert. Den kan implementeres direkte med etablert modellinput, den er lineær og enkel å løse i Pyomo, og den gir et tydelig svar på hvordan prisforskjeller mellom havnene påvirker totale bunkringskostnader. Den presenteres derfor som et beslutningsstøtteverktøy, samtidig som voyage-dataene brukes som kvantitativ støtte for å vise hvilke operative forhold en senere fartøybasert modell bør inkludere.
 
 ### 6.8 Kobling til modellfiler
 
-For å gjøre modellstrukturen operasjonell er modellinput for versjon 1 opprettet i `006 analysis/02_modellutvikling/04_implementere_modell/input`. Følgende filer hører til denne modellversjonen:
+For å gjøre modellstrukturen operasjonell er modellinput opprettet i `006 analysis/02_modellutvikling/04_implementere_modell/input`. Filnavnene bruker `model_v1` som teknisk versjonsmerking i repoet, men i rapporten omtales dette som hovedmodellen. Følgende filer hører til modellen:
 
 - `tab_model_v1_price_by_port_month.csv` for prisparameteren $p_{h,t}$
 - `tab_model_v1_demand_by_month.csv` for behovsparameteren $D_t$
 - `tab_model_v1_availability_by_port_month.csv` for tilgjengelighetsparameteren $f_{h,t}$
 - `data_model_v1_parameters.json` for samlet metadata og definisjoner
 
-Det er også laget en første kjørbar modellfil i `006 analysis/02_modellutvikling/04_implementere_modell/src/run_model_v1_pyomo.py`, som leser disse modellfilene direkte når `pyomo` og en solver er tilgjengelig.
+Det er også laget en kjørbar modellfil i `006 analysis/02_modellutvikling/04_implementere_modell/src/run_model_v1_pyomo.py`, som leser disse modellfilene direkte når `pyomo` og en solver er tilgjengelig.
 
 ---
 
