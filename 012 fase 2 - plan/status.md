@@ -230,6 +230,7 @@ Status: **Fullført**
 - [x] Tidsperioden i aggregatet er dokumentert og brukt videre i modellinput
 - [x] Havnene i aggregatet stemmer med havnene som brukes i modellversjon 1
 - [x] Datastrukturen er tilstrekkelig moden til å støtte arbeidet med `Definere variabler`, `Formulere målfunksjon` og `Implementere modell`
+- [x] Siste kontroll 2026-04-28 bekreftet at renset transaksjonsfil, månedsaggregat og train/test-splitt samsvarer med rense- og strukturlogikken
 
 #### Verifisert opprydding før lukking av aktiviteten
 
