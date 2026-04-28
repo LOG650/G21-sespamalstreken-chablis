@@ -110,11 +110,35 @@
           },
           {
             "id": "2.5",
+            "navn": "Strukturere tilleggsdata 2025",
+            "type": "Fullført støtteaktivitet",
+            "merknad": "Supplerende anonymiserte fartøydata fra 2025 er strukturert til hendelses-, etappe- og kapasitetstabeller. Aktiviteten ligger ikke bekreftet som egen aktivitet i gjeldende MPP."
+          },
+          {
+            "id": "2.5.1",
+            "navn": "Datasplit voyage-rådata 2025",
+            "type": "Fullført støtteaktivitet",
+            "merknad": "De åtte supplerende voyage-råfilene fra 2025 er splittet kronologisk 80/20 etter Date_UTC og Time_UTC før videre rensing. Originalfilene er beholdt urørt."
+          },
+          {
+            "id": "2.5.2",
+            "navn": "Pseudonymisere voyage-data 2025",
+            "type": "Fullført støtteaktivitet",
+            "merknad": "Eksisterende voyage-filer i repoet er oppdatert på plass med P-koder for havn og VG-koder for voyage-nummer. Intern mapping ligger i konfidensiell datafil."
+          },
+          {
+            "id": "2.5.3",
+            "navn": "Rense og validere voyage-data 2025",
+            "type": "Fullført støtteaktivitet",
+            "merknad": "Strukturerte voyage-data er kontrollert med eget valideringsskript. Kontrollen viser få avvik, men dataene er ikke besluttet brukt som direkte modellinput i modellversjon 1."
+          },
+          {
+            "id": "2.6",
             "navn": "Deskriptiv analyse",
             "type": "Aktivitet"
           },
           {
-            "id": "2.6",
+            "id": "2.7",
             "navn": "Datagrunnlag ferdig",
             "type": "Milepæl"
           }
