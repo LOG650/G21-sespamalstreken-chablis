@@ -74,3 +74,4 @@ Denne filen dokumenterer modellklare tabeller generert fra de anonymiserte voyag
 - Reell havnetilgjengelighet kan avledes fra `from_port_P00X`, `to_port_P00X` og `available_ports_P00X`.
 - Intern kobling mellom opprinnelige havnekoder og P-koder ligger i `data/tab_port_mapping_confidential.csv` og skal ikke publiseres som rapportvedlegg.
 - `contract_port_flag` er et første teknisk flagg og må valideres mot faktisk kontraktsomfang før det brukes som hard restriksjon.
+- Egen datakvalitetskontroll ligger i `metadata/tab_voyage_data_quality_2025.md` og skiller mellom operasjonell støtte og direkte modellinput.

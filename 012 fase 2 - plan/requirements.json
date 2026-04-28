@@ -125,6 +125,16 @@
       "teststatus": "Completed"
     },
     {
+      "id": "DK-09",
+      "type": "Datakrav",
+      "krav": "Supplerende voyage-data fra 2025 skal valideres for datakvalitet før de omtales som direkte modellinput.",
+      "gantt_aktivitet": "Rense og validere voyage-data 2025",
+      "eier": "Datagrunnlag",
+      "leveranse": "Datakvalitetsrapport og avviksfil for voyage-data",
+      "testtilfelle": "Kontroll av manglende ROB, null/negativt forbruk, tidsrekkefølge, tankkapasitet og modellrelevante koblingsfelt er gjennomført",
+      "teststatus": "Completed"
+    },
+    {
       "id": "MOD-01",
       "type": "Modellkrav",
       "krav": "Modellen skal inkludere beslutningsvariabler for valg av havn, mengde bunkret drivstoff og tidspunkt for bunkring.",

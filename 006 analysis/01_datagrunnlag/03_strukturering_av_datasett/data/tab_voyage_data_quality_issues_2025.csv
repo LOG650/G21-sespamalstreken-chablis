@@ -1,0 +1,44 @@
+level,row_id,issue_type,severity,description
+event,event_424,missing_rob,medium,Manglende ROB_Fuel_Total.
+event,event_1621,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_1622,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_1623,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_1624,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_1625,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_1626,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_1627,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_1628,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_1629,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_1630,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_1631,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_1632,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_2530,missing_rob,medium,Manglende ROB_Fuel_Total.
+event,event_2530,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_2680,missing_rob,medium,Manglende ROB_Fuel_Total.
+event,event_2680,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3406,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3407,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3408,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3409,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3410,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3411,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3412,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3413,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3414,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3415,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3416,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3417,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3418,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3419,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3420,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3421,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3422,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3423,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3425,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3426,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3427,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3428,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3429,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3430,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3431,zero_consumption,low,Nullforbruk på rapporteringsrad.
+event,event_3432,zero_consumption,low,Nullforbruk på rapporteringsrad.

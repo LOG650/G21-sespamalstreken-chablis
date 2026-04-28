@@ -184,7 +184,7 @@ Følgende supplerende data er nå mottatt fra Odfjell Tankers eller intern datal
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell 6.1 Verifisert bunkerskapasitet per anonymisert fartøyklasse.</i></small></p>
 
-De åtte filene `C001 - 1.csv`, `C001 - 2.csv`, `C002 - 1.csv`, `C003 - 1.csv`, `C004 - 1.csv`, `C004 - 2.csv`, `C004 - 3.csv` og `C005 - 1.csv` dekker 2025 og inneholder samlet 3893 rapporteringsrader. De opprinnelige havnekodene er erstattet med 70 interne P-koder, og voyage-numrene er erstattet med 244 interne VG-koder.
+De åtte filene `C001 - 1.csv`, `C001 - 2.csv`, `C002 - 1.csv`, `C003 - 1.csv`, `C004 - 1.csv`, `C004 - 2.csv`, `C004 - 3.csv` og `C005 - 1.csv` dekker 2025 og inneholder samlet 3893 rapporteringsrader. De opprinnelige havnekodene er erstattet med 70 interne P-koder, og voyage-numrene er erstattet med 244 interne VG-koder. En egen datakvalitetskontroll viser 43 avvik i voyage-dataene, fordelt på 3 tilfeller med manglende ROB og 40 rapporteringsrader med nullforbruk. Tilleggsdataene brukes derfor som kvantitativ operasjonell støtte i rapporten, ikke som direkte modellinput i modellversjon 1.
 
 Dette svarer på flere av punktene som tidligere manglet:
 

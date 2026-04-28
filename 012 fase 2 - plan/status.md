@@ -30,10 +30,10 @@ Denne filen er generert fra:
 | Aktiviteter pågår | 1 |
 | Aktiviteter kommende | 9 |
 | Aktiviteter med statusavvik | 2 |
-| Fremdriftsvurdering | Prosjektet ligger i MPP-perioden for `Teste modell`. Ny MPP viser `Datasplit trening/test` som fullført aktivitet, men viser 0 % for `Definere restriksjoner` og `implementere modell` selv om repoet har artefakter for begge |
+| Fremdriftsvurdering | Prosjektet ligger i MPP-perioden for `Teste modell`. Ny MPP viser `Datasplit trening/test` som fullført aktivitet, men viser 0 % for `Definere restriksjoner` og `implementere modell` selv om repoet har artefakter for begge. Nye voyage-data er strukturert, pseudonymisert og kvalitetssjekket, men er fortsatt operasjonell støtte og ikke primær modellinput for modellversjon 1 |
 
 - Planunderlaget er dokumentert i både prosjektstyringsplanen og `MS_Project.mpp`.
-- Repoet inneholder rådata i `004 data`, renset og strukturert datasett i `006 analysis/01_datagrunnlag`, samt modellinput og modellimplementasjon i `006 analysis/02_modellutvikling`.
+- Repoet inneholder rådata i `004 data`, renset pris-/volumdatasett i `006 analysis/01_datagrunnlag`, foreløpig strukturert og kvalitetssjekket voyage-data, samt modellinput og modellimplementasjon i `006 analysis/02_modellutvikling`.
 - Deskriptive figurer og tabeller er nå dokumentert i `006 analysis/01_datagrunnlag/04_deskriptiv_analyse` og brukt i `005 report/rapport.md`.
 - Supplerende 2025-data for åtte anonymiserte fartøyfiler er mottatt i `004 data` og dokumentert i `006 analysis/01_datagrunnlag/01_datainnsamling/tilleggsdata_2025.md`.
 - `Datasplit trening/test` ligger nå som egen fullført aktivitet i `MS_Project.mpp` med dato 2026-01-23.
@@ -45,16 +45,18 @@ Denne filen er generert fra:
 
 ### Nå
 
-- [x] Datagrunnlag er renset, strukturert og dokumentert
+- [x] Opprinnelig pris-/volumdatagrunnlag er renset, strukturert og dokumentert for modellversjon 1
 - [x] Modellinput for versjon 1 er etablert
 - [x] Første modellimplementasjon finnes i `006 analysis/02_modellutvikling/04_implementere_modell`
 - [x] Simulert modelltest er kjørt og outputfiler finnes i `006 analysis/02_modellutvikling/05_teste_modell/output`
 - [x] Testnotat er skrevet i `006 analysis/02_modellutvikling/05_teste_modell/README.md`
 - [x] Simulert resultat-CSV er korrigert slik at valgt pris og beregnet kostnad vises per måned og havn
 - [x] Tilleggsdata fra 2025 er dokumentert med fartøyklasser, tankkapasitet, voyage-koder, ROB-felt og kontraktskontekst
-- [x] Tilleggsdata fra 2025 er strukturert til modellklare hendelses-, etappe- og kapasitetstabeller
+- [x] Tilleggsdata fra 2025 er foreløpig strukturert til hendelses-, etappe- og kapasitetstabeller
 - [x] Voyage-råfilene fra 2025 er splittet kronologisk 80/20 før videre rensing
 - [x] Voyage-havner og voyage-numre fra 2025 er pseudonymisert på plass med P- og VG-koder
+- [x] Voyage-data fra 2025 er kvalitetssjekket med egen avviksrapport
+- [x] Voyage-data brukes som kvantitativ operasjonell støtte i rapporten, ikke som direkte modellinput i modellversjon 1
 - [ ] Avklar om MPP-prosentene for `Definere restriksjoner` og `implementere modell` skal oppdateres til å speile repoarbeidet
 - [ ] Avklar om endelig testgrunnlag skal være Pyomo med faktisk solver eller solver-uavhengig simulering
 
@@ -71,7 +73,7 @@ For å markere `Teste modell` som fullført bør dere minst ha:
 
 ### Etterpå
 
-- Når `Teste modell` er lukket, starter `Basiskjøring` i perioden 2026-04-29 til 2026-05-01.
+- Når `Teste modell` er lukket, kan `Basiskjøring` starte for modellversjon 1 med pris-/volumdatasettet som primær modellinput.
 - Etter `Basiskjøring` følger `Sensitivitetsanalyse` og deretter `Resultattolkning`.
 
 [Til toppen](#innholdsfortegnelse)
@@ -106,6 +108,7 @@ Forklaring:
 | Datagrunnlag | Datainnsamling | 2026-03-10–2026-03-17 | Fullført | `██` |
 | Datagrunnlag | Datavask | 2026-03-18–2026-03-23 | Fullført | `██` |
 | Datagrunnlag | Strukturering av datasett | 2026-03-24–2026-03-26 | Fullført | `██` |
+| Datagrunnlag | Rense og validere voyage-data 2025 | 2026-04-28 | Fullført støtteaktivitet | `██` |
 | Datagrunnlag | Deskriptiv analyse | 2026-03-27–2026-03-29 | Fullført | `██` |
 | Modellutvikling | Definere variabler | 2026-03-30–2026-04-01 | Fullført | `██` |
 | Modellutvikling | Formulere målfunksjon | 2026-04-02–2026-04-03 | Fullført | `██` |
@@ -169,6 +172,7 @@ gantt
 | Datagrunnlag | Datainnsamling | 2026-03-10 | 2026-03-17 | Fullført | Dokumentert i repo |
 | Datagrunnlag | Datavask | 2026-03-18 | 2026-03-23 | Fullført | Dokumentert i `006 analysis/01_datagrunnlag/02_datavask` med rensepipeline og renset fil |
 | Datagrunnlag | Strukturering av datasett | 2026-03-24 | 2026-03-26 | Fullført | Dokumentert i `006 analysis/01_datagrunnlag/03_strukturering_av_datasett` med aggregert datasett og metadata |
+| Datagrunnlag | Rense og validere voyage-data 2025 | 2026-04-28 | 2026-04-28 | Fullført støtteaktivitet | Voyage-data er validert med egen kvalitetsrapport og avviksfil, og brukes som kvantitativ operasjonell støtte heller enn primær modellinput i modellversjon 1 |
 | Datagrunnlag | Deskriptiv analyse | 2026-03-27 | 2026-03-29 | Fullført | Dokumentert i `006 analysis/01_datagrunnlag/04_deskriptiv_analyse` med figurer, figurguide og bruk i `rapport.md` |
 | Modellutvikling | Definere variabler | 2026-03-30 | 2026-04-01 | Fullført | Dokumentert i modellkapitlet i `005 report/rapport.md` og støttet av modellinput |
 | Modellutvikling | Formulere målfunksjon | 2026-04-02 | 2026-04-03 | Fullført | Dokumentert i `005 report/rapport.md` og reflektert i modellskriptene |
@@ -277,6 +281,26 @@ Status: **Fullført**
 
 - [x] Datasplitt trening/test er gjennomført og dokumentert
 - [x] Steget behandles som fullført aktivitet i datagrunnlaget i `schedule.json`, `wbs.json`, `requirements.json` og `status.md`
+
+### Rense og validere voyage-data 2025
+
+Status: **Fullført støtteaktivitet**
+
+#### Fullførte aktiviteter
+
+- [x] Voyage-råfiler fra 2025 er strukturert til hendelses- og etappetabeller
+- [x] Voyage-råfiler og strukturerte tabeller er pseudonymisert med P- og VG-koder
+- [x] Datakvalitet er kontrollert med `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/src/validate_voyage_data_quality_2025.py`
+- [x] Avviksrapport er opprettet: `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/metadata/tab_voyage_data_quality_2025.md`
+- [x] Detaljert avviksfil er opprettet: `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_voyage_data_quality_issues_2025.csv`
+
+#### Vurdering
+
+- [x] Kontrollen dekker manglende ROB, null/negativt forbruk, tidsrekkefølge, tankkapasitet og modellrelevante koblingsfelt
+- [x] Det er identifisert 43 avvik: 3 tilfeller med manglende ROB og 40 rapporteringsrader med nullforbruk
+- [x] Voyage-dataene vurderes som egnet operasjonell støtte for forbruk, ROB, tankkapasitet og havnetilgjengelighet
+- [x] Voyage-data skal i denne rapportversjonen brukes som kvantitativ operasjonell støtte, ikke som harde restriksjoner i modellversjon 1
+- [ ] Kontraktsflagg og drivstofftypekobling må faglig valideres før voyage-data eventuelt brukes som harde restriksjoner i en senere fartøybasert modell
 
 [Til toppen](#innholdsfortegnelse)
 
@@ -432,10 +456,14 @@ Tekstplanen nevner endelig innlevering **2026-05-31**, mens `MS_Project.mpp` vis
 - Voyage-havner og voyage-numre er pseudonymisert på plass med `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/src/anonymize_voyage_ports_2025.py`.
 - Eksisterende filer i `004 data` er oppdatert direkte. Havner vises som `Pxxx`, voyage-numre som `VGxxx`, og de strukturerte tabellene bruker `from_port_P00X`, `to_port_P00X` og `available_ports_P00X`.
 - Intern portmapping ligger i `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_port_mapping_confidential.csv` og skal ikke publiseres som rapportvedlegg.
+- Voyage-dataene er kvalitetssjekket med `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/src/validate_voyage_data_quality_2025.py`.
+- Kvalitetssjekken kontrollerte 3893 rapporteringsrader og 486 voyage-etapper, og fant 43 avvik: 3 tilfeller med manglende ROB og 40 rapporteringsrader med nullforbruk.
+- Kvalitetssjekken er dokumentert i `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/metadata/tab_voyage_data_quality_2025.md`.
 
 #### Anbefalt neste steg
 
-- Avklar om de strukturerte voyage-etappene skal inngå i neste modellversjon eller holdes som dokumentert videreutviklingsgrunnlag.
-- Dersom de skal brukes direkte i modell, må kontraktsflagg og drivstofftypekobling valideres før de brukes som harde restriksjoner.
+- Bruk opprinnelig pris-/volumdata videre som primærkilde for modellversjon 1.
+- Bruk voyage-data som kvantitativ operasjonell støtte i rapporten for forbruk, ROB, tankkapasitet og havnetilgjengelighet.
+- Dersom voyage-data senere skal brukes direkte i modell, må kontraktsflagg og drivstofftypekobling valideres før de brukes som harde restriksjoner.
 
 [Til toppen](#innholdsfortegnelse)

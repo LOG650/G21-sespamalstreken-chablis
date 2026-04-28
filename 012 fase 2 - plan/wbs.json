@@ -127,6 +127,12 @@
             "merknad": "Eksisterende voyage-filer i repoet er oppdatert på plass med P-koder for havn og VG-koder for voyage-nummer. Intern mapping ligger i konfidensiell datafil."
           },
           {
+            "id": "2.5.3",
+            "navn": "Rense og validere voyage-data 2025",
+            "type": "Fullført støtteaktivitet",
+            "merknad": "Strukturerte voyage-data er kontrollert med eget valideringsskript. Kontrollen viser få avvik, men dataene er ikke besluttet brukt som direkte modellinput i modellversjon 1."
+          },
+          {
             "id": "2.6",
             "navn": "Deskriptiv analyse",
             "type": "Aktivitet"
