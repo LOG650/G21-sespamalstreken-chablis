@@ -521,6 +521,16 @@ Det er også laget en kjørbar modellfil i `006 analysis/02_modellutvikling/04_i
 
 *FuelEU Guidance Document for Shipping Companies*. (2025, 8. oktober). PDF-dokument i `003 references/fueleu_guidance_document_for_shipping_companies_2025-10-08.pdf`.
 
+Fox, W. P., & Burks, R. E. (2024). *Modeling Operations Research and Business Analytics*. 1st ed. CRC Press.
+
+Grammenos, C. T. (2026). *The Handbook of Maritime Economics and Business*. 3rd ed. Routledge.
+
+Song, D.-W., & Panayides, P. (2021). *Maritime Logistics: A Guide to Contemporary Shipping and Port Management*. 3rd ed. Kogan Page.
+
+Stopford, M. (2008). *Maritime Economics*. 3rd ed. Routledge.
+
+Venkataraman, R. R., & Pinto, J. K. (2018). *Operations Management: Managing Global Supply Chains*. 2nd ed. SAGE Publications, Inc.
+
 ---
 
 ## 12.0 Vedlegg

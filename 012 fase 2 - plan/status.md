@@ -57,6 +57,9 @@ Denne filen er generert fra:
 - [x] Voyage-havner og voyage-numre fra 2025 er pseudonymisert på plass med P- og VG-koder
 - [x] Voyage-data fra 2025 er kvalitetssjekket med egen avviksrapport
 - [x] Voyage-data brukes som kvantitativ operasjonell støtte i rapporten, ikke som direkte modellinput i modellversjon 1
+- [x] Ny faglitteratur om operasjonsledelse er lagt til i `003 references` og bibliografien i `005 report/rapport.md`
+- [x] Referansenotatene for Stopford og Grammenos er kortet ned og standardisert med samme struktur som øvrige boknotater
+- [x] Nye referansenotater for Fox og Burks samt Song og Panayides er lagt til i `003 references`
 - [ ] Avklar om MPP-prosentene for `Definere restriksjoner` og `implementere modell` skal oppdateres til å speile repoarbeidet
 - [ ] Avklar om endelig testgrunnlag skal være Pyomo med faktisk solver eller solver-uavhengig simulering
 
@@ -459,6 +462,9 @@ Tekstplanen nevner endelig innlevering **2026-05-31**, mens `MS_Project.mpp` vis
 - Voyage-dataene er kvalitetssjekket med `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/src/validate_voyage_data_quality_2025.py`.
 - Kvalitetssjekken kontrollerte 3893 rapporteringsrader og 486 voyage-etapper, og fant 43 avvik: 3 tilfeller med manglende ROB og 40 rapporteringsrader med nullforbruk.
 - Kvalitetssjekken er dokumentert i `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/metadata/tab_voyage_data_quality_2025.md`.
+- Fagboken *Operations Management: Managing Global Supply Chains* av Ray R. Venkataraman og Jeffrey K. Pinto er lagt til som referansenotat i `003 references/Operations_Management_Venkataraman_Pinto.md` og som bibliografioppføring i `005 report/rapport.md`.
+- Referansenotatene for *Maritime Economics* og *The Handbook of Maritime Economics and Business* er omskrevet til korte faglitteraturnotater med bokbeskrivelse, relevans for rapporten, Perlego-tilgang og bibliografioppføring.
+- Fagbøkene *Modeling Operations Research and Business Analytics* av William P. Fox og Robert E. Burks samt *Maritime Logistics: A Guide to Contemporary Shipping and Port Management* av Dong-Wook Song og Photis Panayides er lagt til som korte referansenotater i `003 references`.
 
 #### Anbefalt neste steg
 
