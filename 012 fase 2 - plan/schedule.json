@@ -127,7 +127,7 @@
       "slutt": "2026-04-28",
       "status_per_2026-04-28": "Fullført støtteaktivitet",
       "mpp_prosent_fullført": null,
-      "grunnlag": "Voyage-data er kontrollert med `validate_voyage_data_quality_2025.py`; rapport og avviksfil finnes i strukturering-mappen. Dataene er fortsatt definert som operasjonell støtte, ikke som primær modellinput for modellversjon 1.",
+      "grunnlag": "Voyage-data er kontrollert med `validate_voyage_data_quality_2025.py`; rapport og avviksfil finnes i strukturering-mappen. Dataene er fortsatt definert som operasjonell støtte, ikke som primær modellinput for modellen.",
       "avhenger_av": [
         "Pseudonymisere voyage-data 2025"
       ]
@@ -173,33 +173,33 @@
       "navn": "Definere restriksjoner",
       "start": "2026-04-04",
       "slutt": "2026-04-08",
-      "status_per_2026-04-27": "Statusavvik",
-      "mpp_prosent_fullført": 0,
-      "grunnlag": "MPP viser 0 % fullført, mens repoet har restriksjonsstruktur dokumentert i rapport og reflektert i `run_model_v1_pyomo.py`",
+      "mpp_prosent_fullført": 100,
+      "grunnlag": "Gjeldende `MS_Project.mpp` viser 100 % fullført, og repoet har restriksjonsstruktur dokumentert i rapport og reflektert i `run_model_v1_pyomo.py`",
       "avhenger_av": [
         "Formulere målfunksjon"
-      ]
+      ],
+      "status_per_2026-04-28": "Fullført"
     },
     {
       "fase": "Modellutvikling",
       "navn": "Implementere modell",
       "start": "2026-04-09",
       "slutt": "2026-04-20",
-      "status_per_2026-04-27": "Statusavvik",
-      "mpp_prosent_fullført": 0,
-      "grunnlag": "MPP viser 0 % fullført, mens repoet har modellinput, Pyomo-implementasjon og aktivitetsstruktur etablert",
+      "mpp_prosent_fullført": 100,
+      "grunnlag": "Gjeldende `MS_Project.mpp` viser 100 % fullført, og repoet har modellinput, Pyomo-implementasjon og aktivitetsstruktur etablert",
       "avhenger_av": [
         "Definere restriksjoner"
-      ]
+      ],
+      "status_per_2026-04-28": "Fullført"
     },
     {
       "fase": "Modellutvikling",
       "navn": "Teste modell",
       "start": "2026-04-21",
       "slutt": "2026-04-28",
-      "status_per_2026-04-28": "Fullført i repo",
-      "mpp_prosent_fullført": 0,
-      "grunnlag": "Solver-uavhengig simulering er kjørt på nytt 2026-04-28 og valgt som endelig valideringsgrunnlag for modellversjon 1; testnotat og outputfiler foreligger",
+      "status_per_2026-04-28": "Fullført",
+      "mpp_prosent_fullført": 100,
+      "grunnlag": "Gjeldende `MS_Project.mpp` viser 100 % fullført. Solver-uavhengig simulering er kjørt på nytt 2026-04-28 og valgt som endelig valideringsgrunnlag for modellen; testnotat og outputfiler foreligger.",
       "avhenger_av": [
         "Implementere modell"
       ]
@@ -209,8 +209,8 @@
       "navn": "Basiskjøring",
       "start": "2026-04-29",
       "slutt": "2026-05-01",
-      "status_per_2026-04-27": "Kommende",
-      "grunnlag": "Starter 2026-04-29",
+      "status_per_2026-04-28": "Fullført i repo",
+      "grunnlag": "Basiskjøring er gjennomført med solver-uavhengig simulering i `006 analysis/03_analyse/01_basiskjoring`; output og kort oppsummering foreligger.",
       "avhenger_av": [
         "Teste modell"
       ]
@@ -220,8 +220,8 @@
       "navn": "Sensitivitetsanalyse",
       "start": "2026-05-02",
       "slutt": "2026-05-06",
-      "status_per_2026-04-27": "Kommende",
-      "grunnlag": "Starter 2026-05-02",
+      "status_per_2026-04-28": "Fullført i repo",
+      "grunnlag": "Sensitivitetsanalyse er gjennomført med 19 scenarioer i `006 analysis/03_analyse/02_sensitivitetsanalyse`; output og kort oppsummering foreligger.",
       "avhenger_av": [
         "Basiskjøring"
       ]
@@ -336,7 +336,7 @@
     "Innlevering"
   ],
   "antagelser": [
-    "Eksplisitte aktivitetsdatoer er kontrollert mot gjeldende `MS_Project.mpp` 2026-04-27.",
+    "Eksplisitte aktivitetsdatoer og MPP-prosenter er kontrollert mot gjeldende `MS_Project.mpp` 2026-04-28.",
     "Avhengigheter er modellert som hovedsakelig sekvensielle basert på beskrivelsen av kritisk linje og rekkefølgen i statusfilen.",
     "Rapporteringsaktivitetene kan i praksis overlappe mer enn det JSON-en uttrykker, men her er de gjort maskinlesbare som en enkel styringsrekkefølge.",
     "`Datasplit trening/test` ligger nå som egen aktivitet i gjeldende MPP-baseline, men uten avhengighet til øvrige datagrunnlagsaktiviteter.",
@@ -344,6 +344,6 @@
     "`Datasplit voyage-rådata 2025` er lagt inn som fullført støtteaktivitet i JSON-planen, men er ikke bekreftet som egen aktivitet i gjeldende `MS_Project.mpp`.",
     "`Pseudonymisere voyage-data 2025` er lagt inn som fullført støtteaktivitet i JSON-planen, men er ikke bekreftet som egen aktivitet i gjeldende `MS_Project.mpp`.",
     "`Rense og validere voyage-data 2025` er lagt inn som fullført støtteaktivitet i JSON-planen, men er ikke bekreftet som egen aktivitet i gjeldende `MS_Project.mpp`.",
-    "MPP viser 0 % fullført for `Definere restriksjoner` og `implementere modell`, mens repoet har dokumentasjon og modellartefakter for disse aktivitetene. Dette er derfor markert som statusavvik."
+    "Gjeldende `MS_Project.mpp` viser nå 100 % fullført for `Definere restriksjoner` og `implementere modell`, slik at tidligere statusavvik er lukket."
   ]
 }

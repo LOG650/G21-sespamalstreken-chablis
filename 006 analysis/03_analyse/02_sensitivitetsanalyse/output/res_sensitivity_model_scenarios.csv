@@ -1,0 +1,20 @@
+scenario_id,scenario_type,description,changed_port,price_multiplier,demand_multiplier,total_cost,delta_vs_baseline,delta_pct_vs_baseline,estimated_saving_vs_historical,estimated_saving_pct_vs_historical,selected_months_by_port
+baseline,baseline,Opprinnelig pris og etterspørsel,all,1.0,1.0,473953291.65,0.0,0.0,24860239.6,4.98,P001:2; P002:14; P003:44; P004:1
+price_all_-10pct,price_all,Alle havnepriser -10 %,all,0.9,1.0,426557962.49,-47395329.17,-10.0,72255568.77,14.49,P001:2; P002:14; P003:44; P004:1
+price_all_-5pct,price_all,Alle havnepriser -5 %,all,0.95,1.0,450255627.07,-23697664.58,-5.0,48557904.19,9.73,P001:2; P002:14; P003:44; P004:1
+price_all_+5pct,price_all,Alle havnepriser +5 %,all,1.05,1.0,497650956.24,23697664.58,5.0,1162575.02,0.23,P001:2; P002:14; P003:44; P004:1
+price_all_+10pct,price_all,Alle havnepriser +10 %,all,1.1,1.0,521348620.82,47395329.17,10.0,-22535089.56,-4.52,P001:2; P002:14; P003:44; P004:1
+price_P001_-10pct,price_port,Pris i P001 -10 %,P001,0.9,1.0,456629407.68,-17323883.98,-3.66,42184123.58,8.46,P001:48; P002:2; P003:11; P004:0
+price_P001_+10pct,price_port,Pris i P001 +10 %,P001,1.1,1.0,474439268.49,485976.84,0.1,24374262.77,4.89,P001:1; P002:15; P003:44; P004:1
+price_P002_-10pct,price_port,Pris i P002 -10 %,P002,0.9,1.0,443127158.48,-30826133.17,-6.5,55686372.78,11.16,P001:1; P002:46; P003:13; P004:1
+price_P002_+10pct,price_port,Pris i P002 +10 %,P002,1.1,1.0,477252367.61,3299075.95,0.7,21561163.65,4.32,P001:6; P002:0; P003:53; P004:2
+price_P003_-10pct,price_port,Pris i P003 -10 %,P003,0.9,1.0,431052755.59,-42900536.07,-9.05,67760775.67,13.58,P001:1; P002:1; P003:59; P004:0
+price_P003_+10pct,price_port,Pris i P003 +10 %,P003,1.1,1.0,486675427.51,12722135.86,2.68,12138103.75,2.43,P001:16; P002:36; P003:2; P004:7
+price_P004_-10pct,price_port,Pris i P004 -10 %,P004,0.9,1.0,460320844.14,-13632447.51,-2.88,38492687.12,7.72,P001:2; P002:2; P003:12; P004:45
+price_P004_+10pct,price_port,Pris i P004 +10 %,P004,1.1,1.0,473989827.89,36536.23,0.01,24823703.37,4.98,P001:2; P002:14; P003:45; P004:0
+demand_all_-10pct,demand_all,Etterspørsel -10 %,all,1.0,0.9,426557962.49,-47395329.17,-10.0,72255568.77,14.49,P001:2; P002:14; P003:44; P004:1
+demand_all_-5pct,demand_all,Etterspørsel -5 %,all,1.0,0.95,450255627.07,-23697664.58,-5.0,48557904.19,9.73,P001:2; P002:14; P003:44; P004:1
+demand_all_+5pct,demand_all,Etterspørsel +5 %,all,1.0,1.05,497650956.24,23697664.58,5.0,1162575.02,0.23,P001:2; P002:14; P003:44; P004:1
+demand_all_+10pct,demand_all,Etterspørsel +10 %,all,1.0,1.1,521348620.82,47395329.17,10.0,-22535089.56,-4.52,P001:2; P002:14; P003:44; P004:1
+stress_price_demand_+10pct,combined_stress,Pris og etterspørsel +10 %,all,1.1,1.1,573483482.9,99530191.25,21.0,-74669951.64,-14.97,P001:2; P002:14; P003:44; P004:1
+stress_price_demand_-10pct,combined_stress,Pris og etterspørsel -10 %,all,0.9,0.9,383902166.24,-90051125.41,-19.0,114911365.02,23.04,P001:2; P002:14; P003:44; P004:1

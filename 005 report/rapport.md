@@ -507,9 +507,9 @@ Det er også laget en kjørbar modellfil i `006 analysis/02_modellutvikling/04_i
 
 ### 6.9 Valideringsgrunnlag
 
-Endelig validering av modellversjon 1 bygger på en solver-uavhengig simulering i `006 analysis/02_modellutvikling/05_teste_modell/src/simulate_model_v1_results.py`. Dette er valgt fordi modellen i denne versjonen er en forenklet månedsbasert kostnadsmodell der beslutningslogikken kan etterprøves direkte mot modellinputen. Simuleringen dekker månedlig behov ved å velge billigste tilgjengelige havn i hver måned, gitt de etablerte parameterfilene for pris, behov og tilgjengelighet.
+Endelig validering av modellen bygger på en solver-uavhengig simulering i `006 analysis/02_modellutvikling/05_teste_modell/src/simulate_model_v1_results.py`. Dette er valgt fordi modellen er en forenklet månedsbasert kostnadsmodell der beslutningslogikken kan etterprøves direkte mot modellinputen. Simuleringen dekker månedlig behov ved å velge billigste tilgjengelige havn i hver måned, gitt de etablerte parameterfilene for pris, behov og tilgjengelighet.
 
-Denne greedy-algoritmen (velg billigste tilgjengelige havn per måned) gir optimal løsning for modellversjon 1 fordi månedene er uavhengige i modellen. Det finnes ingen sekvensielle begrensninger som knytter én periodes beslutning til neste, ingen beholdningsoverføring mellom måneder og ingen kapasitetsbegrensning per havn. Kostnadsminimeringsproblemet dekomponerer derfor til et sett uavhengige delproblemer, ett per måned, der løsningen i hver periode er triviell: legg hele behovet til billigste havn med $f_{h,t} = 1$.
+Denne greedy-algoritmen (velg billigste tilgjengelige havn per måned) gir optimal løsning for modellen fordi månedene er uavhengige. Det finnes ingen sekvensielle begrensninger som knytter én periodes beslutning til neste, ingen beholdningsoverføring mellom måneder og ingen kapasitetsbegrensning per havn. Kostnadsminimeringsproblemet dekomponerer derfor til et sett uavhengige delproblemer, ett per måned, der løsningen i hver periode er triviell: legg hele behovet til billigste havn med $f_{h,t} = 1$.
 
 Pyomo-implementasjonen dokumenterer hvordan modellen kan løses som en lineær optimeringsmodell når solver og eventuelle mer detaljerte operasjonelle restriksjoner er avklart. For denne rapportversjonen brukes simuleringen likevel som det kontrollerbare testgrunnlaget, fordi voyage-data, kontraktsflagg og drivstofftypekoblinger ennå ikke er faglig validert som harde modellrestriksjoner.
 
@@ -517,22 +517,63 @@ Pyomo-implementasjonen dokumenterer hvordan modellen kan løses som en lineær o
 
 ## 7.0 Analyse
 
-Modelltesten ble gjennomført som en solver-uavhengig simulering av modellversjon 1. Testen bruker de samme grunnleggende parameterne som modellen: havn, måned, vektet gjennomsnittspris, samlet månedlig behov og tilgjengelighet. For hver måned velger simuleringen den billigste havnen som har prisgrunnlag i perioden, og legger hele det definerte månedlige behovet til denne havnen.
+Modelltesten ble gjennomført som en solver-uavhengig simulering av modellen. Testen bruker de samme grunnleggende parameterne som modellen: havn, måned, vektet gjennomsnittspris, samlet månedlig behov og tilgjengelighet. For hver måned velger simuleringen den billigste havnen som har prisgrunnlag i perioden, og legger hele det definerte månedlige behovet til denne havnen.
 
-Denne testformen er egnet for modellversjon 1 fordi modellen er aggregert og lineær, og fordi restriksjonssettet foreløpig ikke inneholder fartøyspesifikke kapasitets-, beholdnings- eller ruterestriksjoner. I en slik modell vil den kostnadsminimerende løsningen i praksis være å dekke behovet i billigste tilgjengelige havn per måned. Simuleringen tester derfor om datagrunnlaget, parameterfilene og beslutningslogikken henger sammen før modellen brukes videre i basiskjøring.
+Denne testformen er egnet fordi modellen er aggregert og lineær, og fordi restriksjonssettet foreløpig ikke inneholder fartøyspesifikke kapasitets-, beholdnings- eller ruterestriksjoner. I en slik modell vil den kostnadsminimerende løsningen i praksis være å dekke behovet i billigste tilgjengelige havn per måned. Simuleringen tester derfor om datagrunnlaget, parameterfilene og beslutningslogikken henger sammen før modellen brukes videre i basiskjøring.
 
 Testen ble kjørt med `simulate_model_v1_results.py` og ga 61 valgte månedsløsninger, som samsvarer med analyseperioden fra `2020-01` til `2025-01`. Resultatfilene er:
 
 - `006 analysis/02_modellutvikling/05_teste_modell/output/res_model_v1_summary.json`
 - `006 analysis/02_modellutvikling/05_teste_modell/output/res_model_v1_solution_by_port_month.csv`
 
-Oppsummeringsfilen viser en total beregnet modellkostnad på 76 358 151,85 for modellversjon 1. CSV-filen viser valgt volum, valgt pris og beregnet kostnad per måned og havn. Testen viser at modellen gir et komplett og reproduserbart resultat for alle måneder i analyseperioden.
+Oppsummeringsfilen viser en total beregnet modellkostnad på 473 953 291,65. CSV-filen viser valgt volum, valgt pris og beregnet kostnad per måned og havn. Testen viser at modellen gir et komplett og reproduserbart resultat for alle måneder i analyseperioden.
 
 Analytisk betyr dette at modellen kan brukes som et første beslutningsstøtteverktøy for å vurdere hvordan historiske prisforskjeller mellom havnene påvirker samlet drivstoffkostnad. Samtidig må resultatet tolkes innenfor modellens avgrensninger. Simuleringen tar ikke hensyn til fartøyenes faktiske ruter, beholdning om bord, minimumsbuffer, tankkapasitet eller kontraktsbindinger. De supplerende voyage-dataene brukes derfor som operasjonell støtte i vurderingen av modellens begrensninger, ikke som harde restriksjoner i denne modellen.
 
 ---
 
 ## 8.0 Resultat
+
+### 8.1 Basiskjøring for modellen
+
+Basiskjøringen bruker opprinnelig pris- og volumdata som primær modellinput. Modellen er kjørt som solver-uavhengig simulering der månedlig behov legges til billigste tilgjengelige havn i modellgrunnlaget.
+
+Basiskjøringen gir en beregnet modellkostnad på 473 953 291,65, sammenlignet med historisk kostnad i modellgrunnlaget på 498 813 531,26. Dette gir en estimert differanse mot historisk praksis på 24 860 239,60, tilsvarende 4,98 %. Resultatet skal tolkes som et kontrollert standardscenario for den aggregerte månedsmodellen, ikke som en ferdig operativ anbefaling på fartøynivå.
+
+| Mål | Verdi |
+| --- | --- |
+| Historisk kostnad | 498 813 531,26 |
+| Modellkostnad | 473 953 291,65 |
+| Estimert besparelse | 24 860 239,60 |
+| Besparelse i prosent | 4,98 % |
+
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 8.1 Basiskjøring sammenlignet med historisk praksis.</i></small></p>
+
+Fordelingen av valgte havner viser at modellen oftest legger månedlig behov til P003, mens P002 brukes i 14 måneder og de øvrige havnene bare i få perioder.
+
+<div align="center">
+  <img src="../006 analysis/03_analyse/02_sensitivitetsanalyse/figures/fig_result_baseline_selected_ports.png" alt="Antall måneder hver havn velges i basiskjøringen" width="80%">
+  <p align="center" style="font-size: 0.9em;"><small><i>Figur 8.1 Antall måneder hver havn velges i basiskjøringen.</i></small></p>
+</div>
+
+Resultatfilene ligger i `006 analysis/03_analyse/01_basiskjoring/output`, med en kort oppsummering i `006 analysis/03_analyse/01_basiskjoring/metadata/res_baseline_model_v1_summary.md`.
+
+### 8.2 Sensitivitetsanalyse for modellen
+
+Sensitivitetsanalysen bruker basiskjøringen som referanse og tester 19 scenarioer med endrede priser og/eller endret etterspørsel. Scenarioene omfatter felles prisendringer på alle havner, havnespesifikke prisendringer, samlet etterspørselsendring og to kombinerte stresscenarioer. Tilgjengelighet per havn og måned holdes fast, slik at scenarioene isolerer effekten av pris og volum.
+
+Basisscenarioet i sensitivitetsanalysen gir samme beregnede modellkostnad som basiskjøringen: 473 953 291,65. Når både pris og etterspørsel øker med 10 %, øker beregnet kostnad til 573 483 482,90, som er 99 530 191,25 høyere enn basis. Når både pris og etterspørsel reduseres med 10 %, faller beregnet kostnad til 383 902 166,24, som er 90 051 125,41 lavere enn basis.
+
+Havnespesifikke scenarioer viser at modellen er særlig følsom for prisendringer i P003 og P002. En prisreduksjon på 10 % i P003 reduserer beregnet kostnad med 42 900 536,07 mot basis, mens tilsvarende prisreduksjon i P002 reduserer beregnet kostnad med 30 826 133,17. Dette skyldes at modellen i flere måneder flytter valgt havn når relative prisforskjeller endres.
+
+Figur 8.2 viser de største utslagene i sensitivitetsanalysen samlet. Figuren viser både stresscenarioene og enkeltendringene som påvirker modellkostnaden mest.
+
+<div align="center">
+  <img src="../006 analysis/03_analyse/02_sensitivitetsanalyse/figures/fig_result_sensitivity_tornado.png" alt="Tornadodiagram over største utslag i sensitivitetsanalysen" width="80%">
+  <p align="center" style="font-size: 0.9em;"><small><i>Figur 8.2 Største kostnadsutslag i sensitivitetsanalysen målt mot basis.</i></small></p>
+</div>
+
+Resultatfilene ligger i `006 analysis/03_analyse/02_sensitivitetsanalyse/output`, med en kort oppsummering i `006 analysis/03_analyse/02_sensitivitetsanalyse/metadata/res_sensitivity_model_summary.md`.
 
 ---
 

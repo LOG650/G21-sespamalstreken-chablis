@@ -14,33 +14,54 @@ MODEL_INPUT_DIR = (
     ROOT / "006 analysis" / "02_modellutvikling" / "04_implementere_modell" / "input"
 )
 
-MONTHLY_CSV = (
-    ROOT
-    / "006 analysis"
-    / "01_datagrunnlag"
-    / "03_strukturering_av_datasett"
-    / "data"
-    / "tab_bunker_monthly_by_port.csv"
-)
+PRICE_CSV = MODEL_INPUT_DIR / "tab_model_v1_price_by_port_month.csv"
+DEMAND_CSV = MODEL_INPUT_DIR / "tab_model_v1_demand_by_month.csv"
+AVAILABILITY_CSV = MODEL_INPUT_DIR / "tab_model_v1_availability_by_port_month.csv"
 PARAMETERS_JSON = MODEL_INPUT_DIR / "data_model_v1_parameters.json"
 RESULT_CSV = ACTIVITY_DIR / "output" / "res_model_v1_solution_by_port_month.csv"
 RESULT_JSON = ACTIVITY_DIR / "output" / "res_model_v1_summary.json"
 
 
+def read_csv(path):
+    with path.open(encoding="utf-8", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def load_price_data():
+    """Load price parameter p[h,t]."""
+    prices = {}
+    for row in read_csv(PRICE_CSV):
+        prices[(row["delivery_month"], row["port"])] = float(row["price_value"])
+    return prices
+
+
+def load_demand_data():
+    """Load demand parameter D[t]."""
+    return {
+        row["delivery_month"]: float(row["demand_qty"])
+        for row in read_csv(DEMAND_CSV)
+    }
+
+
+def load_availability_data():
+    """Load availability parameter f[h,t]."""
+    availability = {}
+    for row in read_csv(AVAILABILITY_CSV):
+        availability[(row["delivery_month"], row["port"])] = int(row["available_flag"])
+    return availability
+
+
 def load_monthly_data():
-    """Load aggregated monthly data."""
+    """Load price and availability data grouped by month."""
+    prices = load_price_data()
+    availability = load_availability_data()
+    parameters = load_parameters()
     monthly = {}
-    with MONTHLY_CSV.open(encoding="utf-8", newline="") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            month = row["delivery_month"]
-            port = row["port"]
-            price = float(row["weighted_avg_price"])
-            
-            if month not in monthly:
-                monthly[month] = {}
-            monthly[month][port] = price
-    
+    for month in parameters["sets"]["months"]:
+        for port in parameters["sets"]["ports"]:
+            if availability.get((month, port), 0) != 1:
+                continue
+            monthly.setdefault(month, {})[port] = prices[(month, port)]
     return monthly
 
 
@@ -57,7 +78,7 @@ def calculate_optimal_solution(monthly_data, parameters):
     """
     ports = parameters["sets"]["ports"]
     months = parameters["sets"]["months"]
-    demands = parameters.get("demands", {})
+    demands = load_demand_data()
     
     solution = {}
     selected_prices = {}
@@ -77,13 +98,7 @@ def calculate_optimal_solution(monthly_data, parameters):
         cheapest_port = min(month_prices, key=month_prices.get)
         cheapest_price = month_prices[cheapest_port]
         
-        # Get demand (for simplicity, use total observed for that month across all ports)
-        if month in demands:
-            demand = demands[month]
-        else:
-            demand = sum(
-                float(v) for v in monthly_data.get(month, {}).values()
-            ) if month in monthly_data else 0
+        demand = demands.get(month, 0.0)
         
         if demand == 0:
             continue
@@ -127,6 +142,7 @@ def write_results(solution, selected_prices, total_cost, monthly_costs, months, 
     # Write JSON summary
     summary = {
         "model_version": "v1",
+        "validation_method": "solver-uavhengig simulering med behovsparameter fra tab_model_v1_demand_by_month.csv",
         "objective_total_cost": round(total_cost, 2),
         "months": months,
         "ports": ports,

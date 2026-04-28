@@ -22,17 +22,17 @@
       "eier": "Prosjektgruppen",
       "leveranse": "Optimaliseringsmodell for bunkring",
       "testtilfelle": "Modellen genererer løsning som minimerer totale drivstoffkostnader",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "MK-02",
       "type": "Målkrav",
-      "krav": "Modellen skal kunne anvendes på historiske data fra de 10 mest benyttede bunkringshavnene.",
+      "krav": "Modellen skal kunne anvendes på det historiske pris- og volumdatasettet som er tilgjengelig innen prosjektperioden. Modellen avgrenses til de fire havnene som finnes i renset og aggregert modellgrunnlag: P001, P002, P003 og P004.",
       "gantt_aktivitet": "Datainnsamling",
       "eier": "Datagrunnlag",
       "leveranse": "Datasett med historiske bunkringsdata",
       "testtilfelle": "Modellen kan kjøres på datasettet uten feil",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "MK-03",
@@ -52,17 +52,17 @@
       "eier": "Datagrunnlag",
       "leveranse": "Historisk datasett (3-5 år)",
       "testtilfelle": "Datasettet inneholder nødvendige tidsperioder",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "DK-02",
       "type": "Datakrav",
-      "krav": "Følgende datasett skal inngå: bunkerspris per havn og tidsperiode, volum bunkret per havn, frekvens for anløp og historiske prisvariasjoner.",
+      "krav": "Følgende datasett skal inngå i modellen: bunkerspris per havn og måned, volum bunkret per havn og måned, historiske prisvariasjoner og tilgjengelighetsindikator per havn og måned. Supplerende voyage-data brukes som operasjonell støtte, ikke som primær modellinput.",
       "gantt_aktivitet": "Strukturering av datasett",
       "eier": "Datagrunnlag",
       "leveranse": "Strukturert datasett",
       "testtilfelle": "Variabler samsvarer med krav i modellen",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "DK-03",
@@ -72,7 +72,7 @@
       "eier": "Datagrunnlag",
       "leveranse": "Renset datasett",
       "testtilfelle": "Kontroll av manglende verdier og inkonsistenser",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "DK-04",
@@ -82,7 +82,7 @@
       "eier": "Datagrunnlag",
       "leveranse": "Dokumentasjon av datakvalitet",
       "testtilfelle": "Manglende verdier eller usikkerhet er dokumentert",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "DK-05",
@@ -100,7 +100,7 @@
       "krav": "Supplerende 2025-data med anonymiserte fartøyklasser, forbruk, ROB, voyage-koder, tankkapasitet og kontraktskontekst skal dokumenteres og struktureres før de brukes som modellinput.",
       "gantt_aktivitet": "Strukturere tilleggsdata 2025",
       "eier": "Datagrunnlag",
-      "leveranse": "Strukturert tilleggsdatasett eller dokumentert beslutning om å holde tilleggsdata utenfor modellversjon 1",
+      "leveranse": "Strukturert tilleggsdatasett eller dokumentert beslutning om å holde tilleggsdata utenfor modellen",
       "testtilfelle": "Klasse, dato, voyage, havn, forbruk, ROB, tankkapasitet og kontraktsflagg er dokumentert i konsistent tabell",
       "teststatus": "Completed"
     },
@@ -142,7 +142,7 @@
       "eier": "Modellutvikling",
       "leveranse": "Beslutningsvariabler definert",
       "testtilfelle": "Variabler for havn, volum og tidspunkt finnes i modellen",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "MOD-02",
@@ -152,17 +152,17 @@
       "eier": "Modellutvikling",
       "leveranse": "Målfunksjon formulert",
       "testtilfelle": "Målfunksjon minimerer totale drivstoffkostnader",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "MOD-03",
       "type": "Modellkrav",
-      "krav": "Modellen skal inneholde relevante restriksjoner, inkludert etterspørsel/forbruk, lager-/tankkapasitet og anløpsfrekvens.",
+      "krav": "Modellen skal inneholde relevante restriksjoner som støttes direkte av datagrunnlaget, inkludert månedlig behov og tilgjengelighet per havn og måned. Lager-/tankkapasitet og fartøyspesifikk anløpsfrekvens dokumenteres som operative forhold for senere modellutvidelse, men brukes ikke som harde restriksjoner i modellen.",
       "gantt_aktivitet": "Definere restriksjoner",
       "eier": "Modellutvikling",
       "leveranse": "Restriksjoner implementert",
-      "testtilfelle": "Modell respekterer etterspørsel og kapasitet",
-      "teststatus": "Planned"
+      "testtilfelle": "Modell respekterer månedlig behov og havnetilgjengelighet, og kapasitetsbegrensningen er dokumentert som avgrensning for modellen",
+      "teststatus": "Completed"
     },
     {
       "id": "MOD-04",
@@ -172,7 +172,7 @@
       "eier": "Modellutvikling",
       "leveranse": "Modellforutsetninger dokumentert",
       "testtilfelle": "Alle antakelser er eksplisitt beskrevet",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "MOD-05",
@@ -182,17 +182,17 @@
       "eier": "Modellutvikling",
       "leveranse": "Implementert optimaliseringsmodell",
       "testtilfelle": "Modellen kan kjøres på datasettet og genererer en optimal bunkringsløsning",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "AK-01",
       "type": "Avgrensningskrav",
-      "krav": "Kun de 10 mest brukte havnene skal inkluderes i modellen.",
+      "krav": "Modellen skal avgrenses til havnene som finnes i det rensede og aggregerte modellgrunnlaget, fordi prosjektet ikke forventer å få nok supplerende data i tide til å etablere en robust modell for de 10 mest brukte havnene.",
       "gantt_aktivitet": "Strukturering av datasett",
       "eier": "Prosjektgruppen",
-      "leveranse": "Avgrenset havneliste",
-      "testtilfelle": "Kun 10 havner inkludert i modellinput",
-      "teststatus": "Planned"
+      "leveranse": "Avgrenset havneliste for modellen",
+      "testtilfelle": "Modellinput inneholder havnene P001, P002, P003 og P004",
+      "teststatus": "Completed"
     },
     {
       "id": "AK-02",
@@ -202,7 +202,7 @@
       "eier": "Prosjektgruppen",
       "leveranse": "Modellforutsetning",
       "testtilfelle": "Alle havner antas å ha tilstrekkelig drivstoff",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "AK-03",
@@ -212,7 +212,7 @@
       "eier": "Prosjektgruppen",
       "leveranse": "Modellavgrensning",
       "testtilfelle": "Kvalitetsforskjeller mellom havner ikke inkludert",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "AK-04",
@@ -222,7 +222,7 @@
       "eier": "Prosjektgruppen",
       "leveranse": "Avgrensning dokumentert",
       "testtilfelle": "Regulatoriske kostnader ikke modellert",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "AN-01",
@@ -232,7 +232,7 @@
       "eier": "Analyse",
       "leveranse": "Sensitivitetsanalyse",
       "testtilfelle": "Modell kjøres med endrede drivstoffpriser",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "AN-02",
@@ -302,7 +302,7 @@
       "eier": "Rapportering",
       "leveranse": "Matematisk modellformulering",
       "testtilfelle": "Modell presentert i metodekapittel",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "LEV-02",
@@ -312,7 +312,7 @@
       "eier": "Rapportering",
       "leveranse": "Variabel- og parameterbeskrivelse",
       "testtilfelle": "Variabler forklart i rapport",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "LEV-03",
@@ -322,7 +322,7 @@
       "eier": "Rapportering",
       "leveranse": "Dokumentasjon av datagrunnlag",
       "testtilfelle": "Datakilder beskrevet",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "LEV-04",
@@ -342,7 +342,7 @@
       "eier": "Rapportering",
       "leveranse": "Sensitivitetsanalyse",
       "testtilfelle": "Sensitivitetsresultater presentert",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "LEV-06",
@@ -362,7 +362,7 @@
       "eier": "Rapportering",
       "leveranse": "Dokumentert modellbeskrivelse",
       "testtilfelle": "Modellformulering og variabeldefinisjoner presentert i metodekapittel",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "KVAL-01",
@@ -382,7 +382,7 @@
       "eier": "Prosjektgruppen",
       "leveranse": "Dokumenterte antakelser",
       "testtilfelle": "Antakelser forklart i metode",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "KVAL-03",
