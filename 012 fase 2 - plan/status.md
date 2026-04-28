@@ -21,16 +21,16 @@ Denne filen er generert fra:
 
 | Felt | Status |
 | --- | --- |
-| Fase nå | Modellutvikling |
-| Aktivitet nå | `Teste modell` |
-| Planperiode nå | 2026-04-21 til 2026-04-28 |
+| Fase nå | Overgang fra modellutvikling til analyse |
+| Aktivitet nå | `Teste modell` er faglig lukket; `Basiskjøring` er neste aktivitet |
+| Planperiode nå | 2026-04-28 til 2026-05-01 |
 | Neste aktivitet | `Basiskjøring` |
 | Neste milepæl | `Modelltesting ferdig` 2026-04-28 |
-| Fullførte aktiviteter | 7 av 19 viste planaktiviteter i MPP, uten prosjektbuffer |
-| Aktiviteter pågår | 1 |
+| Fullførte aktiviteter | 8 av 19 viste planaktiviteter i MPP, uten prosjektbuffer |
+| Aktiviteter pågår | 0 |
 | Aktiviteter kommende | 9 |
 | Aktiviteter med statusavvik | 2 |
-| Fremdriftsvurdering | Prosjektet ligger i MPP-perioden for `Teste modell`. Ny MPP viser `Datasplit trening/test` som fullført aktivitet, men viser 0 % for `Definere restriksjoner` og `implementere modell` selv om repoet har artefakter for begge. Nye voyage-data er strukturert, pseudonymisert og kvalitetssjekket, men er fortsatt operasjonell støtte og ikke primær modellinput for modellversjon 1 |
+| Fremdriftsvurdering | `Teste modell` er faglig lukket med solver-uavhengig simulering som endelig valideringsgrunnlag for modellversjon 1. Ny MPP viser `Datasplit trening/test` som fullført aktivitet, men viser 0 % for `Definere restriksjoner` og `implementere modell` selv om repoet har artefakter for begge. Nye voyage-data er strukturert, pseudonymisert og kvalitetssjekket, men er fortsatt operasjonell støtte og ikke primær modellinput for modellversjon 1 |
 
 - Planunderlaget er dokumentert i både prosjektstyringsplanen og `MS_Project.mpp`.
 - Repoet inneholder rådata i `004 data`, renset pris-/volumdatasett i `006 analysis/01_datagrunnlag`, foreløpig strukturert og kvalitetssjekket voyage-data, samt modellinput og modellimplementasjon i `006 analysis/02_modellutvikling`.
@@ -48,9 +48,10 @@ Denne filen er generert fra:
 - [x] Opprinnelig pris-/volumdatagrunnlag er renset, strukturert og dokumentert for modellversjon 1
 - [x] Modellinput for versjon 1 er etablert
 - [x] Første modellimplementasjon finnes i `006 analysis/02_modellutvikling/04_implementere_modell`
-- [x] Simulert modelltest er kjørt og outputfiler finnes i `006 analysis/02_modellutvikling/05_teste_modell/output`
+- [x] Simulert modelltest er kjørt på nytt 2026-04-28 og outputfiler finnes i `006 analysis/02_modellutvikling/05_teste_modell/output`
 - [x] Testnotat er skrevet i `006 analysis/02_modellutvikling/05_teste_modell/README.md`
 - [x] Simulert resultat-CSV er korrigert slik at valgt pris og beregnet kostnad vises per måned og havn
+- [x] Endelig valideringsgrunnlag for modellversjon 1 er valgt: solver-uavhengig simulering
 - [x] Tilleggsdata fra 2025 er dokumentert med fartøyklasser, tankkapasitet, voyage-koder, ROB-felt og kontraktskontekst
 - [x] Tilleggsdata fra 2025 er foreløpig strukturert til hendelses-, etappe- og kapasitetstabeller
 - [x] Voyage-råfilene fra 2025 er splittet kronologisk 80/20 før videre rensing
@@ -58,22 +59,22 @@ Denne filen er generert fra:
 - [x] Voyage-data fra 2025 er kvalitetssjekket med egen avviksrapport
 - [x] Voyage-data brukes som kvantitativ operasjonell støtte i rapporten, ikke som direkte modellinput i modellversjon 1
 - [ ] Avklar om MPP-prosentene for `Definere restriksjoner` og `implementere modell` skal oppdateres til å speile repoarbeidet
-- [ ] Avklar om endelig testgrunnlag skal være Pyomo med faktisk solver eller solver-uavhengig simulering
+- [x] Avklar om endelig testgrunnlag skal være Pyomo med faktisk solver eller solver-uavhengig simulering
 
 ### For å lukke neste aktivitet
 
-Neste aktivitet som naturlig kan lukkes er `Teste modell`.
+Aktiviteten `Teste modell` kan lukkes faglig.
 
 For å markere `Teste modell` som fullført bør dere minst ha:
 - [x] en kort testbeskrivelse av hva som er kjørt
 - [x] en vurdering av om modellen oppfører seg konsistent med forventet logikk
 - [x] en eksplisitt henvisning til resultatfilene i `006 analysis/02_modellutvikling/05_teste_modell/output`
 - [x] en kort konklusjon om at modellen kan tas videre til `Basiskjøring`
-- [ ] en endelig beslutning om solver-kjøring eller simulering som valideringsgrunnlag
+- [x] en endelig beslutning om solver-kjøring eller simulering som valideringsgrunnlag
 
 ### Etterpå
 
-- Når `Teste modell` er lukket, kan `Basiskjøring` starte for modellversjon 1 med pris-/volumdatasettet som primær modellinput.
+- `Basiskjøring` kan starte for modellversjon 1 med pris-/volumdatasettet som primær modellinput.
 - Etter `Basiskjøring` følger `Sensitivitetsanalyse` og deretter `Resultattolkning`.
 
 [Til toppen](#innholdsfortegnelse)
@@ -82,14 +83,14 @@ For å markere `Teste modell` som fullført bør dere minst ha:
 
 ### Milepæler
 
-Neste kommende milepæl er **Modelltesting ferdig** den **2026-04-28**.
+Neste milepæl er **Modelltesting ferdig** den **2026-04-28**, og den er faglig oppnådd i repoet.
 
 | Milepæl | Dato | Status | Kommentar |
 | --- | --- | --- | --- |
 | Proposal godkjent | 2026-02-08 | Passert | Fullført tidligere i prosjektet |
 | Planleggingsfase ferdig | 2026-03-09 | Passert | Fullført tidligere i prosjektet |
 | Datagrunnlag ferdig | 2026-03-29 | Passert | Datagrunnlaget er dokumentert og brukt videre |
-| Modelltesting ferdig | 2026-04-28 | Kommende | Kan nås hvis `Teste modell` lukkes i tide |
+| Modelltesting ferdig | 2026-04-28 | Fullført i repo | Solver-uavhengig simulering er valgt som endelig valideringsgrunnlag for modellversjon 1 |
 | Innlevering | 2026-06-02 | Kommende | Styrende sluttdato fra `MS_Project.mpp` |
 
 ### Gantt-oversikt
@@ -114,7 +115,7 @@ Forklaring:
 | Modellutvikling | Formulere målfunksjon | 2026-04-02–2026-04-03 | Fullført | `██` |
 | Modellutvikling | Definere restriksjoner | 2026-04-04–2026-04-08 | Statusavvik | `!!` |
 | Modellutvikling | Implementere modell | 2026-04-09–2026-04-20 | Statusavvik | `!!` |
-| Modellutvikling | Teste modell | 2026-04-21–2026-04-28 | Pågår | `▓▓` |
+| Modellutvikling | Teste modell | 2026-04-21–2026-04-28 | Fullført i repo | `██` |
 | Analyse | Basiskjøring | 2026-04-29–2026-05-01 | Kommende | `··` |
 | Analyse | Sensitivitetsanalyse | 2026-05-02–2026-05-06 | Kommende | `··` |
 | Analyse | Resultattolkning | 2026-05-07–2026-05-11 | Kommende | `··` |
@@ -129,7 +130,7 @@ Forklaring:
 
 ```mermaid
 gantt
-    title Fremdrift per 2026-04-27
+    title Fremdrift per 2026-04-28
     dateFormat  YYYY-MM-DD
     axisFormat  %d.%m
 
@@ -145,7 +146,7 @@ gantt
     Formulere målfunksjon          :done, b2, 2026-04-02, 2026-04-03
     Definere restriksjoner         :crit, b3, 2026-04-04, 2026-04-08
     Implementere modell            :crit, b4, 2026-04-09, 2026-04-20
-    Teste modell                   :active, b5, 2026-04-21, 2026-04-28
+    Teste modell                   :done, b5, 2026-04-21, 2026-04-28
 
     section Analyse
     Basiskjøring                   :c1, 2026-04-29, 2026-05-01
@@ -166,7 +167,7 @@ gantt
 
 ## Aktivitetsstatus
 
-| Fase | Aktivitet | Start | Slutt | Status 2026-04-27 | Neste handling / grunnlag |
+| Fase | Aktivitet | Start | Slutt | Status 2026-04-28 | Neste handling / grunnlag |
 | --- | --- | --- | --- | --- | --- |
 | Datagrunnlag | Datasplit trening/test | 2026-01-23 | 2026-01-23 | Fullført | Ny MPP-aktivitet med 100 % fullført; repoet har train/test-filer i `004 data` |
 | Datagrunnlag | Datainnsamling | 2026-03-10 | 2026-03-17 | Fullført | Dokumentert i repo |
@@ -178,7 +179,7 @@ gantt
 | Modellutvikling | Formulere målfunksjon | 2026-04-02 | 2026-04-03 | Fullført | Dokumentert i `005 report/rapport.md` og reflektert i modellskriptene |
 | Modellutvikling | Definere restriksjoner | 2026-04-04 | 2026-04-08 | Statusavvik | MPP viser 0 %, men restriksjonsstruktur er dokumentert i `rapport.md` og reflektert i `run_model_v1_pyomo.py` |
 | Modellutvikling | Implementere modell | 2026-04-09 | 2026-04-20 | Statusavvik | MPP viser 0 %, men modellinput, Pyomo-implementasjon og aktivitetsstruktur er etablert i `006 analysis/02_modellutvikling/04_implementere_modell` |
-| Modellutvikling | Teste modell | 2026-04-21 | 2026-04-28 | Pågår | MPP viser 0 %; testnotat og simulert output foreligger, men solvergrunnlag må avklares før aktiviteten lukkes |
+| Modellutvikling | Teste modell | 2026-04-21 | 2026-04-28 | Fullført i repo | Solver-uavhengig simulering er valgt som endelig valideringsgrunnlag; testnotat og outputfiler foreligger |
 | Analyse | Basiskjøring | 2026-04-29 | 2026-05-01 | Kommende | Starter når `Teste modell` er lukket |
 | Analyse | Sensitivitetsanalyse | 2026-05-02 | 2026-05-06 | Kommende | Avhenger av `Basiskjøring` |
 | Analyse | Resultattolkning | 2026-05-07 | 2026-05-11 | Kommende | Avhenger av `Sensitivitetsanalyse` |
@@ -242,7 +243,7 @@ Status: **Fullført**
 
 ### Teste modell
 
-Status: **Pågår**
+Status: **Fullført i repo**
 
 #### Ferdig så langt
 
@@ -253,6 +254,8 @@ Status: **Pågår**
 - [x] Simulert modellsammendrag er generert i `res_model_v1_summary.json`
 - [x] Testnotat er skrevet i `006 analysis/02_modellutvikling/05_teste_modell/README.md`
 - [x] `res_model_v1_solution_by_port_month.csv` viser nå valgt pris og beregnet kostnad for valgte havner
+- [x] Testen er kjørt på nytt 2026-04-28 med 61 månedsløsninger og total beregnet kostnad 76 358 151,85
+- [x] Solver-uavhengig simulering er valgt som endelig valideringsgrunnlag for modellversjon 1
 
 #### Må gjøres før aktiviteten kan lukkes
 
@@ -261,7 +264,7 @@ Status: **Pågår**
 - [x] Vurder om modellen oppfører seg konsistent med forventet logikk
 - [x] Henvis eksplisitt til resultatfilene i `006 analysis/02_modellutvikling/05_teste_modell/output`
 - [x] Konkluder kort med om modellen kan tas videre til `Basiskjøring`
-- [ ] Avklar om endelig validering skal bygge på Pyomo med faktisk solver eller på solver-uavhengig simulering
+- [x] Avklar om endelig validering skal bygge på Pyomo med faktisk solver eller på solver-uavhengig simulering
 
 ### Datasplit trening/test
 
@@ -459,10 +462,15 @@ Tekstplanen nevner endelig innlevering **2026-05-31**, mens `MS_Project.mpp` vis
 - Voyage-dataene er kvalitetssjekket med `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/src/validate_voyage_data_quality_2025.py`.
 - Kvalitetssjekken kontrollerte 3893 rapporteringsrader og 486 voyage-etapper, og fant 43 avvik: 3 tilfeller med manglende ROB og 40 rapporteringsrader med nullforbruk.
 - Kvalitetssjekken er dokumentert i `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/metadata/tab_voyage_data_quality_2025.md`.
+- Modellversjon 1 er testet på nytt med `006 analysis/02_modellutvikling/05_teste_modell/src/simulate_model_v1_results.py`.
+- Prosjektgruppen har valgt solver-uavhengig simulering som endelig valideringsgrunnlag for modellversjon 1, fordi modellen er en aggregert månedsmodell der beslutningslogikken kan etterprøves direkte mot modellinputen.
+- Testen ga 61 månedsløsninger og total beregnet kostnad 76 358 151,85. Resultatene ligger i `006 analysis/02_modellutvikling/05_teste_modell/output`.
+- `Teste modell` kan lukkes faglig i repoet, og `Basiskjøring` er neste aktivitet.
 
 #### Anbefalt neste steg
 
 - Bruk opprinnelig pris-/volumdata videre som primærkilde for modellversjon 1.
+- Start `Basiskjøring` med solver-uavhengig simulering som kontrollert grunnlag for modellversjon 1.
 - Bruk voyage-data som kvantitativ operasjonell støtte i rapporten for forbruk, ROB, tankkapasitet og havnetilgjengelighet.
 - Dersom voyage-data senere skal brukes direkte i modell, må kontraktsflagg og drivstofftypekobling valideres før de brukes som harde restriksjoner.
 

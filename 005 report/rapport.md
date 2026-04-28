@@ -337,7 +337,7 @@ Tabell 5.2 dokumenterer rensevalg og datakvalitet i materialet.
 
 For analyse- og modelleringsformål er dataene strukturert i to filer. `006 analysis/01_datagrunnlag/02_datavask/output/tab_bunker_cleaned.csv` inneholder rensede transaksjoner på detaljnivå, mens `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_bunker_monthly_by_port.csv` inneholder månedlig aggregat per havn. Aggregatet består av 229 havn-måned-kombinasjoner fordelt over 61 måneder. For hver kombinasjon beregnes blant annet `transaction_count`, `total_qty`, `weighted_avg_price`, `simple_avg_price`, `min_price`, `max_price`, `unique_vessels` og `unique_suppliers`.
 
-For å skille mellom data brukt til utvikling og data brukt til senere vurdering, er rådatasettet også splittet i en treningsdel og en testdel. Splittingen er gjort kronologisk etter `Delivery Date`, slik at de tidligste 80 % av observasjonene brukes til trening og de siste 20 % brukes til testing. Dette gir en treningsfil med 1111 observasjoner fra 2020-01-04 til 2023-12-15 og en testfil med 278 observasjoner fra 2023-12-17 til 2025-01-30. Filene er lagret som `004 data/Bunker Lifting List(Worksheet1) (1)_train_80.csv` og `004 data/Bunker Lifting List(Worksheet1) (1)_test_20.csv`.
+For å skille mellom data brukt til utvikling og data brukt til senere vurdering, er rådatasettet også splittet i en treningsdel og en testdel. Splittingen er gjort kronologisk etter `Delivery Date`, slik at de tidligste 80 % av observasjonene brukes til trening og de siste 20 % brukes til testing. Splitten er gjort på rådatasettet før videre rensing, og gir en treningsfil med 1119 observasjoner og en testfil med 286 observasjoner. Filene er lagret som `004 data/Bunker Lifting List(Worksheet1) (1)_train_80.csv` og `004 data/Bunker Lifting List(Worksheet1) (1)_test_20.csv`. I modellarbeidet brukes de rensede og aggregerte dataene videre, mens splitten dokumenterer et kronologisk skille mellom utviklingsgrunnlag og senere kontrollgrunnlag.
 
 De supplerende voyage-råfilene fra 2025 er også splittet kronologisk 80/20 før videre rensing. For disse filene er splitten gjort separat per råfil etter kombinert `Date_UTC` og `Time_UTC`, med originalfilene beholdt urørt og nye filer lagret med suffiksene `_train_80.csv` og `_test_20.csv`.
 
@@ -497,9 +497,28 @@ For å gjøre modellstrukturen operasjonell er modellinput opprettet i `006 anal
 
 Det er også laget en kjørbar modellfil i `006 analysis/02_modellutvikling/04_implementere_modell/src/run_model_v1_pyomo.py`, som leser disse modellfilene direkte når `pyomo` og en solver er tilgjengelig.
 
+### 6.9 Valideringsgrunnlag
+
+Endelig validering av modellversjon 1 bygger på en solver-uavhengig simulering i `006 analysis/02_modellutvikling/05_teste_modell/src/simulate_model_v1_results.py`. Dette er valgt fordi modellen i denne versjonen er en forenklet månedsbasert kostnadsmodell der beslutningslogikken kan etterprøves direkte mot modellinputen. Simuleringen dekker månedlig behov ved å velge billigste tilgjengelige havn i hver måned, gitt de etablerte parameterfilene for pris, behov og tilgjengelighet.
+
+Pyomo-implementasjonen dokumenterer hvordan modellen kan løses som en lineær optimeringsmodell når solver og eventuelle mer detaljerte operasjonelle restriksjoner er avklart. For denne rapportversjonen brukes simuleringen likevel som det kontrollerbare testgrunnlaget, fordi voyage-data, kontraktsflagg og drivstofftypekoblinger ennå ikke er faglig validert som harde modellrestriksjoner.
+
 ---
 
 ## 7.0 Analyse
+
+Modelltesten ble gjennomført som en solver-uavhengig simulering av modellversjon 1. Testen bruker de samme grunnleggende parameterne som modellen: havn, måned, vektet gjennomsnittspris, samlet månedlig behov og tilgjengelighet. For hver måned velger simuleringen den billigste havnen som har prisgrunnlag i perioden, og legger hele det definerte månedlige behovet til denne havnen.
+
+Denne testformen er egnet for modellversjon 1 fordi modellen er aggregert og lineær, og fordi restriksjonssettet foreløpig ikke inneholder fartøyspesifikke kapasitets-, beholdnings- eller ruterestriksjoner. I en slik modell vil den kostnadsminimerende løsningen i praksis være å dekke behovet i billigste tilgjengelige havn per måned. Simuleringen tester derfor om datagrunnlaget, parameterfilene og beslutningslogikken henger sammen før modellen brukes videre i basiskjøring.
+
+Testen ble kjørt med `simulate_model_v1_results.py` og ga 61 valgte månedsløsninger, som samsvarer med analyseperioden fra `2020-01` til `2025-01`. Resultatfilene er:
+
+- `006 analysis/02_modellutvikling/05_teste_modell/output/res_model_v1_summary.json`
+- `006 analysis/02_modellutvikling/05_teste_modell/output/res_model_v1_solution_by_port_month.csv`
+
+Oppsummeringsfilen viser en total beregnet modellkostnad på 76 358 151,85 for modellversjon 1. CSV-filen viser valgt volum, valgt pris og beregnet kostnad per måned og havn. Testen viser at modellen gir et komplett og reproduserbart resultat for alle måneder i analyseperioden.
+
+Analytisk betyr dette at modellen kan brukes som et første beslutningsstøtteverktøy for å vurdere hvordan historiske prisforskjeller mellom havnene påvirker samlet drivstoffkostnad. Samtidig må resultatet tolkes innenfor modellens avgrensninger. Simuleringen tar ikke hensyn til fartøyenes faktiske ruter, beholdning om bord, minimumsbuffer, tankkapasitet eller kontraktsbindinger. De supplerende voyage-dataene brukes derfor som operasjonell støtte i vurderingen av modellens begrensninger, ikke som harde restriksjoner i denne modellen.
 
 ---
 

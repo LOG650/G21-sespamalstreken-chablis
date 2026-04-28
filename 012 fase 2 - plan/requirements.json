@@ -261,8 +261,8 @@
       "gantt_aktivitet": "Teste modell",
       "eier": "Analyse",
       "leveranse": "Modelltest på historiske data",
-      "testtilfelle": "Modellen kjøres på tidligere perioder",
-      "teststatus": "Planned"
+      "testtilfelle": "Modellen kjøres med solver-uavhengig simulering på historiske perioder",
+      "teststatus": "Completed"
     },
     {
       "id": "VAL-02",
@@ -391,8 +391,8 @@
       "gantt_aktivitet": "Teste modell",
       "eier": "Prosjektgruppen",
       "leveranse": "Reproduserbar modell",
-      "testtilfelle": "Modell kan kjøres på nytt datasett",
-      "teststatus": "Planned"
+      "testtilfelle": "Modellsimuleringen kan kjøres på nytt og genererer resultatfiler",
+      "teststatus": "Completed"
     },
     {
       "id": "KVAL-04",
