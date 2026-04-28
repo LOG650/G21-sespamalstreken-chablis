@@ -399,7 +399,7 @@ Det finnes samtidig ingen separat datakvalitetsrapport eller annen direkte dokum
 
 ## 6.0 Modellering
 
-Prosjektets modell formuleres som en kvantitativ lineær kostnadsminimeringsmodell. Målet er å minimere totale bunkringskostnader over analyseperioden gitt historiske prisforskjeller mellom havnene og et definert drivstoffbehov per periode. Selv om prosjektgruppen har mottatt supplerende voyage-data, er modellen bevisst avgrenset til pris- og volumdatasettet fordi dette er datagrunnlaget som direkte kobler havn, mengde og pris.
+Prosjektets modell formuleres som en kvantitativ lineær kostnadsminimeringsmodell, i tråd med det teoretiske rammeverket for lineær programmering og modellforenkling beskrevet i kapittel 3. Målet er å minimere totale bunkringskostnader over analyseperioden gitt historiske prisforskjeller mellom havnene og et definert drivstoffbehov per periode. Selv om prosjektgruppen har mottatt supplerende voyage-data, er modellen bevisst avgrenset til pris- og volumdatasettet fordi dette er datagrunnlaget som direkte kobler havn, mengde og pris.
 
 ### 6.1 Modellens datagrunnlag og beslutningsnivå
 
@@ -419,10 +419,12 @@ La:
 Følgende parametere kan etableres direkte fra pris- og volumdatasettet:
 
 - $p_{h,t}$ = historisk pris i havn $h$ i periode $t$
-- $D_t$ = samlet drivstoffbehov i periode $t$
-- $f_{h,t}$ = 1 dersom havn $h$ er tilgjengelig i periode $t$, ellers 0
+- $D_t$ = samlet observert bunkret volum i periode $t$, brukt som proxy for drivstoffbehov
+- $f_{h,t}$ = 1 dersom havn $h$ har minst én observert transaksjon i periode $t$, ellers 0 (observerthetsproxy for tilgjengelighet)
 
-Prisparameteren $p_{h,t}$ hentes fra `weighted_avg_price` i det månedlige aggregatet. Behovsparameteren $D_t$ settes lik samlet observert bunkret volum i måned $t$ på tvers av de fire havnene. Dette er en forenkling, men det gir modellen et definert behov per periode som kan brukes til å analysere en kostnadsminimerende fordeling. Tilgjengelighetsparameteren $f_{h,t}$ settes til 1 dersom havnen har en observert transaksjon i perioden, og 0 ellers.
+Prisparameteren $p_{h,t}$ hentes fra `weighted_avg_price` i det månedlige aggregatet. For havner som mangler observasjon i en gitt måned, brukes havnens vektede gjennomsnittspris over hele analyseperioden som fallback-verdi. Dette sikrer at prismatrisen er komplett og at modellen kan evaluere alle havner i alle perioder, men innebærer at prisgrunnlaget for slike perioder er mindre presist. Fallback-prisene er P001: 578,75, P002: 610,29, P003: 540,84 og P004: 577,04.
+
+Behovsparameteren $D_t$ settes lik samlet observert bunkret volum i måned $t$ på tvers av de fire havnene. Det faktiske behovet i en gitt måned er ikke direkte observert, og det historiske volumet brukes derfor som en proxy. Denne tilnærmingen innebærer en antakelse om at det observerte volumet reflekterer det reelle behovet tilstrekkelig godt, noe som er en forenkling. Tilgjengelighetsparameteren $f_{h,t}$ settes til 1 dersom havnen har minst én observert transaksjon i perioden, og 0 ellers. Verdien $f_{h,t} = 0$ betyr altså at havnen ikke er observert i datasettet i den aktuelle perioden, ikke nødvendigvis at havnen var fysisk utilgjengelig for bunkring.
 
 Beslutningsvariabelen defineres som:
 
@@ -452,7 +454,7 @@ Denne restriksjonen sikrer at samlet bunkret volum i hver måned er tilstrekkeli
 
 $x_{h,t} \leq M \cdot f_{h,t} \quad \forall h \in H, t \in T$
 
-der $M$ er en stor konstant. Restriksjonen gjør at modellen bare kan velge bunkring i havner og perioder der vi faktisk har prisgrunnlag eller har definert havnen som tilgjengelig.
+der $M = 1\,000\,000$ er en stor konstant som er vesentlig større enn maksimalt observert månedlig volum i datasettet (ca. 22 000 tonn). Restriksjonen gjør at modellen bare kan velge bunkring i havner og perioder der vi faktisk har prisgrunnlag eller har definert havnen som tilgjengelig.
 
 **Ikke-negativitet**
 
@@ -482,9 +484,15 @@ I denne oppgaven betyr ikke datasplitt at modellen trenes maskinelt i statistisk
 
 ### 6.7 Faglig vurdering av modellen
 
-Modellen er bevisst forenklet. Den arbeider på aggregert nivå, skiller ikke mellom fartøy, modellerer ikke beholdning om bord og bruker månedlig observert bunkringsmengde som proxy for behov. Tilgjengelighet er dessuten definert ut fra observerte data, ikke fra faktisk operativ havnetilgang.
+Modellen er bevisst forenklet. De viktigste forenklingene er:
 
-Likevel er modellen metodisk forsvarlig som analysemodell i prosjektet. Den er kvantitativ, transparent og direkte koblet til det datagrunnlaget som allerede er renset og strukturert. Den kan implementeres direkte med etablert modellinput, den er lineær og enkel å løse i Pyomo, og den gir et tydelig svar på hvordan prisforskjeller mellom havnene påvirker totale bunkringskostnader. Den presenteres derfor som et beslutningsstøtteverktøy, samtidig som voyage-dataene brukes som kvantitativ støtte for å vise hvilke operative forhold en senere fartøybasert modell bør inkludere.
+- **Aggregert nivå**: Modellen skiller ikke mellom fartøy, men behandler flåten som én samlet enhet per måned.
+- **Ingen beholdningsmodellering**: Drivstoffbeholdning om bord modelleres ikke, og det finnes ingen overføring av volum mellom perioder.
+- **Proxy for behov**: Månedlig observert bunkringsmengde brukes som proxy for det reelle drivstoffbehovet, fordi faktisk behov ikke er direkte observert i datasettet.
+- **Observerthetsbasert tilgjengelighet**: Tilgjengelighetsparameteren $f_{h,t}$ reflekterer om havnen har observerte transaksjoner i perioden, ikke om havnen faktisk var operativt tilgjengelig.
+- **Fallback-priser for P002**: Havn P002 har færrest observasjoner i datasettet. I perioder uten observasjon brukes havnens vektede gjennomsnittspris som fallback. Denne mekanismen gjør at P002 alltid har en prisverdi i modellen, men prisen i slike perioder er mindre presis enn i perioder med faktisk observasjon. Dette kan påvirke modellresultatene, særlig i perioder der P002 ellers ville vært blant de billigste alternativene.
+
+Likevel er modellen metodisk forsvarlig som analysemodell i prosjektet. Den er kvantitativ, transparent og direkte koblet til det datagrunnlaget som allerede er renset og strukturert. Den kan implementeres direkte med etablert modellinput, den er lineær og enkel å løse, og den gir et tydelig svar på hvordan prisforskjeller mellom havnene påvirker totale bunkringskostnader. Den presenteres derfor som et beslutningsstøtteverktøy, samtidig som voyage-dataene brukes som kvantitativ støtte for å vise hvilke operative forhold en senere fartøybasert modell bør inkludere.
 
 ### 6.8 Kobling til modellfiler
 
@@ -500,6 +508,8 @@ Det er også laget en kjørbar modellfil i `006 analysis/02_modellutvikling/04_i
 ### 6.9 Valideringsgrunnlag
 
 Endelig validering av modellversjon 1 bygger på en solver-uavhengig simulering i `006 analysis/02_modellutvikling/05_teste_modell/src/simulate_model_v1_results.py`. Dette er valgt fordi modellen i denne versjonen er en forenklet månedsbasert kostnadsmodell der beslutningslogikken kan etterprøves direkte mot modellinputen. Simuleringen dekker månedlig behov ved å velge billigste tilgjengelige havn i hver måned, gitt de etablerte parameterfilene for pris, behov og tilgjengelighet.
+
+Denne greedy-algoritmen (velg billigste tilgjengelige havn per måned) gir optimal løsning for modellversjon 1 fordi månedene er uavhengige i modellen. Det finnes ingen sekvensielle begrensninger som knytter én periodes beslutning til neste, ingen beholdningsoverføring mellom måneder og ingen kapasitetsbegrensning per havn. Kostnadsminimeringsproblemet dekomponerer derfor til et sett uavhengige delproblemer, ett per måned, der løsningen i hver periode er triviell: legg hele behovet til billigste havn med $f_{h,t} = 1$.
 
 Pyomo-implementasjonen dokumenterer hvordan modellen kan løses som en lineær optimeringsmodell når solver og eventuelle mer detaljerte operasjonelle restriksjoner er avklart. For denne rapportversjonen brukes simuleringen likevel som det kontrollerbare testgrunnlaget, fordi voyage-data, kontraktsflagg og drivstofftypekoblinger ennå ikke er faglig validert som harde modellrestriksjoner.
 
