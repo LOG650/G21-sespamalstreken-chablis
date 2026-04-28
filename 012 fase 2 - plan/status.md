@@ -1,6 +1,6 @@
 # Status - Minimering av drivstoffkostnader hos Odfjell Tankers
 
-_Sist oppdatert: 2026-04-28_
+_Sist oppdatert: 2026-04-28 22:45_
 
 Denne filen er generert fra:
 - `012 fase 2 - plan/Prosjektstyringsplan, Odfjell Tankers.md`
@@ -431,7 +431,7 @@ Tekstplanen nevner endelig innlevering **2026-05-31**, mens `MS_Project.mpp` vis
 
 #### Anbefalt oppdatering i MS Project
 
-- `Teste modell` er lukket i b?de MPP og repo med solver-uavhengig simulering som valideringsgrunnlag.
+- `Teste modell` er lukket i både MPP og repo med solver-uavhengig simulering som valideringsgrunnlag.
 - Ikke legg `Datasplitt trening/test` inn i MPP med mindre gruppen ønsker å re-baseline planen; steget er allerede dokumentert som støtteaktivitet i repoet.
 
 ### Manuell merknad 2026-04-27, etter ny MPP-endring
@@ -445,7 +445,7 @@ Tekstplanen nevner endelig innlevering **2026-05-31**, mens `MS_Project.mpp` vis
 #### Anbefalt oppfølging i MS Project
 
 - `Definere restriksjoner` og `implementere modell` er avklart og satt til fullført i MPP.
-- `Teste modell` er lukket i b?de MPP og repo med solver-uavhengig simulering som valideringsgrunnlag.
+- `Teste modell` er lukket i både MPP og repo med solver-uavhengig simulering som valideringsgrunnlag.
 - Vurder om `Datasplit trening/test` bør ha en logisk avhengighet til `Strukturering av datasett`; i MPP ligger aktiviteten nå uten predecessor og med start 2026-01-23.
 
 ### Manuell merknad 2026-04-28
@@ -485,5 +485,22 @@ Tekstplanen nevner endelig innlevering **2026-05-31**, mens `MS_Project.mpp` vis
 - Start `Resultattolkning` med basiskjøringen og sensitivitetsanalysen som kontrollert resultatgrunnlag.
 - Bruk voyage-data som kvantitativ operasjonell støtte i rapporten for forbruk, ROB, tankkapasitet og havnetilgjengelighet.
 - Dersom voyage-data senere skal brukes direkte i modell, må kontraktsflagg og drivstofftypekobling valideres før de brukes som harde restriksjoner.
+
+### Kveldsstatus 2026-04-28 22:45
+
+#### Ferdigstilt før kvelden
+
+- `Teste modell`, `Basiskjøring` og `Sensitivitetsanalyse` er gjennomført og dokumentert i repoet.
+- Solver-uavhengig simulering er valgt som endelig valideringsgrunnlag for modellversjon 1.
+- Voyage-data fra 2025 er strukturert, pseudonymisert, splittet kronologisk 80/20 og kvalitetssjekket.
+- Rapporten har fått oppdatert støtteinnhold fra datagrunnlag, basiskjøring og sensitivitetsanalyse.
+- Statusfilen peker nå på `Resultattolkning` som neste faglige aktivitet.
+
+#### Åpne punkter til neste arbeidsøkt
+
+- Start `Resultattolkning` med en kort tolkning av basiskjøringen mot historisk kostnad.
+- Forklar sensitivitetsresultatene nøkternt, særlig forskjellen mellom basisscenarioet og stresscenarioene.
+- Hold voyage-dataene som operasjonell støtte i rapporten, ikke som modellrestriksjoner.
+- Kontroller at rapportkapittel 7 og 8 skiller tydelig mellom analyse, resultat og diskusjon før teksten bygges videre.
 
 [Til toppen](#innholdsfortegnelse)
