@@ -1,6 +1,6 @@
 # 01 Basiskjøring
 
-Denne aktiviteten inneholder standardkjøring av modellversjon 1 med pris-/volumdatasettet som primær modellinput.
+Denne aktiviteten inneholder standardkjøring av modellen med pris-/volumdatasettet som primær modellinput.
 
 Basiskjøringen bruker solver-uavhengig simulering: månedlig behov legges til billigste tilgjengelige havn i modellgrunnlaget. Dette er samme beslutningslogikk som ble validert i `006 analysis/02_modellutvikling/05_teste_modell`, men resultatene lagres her som analysegrunnlag.
 

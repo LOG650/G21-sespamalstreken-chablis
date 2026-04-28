@@ -198,7 +198,7 @@ def write_csv(path: Path, rows: list[dict[str, object]]) -> None:
 def write_summary_md(summary: dict[str, object]) -> None:
     selected = summary["selected_months_by_port"]
     lines = [
-        "# Basiskjøring for modellversjon 1",
+        "# Basiskjøring for modellen",
         "",
         "Basiskjøringen bruker samme solver-uavhengige beslutningslogikk som modelltesten: for hver måned legges observert månedlig behov til billigste tilgjengelige havn i modellgrunnlaget.",
         "",
@@ -230,7 +230,7 @@ def write_summary_md(summary: dict[str, object]) -> None:
             "",
             "## Tolkning",
             "",
-            "Basiskjøringen er et kontrollert standardscenario for modellversjon 1. Resultatene skal brukes videre som sammenligningsgrunnlag i sensitivitetsanalysen og senere resultattolkning.",
+            "Basiskjøringen er et kontrollert standardscenario for modellen. Resultatene skal brukes videre som sammenligningsgrunnlag i sensitivitetsanalysen og senere resultattolkning.",
         ]
     )
     BASELINE_SUMMARY_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")

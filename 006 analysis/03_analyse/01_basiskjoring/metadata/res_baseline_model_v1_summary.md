@@ -1,4 +1,4 @@
-# Basiskjøring for modellversjon 1
+# Basiskjøring for modellen
 
 Basiskjøringen bruker samme solver-uavhengige beslutningslogikk som modelltesten: for hver måned legges observert månedlig behov til billigste tilgjengelige havn i modellgrunnlaget.
 
@@ -28,4 +28,4 @@ Basiskjøringen bruker samme solver-uavhengige beslutningslogikk som modellteste
 
 ## Tolkning
 
-Basiskjøringen er et kontrollert standardscenario for modellversjon 1. Resultatene skal brukes videre som sammenligningsgrunnlag i sensitivitetsanalysen og senere resultattolkning.
+Basiskjøringen er et kontrollert standardscenario for modellen. Resultatene skal brukes videre som sammenligningsgrunnlag i sensitivitetsanalysen og senere resultattolkning.
