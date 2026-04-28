@@ -1,6 +1,6 @@
 # Status - Minimering av drivstoffkostnader hos Odfjell Tankers
 
-_Sist oppdatert: 2026-04-27_
+_Sist oppdatert: 2026-04-28_
 
 Denne filen er generert fra:
 - `012 fase 2 - plan/Prosjektstyringsplan, Odfjell Tankers.md`
@@ -35,6 +35,7 @@ Denne filen er generert fra:
 - Planunderlaget er dokumentert i både prosjektstyringsplanen og `MS_Project.mpp`.
 - Repoet inneholder rådata i `004 data`, renset og strukturert datasett i `006 analysis/01_datagrunnlag`, samt modellinput og modellimplementasjon i `006 analysis/02_modellutvikling`.
 - Deskriptive figurer og tabeller er nå dokumentert i `006 analysis/01_datagrunnlag/04_deskriptiv_analyse` og brukt i `005 report/rapport.md`.
+- Supplerende 2025-data for åtte anonymiserte fartøyfiler er mottatt i `004 data` og dokumentert i `006 analysis/01_datagrunnlag/01_datainnsamling/tilleggsdata_2025.md`.
 - `Datasplit trening/test` ligger nå som egen fullført aktivitet i `MS_Project.mpp` med dato 2026-01-23.
 - `Definere restriksjoner` og `implementere modell` er markert som statusavvik fordi MPP viser 0 % fullført, mens repoet inneholder dokumentasjon og modellartefakter.
 
@@ -50,6 +51,9 @@ Denne filen er generert fra:
 - [x] Simulert modelltest er kjørt og outputfiler finnes i `006 analysis/02_modellutvikling/05_teste_modell/output`
 - [x] Testnotat er skrevet i `006 analysis/02_modellutvikling/05_teste_modell/README.md`
 - [x] Simulert resultat-CSV er korrigert slik at valgt pris og beregnet kostnad vises per måned og havn
+- [x] Tilleggsdata fra 2025 er dokumentert med fartøyklasser, tankkapasitet, voyage-koder, ROB-felt og kontraktskontekst
+- [x] Tilleggsdata fra 2025 er strukturert til modellklare hendelses-, etappe- og kapasitetstabeller
+- [x] Voyage-råfilene fra 2025 er splittet kronologisk 80/20 før videre rensing
 - [ ] Avklar om MPP-prosentene for `Definere restriksjoner` og `implementere modell` skal oppdateres til å speile repoarbeidet
 - [ ] Avklar om endelig testgrunnlag skal være Pyomo med faktisk solver eller solver-uavhengig simulering
 
@@ -280,7 +284,8 @@ Status: **Fullført**
 - Siste datafil: `004 data/Bunker Lifting List(Worksheet1) (1).csv` sist endret 2026-03-31 15:32
 - Siste analysefil: `006 analysis/01_datagrunnlag/04_deskriptiv_analyse/figures/fig_bunker_weighted_price_by_port_month.png` sist endret 2026-04-24 09:58
 - Siste modellfil: `006 analysis/02_modellutvikling/05_teste_modell/output/res_model_v1_solution_by_port_month.csv` sist endret 2026-04-27 20:39
-- Siste rapportfil: `005 report/rapport.md` sist endret 2026-04-24 10:15
+- Siste tilleggsdokumentasjon: `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/metadata/tab_voyage_structure_guide.md`
+- Siste rapportfil: `005 report/rapport.md`
 
 ### Siste git-aktivitet
 
@@ -408,5 +413,25 @@ Tekstplanen nevner endelig innlevering **2026-05-31**, mens `MS_Project.mpp` vis
 - Avklar om `Definere restriksjoner` og `implementere modell` skal settes til fullført i MPP, siden repoet har ferdige artefakter for begge.
 - Behold `Teste modell` som under arbeid eller 0 % til endelig valideringsgrunnlag er valgt.
 - Vurder om `Datasplit trening/test` bør ha en logisk avhengighet til `Strukturering av datasett`; i MPP ligger aktiviteten nå uten predecessor og med start 2026-01-23.
+
+### Manuell merknad 2026-04-28
+
+- Det er mottatt åtte supplerende anonymiserte fartøyfiler for 2025: `C001 - 1.csv`, `C001 - 2.csv`, `C002 - 1.csv`, `C003 - 1.csv`, `C004 - 1.csv`, `C004 - 2.csv`, `C004 - 3.csv` og `C005 - 1.csv`.
+- Filene inneholder samlet 3893 rapporteringsrader fra 2025-01-01 til 2025-12-30, med blant annet forbruk, `ROB_Fuel_Total`, voyage fra/til og voyage-nummer.
+- Voyage-kodene er dokumentert som UN/Locode, der de to første bokstavene angir landet havnen ligger i.
+- Verifisert bunkerskapasitet per fartøyklasse er dokumentert for `C001` til `C005`.
+- Det er dokumentert at selskapet har bunkerskontrakt i Singapore og Sør-Korea, samt VLSFO-kontrakt i Rotterdam.
+- `005 report/rapport.md` og `005 report/Kaylee_rapport.md` er oppdatert slik at tilleggsdataene omtales som mottatt og strukturert, men ikke brukt som grunnlag for modellversjon 1.
+- Tilleggsdataene er strukturert med `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/src/structure_voyage_data_2025.py`.
+- Det er generert tre modellklare tabeller: `tab_voyage_events_2025.csv`, `tab_voyage_legs_2025.csv` og `tab_vessel_class_capacity.csv`.
+- Struktureringen ga 3893 rapporteringsrader, 486 voyage-etapper og 5 kapasitetsrader. Foreløpig kvalitetskontroll viser 3 etapper med manglende ROB og ingen flaggede kapasitetsbrudd.
+- Voyage-råfilene er splittet kronologisk 80/20 med `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/src/split_voyage_raw_train_test_2025.py`.
+- Splitten er gjort separat per råfil etter `Date_UTC` og `Time_UTC`, med originalfilene beholdt urørt.
+- Splitten ga 3110 train-rader og 783 test-rader fordelt på åtte train-filer og åtte test-filer i `004 data`.
+
+#### Anbefalt neste steg
+
+- Avklar om de strukturerte voyage-etappene skal inngå i neste modellversjon eller holdes som dokumentert videreutviklingsgrunnlag.
+- Dersom de skal brukes direkte i modell, må kontraktsflagg og drivstofftypekobling valideres før de brukes som harde restriksjoner.
 
 [Til toppen](#innholdsfortegnelse)

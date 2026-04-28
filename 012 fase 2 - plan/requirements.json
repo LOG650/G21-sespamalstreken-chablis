@@ -95,6 +95,26 @@
       "teststatus": "Completed"
     },
     {
+      "id": "DK-06",
+      "type": "Datakrav",
+      "krav": "Supplerende 2025-data med anonymiserte fartøyklasser, forbruk, ROB, voyage-koder, tankkapasitet og kontraktskontekst skal dokumenteres og struktureres før de brukes som modellinput.",
+      "gantt_aktivitet": "Strukturere tilleggsdata 2025",
+      "eier": "Datagrunnlag",
+      "leveranse": "Strukturert tilleggsdatasett eller dokumentert beslutning om å holde tilleggsdata utenfor modellversjon 1",
+      "testtilfelle": "Klasse, dato, voyage, havn, forbruk, ROB, tankkapasitet og kontraktsflagg er dokumentert i konsistent tabell",
+      "teststatus": "Completed"
+    },
+    {
+      "id": "DK-07",
+      "type": "Datakrav",
+      "krav": "Supplerende voyage-råfiler fra 2025 skal splittes kronologisk 80/20 før videre rensing, med originalfilene beholdt urørt.",
+      "gantt_aktivitet": "Datasplit voyage-rådata 2025",
+      "eier": "Datagrunnlag",
+      "leveranse": "Train/test-filer for hver anonymiserte voyage-råfil i `004 data`",
+      "testtilfelle": "For hver kildefil er `_train_80.csv` og `_test_20.csv` opprettet, og train-rader pluss test-rader er lik råfilens radantall",
+      "teststatus": "Completed"
+    },
+    {
       "id": "MOD-01",
       "type": "Modellkrav",
       "krav": "Modellen skal inkludere beslutningsvariabler for valg av havn, mengde bunkret drivstoff og tidspunkt for bunkring.",

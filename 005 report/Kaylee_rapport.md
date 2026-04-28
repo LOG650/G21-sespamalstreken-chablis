@@ -158,7 +158,11 @@ $x_{v,t,p} = 0$ dersom havn $p$ ikke er relevant eller tilgjengelig for fartøy 
 
 ### 6.4 Hva datasettet støtter direkte
 
-Det nåværende datasettet støtter spesielt godt estimering av prisparametere, historiske volum og sammenligning mot faktisk praksis. Datasettet støtter derimot ikke alene en full operativ modell, fordi sentrale størrelser som tankkapasitet, faktisk drivstoffbeholdning, minimumsbuffer og forbruk mellom to beslutningspunkter ikke er direkte observert.
+Det opprinnelige pris- og volumdatasettet støtter spesielt godt estimering av prisparametere, historiske volum og sammenligning mot faktisk praksis. Datasettet støtter derimot ikke alene en full operativ modell, fordi sentrale størrelser som faktisk drivstoffbeholdning, minimumsbuffer og forbruk mellom to beslutningspunkter ikke er direkte observert.
+
+Etter den første gjennomgangen er det mottatt supplerende 2025-data for åtte anonymiserte fartøyfiler fordelt på klassene `C001` til `C005`. Filene inneholder blant annet forbruk, `ROB_Fuel_Total`, voyage fra/til og voyage-nummer. Voyage-kodene er UN/Locode, der de to første bokstavene representerer landet havnen ligger i. I tillegg er det mottatt verifiserte bunkerskapasiteter per klasse og informasjon om bunkerskontrakt i Singapore og Sør-Korea, samt VLSFO-kontrakt i Rotterdam.
+
+Tilleggsdataene er nå strukturert til hendelses-, etappe- og kapasitetstabeller. De styrker grunnlaget for en senere fartøy- og rutebasert modell, men må valideres mot kontraktsomfang og drivstofftypekobling før de kan erstatte den aggregerte modellversjonen.
 
 Neste steg i analysearbeidet bør derfor være:
 
@@ -166,54 +170,54 @@ Neste steg i analysearbeidet bør derfor være:
 2. Etablere eksplisitte antagelser eller supplerende parametere for forbruk, kapasitet og havnetilgjengelighet.
 3. Implementere en første lineær modell med de fire havnene som beslutningsalternativer.
 
-### 6.5 Konkrete data vi mangler
+### 6.5 Supplerende data og gjenværende avklaringer
 
-Hvis det er mulig å skaffe mer data fra Odfjell Tankers eller andre interne kilder, er følgende datatyper de viktigste for å gå fra en enkel prismodell til en mer realistisk bunkringsmodell:
+Følgende supplerende data er nå mottatt fra Odfjell Tankers eller intern dataleverandør:
+
+| Fartøyklasse | Bunkerskapasitet |
+| --- | --- |
+| C001 | 2,087.006 m3 |
+| C002 | 2,061.430 m3 |
+| C003 | 1,533.719 m3 |
+| C004 | 1,907.080 m3 |
+| C005 | 1,024.531 m3 |
+
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 6.1 Verifisert bunkerskapasitet per anonymisert fartøyklasse.</i></small></p>
+
+De åtte filene `C001 - 1.csv`, `C001 - 2.csv`, `C002 - 1.csv`, `C003 - 1.csv`, `C004 - 1.csv`, `C004 - 2.csv`, `C004 - 3.csv` og `C005 - 1.csv` dekker 2025 og inneholder samlet 3893 rapporteringsrader. Foreløpig teknisk gjennomgang viser at filene dekker 69 unike UN/Locode-havnekoder og 26 landprefiks.
+
+Dette svarer på flere av punktene som tidligere manglet:
 
 **Må ha for en god operativ modell**
 
-1. **Tankkapasitet per fartøy**
-   Dette trengs for å definere $K_v$ i kapasitetsrestriksjonen.
+1. **Tankkapasitet per fartøyklasse**
+   Dette kan brukes til å definere $K_v$ i kapasitetsrestriksjonen når klassene kobles til modellens fartøysindeks.
 
 2. **Forbruk mellom beslutningspunkter**
-   Vi trenger enten drivstofforbruk per voyage, per seilas, per dag eller per nautisk mil for hvert fartøy, slik at $d_{v,t}$ kan estimeres.
+   De nye filene inneholder forbruksfelt som kan brukes til å estimere $d_{v,t}$ etter rensing og harmonisering.
 
 3. **Beholdning ved start eller ROB-data**
-   Vi trenger startbeholdning eller `remaining on board` rundt bunkringstidspunktet for å initialisere $I_{v,t}$ på en realistisk måte.
+   Feltet `ROB_Fuel_Total` gir et bedre grunnlag for å initialisere eller kontrollere $I_{v,t}$ enn det opprinnelige pris- og volumdatasettet.
 
 4. **Rute- eller havnetilgjengelighet per voyage**
-   Vi trenger å vite hvilke havner som faktisk var eller kunne vært aktuelle for fartøyet ved hvert beslutningspunkt. Uten dette vil modellen kunne foreslå bunkerhavner som ikke var realistiske.
+   Feltene `Voyage_From`, `Voyage_To` og `Voyage_Number` gir havnesekvens på voyage-nivå. Dette må fortsatt struktureres før det kan brukes som tilgjengelighetsrestriksjon.
 
-**Veldig nyttig for bedre modellkvalitet**
+**Gjenværende avklaringer**
 
-5. **Tidspunkt eller sekvens for havneanløp**
-   En tydelig kobling mellom voyage og rekkefølge av havner vil gjøre det mulig å modellere beslutninger langs en faktisk rute i stedet for som løse transaksjoner.
+5. **Kobling mellom anonymiserte fartøyklasser og opprinnelig prisdata**
+   Det må avklares om klassene `C001` til `C005` kan kobles direkte eller indirekte til fartøyfeltet i transaksjonsdatasettet.
 
-6. **Skipsklasse eller tekniske fartøydata**
-   Hvis detaljert tankkapasitet eller forbruk ikke finnes for alle fartøy, kan fartøyklasse brukes til å lage realistiske standardverdier.
+6. **Kontraktsinformasjon eller innkjøpsregime**
+   Kontrakter i Singapore, Sør-Korea og Rotterdam må oversettes til konkrete havnekoder, drivstofftyper, perioder og eventuelle pris- eller tilgjengelighetsregler.
 
-7. **Kontraktsinformasjon eller innkjøpsregime**
-   Hvis noen kjøp er bundet av kontrakt og andre går i spotmarkedet, vil dette kunne påvirke både priser og hvilke valg som egentlig er frie i modellen.
-
-8. **Prisdefinisjon og kostnadskomponenter**
+7. **Prisdefinisjon og kostnadskomponenter**
    Det bør avklares om `Invoice Price` er direkte sammenlignbar mellom havner og over tid, eller om den inkluderer ulike tillegg som bargekostnader, avgifter eller andre påslag.
 
-**Nyttig, men ikke kritisk i første versjon**
-
-9. **Leveringsledetid og bunkringsbegrensninger**
+8. **Leveringsledetid og bunkringsbegrensninger**
    For eksempel minimumsordre, maksvolum per leveranse eller begrensninger knyttet til supplier eller barge.
 
-10. **Flere havner enn de fire mest brukte**
+9. **Flere havner enn de fire mest brukte**
     Hvis problemstillingen skal speile reell beslutningsstøtte bredere, vil det være nyttig å få med flere alternative bunkerhavner.
-
-En konkret forespørsel til dataleverandør kan derfor være:
-
-- tankkapasitet per fartøy
-- estimert eller historisk forbruk per fartøy og voyage
-- startbeholdning eller ROB ved bunkringstidspunkt
-- rutedata eller havnesekvens per voyage
-- forklaring på hva `Invoice Price` inkluderer
-- informasjon om kontrakt versus spot for kjøpene
 ### 6.6 Modellversjon 1 basert på dagens data
 
 Selv om datasettet ikke er tilstrekkelig til å utvikle en full operativ bunkringsmodell, er det godt nok til å etablere en første kvantitativ modellversjon. Denne modellen bør forstås som en forenklet kostnadsminimeringsmodell basert på historiske pris- og volumdata per havn og periode.

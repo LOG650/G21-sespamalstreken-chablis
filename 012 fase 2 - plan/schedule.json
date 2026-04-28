@@ -86,6 +86,30 @@
     },
     {
       "fase": "Datagrunnlag",
+      "navn": "Strukturere tilleggsdata 2025",
+      "start": "2026-04-28",
+      "slutt": "2026-04-29",
+      "status_per_2026-04-28": "Fullført støtteaktivitet",
+      "mpp_prosent_fullført": null,
+      "grunnlag": "Supplerende 2025-data er strukturert med `structure_voyage_data_2025.py`; output finnes som hendelses-, etappe- og kapasitetstabeller i `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data`.",
+      "avhenger_av": [
+        "Datainnsamling"
+      ]
+    },
+    {
+      "fase": "Datagrunnlag",
+      "navn": "Datasplit voyage-rådata 2025",
+      "start": "2026-04-28",
+      "slutt": "2026-04-28",
+      "status_per_2026-04-28": "Fullført støtteaktivitet",
+      "mpp_prosent_fullført": null,
+      "grunnlag": "De åtte supplerende voyage-råfilene er splittet kronologisk 80/20 etter `Date_UTC` og `Time_UTC` med originalfilene beholdt urørt. Output finnes i `004 data` med suffiksene `_train_80.csv` og `_test_20.csv`.",
+      "avhenger_av": [
+        "Datainnsamling"
+      ]
+    },
+    {
+      "fase": "Datagrunnlag",
       "navn": "Deskriptiv analyse",
       "start": "2026-03-27",
       "slutt": "2026-03-29",
@@ -292,6 +316,8 @@
     "Avhengigheter er modellert som hovedsakelig sekvensielle basert på beskrivelsen av kritisk linje og rekkefølgen i statusfilen.",
     "Rapporteringsaktivitetene kan i praksis overlappe mer enn det JSON-en uttrykker, men her er de gjort maskinlesbare som en enkel styringsrekkefølge.",
     "`Datasplit trening/test` ligger nå som egen aktivitet i gjeldende MPP-baseline, men uten avhengighet til øvrige datagrunnlagsaktiviteter.",
+    "`Strukturere tilleggsdata 2025` er lagt inn som fullført støtteaktivitet i JSON-planen, men er ikke bekreftet som egen aktivitet i gjeldende `MS_Project.mpp`.",
+    "`Datasplit voyage-rådata 2025` er lagt inn som fullført støtteaktivitet i JSON-planen, men er ikke bekreftet som egen aktivitet i gjeldende `MS_Project.mpp`.",
     "MPP viser 0 % fullført for `Definere restriksjoner` og `implementere modell`, mens repoet har dokumentasjon og modellartefakter for disse aktivitetene. Dette er derfor markert som statusavvik."
   ]
 }
