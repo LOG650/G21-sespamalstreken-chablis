@@ -520,11 +520,11 @@ Analysen tolker modelloppførselen i basiskjøringen og sensitivitetsanalysen, o
 
 ### 7.1 Driverbilde og månedlig variasjon
 
-Differansen mellom modellkostnad og historisk kostnad i basiskjøringen følger direkte av modellens beslutningslogikk: i hver måned legges hele behovet til havnen med lavest observert pris i perioden. Den samlede besparelsen er derfor ikke en jevn effekt over tid, men en sum av månedlige utslag som varierer i størrelse. Figur 8.1 viser denne månedlige variasjonen, og analysen tilsier at noen enkeltmåneder bidrar med betydelig større prisforskjeller enn andre, særlig i 2022 da prisnivået og spennet mellom havnene var høyere.
+Differansen mellom modellkostnad og historisk kostnad i basiskjøringen følger direkte av modellens beslutningslogikk: i hver måned legges hele behovet til havnen med lavest observert pris i perioden. Den samlede besparelsen er derfor ikke en jevn effekt over tid, men en sum av månedlige utslag som varierer i størrelse. Figur 8.1 viser denne månedlige variasjonen. De månedlige utslagene strekker seg fra knapt 39 000 (2020-02) til over 1,6 mill. (2022-07), og de største absolutte utslagene er konsentrert til 2022, da prisnivået lå høyest i hele analyseperioden.
 
 ### 7.2 Havnefordeling og tidsstabilitet
 
-P003 velges i 44 av 61 måneder, men dominansen er ikke jevnt fordelt over analyseperioden. Tabell 7.1 viser at P003 er enerådende i 2024, mens P002 er hyppigst valgt i 2021 og deler 2022 og 2023 med P003. I 2020 er bare tre havner tilgjengelige i datasettet, fordi P002 mangler observasjoner i samtlige av disse månedene. Dette begrenser hvilke alternativer modellen har å velge mellom i den første delen av perioden.
+P003 velges i 44 av 61 måneder, men dominansen er ikke jevnt fordelt over analyseperioden. Tabell 7.1 viser at P003 er enerådende i 2024 og dominerer både 2022 og 2023, mens P002 er hyppigst valgt i 2021. I 2020 er bare tre havner tilgjengelige i datasettet, fordi P002 mangler observasjoner i samtlige av disse månedene. Dette begrenser hvilke alternativer modellen har å velge mellom i den første delen av perioden.
 
 | År | P001 | P002 | P003 | P004 |
 | --- | --- | --- | --- | --- |
@@ -541,7 +541,7 @@ Tidsmønsteret tilsier at havnevalget i hovedsak drives av relative prisforskjel
 
 ### 7.3 Robusthet i havnevalget
 
-Sensitivitetsanalysen synliggjør hvor små marginene i havnevalget er. En prisøkning på 10 % i P003 omfordeler 42 av de 44 P003-månedene til andre havner, fordelt med 36 til P002, 7 til P004 og 16 til P001. Tilsvarende flytter en prisreduksjon på 10 % i P001 valget til P001 i 46 nye måneder, selv om P001 i utgangspunktet bare velges i 2. Dette tyder på at flere havner ofte ligger nær billigste alternativ, og at modellen er sensitiv for moderate skift i de relative prisene.
+Sensitivitetsanalysen synliggjør hvor små marginene i havnevalget er. En prisøkning på 10 % i P003 reduserer antall P003-valg fra 44 til 2 måneder; av de 59 månedene som omfordeles, går 36 til P002, 16 til P001 og 7 til P004. Tilsvarende flytter en prisreduksjon på 10 % i P001 valget til P001 i 46 nye måneder, selv om P001 i utgangspunktet bare velges i 2 (Tabell 7.1). Dette tyder på at flere havner ofte ligger nær billigste alternativ, og at modellen er sensitiv for moderate skift i de relative prisene.
 
 ### 7.4 Effekten av modellens linearitet
 
@@ -588,9 +588,9 @@ Resultatene er lagret som interne analyseartefakter i repoet og brukes her som g
 
 Sensitivitetsanalysen bruker basiskjøringen som referanse og tester 19 scenarioer med endrede priser og/eller endret etterspørsel. Scenarioene omfatter felles prisendringer på alle havner, havnespesifikke prisendringer, samlet etterspørselsendring og to kombinerte stresscenarioer. Tilgjengelighet per havn og måned holdes fast, slik at scenarioene isolerer effekten av pris og volum.
 
-Basisscenarioet i sensitivitetsanalysen gir samme beregnede modellkostnad som basiskjøringen: 473 953 291,65. Når både pris og etterspørsel øker med 10 %, øker beregnet kostnad til 573 483 482,90, som er 99 530 191,25 høyere enn basis. Når både pris og etterspørsel reduseres med 10 %, faller beregnet kostnad til 383 902 166,24, som er 90 051 125,41 lavere enn basis.
+Basisscenarioet i sensitivitetsanalysen gir samme modellkostnad som basiskjøringen: 473 953 291,65. Når både pris og etterspørsel øker med 10 %, øker modellkostnaden til 573 483 482,90, som er 99 530 191,25 høyere enn basis. Når både pris og etterspørsel reduseres med 10 %, faller modellkostnaden til 383 902 166,24, som er 90 051 125,41 lavere enn basis.
 
-Havnespesifikke scenarioer viser at modellen er særlig følsom for prisendringer i P003 og P002. En prisreduksjon på 10 % i P003 reduserer beregnet kostnad med 42 900 536,07 mot basis, mens tilsvarende prisreduksjon i P002 reduserer beregnet kostnad med 30 826 133,17. Dette skyldes at modellen i flere måneder flytter valgt havn når relative prisforskjeller endres.
+Havnespesifikke scenarioer viser at modellen er særlig følsom for prisendringer i P003 og P002. En prisreduksjon på 10 % i P003 reduserer modellkostnaden med 42 900 536,07 mot basis, mens tilsvarende prisreduksjon i P002 reduserer modellkostnaden med 30 826 133,17. Dette skyldes at modellen i flere måneder flytter valgt havn når relative prisforskjeller endres.
 
 Figur 8.3 viser de største utslagene i sensitivitetsanalysen samlet. Figuren viser både stresscenarioene og enkeltendringene som påvirker modellkostnaden mest.
 
