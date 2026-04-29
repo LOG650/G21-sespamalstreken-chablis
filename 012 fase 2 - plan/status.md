@@ -8,6 +8,7 @@ Oppdatert: 2026-04-29
 - [Modellutvikling](#modellutvikling)
 - [Implementering](#implementering)
 - [Validering](#validering)
+- [Analyse](#analyse)
 - [Neste steg](#neste-steg)
 
 ## Kort status
@@ -60,7 +61,27 @@ Modelltesten er kjørt med `006 analysis/02_modellutvikling/05_teste_modell/src/
 - `006 analysis/02_modellutvikling/05_teste_modell/output/res_route_inventory_test_summary.json`
 - `006 analysis/02_modellutvikling/05_teste_modell/metadata/res_route_inventory_test_summary.md`
 
+## Analyse
+
+| Aktivitet | Status | Fil |
+| --- | --- | --- |
+| Basiskjøring | Fullført | `006 analysis/03_analyse/01_basiskjoring/README.md` |
+| Sensitivitetsanalyse | Neste steg | `006 analysis/03_analyse/02_sensitivitetsanalyse` |
+
+Ny basiskjøring er gjennomført med `006 analysis/03_analyse/01_basiskjoring/src/run_baseline_route_inventory.py`. Aktiviteten bruker hovedscenarioet fra den operative rute- og beholdningsmodellen med ekstern proxyfaktor 1,25, og skriver rapportvennlige aggregater per fartøyfil, modellhavn og måned.
+
+Basiskjøringen er oppdatert etter review med interne konsistenssjekker mot modellens sammendrag, eksplisitt sjekk av hovedscenarioets proxyfaktor, kildefil-hash i JSON-oppsummeringen, nøytral metadata uten hardkodet tolkning, synlig nullrad for modellhavner uten kjøp og en rapportkoblet figur for månedlig fordeling mellom kjøp i prisede havner og ekstern/ukjent bunkring.
+
+Resultatene er lagret i:
+
+- `006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_summary.json`
+- `006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_by_vessel.csv`
+- `006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_by_port.csv`
+- `006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_by_month.csv`
+- `006 analysis/03_analyse/01_basiskjoring/figures/fig_baseline_monthly_split.png`
+- `006 analysis/03_analyse/01_basiskjoring/metadata/res_baseline_route_inventory_summary.md`
+
 ## Neste steg
 
-- Viderefør analyse og resultattolkning med resultatfilene fra `04_implementere_modell`.
+- Viderefør analysefasen med sensitivitetsanalyse og resultattolkning basert på den operative hovedmodellen og ny basiskjøring.
 - Oppdater rapporten dersom senere modellkjøringer endrer hovedresultatene.

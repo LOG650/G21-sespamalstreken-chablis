@@ -1,0 +1,110 @@
+{
+  "generated_at": "2026-04-29T20:58:24.309255+00:00",
+  "baseline_name": "operational_route_inventory_main_scenario",
+  "external_price_multiplier": 1.25,
+  "external_price": 762.864622,
+  "vessel_file_count": 8,
+  "leg_count": 486,
+  "priced_leg_count": 42,
+  "purchased_leg_count": 28,
+  "total_consumption": 45345.04,
+  "model_purchase_qty": 18857.451,
+  "model_external_qty": 21260.619,
+  "priced_share_of_consumption": 0.415866,
+  "external_share_of_consumption": 0.468863,
+  "priced_cost": 10406690.7,
+  "external_cost": 16218974.08,
+  "total_model_cost": 26625664.78,
+  "source_files": {
+    "summary": {
+      "path": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_summary.json",
+      "mtime": "2026-04-29T19:51:01.281095+00:00",
+      "sha256": "f0d53022cce96851fdbb034dd98e3545162f4b7d5c4be86303ee3b8f55cd6979"
+    },
+    "by_vessel": {
+      "path": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_by_vessel.csv",
+      "mtime": "2026-04-29T19:51:01.269830+00:00",
+      "sha256": "d42aa3c8ccd2508f3a762de439bcdd69f79286164f3cab881bf86cba7cf17d25"
+    },
+    "by_leg": {
+      "path": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_by_leg.csv",
+      "mtime": "2026-04-29T19:51:01.253412+00:00",
+      "sha256": "977fd98a36f9dd15f7ea3386195ac91bb4586a1a267bad4b44acb9111bb6a820"
+    },
+    "purchases": {
+      "path": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_purchases.csv",
+      "mtime": "2026-04-29T19:51:01.265829+00:00",
+      "sha256": "7507650a1610ae6c596d099d8646320301f80ce5ce17b0450f3f5f6f47f28f8f"
+    }
+  },
+  "output_files": {
+    "summary": "006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_summary.json",
+    "by_vessel": "006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_by_vessel.csv",
+    "by_port": "006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_by_port.csv",
+    "by_month": "006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_by_month.csv",
+    "monthly_split_figure": "006 analysis/03_analyse/01_basiskjoring/figures/fig_baseline_monthly_split.png",
+    "metadata": "006 analysis/03_analyse/01_basiskjoring/metadata/res_baseline_route_inventory_summary.md"
+  },
+  "consistency_checks": [
+    {
+      "check": "Basiskjøring bruker hovedscenarioets proxyfaktor",
+      "status": "OK",
+      "value": 1.25,
+      "expected": 1.25
+    },
+    {
+      "check": "Kostnad i prisede havner per havn stemmer med sammendrag",
+      "status": "OK",
+      "value": 10406690.7,
+      "expected": 10406690.7
+    },
+    {
+      "check": "Total modellkostnad per fartøy stemmer med sammendrag",
+      "status": "OK",
+      "value": 26625664.78,
+      "expected": 26625664.78
+    },
+    {
+      "check": "Kjøpsmengde per måned stemmer med sammendrag",
+      "status": "OK",
+      "value": 18857.46,
+      "expected": 18857.45
+    },
+    {
+      "check": "Outputfil er skrevet: 006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_summary.json",
+      "status": "OK",
+      "value": "skrevet",
+      "expected": "skrevet"
+    },
+    {
+      "check": "Outputfil er skrevet: 006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_by_vessel.csv",
+      "status": "OK",
+      "value": "skrevet",
+      "expected": "skrevet"
+    },
+    {
+      "check": "Outputfil er skrevet: 006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_by_port.csv",
+      "status": "OK",
+      "value": "skrevet",
+      "expected": "skrevet"
+    },
+    {
+      "check": "Outputfil er skrevet: 006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_by_month.csv",
+      "status": "OK",
+      "value": "skrevet",
+      "expected": "skrevet"
+    },
+    {
+      "check": "Outputfil er skrevet: 006 analysis/03_analyse/01_basiskjoring/figures/fig_baseline_monthly_split.png",
+      "status": "OK",
+      "value": "skrevet",
+      "expected": "skrevet"
+    },
+    {
+      "check": "Outputfil er skrevet: 006 analysis/03_analyse/01_basiskjoring/metadata/res_baseline_route_inventory_summary.md",
+      "status": "OK",
+      "value": "skrevet",
+      "expected": "skrevet"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+port,purchase_count,purchase_qty,priced_cost,weighted_avg_actual_purchase_price
+P001,1,565.6,320090.01,565.93
+P002,0,0.0,0.0,0.0
+P003,15,13441.28,7287615.34,542.18
+P004,12,4850.57,2798985.35,577.04

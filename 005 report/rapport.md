@@ -473,11 +473,18 @@ Modellen er operasjonell, men ikke en full produksjonsmodell. Havner utenfor `P0
 
 Analysen vurderer hvordan den operative hovedmodellen oppfører seg når den må balansere forbruk, beholdning, tankkapasitet og tilgang til prisede modellhavner gjennom fartøyenes ruter. Modellen er ikke en enkel rangering av billigste havn. Den må avgjøre om det lønner seg å fylle når en priset havn er tilgjengelig, hvor mye fartøyet har kapasitet til å ta om bord, og hvor mye som uansett må dekkes utenfor prisgrunnlaget.
 
+Basiskjøringen er dokumentert i `006 analysis/03_analyse/01_basiskjoring` og bruker hovedscenarioet fra den operative modellen med ekstern proxyfaktor 1,25. Aktiviteten aggregerer resultatene per fartøyfil, modellhavn og måned som grunnlag for analysen under.
+
 ### 7.1 Dekning fra prisede modellhavner
 
 Voyage-dataene inneholder 486 etapper. Av disse har 42 etapper minst én av modellhavnene `P001`, `P002`, `P003` eller `P004` tilgjengelig i ruten. Modellen gjennomfører faktisk kjøp i priset havn på 28 etapper. Dette viser at modellen ikke automatisk kjøper hver gang en priset havn er tilgjengelig, men vurderer kjøpet mot beholdning, kapasitet og senere forbruk.
 
 Samlet forbruk i modellgrunnlaget er 45 345,04. Av dette dekkes 18 857,45 gjennom kjøp i prisede modellhavner. Det tilsvarer 41,59 % av forbruket. Resten dekkes av startbeholdning og ekstern/ukjent bunkring. Ekstern/ukjent bunkring utgjør 21 260,62, tilsvarende 46,89 % av samlet forbruk. Dette er ikke et modellbrudd, men et uttrykk for at ruten ofte går via havner som ikke har prisdata i prosjektets prisgrunnlag.
+
+<div align="center">
+  <img src="../006%20analysis/03_analyse/01_basiskjoring/figures/fig_baseline_monthly_split.png" alt="Månedlig fordeling mellom kjøp i prisede havner og ekstern ukjent bunkring" width="80%">
+  <p align="center" style="font-size: 0.9em;"><small><i>Figur 7.1 Månedlig mengde kjøpt i prisede havner og ekstern/ukjent bunkring i basiskjøringen.</i></small></p>
+</div>
 
 ### 7.2 Fartøyforskjeller
 

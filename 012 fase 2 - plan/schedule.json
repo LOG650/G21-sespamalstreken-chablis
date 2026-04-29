@@ -209,8 +209,8 @@
       "navn": "Basiskjøring",
       "start": "2026-04-29",
       "slutt": "2026-05-01",
-      "status_per_2026-04-29": "Må gjøres på nytt",
-      "grunnlag": "`006 analysis/03_analyse` er ryddet bort fordi gammel basiskjøring var knyttet til utgått `model_v1`. Ny basiskjøring må etableres med resultatfilene fra operasjonell hovedmodell.",
+      "status_per_2026-04-29": "Fullført i repo",
+      "grunnlag": "Ny basiskjøring er gjennomført med `006 analysis/03_analyse/01_basiskjoring/src/run_baseline_route_inventory.py` og bygger på resultatfilene fra operasjonell hovedmodell.",
       "avhenger_av": [
         "Teste modell"
       ]
