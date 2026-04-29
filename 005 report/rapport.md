@@ -289,7 +289,7 @@ Litt avhengig av omfanget, kan det være lurt å vurdere om du skal splitte kapi
 
 ### 5.1 Metode
 
-Studien er gjennomført som en kvantitativ caseanalyse av Odfjell Tankers, der historiske bunkringstransaksjoner brukes som grunnlag for å utvikle en optimeringsmodell for beslutningsstøtte. Arbeidet er lagt opp i fem steg: innlesing og kvalitetssikring av rådata, rensing og strukturering av datasettet, deskriptiv analyse av pris- og volummønstre, formulering av en lineær modell og etablering av modellinput som kan brukes i videre implementering og analyse.
+Studien er gjennomført som en kvantitativ caseanalyse av Odfjell Tankers, der historiske bunkringstransaksjoner brukes som grunnlag for å utvikle en optimeringsmodell for beslutningsstøtte. Arbeidet er lagt opp i fem steg: innlesing og kvalitetssikring av rådata, rensing og strukturering av datasettet, deskriptiv analyse av pris- og volummønstre, formulering av en lineær modell og etablering av avledede modellparametere som kan brukes i videre implementering og analyse.
 
 Rådataene er behandlet i en egen rensepipeline i `006 analysis/01_datagrunnlag/02_datavask/src/clean_and_aggregate_bunker_data.py`. Her standardiseres datoer og numeriske felt, samtidig som volum- og prisvariabler harmoniseres ved å bruke `Invoiced Qty` og `Invoice Price` som hovedkilder, med fallback til `Ordered Qty` og `Order Price` når fakturerte verdier mangler. Observasjoner med ikke-positivt volum eller ikke-positiv pris forkastes for å unngå at ugyldige transaksjoner påvirker analysen og de estimerte modellparametrene.
 
@@ -318,7 +318,7 @@ Tabell 5.1 oppsummerer pris- og volumdatasettet som brukes som modellens primær
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.1 Oppsummering av pris- og volumdatasettet som brukes som modellgrunnlag.</i></small></p>
 
-Det opprinnelige datasettet inneholder 1389 observasjoner. Gjennomgangen viser at de sentrale identifikasjonsfeltene er komplette, men at enkelte verdi- og prisfelt har mangler eller ugyldige verdier. Det finnes 10 observasjoner uten `Invoice Price`, 10 observasjoner uten `Invoiced Qty`, 2 observasjoner uten `Supplier`, samt 8 observasjoner med ikke-positivt volum. Etter rensing ble 1381 observasjoner beholdt, mens 8 observasjoner ble forkastet på grunn av ikke-positivt volum. Oppsummeringen av rensingen er dokumentert i `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/metadata/tab_bunker_summary.md`.
+Det opprinnelige datasettet inneholder 1389 observasjoner. Gjennomgangen viser at de sentrale identifikasjonsfeltene er komplette, men at enkelte verdi- og prisfelt har mangler eller ugyldige verdier. Det finnes 10 observasjoner uten `Invoice Price`, 10 observasjoner uten `Invoiced Qty`, 2 observasjoner uten `Supplier`, samt 8 observasjoner med ikke-positivt volum. Etter rensing ble 1381 observasjoner beholdt, mens 8 observasjoner ble forkastet på grunn av ikke-positivt volum. Rensingen er en del av prosjektgruppens metodearbeid og endrer ikke hvilken fil som er rapportens opprinnelige datakilde.
 
 Tabell 5.2 dokumenterer rensevalg og datakvalitet i materialet.
 
@@ -335,7 +335,7 @@ Tabell 5.2 dokumenterer rensevalg og datakvalitet i materialet.
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.2 Oversikt over rensevalg, fallback-regler og vurdert datakvalitet i materialet.</i></small></p>
 
-For analyse- og modelleringsformål er dataene strukturert i to filer. `006 analysis/01_datagrunnlag/02_datavask/output/tab_bunker_cleaned.csv` inneholder rensede transaksjoner på detaljnivå, mens `006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_bunker_monthly_by_port.csv` inneholder månedlig aggregat per havn. Aggregatet består av 229 havn-måned-kombinasjoner fordelt over 61 måneder. For hver kombinasjon beregnes blant annet `transaction_count`, `total_qty`, `weighted_avg_price`, `simple_avg_price`, `min_price`, `max_price`, `unique_vessels` og `unique_suppliers`.
+For analyse- og modelleringsformål er rådataene strukturert på to nivåer: rensede transaksjoner på detaljnivå og et månedlig aggregat per havn. Aggregatet består av 229 havn-måned-kombinasjoner fordelt over 61 måneder. For hver kombinasjon beregnes blant annet antall transaksjoner, total mengde, vektet gjennomsnittspris, enkel gjennomsnittspris, minimums- og maksimumspris, samt antall unike fartøy og leverandører. Disse strukturerte datasettene er interne analyseartefakter avledet fra rådataene, ikke egne eksterne datakilder.
 
 For å skille mellom data brukt til utvikling og data brukt til senere vurdering, er rådatasettet også splittet i en treningsdel og en testdel. Splittingen er gjort kronologisk etter `Delivery Date`, slik at de tidligste 80 % av observasjonene brukes til trening og de siste 20 % brukes til testing. Splitten er gjort på rådatasettet før videre rensing, og gir en treningsfil med 1111 observasjoner og en testfil med 278 observasjoner. Filene er lagret som `004 data/Bunker Lifting List(Worksheet1) (1)_train_80.csv` og `004 data/Bunker Lifting List(Worksheet1) (1)_test_20.csv`. I modellarbeidet brukes de rensede og aggregerte dataene videre, mens splitten dokumenterer et kronologisk skille mellom utviklingsgrunnlag og senere kontrollgrunnlag.
 
@@ -492,22 +492,22 @@ Modellen er bevisst forenklet. De viktigste forenklingene er:
 - **Observerthetsbasert tilgjengelighet**: Tilgjengelighetsparameteren $f_{h,t}$ reflekterer om havnen har observerte transaksjoner i perioden, ikke om havnen faktisk var operativt tilgjengelig.
 - **Fallback-priser for P002**: Havn P002 har færrest observasjoner i datasettet. I perioder uten observasjon brukes havnens vektede gjennomsnittspris som fallback. Denne mekanismen gjør at P002 alltid har en prisverdi i modellen, men prisen i slike perioder er mindre presis enn i perioder med faktisk observasjon. Dette kan påvirke modellresultatene, særlig i perioder der P002 ellers ville vært blant de billigste alternativene.
 
-Likevel er modellen metodisk forsvarlig som analysemodell i prosjektet. Den er kvantitativ, transparent og direkte koblet til det datagrunnlaget som allerede er renset og strukturert. Den kan implementeres direkte med etablert modellinput, den er lineær og enkel å løse, og den gir et tydelig svar på hvordan prisforskjeller mellom havnene påvirker totale bunkringskostnader. Den presenteres derfor som et beslutningsstøtteverktøy, samtidig som voyage-dataene brukes som kvantitativ støtte for å vise hvilke operative forhold en senere fartøybasert modell bør inkludere.
+Likevel er modellen metodisk forsvarlig som analysemodell i prosjektet. Den er kvantitativ, transparent og direkte koblet til pris- og volumdatasettet som er renset og strukturert fra rådataene. Den kan implementeres med avledede parameterverdier, den er lineær og enkel å løse, og den gir et tydelig svar på hvordan prisforskjeller mellom havnene påvirker totale bunkringskostnader. Den presenteres derfor som et beslutningsstøtteverktøy, samtidig som voyage-dataene brukes som kvantitativ støtte for å vise hvilke operative forhold en senere fartøybasert modell bør inkludere.
 
 ### 6.8 Kobling til modellfiler
 
-For å gjøre modellstrukturen operasjonell er modellinput opprettet i `006 analysis/02_modellutvikling/04_implementere_modell/input`. Filnavnene bruker `model_v1` som teknisk versjonsmerking i repoet, men i rapporten omtales dette som hovedmodellen. Følgende filer hører til modellen:
+For å gjøre modellstrukturen operasjonell er det opprettet interne parameterfiler avledet fra rådataene og de metodiske rense- og aggregeringsvalgene. Filnavnene bruker `model_v1` som teknisk versjonsmerking i repoet, men i rapporten omtales dette som hovedmodellen. Parameterfilene fungerer som teknisk implementasjonsgrunnlag, ikke som selvstendige datakilder:
 
 - `tab_model_v1_price_by_port_month.csv` for prisparameteren $p_{h,t}$
 - `tab_model_v1_demand_by_month.csv` for behovsparameteren $D_t$
 - `tab_model_v1_availability_by_port_month.csv` for tilgjengelighetsparameteren $f_{h,t}$
 - `data_model_v1_parameters.json` for samlet metadata og definisjoner
 
-Det er også laget en kjørbar modellfil i `006 analysis/02_modellutvikling/04_implementere_modell/src/run_model_v1_pyomo.py`, som leser disse modellfilene direkte når `pyomo` og en solver er tilgjengelig.
+Det er også laget en kjørbar modellfil som leser disse parameterfilene direkte når `pyomo` og en solver er tilgjengelig.
 
 ### 6.9 Valideringsgrunnlag
 
-Endelig validering av modellen bygger på en solver-uavhengig simulering i `006 analysis/02_modellutvikling/05_teste_modell/src/simulate_model_v1_results.py`. Dette er valgt fordi modellen er en forenklet månedsbasert kostnadsmodell der beslutningslogikken kan etterprøves direkte mot modellinputen. Simuleringen dekker månedlig behov ved å velge billigste tilgjengelige havn i hver måned, gitt de etablerte parameterfilene for pris, behov og tilgjengelighet.
+Endelig validering av modellen bygger på en solver-uavhengig simulering. Dette er valgt fordi modellen er en forenklet månedsbasert kostnadsmodell der beslutningslogikken kan etterprøves direkte mot de avledede parameterverdiene. Simuleringen dekker månedlig behov ved å velge billigste tilgjengelige havn i hver måned, gitt de etablerte parameterne for pris, behov og tilgjengelighet.
 
 Denne greedy-algoritmen (velg billigste tilgjengelige havn per måned) gir optimal løsning for modellen fordi månedene er uavhengige. Det finnes ingen sekvensielle begrensninger som knytter én periodes beslutning til neste, ingen beholdningsoverføring mellom måneder og ingen kapasitetsbegrensning per havn. Kostnadsminimeringsproblemet dekomponerer derfor til et sett uavhengige delproblemer, ett per måned, der løsningen i hver periode er triviell: legg hele behovet til billigste havn med $f_{h,t} = 1$.
 
@@ -521,12 +521,9 @@ Modelltesten ble gjennomført som en solver-uavhengig simulering av modellen. Te
 
 Denne testformen er egnet fordi modellen er aggregert og lineær, og fordi restriksjonssettet foreløpig ikke inneholder fartøyspesifikke kapasitets-, beholdnings- eller ruterestriksjoner. I en slik modell vil den kostnadsminimerende løsningen i praksis være å dekke behovet i billigste tilgjengelige havn per måned. Simuleringen tester derfor om datagrunnlaget, parameterfilene og beslutningslogikken henger sammen før modellen brukes videre i basiskjøring.
 
-Testen ble kjørt med `simulate_model_v1_results.py` og ga 61 valgte månedsløsninger, som samsvarer med analyseperioden fra `2020-01` til `2025-01`. Resultatfilene er:
+Testen ga 61 valgte månedsløsninger, som samsvarer med analyseperioden fra `2020-01` til `2025-01`. De viktigste resultatene fra testkjøringen brukes videre som grunnlag for basiskjøring og resultatpresentasjon.
 
-- `006 analysis/02_modellutvikling/05_teste_modell/output/res_model_v1_summary.json`
-- `006 analysis/02_modellutvikling/05_teste_modell/output/res_model_v1_solution_by_port_month.csv`
-
-Oppsummeringsfilen viser en total beregnet modellkostnad på 473 953 291,65. CSV-filen viser valgt volum, valgt pris og beregnet kostnad per måned og havn. Testen viser at modellen gir et komplett og reproduserbart resultat for alle måneder i analyseperioden.
+Resultatgrunnlaget viser en total beregnet modellkostnad på 473 953 291,65, med valgt volum, valgt pris og beregnet kostnad per måned og havn. Testen viser at modellen gir et komplett og reproduserbart resultat for alle måneder i analyseperioden.
 
 Analytisk betyr dette at modellen kan brukes som et første beslutningsstøtteverktøy for å vurdere hvordan historiske prisforskjeller mellom havnene påvirker samlet drivstoffkostnad. Samtidig må resultatet tolkes innenfor modellens avgrensninger. Simuleringen tar ikke hensyn til fartøyenes faktiske ruter, beholdning om bord, minimumsbuffer, tankkapasitet eller kontraktsbindinger. De supplerende voyage-dataene brukes derfor som operasjonell støtte i vurderingen av modellens begrensninger, ikke som harde restriksjoner i denne modellen.
 
@@ -536,7 +533,7 @@ Analytisk betyr dette at modellen kan brukes som et første beslutningsstøtteve
 
 ### 8.1 Basiskjøring for modellen
 
-Basiskjøringen bruker opprinnelig pris- og volumdata som primær modellinput. Modellen er kjørt som solver-uavhengig simulering der månedlig behov legges til billigste tilgjengelige havn i modellgrunnlaget.
+Basiskjøringen bruker parameterverdier avledet fra det opprinnelige pris- og volumdatasettet. Modellen er kjørt som solver-uavhengig simulering der månedlig behov legges til billigste tilgjengelige havn i modellgrunnlaget.
 
 Basiskjøringen gir en beregnet modellkostnad på 473 953 291,65, sammenlignet med historisk kostnad i modellgrunnlaget på 498 813 531,26. Dette gir en estimert differanse mot historisk praksis på 24 860 239,60, tilsvarende 4,98 %. Resultatet skal tolkes som et kontrollert standardscenario for den aggregerte månedsmodellen, ikke som en ferdig operativ anbefaling på fartøynivå.
 
@@ -556,7 +553,7 @@ Fordelingen av valgte havner viser at modellen oftest legger månedlig behov til
   <p align="center" style="font-size: 0.9em;"><small><i>Figur 8.1 Antall måneder hver havn velges i basiskjøringen.</i></small></p>
 </div>
 
-Resultatfilene ligger i `006 analysis/03_analyse/01_basiskjoring/output`, med en kort oppsummering i `006 analysis/03_analyse/01_basiskjoring/metadata/res_baseline_model_v1_summary.md`.
+Resultatene er lagret som interne analyseartefakter i repoet og brukes her som grunnlag for tabellene og figurene i resultatkapittelet.
 
 ### 8.2 Sensitivitetsanalyse for modellen
 
@@ -573,7 +570,7 @@ Figur 8.2 viser de største utslagene i sensitivitetsanalysen samlet. Figuren vi
   <p align="center" style="font-size: 0.9em;"><small><i>Figur 8.2 Største kostnadsutslag i sensitivitetsanalysen målt mot basis.</i></small></p>
 </div>
 
-Resultatfilene ligger i `006 analysis/03_analyse/02_sensitivitetsanalyse/output`, med en kort oppsummering i `006 analysis/03_analyse/02_sensitivitetsanalyse/metadata/res_sensitivity_model_summary.md`.
+Resultatene er lagret som interne analyseartefakter i repoet og brukes her som grunnlag for oppsummeringen av sensitivitetsanalysen.
 
 ---
 
