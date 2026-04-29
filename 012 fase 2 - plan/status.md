@@ -477,12 +477,12 @@ Tekstplanen nevner endelig innlevering **2026-05-31**, mens `MS_Project.mpp` vis
 - Største kostnadsøkning mot basis er stresscenarioet med pris og etterspørsel +10 %, med beregnet kostnad 573 483 482,90.
 - Største kostnadsreduksjon mot basis er stresscenarioet med pris og etterspørsel -10 %, med beregnet kostnad 383 902 166,24.
 - Rapporten er supplert med et utvalg av genererte støtteartefakter for basiskjøring og sensitivitetsanalyse: én hovedtabell og to figurer fra `006 analysis/03_analyse/02_sensitivitetsanalyse/src/generate_result_tables_figures.py`.
-- `Resultattolkning` er neste aktivitet.
+- `Resultattolkning` er startet i rapportens kapittel 7 med tolkning av basiskjøring og sensitivitetsanalyse, inkludert figur 7.1 for månedlig estimert besparelse.
 
 #### Anbefalt neste steg
 
 - Bruk opprinnelig pris-/volumdata videre som primærkilde for modellen.
-- Start `Resultattolkning` med basiskjøringen og sensitivitetsanalysen som kontrollert resultatgrunnlag.
+- Videreutvikle `Resultattolkning` med basiskjøringen og sensitivitetsanalysen som kontrollert resultatgrunnlag.
 - Bruk voyage-data som kvantitativ operasjonell støtte i rapporten for forbruk, ROB, tankkapasitet og havnetilgjengelighet.
 - Dersom voyage-data senere skal brukes direkte i modell, må kontraktsflagg og drivstofftypekobling valideres før de brukes som harde restriksjoner.
 
@@ -494,12 +494,12 @@ Tekstplanen nevner endelig innlevering **2026-05-31**, mens `MS_Project.mpp` vis
 - Solver-uavhengig simulering er valgt som endelig valideringsgrunnlag for modellversjon 1.
 - Voyage-data fra 2025 er strukturert, pseudonymisert, splittet kronologisk 80/20 og kvalitetssjekket.
 - Rapporten har fått oppdatert støtteinnhold fra datagrunnlag, basiskjøring og sensitivitetsanalyse.
-- Statusfilen peker nå på `Resultattolkning` som neste faglige aktivitet.
+- Statusfilen peker nå på at `Resultattolkning` er startet og at diskusjon er neste større skriveoppgave.
 
 #### Åpne punkter til neste arbeidsøkt
 
-- Start `Resultattolkning` med en kort tolkning av basiskjøringen mot historisk kostnad.
-- Forklar sensitivitetsresultatene nøkternt, særlig forskjellen mellom basisscenarioet og stresscenarioene.
+- Videreutvikle resultattolkningen med en siste språklig gjennomgang av tekst og figur 7.1 før diskusjonskapitlet låses.
+- Forklar sensitivitetsresultatene nøkternt i diskusjonen, særlig forskjellen mellom basisscenarioet og stresscenarioene.
 - Hold voyage-dataene som operasjonell støtte i rapporten, ikke som modellrestriksjoner.
 - Kontroller at rapportkapittel 7 og 8 skiller tydelig mellom analyse, resultat og diskusjon før teksten bygges videre.
 

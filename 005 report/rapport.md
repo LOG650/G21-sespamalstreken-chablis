@@ -526,6 +526,21 @@ Resultatgrunnlaget viser en total beregnet modellkostnad på 473 953 291,65, med
 
 Analytisk betyr dette at modellen kan brukes som et første beslutningsstøtteverktøy for å vurdere hvordan historiske prisforskjeller mellom havnene påvirker samlet drivstoffkostnad. Samtidig må resultatet tolkes innenfor modellens avgrensninger. Simuleringen tar ikke hensyn til fartøyenes faktiske ruter, beholdning om bord, minimumsbuffer, tankkapasitet eller kontraktsbindinger. De supplerende voyage-dataene brukes derfor som operasjonell støtte i vurderingen av modellens begrensninger, ikke som harde restriksjoner i denne modellen.
 
+Basiskjøringen viser at den aggregerte modellen beregner en lavere kostnad enn historisk praksis i datagrunnlaget. Differansen på 24 860 239,60, tilsvarende 4,98 %, kan tolkes som et indikativt kostnadspotensial dersom månedlig volum i ettertid fordeles til billigste observerte tilgjengelige havn. Resultatet betyr likevel ikke at samme besparelse uten videre kunne vært realisert operativt. Den historiske kostnaden reflekterer trolig også hensyn som modellen ikke fanger opp, blant annet rutevalg, leveringssikkerhet, kontrakter, lagerbeholdning og praktisk tilgjengelighet.
+
+Figur 7.1 viser at den samlede differansen ikke bør tolkes som en jevn månedlig effekt, men som summen av varierende utslag gjennom analyseperioden.
+
+<div align="center">
+  <img src="../006 analysis/03_analyse/03_resultattolkning/figures/fig_result_monthly_saving.png" alt="Månedlig estimert besparelse i basiskjøringen" width="80%">
+  <p align="center" style="font-size: 0.9em;"><small><i>Figur 7.1 Månedlig estimert besparelse i basiskjøringen sammenlignet med historisk kostnad.</i></small></p>
+</div>
+
+Fordelingen av valgte havner gir en viktig del av tolkningen. Modellen velger P003 i 44 av 61 måneder, P002 i 14 måneder, P001 i 2 måneder og P004 i 1 måned. Dette viser at resultatet i stor grad drives av relative prisforskjeller mellom havnene, særlig at P003 ofte fremstår som billigste alternativ i det historiske prisgrunnlaget. Samtidig innebærer en slik konsentrasjon at modellen i liten grad sprer risiko mellom havner. Dette er analytisk konsistent med modellformuleringen, men det peker også på hvorfor resultatet må vurderes opp mot operasjonelle begrensninger før det kan brukes som praktisk anbefaling.
+
+Sensitivitetsanalysen støtter denne tolkningen. Når alle priser eller all etterspørsel økes med 10 %, øker modellkostnaden med 47 395 329,17 mot basis. At disse to scenarioene gir samme utslag, følger av at modellen er lineær og uten kapasitets- eller beholdningsrestriksjoner: en prosentvis økning i pris eller volum skalerer kostnaden på samme måte. De kombinerte stresscenarioene gir derfor størst utslag, med 573 483 482,90 ved pris og etterspørsel +10 % og 383 902 166,24 ved pris og etterspørsel -10 %. Havnespesifikke scenarioer viser samtidig at endringer i P003 og P002 påvirker modellen mest, fordi disse havnene ofte blir valgt når relative prisforskjeller endres.
+
+Samlet viser analysen at modellen er følsom for prisnivå, volum og relative prisforskjeller mellom havnene, men på en måte som er forventet for en aggregert lineær modell. Resultatene gir derfor mest verdi som strukturert beslutningsstøtte og som grunnlag for å identifisere hvor prisforskjeller kan ha betydning. De bør ikke leses som en full operativ fasit for faktisk bunkringsplanlegging.
+
 ---
 
 ## 8.0 Resultat
