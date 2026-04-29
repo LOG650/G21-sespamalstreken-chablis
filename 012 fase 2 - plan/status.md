@@ -22,9 +22,9 @@ Denne filen er generert fra:
 | Felt | Status |
 | --- | --- |
 | Fase nå | Analyse / overgang til Rapportering |
-| Aktivitet nå | `Resultattolkning` er fullført i repo; `Skrive resultater` er neste aktivitet |
+| Aktivitet nå | `Skrive resultater` er startet i kapittel 8 etter fullført `Resultattolkning` |
 | Planperiode nå | 2026-05-09 til 2026-05-14 |
-| Neste aktivitet | `Skrive resultater` |
+| Neste aktivitet | `Diskusjon` etter at kapittel 8 er kontrollert |
 | Neste milepæl | `Innlevering` 2026-06-02 |
 | Fullførte aktiviteter | 13 av 19 viste planaktiviteter i MPP, uten prosjektbuffer |
 | Aktiviteter pågår | 0 |
@@ -82,7 +82,7 @@ For å markere `Teste modell` som fullført bør dere minst ha:
 ### Etterpå
 
 - `Resultattolkning` er gjennomført i repo med kapittel 7 (Analyse) ferdigstilt etter to uavhengige reviewer.
-- `Skrive resultater` (kapittel 8) er allerede påbegynt med basiskjøring og sensitivitetsanalyse, men kan trenge en kort innledning og oppsummering.
+- `Skrive resultater` (kapittel 8) er startet og utvidet med kort innledning, Tabell 8.2 for havnefordeling, Tabell 8.3 for scenarioeffekter og en oppsummerende overgang til diskusjon.
 - `Diskusjon` (kapittel 9) har et utkast om operativ realisme og havnekonsentrasjon, men må utvides med kobling til problemstilling, litteratur, usikkerhet og praktiske implikasjoner.
 - `Konklusjon` (kapittel 10) er fortsatt tom og må svare direkte på problemstillingen.
 
@@ -522,6 +522,7 @@ Tekstplanen nevner endelig innlevering **2026-05-31**, mens `MS_Project.mpp` vis
 
 #### Åpne punkter til neste arbeidsøkt
 
+- Kontroller kapittel 8 (Resultat) for tall, flyt og tydelig skille mot analyse/diskusjon før aktiviteten markeres fullført.
 - Skriv ut kapittel 9 (Diskusjon) med kobling til problemstilling, litteratur (Stopford, Fox & Burks, Song & Panayides), usikkerhet og praktiske implikasjoner for Odfjell Tankers.
 - Skriv kapittel 10 (Konklusjon) som svarer direkte på problemstillingen og løfter fram viktigste funn.
 - Vurder om kapittel 8 (Resultat) trenger en kort innledning til 8.0 og en oppsummeringssetning før diskusjonen.
