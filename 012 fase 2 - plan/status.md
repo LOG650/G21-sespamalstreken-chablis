@@ -111,6 +111,7 @@ Resultatene er lagret i:
 
 ## Neste steg
 
-- Oppdater sammendrag, abstract og innholdsfortegnelse slik at de samsvarer med ferdig analyse, diskusjon og konklusjon.
-- Gjennomfør helhetlig rapportrevisjon med særlig kontroll av kapitteloverganger, figur- og tabellhenvisninger, referanser og konsistent begrepsbruk.
+- Sammendrag, abstract og innholdsfortegnelse er oppdatert slik at de samsvarer med ferdig analyse, diskusjon og konklusjon.
+- Kapittel 1-5 er kontrollert mot den operative hovedmodellen og justert slik at metode, teori, case og data omtaler voyage-data, ROB, forbruk, tankkapasitet, modellhavner og ekstern/ukjent bunkring konsistent med valgt modellvei.
+- Neste arbeidssteg er helhetlig rapportrevisjon med særlig kontroll av kapitteloverganger, figur- og tabellhenvisninger, referanser og konsistent begrepsbruk.
 - Oppdater rapporten dersom senere modellkjøringer endrer hovedresultatene.

@@ -87,13 +87,21 @@ Oppgaver som er unntatt offentlighet eller båndlagt vil ikke bli publisert.
 
 ## Sammendrag
 
-[Fyll inn sammendrag her]
+Denne rapporten undersøker hvordan en lineær optimaliseringsmodell kan brukes som beslutningsstøtte for å minimere drivstoffkostnader hos Odfjell Tankers. Analysen bygger på historiske bunkringsdata for LSF i fire prisede modellhavner, kombinert med operative voyage-, forbruks- og beholdningsdata. Datagrunnlaget brukes først til å beskrive historisk pris- og volumutvikling, og deretter til å formulere en kostnadsminimerende bunkringsmodell med restriksjoner for rutesekvens, tankkapasitet og ikke-negativ beholdning.
+
+Hovedmodellen behandler 486 voyage-etapper for åtte anonymiserte fartøyfiler. I basisscenarioet kjøper modellen 18 857,45 enheter i prisede modellhavner og fører 21 260,62 enheter som ekstern/ukjent bunkring. Dette tilsvarer at 41,59 % av modellert forbruk dekkes gjennom prisede modellhavner, mens 46,89 % faller utenfor dagens prisgrunnlag. Total modellkostnad i basisscenarioet er 26 625 664,78. Sensitivitetsanalysen viser at total modellkostnad varierer med 5 190 071,68 når proxykostnaden for ekstern/ukjent bunkring endres fra faktor 1,10 til 1,50, men kjøpsplanen er stabil i de testede scenarioene.
+
+Resultatene viser at modellen gir mest operativ verdi der fartøyenes ruter overlapper med de prisede modellhavnene. Samtidig viser den eksterne/ukjente andelen et tydelig datagap: modellen er egnet som transparent analyse- og beslutningsstøtte, men bredere prisdekning og videre validering er nødvendig før den kan brukes som full operativ planleggingsmodell.
 
 ---
 
 ## Abstract
 
-[Fyll inn abstract her]
+This report examines how a linear optimization model can support fuel cost minimization for Odfjell Tankers. The analysis is based on historical LSF bunkering data from four priced model ports, combined with operational voyage, consumption and inventory data. The data are first used to describe historical price and volume patterns, and then to formulate a cost-minimizing bunkering model with constraints for route sequence, tank capacity and non-negative inventory.
+
+The main model covers 486 voyage legs across eight anonymized vessel files. In the baseline scenario, the model purchases 18,857.45 units in priced model ports and assigns 21,260.62 units to external/unknown bunkering. This means that 41.59% of modeled consumption is covered through priced model ports, while 46.89% falls outside the current price coverage. The total model cost in the baseline scenario is 26,625,664.78. The sensitivity analysis shows that total model cost varies by 5,190,071.68 when the proxy cost for external/unknown bunkering changes from factor 1.10 to 1.50, while the purchase plan remains stable in the tested scenarios.
+
+The results show that the model is most operationally useful when vessel routes overlap with the priced model ports. At the same time, the external/unknown share provides a clear diagnosis of the data gap. The model is therefore suitable as transparent analytical decision support, but broader price coverage and further validation are needed before it can be used as a full operational planning model.
 
 ---
 
@@ -101,18 +109,37 @@ Oppgaver som er unntatt offentlighet eller båndlagt vil ikke bli publisert.
 
 1.0 Innledning  
 1.1 Problemstilling  
-1.2 Delproblemer (valgfri)  
+1.2 Delproblemer  
 1.3 Avgrensinger  
 1.4 Antagelser  
 2.0 Litteratur  
 3.0 Teori  
 4.0 Casebeskrivelse  
+4.1 Odfjell Tankers og beslutningssituasjonen  
+4.2 Historisk utvikling i volum og pris  
+4.3 Sesongmønster i bunkringsdataene  
+4.4 Konsekvenser av begrenset beslutningsgrunnlag  
+4.5 Utfordringer ved begrenset beslutningsgrunnlag  
 5.0 Metode og data  
 5.1 Metode  
 5.2 Data  
 6.0 Modellering  
+6.1 Datagrunnlag og beslutningsnivå  
+6.2 Sett, parametere og beslutningsvariabler  
+6.3 Målfunksjon  
+6.4 Restriksjoner  
+6.5 Modellfiler og validering  
+6.6 Avgrensninger  
 7.0 Analyse  
+7.1 Dekning fra prisede modellhavner  
+7.2 Fartøyforskjeller  
+7.3 Kostnadsdriver og proxypris  
+7.4 Modellens bidrag  
 8.0 Resultat  
+8.1 Hovedresultat  
+8.2 Resultat per fartøyfil  
+8.3 Resultat per modellhavn  
+8.4 Sensitivitet for ekstern proxypris  
 9.0 Diskusjon  
 10.0 Konklusjon  
 11.0 Bibliografi  
@@ -127,7 +154,7 @@ Drivstoffkostnader er en av de største og mest variable kostnadskomponentene i 
 
 Beslutningene tas samtidig i en operativ virkelighet preget av prisvariasjon mellom havner, ulike innkjøpsformer og behov for å balansere kostnad, tilgjengelighet, kvalitet og regulatoriske rammer (FuelEU Guidance Document for Shipping Companies, 2025). Dette gjør bunkringsbeslutninger til et relevant område for beslutningsstøtte basert på data og optimering. Temaet er aktuelt fordi historiske transaksjonsdata gir mulighet til å undersøke om det finnes systematiske mønstre i pris og volum som kan utnyttes bedre enn i en mer erfaringsbasert beslutningsprosess. Dersom slike mønstre kan dokumenteres og knyttes til en enkel og transparent modell, kan analysen gi Odfjell Tankers et bedre grunnlag for å vurdere hvor bunkring bør skje under gitte forutsetninger.
 
-Rapporten er forankret i et konkret case der prosjektgruppen har fått tilgang til historiske bunkringstransaksjoner for drivstofftypen LSF i de fire mest brukte havnene i datasettet. Dette er den drivstoffkategorien rapporten faktisk analyserer, selv om den operative bunkringsvirkeligheten i selskapet er bredere. Datagrunnlaget dekker 61 måneder fra januar 2020 til januar 2025. Formålet er ikke å utvikle en fullstendig operativ planleggingsmodell, men å etablere et analysemessig beslutningsgrunnlag som kan vise hvordan historiske pris- og volumdata kan brukes til kostnadsminimering.
+Rapporten er forankret i et konkret case der prosjektgruppen har fått tilgang til historiske bunkringstransaksjoner for drivstofftypen LSF i de fire mest brukte havnene i datasettet. Dette er den drivstoffkategorien rapporten faktisk analyserer, selv om den operative bunkringsvirkeligheten i selskapet er bredere. Prisgrunnlaget dekker 61 måneder fra januar 2020 til januar 2025. I tillegg brukes supplerende operative voyage-data fra 2025 for å modellere rutesekvens, forbruk, beholdning og tankkapasitet. Formålet er ikke å utvikle en fullstendig operativ planleggingsmodell, men å etablere et analysemessig beslutningsgrunnlag som kan vise hvordan historiske prisdata kan kobles med operative data i en kostnadsminimerende modell.
 
 Tidligere forskning og praksis innen operasjonsanalyse viser at lineær programmering er godt egnet til å analysere ressursallokering og kostnadsminimering under restriksjoner. I en maritim sammenheng er dette relevant fordi bunkringsbeslutninger kan forstås som et valg mellom alternative havner, priser og tidspunkter. Denne rapporten knytter derfor historiske bunkringsdata til en lineær kostnadsminimeringsmodell og vurderer hvordan pris- og volumdatasettet kan brukes til dette formålet.
 
@@ -139,7 +166,7 @@ Hvordan kan en lineær optimaliseringsmodell bidra til å minimere drivstoffkost
 
 Gitt den høye volatiliteten i drivstoffkostnader i shippingmarkedet (Stopford, 2008), er det relevant å undersøke hvordan bunkringsbeslutninger kan struktureres og støttes gjennom en optimaliseringsmodell.
 
-### 1.2 Delproblemer (valgfri)
+### 1.2 Delproblemer
 
 Hovedproblemstillingen kan presiseres gjennom tre delspørsmål:
 
@@ -171,7 +198,7 @@ Innen operasjonsanalyse er lineær programmering et etablert rammeverk for å fo
 
 Litteratur om logistikk og maritim planlegging peker samtidig på at modeller sjelden bør vurderes isolert fra operativ kontekst (Song og Panayides, 2021; Venkataraman og Pinto, 2018). I praksis vil forhold som tilgjengelighet, kapasitet, forbruk, ruter og kontrakter påvirke hvilke løsninger som faktisk er gjennomførbare. Dette er relevant for denne rapporten fordi pris- og volumdatasettet ikke inneholder alle slike variabler. Dermed må modellens rolle avgrenses til å være et analytisk beslutningsstøtteverktøy, ikke en fullstendig operativ sannhetsmodell.
 
-Et annet relevant litteraturspor handler om modellvalidering, bruk av historiske data og håndtering av begrensninger (Fox og Burks, 2024). Her er et sentralt poeng at modeller bør testes mot observerte data og vurderes opp mot realistiske driftsforhold. Dette støtter rapportens videre opplegg med en eksplisitt datasplitt mellom treningsdata og testdata, slik at modellutvikling og modellvurdering ikke blandes sammen.
+Et annet relevant litteraturspor handler om modellvalidering, bruk av historiske data og håndtering av begrensninger (Fox og Burks, 2024). Her er et sentralt poeng at modeller bør testes mot observerte data og vurderes opp mot realistiske driftsforhold. Dette støtter rapportens videre opplegg med eksplisitte datakontroller, reproduserbare modellkjøringer og sensitivitetsanalyse. Kronologisk train/test-splitt brukes som dokumentasjon av datagrunnlaget og som et mulig grunnlag for senere modellvurdering, men hovedresultatene i denne rapporten bygger på den operative hovedmodellen og dens interne validering.
 
 Denne rapporten plasserer seg dermed i en anvendt tradisjon, der etablerte prinsipper fra lineær programmering og modellbasert analyse benyttes for å støtte praktiske beslutninger i en operativ maritim kontekst. Metoden anvendes på et konkret case med et begrenset, men reelt datagrunnlag fra Odfjell Tankers. Dette er i tråd med hvordan analyseverktøy ofte brukes i praksis innen maritim økonomi og drift, hvor modellbaserte tilnærminger inngår som beslutningsstøtte heller enn som fullstendige operasjonelle løsninger (Grammenos, 2026). Den viktigste faglige ambisjonen er derfor ikke å introdusere ny teori, men å vise hvordan etablerte metoder kan anvendes systematisk på et praktisk beslutningsproblem.
 
@@ -197,12 +224,11 @@ All anvendt modellering innebærer forenklinger (Song og Panayides, 2021; Venkat
 
 Teoretisk innebærer dette at modellen må forstås som en deterministisk og operasjonell lager-/rutemodell. Den arbeider på fartøy- og etappenivå, men bruker historiske prisobservasjoner som grunnlag for kostnadsparameterne. Dette gjør modellen mer beslutningsnær enn en ren månedsaggregert modell, men stiller samtidig krav om at prisproxyer og manglende havnedekning dokumenteres tydelig.
 
-### Datagrunnlag, trening og testing
+### Datagrunnlag og modellkontroll
 
-Når historiske data brukes både til å bygge og vurdere en modell, oppstår det en risiko for at vurderingen blir for optimistisk hvis de samme observasjonene brukes i begge steg. Et vanlig prinsipp i analyse og modellutvikling er derfor å skille mellom data brukt til utvikling og data brukt til kontroll eller testing (Fox og Burks, 2024). I denne rapporten er dette prinsippet relevant fordi datasettet nå er splittet i en treningsdel og en testdel basert på kronologisk rekkefølge.
+Når historiske data brukes til modellering, oppstår det en risiko for at modellen tolkes for sterkt dersom datagrunnlag, forutsetninger og kontroller ikke skilles tydelig. Et vanlig prinsipp i analyse og modellutvikling er derfor å dokumentere hvilke data som brukes til utvikling, hvilke data som holdes tilbake for senere kontroll, og hvilke kontroller som faktisk er gjennomført (Fox og Burks, 2024). I denne rapporten er dette prinsippet relevant fordi både prisdata og voyage-data er dokumentert med kronologisk train/test-splitt, samtidig som hovedmodellen kontrolleres gjennom interne konsistenssjekker og sensitivitetsanalyse.
 
-Den teoretiske begrunnelsen for en slik splitt er at modellen skal vurderes på senere observasjoner enn dem som først brukes som analysegrunnlag. I tidsavhengige data er det særlig viktig at splittingen følger tidsrekkefølgen, slik at en testperiode faktisk representerer senere observasjoner og ikke bare en tilfeldig delmengde av de samme årene. 
-Samlet sett gir dette et teoretisk grunnlag for å formulere bunkringsproblemet som et optimeringsproblem, der kostnadsminimering skjer under gitte operative og datamessige begrensninger. Dette danner utgangspunktet for modellformuleringen som presenteres i neste kapittel.
+Den teoretiske begrunnelsen for kronologisk splitt er at senere observasjoner ikke skal blandes inn i tidligere analysegrunnlag. I denne rapporten brukes splitten primært som datadokumentasjon og for å gjøre videre validering mulig. Selve vurderingen av hovedmodellen skjer gjennom kontroll av at rutesekvens, forbruk, beholdning, kapasitet og kjøpsmuligheter behandles konsistent i modellresultatene. Samlet sett gir dette et teoretisk grunnlag for å formulere bunkringsproblemet som et optimeringsproblem, der kostnadsminimering skjer under gitte operative og datamessige begrensninger. Dette danner utgangspunktet for modellformuleringen som presenteres i neste kapittel.
 
 ---
 
@@ -272,11 +298,11 @@ Figuren viser at aktivitetsnivået i gjennomsnitt er høyest rundt mars og juli,
 
 Når prisene varierer mellom havner og over tid, mens volumet samtidig svinger gjennom analyseperioden, øker behovet for et mer strukturert beslutningsgrunnlag. Uten en systematisk sammenstilling av slike mønstre risikerer virksomheten å basere bunkringsbeslutninger på enkelthendelser eller lokal erfaring alene. Det betyr ikke at historiske data kan erstatte operativ vurdering, men det betyr at historiske transaksjoner kan brukes til å synliggjøre hvor det finnes et potensial for kostnadsreduksjon og bedre prioritering mellom havner.
 
-### 4.5 Utfordringer dårlige prognoser medfører i bedriften
+### 4.5 Utfordringer ved begrenset beslutningsgrunnlag
 
-Selv om selskapet allerede bruker beslutningsstøtte for deler av bunkringsarbeidet, er beslutningssituasjonen fortsatt kompleks fordi ulike drivstofftyper, kontraktsforhold, spotkjøp og regulatoriske krav gjør at ikke alle valg kan støttes på samme måte. Den underliggende utfordringen i bedriften er derfor bredere enn bare historiske prisforskjeller. Når prognoser for behov, prisutvikling eller framtidig bunkringsmønster er svake, blir beslutninger lettere preget av kortsiktige vurderinger og mindre av systematisk analyse. Dette kan føre til at bunkring skjer i havner som i ettertid viser seg å være relativt dyre, eller at volum fordeles på en måte som ikke utnytter prisvariasjonene godt nok.
+Selv om selskapet allerede bruker beslutningsstøtte for deler av bunkringsarbeidet, er beslutningssituasjonen fortsatt kompleks fordi ulike drivstofftyper, kontraktsforhold, spotkjøp og regulatoriske krav gjør at ikke alle valg kan støttes på samme måte. Den underliggende utfordringen i bedriften er derfor bredere enn bare historiske prisforskjeller. Når beslutningsgrunnlaget ikke kobler pris, rute, forbruk, beholdning og kapasitet systematisk, blir beslutninger lettere preget av kortsiktige vurderinger og mindre av etterprøvbar analyse. Dette kan føre til at bunkring skjer i havner som i ettertid viser seg å være relativt dyre, eller at volum fordeles på en måte som ikke utnytter prisvariasjonene godt nok.
 
-For bedriften kan dårlige prognoser skape flere praktiske problemer. For det første øker risikoen for høyere drivstoffkostnader fordi valg av havn og tidspunkt i større grad blir reaktive enn planlagte. For det andre blir det vanskeligere å vurdere hvilke kostnadsforskjeller som faktisk skyldes markedet, og hvilke som skyldes beslutningsmønsteret i virksomheten. For det tredje svekkes grunnlaget for læring over tid, fordi historiske beslutninger ikke blir vurdert systematisk opp mot alternative løsninger.
+For bedriften kan et begrenset beslutningsgrunnlag skape flere praktiske problemer. For det første øker risikoen for høyere drivstoffkostnader fordi valg av havn og tidspunkt i større grad blir reaktive enn planlagte. For det andre blir det vanskeligere å vurdere hvilke kostnadsforskjeller som faktisk skyldes markedet, og hvilke som skyldes beslutningsmønsteret i virksomheten. For det tredje svekkes grunnlaget for læring over tid, fordi historiske beslutninger ikke blir vurdert systematisk opp mot alternative løsninger.
 
 I en virksomhet som Odfjell Tankers får dette betydning utover enkeltkjøp. Når bunkerrelaterte valg gjentas mange ganger gjennom året, kan selv små avvik mellom faktisk praksis og en mer kostnadseffektiv løsning gi betydelige samlede utslag. En analysemodell som synliggjør historiske mønstre, estimerer kostnadskonsekvenser og peker på mulige forbedringer, er derfor relevant ikke bare som et teknisk verktøy, men som støtte for bedre planlegging og mer konsistente beslutninger i bedriften.
 
@@ -284,11 +310,9 @@ I en virksomhet som Odfjell Tankers får dette betydning utover enkeltkjøp. Nå
 
 ## 5.0 Metode og data
 
-Litt avhengig av omfanget, kan det være lurt å vurdere om du skal splitte kapitlet i to eller ikke.
-
 ### 5.1 Metode
 
-Studien er gjennomført som en kvantitativ caseanalyse av Odfjell Tankers, der historiske bunkringstransaksjoner brukes som grunnlag for å utvikle en optimeringsmodell for beslutningsstøtte. Arbeidet er lagt opp i fem steg: innlesing og kvalitetssikring av rådata, rensing og strukturering av datasettet, deskriptiv analyse av pris- og volummønstre, formulering av en lineær modell og etablering av avledede modellparametere som kan brukes i videre implementering og analyse.
+Studien er gjennomført som en kvantitativ caseanalyse av Odfjell Tankers, der historiske bunkringstransaksjoner og operative voyage-data brukes som grunnlag for å utvikle en optimeringsmodell for beslutningsstøtte. Arbeidet er lagt opp i seks steg: innlesing og kvalitetssikring av rådata, rensing og strukturering av pris- og volumdatasettet, deskriptiv analyse av historiske mønstre, strukturering av operative voyage-, forbruks-, ROB- og kapasitetsdata, formulering og implementering av en lineær rute- og lagerbasert hovedmodell, og til slutt basiskjøring, sensitivitetsanalyse og resultattolkning.
 
 Rådataene er behandlet i en egen rensepipeline i `006 analysis/01_datagrunnlag/02_datavask/src/clean_and_aggregate_bunker_data.py`. Her standardiseres datoer og numeriske felt, samtidig som volum- og prisvariabler harmoniseres ved å bruke `Invoiced Qty` og `Invoice Price` som hovedkilder, med fallback til `Ordered Qty` og `Order Price` når fakturerte verdier mangler. Observasjoner med ikke-positivt volum eller ikke-positiv pris forkastes for å unngå at ugyldige transaksjoner påvirker analysen og de estimerte modellparametrene.
 
@@ -353,9 +377,9 @@ Tabell 5.3 oppsummerer den strukturerte havneinformasjonen som videreføres til 
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.3 Strukturert havneoversikt brukt videre i modellgrunnlaget.</i></small></p>
 
-Etter den første datavasken er det mottatt et supplerende datasett med åtte anonymiserte fartøyfiler fra 2025. Filene ligger i `004 data` og er navngitt etter fartøyklasse og løpenummer, for eksempel `C001 - 1.csv`. Det samlede tilleggsdatasettet har 3893 rapporteringsrader fra 2025-01-01 til 2025-12-30. De opprinnelige havnekodene er erstattet med 70 interne P-koder, og voyage-numrene er erstattet med 244 interne VG-koder. Siden filene inneholder forbruk, seilt distanse, rapporterte voyage-koder og `ROB_Fuel_Total`, brukes de som kvantitativ støtte for å vurdere hvilke operasjonelle forhold modellen ikke fanger opp direkte.
+Etter den første datavasken er det mottatt et supplerende datasett med åtte anonymiserte fartøyfiler fra 2025. Filene ligger i `004 data` og er navngitt etter fartøyklasse og løpenummer, for eksempel `C001 - 1.csv`. Det samlede tilleggsdatasettet har 3893 rapporteringsrader fra 2025-01-01 til 2025-12-30. De opprinnelige havnekodene er erstattet med 70 interne P-koder, og voyage-numrene er erstattet med 244 interne VG-koder. Siden filene inneholder forbruk, seilt distanse, rapporterte voyage-koder og `ROB_Fuel_Total`, brukes de direkte til å etablere rutesekvens, forbruksbehov, startbeholdning og havnetilgjengelighet i hovedmodellen.
 
-Tabell 5.4 oppsummerer de oppgitte tankkapasitetene for de anonymiserte fartøyklassene. Tallene er oppgitt som verifiserte 2025-tall fra dataleverandøren og brukes som operasjonell støtte, ikke som kapasitetsrestriksjoner i modellen.
+Tabell 5.4 oppsummerer de oppgitte tankkapasitetene for de anonymiserte fartøyklassene. Tallene er oppgitt som verifiserte 2025-tall fra dataleverandøren og brukes som kapasitetsrestriksjoner i hovedmodellen.
 
 | Fartøyklasse | Bunkerskapasitet |
 | --- | --- |
@@ -365,24 +389,24 @@ Tabell 5.4 oppsummerer de oppgitte tankkapasitetene for de anonymiserte fartøyk
 | C004 | 1,907.080 m3 |
 | C005 | 1,024.531 m3 |
 
-<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.4 Verifisert bunkerskapasitet per anonymisert fartøyklasse i tilleggsdataene.</i></small></p>
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.4 Verifisert bunkerskapasitet per anonymisert fartøyklasse brukt som kapasitetsparameter i hovedmodellen.</i></small></p>
 
-Tabell 5.5 oppsummerer de supplerende voyage-dataene. Tabellen dokumenterer omfang, kvalitet og mulig analytisk bruk, men dataene inngår ikke som beslutningsvariabler, restriksjoner eller kostnadsparametere i modellen.
+Tabell 5.5 oppsummerer de supplerende voyage-dataene. Tabellen dokumenterer omfang, kvalitet og hvordan dataene brukes i den operative hovedmodellen. Voyage-dataene gir ikke prisparametere, men de inngår direkte i modellens rutesekvens, forbruksbehov, startbeholdning, havnetilgjengelighet og kapasitetsrestriksjoner.
 
 | Element | Verdi | Bruk i rapporten |
 | --- | --- | --- |
 | Periode | 2025-01-01 til 2025-12-30 | Operasjonell støtte |
 | Antall rapporteringsrader | 3893 | Omfang av voyage-data |
 | Antall voyage-etapper | 486 | Grunnlag for rute- og forbruksvurdering |
-| Antall fartøyklasser | 5 | Kapasitetsvurdering |
+| Antall fartøyklasser | 5 | Kapasitetsrestriksjoner |
 | Antall interne havnekoder | 70 | Havnetilgjengelighet og rutespredning |
 | Antall interne voyage-koder | 244 | Voyage-struktur |
-| Train-rader | 3110 | Senere modellutvidelse |
-| Test-rader | 783 | Senere modellutvidelse |
+| Train-rader | 3110 | Dokumentert kronologisk utviklingsgrunnlag |
+| Test-rader | 783 | Dokumentert kronologisk kontrollgrunnlag |
 | Datakvalitetsavvik | 43 | Kvalitetsvurdering |
 | Manglende ROB | 3 | Begrensning |
 | Nullforbruk | 40 | Begrensning |
-| Modellrolle | Operasjonell støtte | Ikke direkte modellinput |
+| Modellrolle | Direkte operasjonell modellinput | Rute, forbruk, ROB, kapasitet og havnetilgjengelighet |
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.5 Oppsummering av supplerende voyage-data brukt i operasjonell hovedmodell.</i></small></p>
 
@@ -390,7 +414,7 @@ Datakvaliteten i det opprinnelige pris- og volumdatasettet vurderes som tilstrek
 
 Tilleggsdataene er strukturert i tre arbeidstabeller for operasjonell modellering. `tab_voyage_events_2025.csv` inneholder rapporteringshendelser, `tab_voyage_legs_2025.csv` inneholder aggregerte voyage-etapper, og `tab_vessel_class_capacity.csv` inneholder kapasitetsparameter per anonymisert fartøyklasse. Struktureringen ga 3893 rapporteringsrader og 486 voyage-etapper. En egen datakvalitetskontroll av voyage-dataene identifiserer 43 avvik: 3 tilfeller med manglende ROB og 40 rapporteringsrader med nullforbruk. Det er ikke identifisert negativt forbruk, negativ varighet eller ROB over oppgitt tankkapasitet. Dette gjør det mulig å etablere en operasjonell hovedmodell som bruker voyage-dataene direkte til beholdning, forbruk, kapasitet og rutesekvens, samtidig som manglende prisdekning synliggjøres eksplisitt i resultatene.
 
-Train/test-splitt av de åtte supplerende voyage-råfilene ga samlet 3110 train-rader og 783 test-rader. Dette gjør at videre arbeid med den operative modellen kan vurderes på train/test-grunnlag uten at testperioden påvirker treningsgrunnlaget.
+Train/test-splitt av de åtte supplerende voyage-råfilene ga samlet 3110 train-rader og 783 test-rader. I denne rapporten brukes splitten som dokumentasjon av et kronologisk skille og som grunnlag for eventuell senere kontroll. Den operative hovedmodellen kjøres som en deterministisk kostnadsminimering på det strukturerte 2025-grunnlaget, og vurderes primært gjennom interne konsistenssjekker, basiskjøring og sensitivitetsanalyse.
 
 Det finnes samtidig ingen separat datakvalitetsrapport eller annen direkte dokumentasjon fra Odfjell Tankers som beskriver kvalitetssikringsprosessen for det opprinnelige pris- og volumdatasettet. I denne oppgaven legges det derfor inn en eksplisitt antagelse om at dette datasettet allerede er kvalitetssjekket av aktøren som leverte det, det vil si Odfjell Tankers, før det ble delt med prosjektgruppen. Denne antagelsen betyr ikke at datasettet anses som feilfritt, men at vi legger til grunn at grunnleggende kontroller av innhold, format og relevans allerede er utført hos dataleverandøren. Vår egen datavask må derfor forstås som en sekundær kontroll tilpasset analyse- og modellformål, ikke som en full revisjon av hele datagrunnlaget. For de supplerende voyage-dataene er det i tillegg gjennomført en egen teknisk datakvalitetskontroll i prosjektet.
 

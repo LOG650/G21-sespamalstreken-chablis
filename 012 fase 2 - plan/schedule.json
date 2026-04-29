@@ -264,8 +264,8 @@
       "navn": "Ferdigstille rapport",
       "start": "2026-05-18",
       "slutt": "2026-05-23",
-      "status_per_2026-04-29": "Neste",
-      "grunnlag": "Neste steg er å oppdatere sammendrag, abstract og innholdsfortegnelse, og deretter gjennomføre helhetlig rapportrevisjon.",
+      "status_per_2026-04-30": "Pågår i repo",
+      "grunnlag": "Sammendrag, abstract og innholdsfortegnelse er oppdatert i `005 report/rapport.md`. Kapittel 1-5 er kontrollert og justert mot den operative hovedmodellen. Neste del av ferdigstillingen er helhetlig rapportrevisjon.",
       "avhenger_av": [
         "Diskusjon"
       ]
@@ -275,8 +275,8 @@
       "navn": "Revisjon",
       "start": "2026-05-24",
       "slutt": "2026-05-29",
-      "status_per_2026-04-27": "Kommende",
-      "grunnlag": "Starter 2026-05-24",
+      "status_per_2026-04-30": "Neste",
+      "grunnlag": "Neste steg er helhetlig rapportrevisjon med kontroll av kapitteloverganger, figur- og tabellhenvisninger, referanser og konsistent begrepsbruk.",
       "avhenger_av": [
         "Ferdigstille rapport"
       ]
