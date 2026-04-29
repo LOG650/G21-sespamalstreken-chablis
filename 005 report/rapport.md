@@ -520,7 +520,7 @@ Analysen tolker modelloppførselen i basiskjøringen og sensitivitetsanalysen, o
 
 ### 7.1 Driverbilde og månedlig variasjon
 
-Differansen mellom modellkostnad og historisk kostnad i basiskjøringen følger direkte av modellens beslutningslogikk: i hver måned legges hele behovet til havnen med lavest observert pris i perioden. Den samlede besparelsen er derfor ikke en jevn effekt over tid, men en sum av månedlige utslag som varierer i størrelse. Den månedlige variasjonen er vist i Figur 8.1 i resultatkapittelet. De månedlige utslagene strekker seg fra knapt 39 000 (2020-02) til over 1,6 mill. (2022-07), og de største absolutte utslagene er konsentrert til 2022, da prisnivået lå høyest i hele analyseperioden.
+Differansen mellom modellkostnad og historisk kostnad i basiskjøringen følger direkte av modellens beslutningslogikk: i hver måned legges hele behovet til havnen med lavest observert pris i perioden. Den samlede besparelsen er derfor ikke en jevn effekt over tid, men en sum av månedlige utslag som varierer i størrelse. Den månedlige variasjonen er vist i Figur 8.1 i resultatkapittelet. De månedlige utslagene strekker seg fra i underkant av 39 000 (2020-02) til over 1,6 mill. (2022-07), og de største absolutte utslagene er konsentrert til 2022, da observert pris i valgt havn lå høyest i hele analyseperioden.
 
 ### 7.2 Havnefordeling og tidsstabilitet
 
@@ -541,7 +541,7 @@ Tidsmønsteret tilsier at havnevalget i hovedsak drives av relative prisforskjel
 
 ### 7.3 Robusthet i havnevalget
 
-Sensitivitetsanalysen synliggjør hvor små marginene i havnevalget er. En prisøkning på 10 % i P003 reduserer antall P003-valg fra 44 til 2 måneder. Scenarioet ender med P002 i 36 måneder, P001 i 16 måneder, P004 i 7 måneder og P003 i 2 måneder. Tilsvarende flytter en prisreduksjon på 10 % i P001 valget til P001 i 46 nye måneder, selv om P001 i utgangspunktet bare velges i 2 (Tabell 7.1). Dette tyder på at flere havner ofte ligger nær billigste alternativ, og at modellen er sensitiv for moderate skift i de relative prisene.
+Sensitivitetsanalysen synliggjør hvor små marginene i havnevalget er. En prisøkning på 10 % i P003 reduserer antall P003-valg fra 44 til 2 måneder. Scenarioet ender med P002 i 36 måneder, P001 i 16 måneder, P004 i 7 måneder og P003 i 2 måneder. Tilsvarende fører en prisreduksjon på 10 % i P001 til at P001 velges i 48 måneder, en økning på 46 fra basis (Tabell 7.1). Dette tyder på at flere havner ofte ligger nær billigste alternativ, og at modellen er sensitiv for moderate skift i de relative prisene. Figur 8.3 oppsummerer hvilke scenarioer som gir størst utslag på samlet modellkostnad.
 
 ### 7.4 Effekten av modellens linearitet
 
