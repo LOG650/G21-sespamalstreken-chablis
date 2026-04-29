@@ -113,5 +113,7 @@ Resultatene er lagret i:
 
 - Sammendrag, abstract og innholdsfortegnelse er oppdatert slik at de samsvarer med ferdig analyse, diskusjon og konklusjon.
 - Kapittel 1-5 er kontrollert mot den operative hovedmodellen og justert slik at metode, teori, case og data omtaler voyage-data, ROB, forbruk, tankkapasitet, modellhavner og ekstern/ukjent bunkring konsistent med valgt modellvei.
+- Kapittel 5 presiserer nå at train/test-splitten brukes som datadisiplin og mulig senere robusthetskontroll, ikke som klassisk evaluering av en prediktiv modell.
+- Rapportteksten er ryddet slik at datagrunnlaget omtales med utgangspunkt i rådata; konkrete henvisninger til prosesserte datafiler og interne analyseartefakter er fjernet fra brødteksten.
 - Neste arbeidssteg er helhetlig rapportrevisjon med særlig kontroll av kapitteloverganger, figur- og tabellhenvisninger, referanser og konsistent begrepsbruk.
 - Oppdater rapporten dersom senere modellkjøringer endrer hovedresultatene.

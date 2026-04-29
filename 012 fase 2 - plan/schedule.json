@@ -265,7 +265,7 @@
       "start": "2026-05-18",
       "slutt": "2026-05-23",
       "status_per_2026-04-30": "Pågår i repo",
-      "grunnlag": "Sammendrag, abstract og innholdsfortegnelse er oppdatert i `005 report/rapport.md`. Kapittel 1-5 er kontrollert og justert mot den operative hovedmodellen. Neste del av ferdigstillingen er helhetlig rapportrevisjon.",
+      "grunnlag": "Sammendrag, abstract og innholdsfortegnelse er oppdatert i `005 report/rapport.md`. Kapittel 1-5 er kontrollert og justert mot den operative hovedmodellen, inkludert presisering av train/test-splitten og opprydding av henvisninger til prosesserte datafiler. Neste del av ferdigstillingen er helhetlig rapportrevisjon.",
       "avhenger_av": [
         "Diskusjon"
       ]
