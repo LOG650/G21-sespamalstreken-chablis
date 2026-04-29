@@ -553,6 +553,8 @@ Samlet beskriver analysen en modell som oppfører seg konsistent med formulering
 
 ## 8.0 Resultat
 
+Dette kapittelet presenterer hovedresultatene fra basiskjøringen og sensitivitetsanalysen. Resultatene vises først som samlet kostnadssammenligning mot historisk praksis, deretter som havnevalg og scenarioeffekter. Alle beløp er oppgitt i datasettets kostnadsenheter. Tolkningen av modelloppførselen er behandlet i kapittel 7, mens den praktiske betydningen av funnene diskuteres i kapittel 9.
+
 ### 8.1 Basiskjøring for modellen
 
 Basiskjøringen bruker parameterverdier avledet fra det opprinnelige pris- og volumdatasettet. Modellen er kjørt som solver-uavhengig simulering der månedlig behov legges til billigste tilgjengelige havn i modellgrunnlaget.
@@ -568,21 +570,28 @@ Basiskjøringen gir en beregnet modellkostnad på 473 953 291,65, sammenlignet m
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell 8.1 Basiskjøring sammenlignet med historisk praksis.</i></small></p>
 
-Differansen er ikke jevnt fordelt over analyseperioden. Figur 8.1 viser den månedlige besparelsen mot historisk kostnad og synliggjør hvor mye størrelsen på utslaget varierer fra måned til måned.
+Figur 8.1 viser den månedlige besparelsen mot historisk kostnad og synliggjør hvor mye størrelsen på utslaget varierer fra måned til måned.
 
 <div align="center">
   <img src="../006 analysis/03_analyse/03_resultattolkning/figures/fig_result_monthly_saving.png" alt="Månedlig estimert besparelse i basiskjøringen" width="80%">
   <p align="center" style="font-size: 0.9em;"><small><i>Figur 8.1 Månedlig estimert besparelse i basiskjøringen sammenlignet med historisk kostnad.</i></small></p>
 </div>
 
-Fordelingen av valgte havner viser at modellen oftest legger månedlig behov til P003, mens P002 brukes i 14 måneder og de øvrige havnene bare i få perioder.
+Tabell 8.2 viser samlet volum og modellkostnad per valgt havn i basiskjøringen. Årsfordelingen av havnevalget er presentert i kap. 7.2.
+
+| Havn | Antall måneder valgt | Totalt volum | Modellkostnad |
+| --- | --- | --- | --- |
+| P001 | 2 | 22 059,18 | 8 440 936,34 |
+| P002 | 14 | 232 224,19 | 131 221 226,77 |
+| P003 | 44 | 610 540,21 | 332 098 623,80 |
+| P004 | 1 | 4 726,55 | 2 192 504,75 |
+
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 8.2 Valgt havn, volum og kostnad i basiskjøringen.</i></small></p>
 
 <div align="center">
   <img src="../006 analysis/03_analyse/02_sensitivitetsanalyse/figures/fig_result_baseline_selected_ports.png" alt="Antall måneder hver havn velges i basiskjøringen" width="80%">
   <p align="center" style="font-size: 0.9em;"><small><i>Figur 8.2 Antall måneder hver havn velges i basiskjøringen.</i></small></p>
 </div>
-
-Resultatene er lagret som interne analyseartefakter i repoet og brukes her som grunnlag for tabellene og figurene i resultatkapittelet.
 
 ### 8.2 Sensitivitetsanalyse for modellen
 
@@ -590,7 +599,22 @@ Sensitivitetsanalysen bruker basiskjøringen som referanse og tester 19 scenario
 
 Basisscenarioet i sensitivitetsanalysen gir samme modellkostnad som basiskjøringen: 473 953 291,65. Når både pris og etterspørsel øker med 10 %, øker modellkostnaden til 573 483 482,90, som er 99 530 191,25 høyere enn basis. Når både pris og etterspørsel reduseres med 10 %, faller modellkostnaden til 383 902 166,24, som er 90 051 125,41 lavere enn basis.
 
-Havnespesifikke scenarioer viser at modellen er særlig følsom for prisendringer i P003 og P002. En prisreduksjon på 10 % i P003 reduserer modellkostnaden med 42 900 536,07 mot basis, mens tilsvarende prisreduksjon i P002 reduserer modellkostnaden med 30 826 133,17. Dette skyldes at modellen i flere måneder flytter valgt havn når relative prisforskjeller endres.
+Blant de havnespesifikke scenarioene gir prisendringer i P003 og P002 de største enkeltutslagene. En prisreduksjon på 10 % i P003 reduserer modellkostnaden med 42 900 536,07 mot basis, og tilsvarende prisreduksjon i P002 reduserer den med 30 826 133,17. Tabell 8.3 viser de ti scenarioene med størst absolutt utslag mot basis. Den fullstendige listen over alle 19 scenarioer er gjengitt i Vedlegg C.
+
+| Scenario | Total kostnad | Endring mot basis | Endring i prosent | Besparelse mot historisk |
+| --- | --- | --- | --- | --- |
+| Pris og etterspørsel -10 % | 383 902 166,24 | -90 051 125,41 | -19,00 % | 114 911 365,02 |
+| Alle havnepriser -10 % | 426 557 962,49 | -47 395 329,17 | -10,00 % | 72 255 568,77 |
+| Etterspørsel -10 % | 426 557 962,49 | -47 395 329,17 | -10,00 % | 72 255 568,77 |
+| Pris i P003 -10 % | 431 052 755,59 | -42 900 536,07 | -9,05 % | 67 760 775,67 |
+| Pris i P002 -10 % | 443 127 158,48 | -30 826 133,17 | -6,50 % | 55 686 372,78 |
+| Alle havnepriser +5 % | 497 650 956,24 | 23 697 664,58 | 5,00 % | 1 162 575,02 |
+| Etterspørsel +5 % | 497 650 956,24 | 23 697 664,58 | 5,00 % | 1 162 575,02 |
+| Alle havnepriser +10 % | 521 348 620,82 | 47 395 329,17 | 10,00 % | -22 535 089,56 |
+| Etterspørsel +10 % | 521 348 620,82 | 47 395 329,17 | 10,00 % | -22 535 089,56 |
+| Pris og etterspørsel +10 % | 573 483 482,90 | 99 530 191,25 | 21,00 % | -74 669 951,64 |
+
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 8.3 De ti scenarioene med størst absolutt utslag mot basis i sensitivitetsanalysen.</i></small></p>
 
 Figur 8.3 viser de største utslagene i sensitivitetsanalysen samlet. Figuren viser både stresscenarioene og enkeltendringene som påvirker modellkostnaden mest.
 
@@ -599,7 +623,7 @@ Figur 8.3 viser de største utslagene i sensitivitetsanalysen samlet. Figuren vi
   <p align="center" style="font-size: 0.9em;"><small><i>Figur 8.3 Største kostnadsutslag i sensitivitetsanalysen målt mot basis.</i></small></p>
 </div>
 
-Resultatene er lagret som interne analyseartefakter i repoet og brukes her som grunnlag for oppsummeringen av sensitivitetsanalysen.
+Samlet viser resultatene at basiskjøringen gir en lavere modellkostnad enn historisk praksis i datagrunnlaget, og at resultatet særlig påvirkes av prisnivå, etterspørsel og relative prisforskjeller mellom P003 og de øvrige modellhavnene. Disse funnene danner grunnlaget for diskusjonen av modellens praktiske relevans og begrensninger i kapittel 9.
 
 ---
 
@@ -638,3 +662,29 @@ Venkataraman, R. R., & Pinto, J. K. (2018). *Operations Management: Managing Glo
 **Vedlegg A.** `Everything You Need To Know About Marine Fuels.pdf` brukes som støttedokument for korte forklaringer av drivstofftypene `VLSFO`, `LSGO` og biodrivstoff i casebeskrivelsen.
 
 **Vedlegg B.** `fueleu_guidance_document_for_shipping_companies_2025-10-08.pdf` brukes som støttedokument for omtalen av regulatoriske rammer og hvorfor biodrivstoff også må forstås i lys av utslippskrav.
+
+**Vedlegg C.** Fullstendig oversikt over alle 19 scenarioer i sensitivitetsanalysen, inkludert basisscenarioet som referanse. Beløp er oppgitt i datasettets kostnadsenheter.
+
+| Scenario | Modellkostnad | Endring mot basis | Endring i prosent |
+| --- | --- | --- | --- |
+| Basisscenario | 473 953 291,65 | 0,00 | 0,00 % |
+| Alle havnepriser -10 % | 426 557 962,49 | -47 395 329,17 | -10,00 % |
+| Alle havnepriser -5 % | 450 255 627,07 | -23 697 664,58 | -5,00 % |
+| Alle havnepriser +5 % | 497 650 956,24 | 23 697 664,58 | 5,00 % |
+| Alle havnepriser +10 % | 521 348 620,82 | 47 395 329,17 | 10,00 % |
+| Pris i P001 -10 % | 456 629 407,68 | -17 323 883,98 | -3,66 % |
+| Pris i P001 +10 % | 474 439 268,49 | 485 976,84 | 0,10 % |
+| Pris i P002 -10 % | 443 127 158,48 | -30 826 133,17 | -6,50 % |
+| Pris i P002 +10 % | 477 252 367,61 | 3 299 075,95 | 0,70 % |
+| Pris i P003 -10 % | 431 052 755,59 | -42 900 536,07 | -9,05 % |
+| Pris i P003 +10 % | 486 675 427,51 | 12 722 135,86 | 2,68 % |
+| Pris i P004 -10 % | 460 320 844,14 | -13 632 447,51 | -2,88 % |
+| Pris i P004 +10 % | 473 989 827,89 | 36 536,23 | 0,01 % |
+| Etterspørsel -10 % | 426 557 962,49 | -47 395 329,17 | -10,00 % |
+| Etterspørsel -5 % | 450 255 627,07 | -23 697 664,58 | -5,00 % |
+| Etterspørsel +5 % | 497 650 956,24 | 23 697 664,58 | 5,00 % |
+| Etterspørsel +10 % | 521 348 620,82 | 47 395 329,17 | 10,00 % |
+| Pris og etterspørsel -10 % | 383 902 166,24 | -90 051 125,41 | -19,00 % |
+| Pris og etterspørsel +10 % | 573 483 482,90 | 99 530 191,25 | 21,00 % |
+
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell C.1 Fullstendig sensitivitetsanalyse over alle 19 scenarioer mot basis.</i></small></p>
