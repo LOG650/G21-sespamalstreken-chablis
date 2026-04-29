@@ -1,0 +1,49 @@
+{
+  "model_version": "operational_route_inventory",
+  "method": "lineær kostnadsminimering med scipy.optimize.linprog",
+  "external_price_multiplier": 1.25,
+  "external_price": 762.864622,
+  "port_average_prices": {
+    "P001": 578.749276,
+    "P002": 610.291698,
+    "P003": 540.843963,
+    "P004": 577.041974
+  },
+  "vessel_file_count": 8,
+  "leg_count": 486,
+  "priced_leg_count": 42,
+  "purchased_leg_count": 28,
+  "total_consumption": 45345.04,
+  "model_purchase_qty": 18857.451,
+  "model_external_qty": 21260.619,
+  "external_share_of_consumption": 0.468863,
+  "priced_share_of_consumption": 0.415866,
+  "priced_cost": 10406690.7,
+  "external_cost": 16218974.08,
+  "total_model_cost": 26625664.78,
+  "purchase_price_sources": {
+    "historical_port_average": 25,
+    "monthly_observation": 3
+  },
+  "input_files": {
+    "legs": "006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_voyage_legs_2025.csv",
+    "capacity": "006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_vessel_class_capacity.csv",
+    "prices": "006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_bunker_monthly_by_port.csv"
+  },
+  "output_files": {
+    "summary": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_summary.json",
+    "by_vessel": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_by_vessel.csv",
+    "by_leg": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_by_leg.csv",
+    "purchases": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_purchases.csv",
+    "sensitivity": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_proxy_sensitivity.csv",
+    "metadata": "006 analysis/02_modellutvikling/04_implementere_modell/metadata/res_route_inventory_summary.md"
+  },
+  "assumptions": [
+    "Eksakt månedlig pris brukes først for P001-P004.",
+    "Historisk havnesnitt brukes som prisproxy for P001-P004 når eksakt månedspris mangler.",
+    "Havner utenfor P001-P004 får ikke egen estimert pris.",
+    "Ekstern/ukjent bunkring kostnadssettes med konservativ out-of-network proxypris.",
+    "ROB_Fuel_Total behandles som relevant totalbeholdning.",
+    "Oppgitt bunkerskapasitet brukes som øvre beholdningsgrense."
+  ]
+}

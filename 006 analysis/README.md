@@ -6,7 +6,7 @@ Denne mappen er organisert etter hovedfasene og aktivitetene i prosjektplanen.
 
 - `01_datagrunnlag`: aktiviteter knyttet til datainnsamling, datavask, strukturering og deskriptiv analyse
 - `02_modellutvikling`: aktiviteter knyttet til variabler, målfunksjon, restriksjoner, implementering og testing av modell
-- `03_analyse`: aktiviteter for basiskjøring, sensitivitetsanalyse og resultattolkning
+- `03_analyse`: aktiviteter for videre analyse og resultattolkning basert på den operative hovedmodellen
 - `_shared`: valgfritt område for delte hjelpemoduler eller maler
 
 ## Felles analysemiljø

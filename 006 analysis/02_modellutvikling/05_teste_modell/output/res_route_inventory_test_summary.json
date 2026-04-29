@@ -1,0 +1,292 @@
+{
+  "test_status": "passed",
+  "check_count": 35,
+  "failed_check_count": 0,
+  "checks": [
+    {
+      "check": "Alle modellresultatfiler finnes",
+      "passed": true,
+      "value": [],
+      "expected": []
+    },
+    {
+      "check": "Antall etapper stemmer med sammendrag",
+      "passed": true,
+      "value": 486,
+      "expected": 486
+    },
+    {
+      "check": "Antall fartøyfiler stemmer med sammendrag",
+      "passed": true,
+      "value": 8,
+      "expected": 8
+    },
+    {
+      "check": "Alle fartøyløsninger er optimale",
+      "passed": true,
+      "value": "8 optimale løsninger",
+      "expected": "Optimization terminated successfully. (HiGHS Status 7: Optimal)"
+    },
+    {
+      "check": "Antall etapper stemmer med inputdata",
+      "passed": true,
+      "value": 486,
+      "expected": 486
+    },
+    {
+      "check": "Ingen dupliserte fartøy-etapper",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Alle output-etapper finnes i inputdata",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Etapperekkefølge er kronologisk per fartøy",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Forbruk per etappe stemmer med inputdata",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Første ROB per fartøy stemmer med inputdata",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Første lagerbalanse per fartøy stemmer direkte med inputdata",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Kapasitet per etappe stemmer med kapasitetstabell",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Tilgjengelige prisede havner stemmer med inputdata",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Ingen negativ sluttbeholdning",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Ingen sluttbeholdning over kapasitet",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Ingen beholdning før forbruk over kapasitet",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Lagerbalansen holder på etappenivå",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Ingen kjøp uten tilgjengelig priset modellhavn",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Antall etapper med kjøp stemmer med sammendrag",
+      "passed": true,
+      "value": 28,
+      "expected": 28
+    },
+    {
+      "check": "Antall kjøpsrader stemmer med sammendrag",
+      "passed": true,
+      "value": 28,
+      "expected": 28
+    },
+    {
+      "check": "Kjøpsmengde stemmer mellom etapper og kjøpsfil",
+      "passed": true,
+      "value": 0.0,
+      "expected": 0
+    },
+    {
+      "check": "Kjøpsmengde stemmer med sammendrag",
+      "passed": true,
+      "value": 18857.451,
+      "expected": 18857.451
+    },
+    {
+      "check": "Ekstern mengde stemmer med sammendrag",
+      "passed": true,
+      "value": 21260.619,
+      "expected": 21260.619
+    },
+    {
+      "check": "Totalkostnad per fartøy stemmer med sammendrag",
+      "passed": true,
+      "value": 26625664.78,
+      "expected": 26625664.78
+    },
+    {
+      "check": "Kostnad i prisede havner stemmer med sammendrag",
+      "passed": true,
+      "value": 10406690.7,
+      "expected": 10406690.7
+    },
+    {
+      "check": "Kjøpshavn finnes blant prisede havner på samme etappe",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Alle kjøpspriser er positive",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Kjøpskostnad stemmer med mengde ganger pris",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Kjøpspriser stemmer med prisdata",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Prisgrunnlag for kjøp stemmer med sammendrag",
+      "passed": true,
+      "value": {
+        "historical_port_average": 25,
+        "monthly_observation": 3
+      },
+      "expected": {
+        "historical_port_average": 25,
+        "monthly_observation": 3
+      }
+    },
+    {
+      "check": "Sensitivitetsfil har forventede proxyfaktorer",
+      "passed": true,
+      "value": [
+        1.1,
+        1.25,
+        1.5
+      ],
+      "expected": [
+        1.1,
+        1.25,
+        1.5
+      ]
+    },
+    {
+      "check": "Sensitivitetsfil har forventet antall rader",
+      "passed": true,
+      "value": 3,
+      "expected": 3
+    },
+    {
+      "check": "Sensitivitetsrader har konsistent totalkostnad",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Sensitivitetsrader har konsistent eksternkostnad",
+      "passed": true,
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Hovedscenario i sensitivitetsfil stemmer med sammendrag",
+      "passed": true,
+      "value": "26625664.78",
+      "expected": 26625664.78
+    }
+  ],
+  "tested_at": "2026-04-29T20:27:24.554845+00:00",
+  "model_output_dir": "006 analysis/02_modellutvikling/04_implementere_modell/output",
+  "input_files": [
+    {
+      "path": "006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_voyage_legs_2025.csv",
+      "mtime": "2026-04-28T17:56:34.024458+00:00",
+      "sha256": "252f17a7a09f35891420c4d30b4ded51396eaa62fe90b0edcbbbd5451ccfd93b"
+    },
+    {
+      "path": "006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_vessel_class_capacity.csv",
+      "mtime": "2026-04-28T17:55:48.828306+00:00",
+      "sha256": "4a3d3e8d3c50e0d4c619cbb67bb9b68773e36c13bf2661fde05634f6df4b3e6a"
+    },
+    {
+      "path": "006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_bunker_monthly_by_port.csv",
+      "mtime": "2026-04-27T17:46:47.926308+00:00",
+      "sha256": "c462a9beeb5cd6558f63b3cb76b8e2aebd4afbdf73068deb66a0932797a5432e"
+    }
+  ],
+  "validated_files": [
+    {
+      "path": "006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_voyage_legs_2025.csv",
+      "mtime": "2026-04-28T17:56:34.024458+00:00",
+      "sha256": "252f17a7a09f35891420c4d30b4ded51396eaa62fe90b0edcbbbd5451ccfd93b"
+    },
+    {
+      "path": "006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_vessel_class_capacity.csv",
+      "mtime": "2026-04-28T17:55:48.828306+00:00",
+      "sha256": "4a3d3e8d3c50e0d4c619cbb67bb9b68773e36c13bf2661fde05634f6df4b3e6a"
+    },
+    {
+      "path": "006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_bunker_monthly_by_port.csv",
+      "mtime": "2026-04-27T17:46:47.926308+00:00",
+      "sha256": "c462a9beeb5cd6558f63b3cb76b8e2aebd4afbdf73068deb66a0932797a5432e"
+    },
+    {
+      "path": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_summary.json",
+      "mtime": "2026-04-29T19:51:01.281095+00:00",
+      "sha256": "f0d53022cce96851fdbb034dd98e3545162f4b7d5c4be86303ee3b8f55cd6979"
+    },
+    {
+      "path": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_by_vessel.csv",
+      "mtime": "2026-04-29T19:51:01.269830+00:00",
+      "sha256": "d42aa3c8ccd2508f3a762de439bcdd69f79286164f3cab881bf86cba7cf17d25"
+    },
+    {
+      "path": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_by_leg.csv",
+      "mtime": "2026-04-29T19:51:01.253412+00:00",
+      "sha256": "977fd98a36f9dd15f7ea3386195ac91bb4586a1a267bad4b44acb9111bb6a820"
+    },
+    {
+      "path": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_purchases.csv",
+      "mtime": "2026-04-29T19:51:01.265829+00:00",
+      "sha256": "7507650a1610ae6c596d099d8646320301f80ce5ce17b0450f3f5f6f47f28f8f"
+    },
+    {
+      "path": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_proxy_sensitivity.csv",
+      "mtime": "2026-04-29T19:51:01.278542+00:00",
+      "sha256": "3b5f69b8df3ce4af6122a2d61693f21b977c481212cca9d979524c5f73033ba3"
+    }
+  ]
+}

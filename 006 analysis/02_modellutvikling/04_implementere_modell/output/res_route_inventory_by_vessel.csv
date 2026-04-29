@@ -1,0 +1,9 @@
+vessel_file_id,vessel_class,leg_count,priced_leg_count,purchased_leg_count,total_consumption,initial_rob,capacity,model_purchase_qty,model_external_qty,external_share_of_consumption,priced_share_of_consumption,priced_cost,external_cost,total_model_cost,solver_status
+C001-1,C001,63,3,3,6354.45,708.8,2087.006,316.2,5329.45,0.838696,0.04976,182460.67,4065648.86,4248109.53,Optimization terminated successfully. (HiGHS Status 7: Optimal)
+C001-2,C001,57,16,11,7173.35,74.0,2087.006,6961.162,138.188,0.019264,0.97042,3861460.03,105418.74,3966878.77,Optimization terminated successfully. (HiGHS Status 7: Optimal)
+C002-1,C002,53,12,6,7256.64,545.8,2061.43,5754.57,956.27,0.131779,0.793008,3126513.11,729504.55,3856017.66,Optimization terminated successfully. (HiGHS Status 7: Optimal)
+C003-1,C003,44,3,2,4537.68,589.92,1533.719,1896.119,2051.641,0.452134,0.417861,1094140.25,1565124.34,2659264.59,Optimization terminated successfully. (HiGHS Status 7: Optimal)
+C004-1,C004,55,3,3,5809.9,846.52,1907.08,1945.63,3017.75,0.519415,0.334882,1052282.24,2302134.71,3354416.95,Optimization terminated successfully. (HiGHS Status 7: Optimal)
+C004-2,C004,55,5,3,5743.17,888.73,1907.08,1983.77,2870.67,0.499841,0.345414,1089834.4,2189932.58,3279766.98,Optimization terminated successfully. (HiGHS Status 7: Optimal)
+C004-3,C004,68,0,0,6074.55,1100.4,1907.08,0.0,4974.15,0.818851,0.0,0,3794603.06,3794603.06,Optimization terminated successfully. (HiGHS Status 7: Optimal)
+C005-1,C005,91,0,0,2395.3,472.8,1024.531,0.0,1922.5,0.802613,0.0,0,1466607.24,1466607.24,Optimization terminated successfully. (HiGHS Status 7: Optimal)
