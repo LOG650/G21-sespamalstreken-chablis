@@ -1,6 +1,6 @@
 # Status - Minimering av drivstoffkostnader hos Odfjell Tankers
 
-_Sist oppdatert: 2026-04-28 22:45_
+_Sist oppdatert: 2026-04-29_
 
 Denne filen er generert fra:
 - `012 fase 2 - plan/Prosjektstyringsplan, Odfjell Tankers.md`
@@ -21,16 +21,16 @@ Denne filen er generert fra:
 
 | Felt | Status |
 | --- | --- |
-| Fase nå | Analyse |
-| Aktivitet nå | `Sensitivitetsanalyse` er gjennomført i repo; `Resultattolkning` er neste aktivitet |
-| Planperiode nå | 2026-05-07 til 2026-05-11 |
-| Neste aktivitet | `Resultattolkning` |
+| Fase nå | Analyse / overgang til Rapportering |
+| Aktivitet nå | `Resultattolkning` er fullført i repo; `Skrive resultater` er neste aktivitet |
+| Planperiode nå | 2026-05-09 til 2026-05-14 |
+| Neste aktivitet | `Skrive resultater` |
 | Neste milepæl | `Innlevering` 2026-06-02 |
-| Fullførte aktiviteter | 12 av 19 viste planaktiviteter i MPP, uten prosjektbuffer |
+| Fullførte aktiviteter | 13 av 19 viste planaktiviteter i MPP, uten prosjektbuffer |
 | Aktiviteter pågår | 0 |
-| Aktiviteter kommende | 7 |
+| Aktiviteter kommende | 6 |
 | Aktiviteter med statusavvik | 0 |
-| Fremdriftsvurdering | `Definere restriksjoner`, `implementere modell`, `Teste modell`, `Basiskjøring` og `Sensitivitetsanalyse` er faglig gjennomført og samsvarer nå bedre med gjeldende `MS_Project.mpp`. Nye voyage-data er strukturert, pseudonymisert og kvalitetssjekket, men er fortsatt operasjonell støtte og ikke primær modellinput for modellen |
+| Fremdriftsvurdering | `Definere restriksjoner`, `implementere modell`, `Teste modell`, `Basiskjøring`, `Sensitivitetsanalyse` og `Resultattolkning` er faglig gjennomført. Kapittel 7 (Analyse) er strammet etter to uavhengige reviewer med tallkontroll mot artefaktene. Nye voyage-data er strukturert, pseudonymisert og kvalitetssjekket, men er fortsatt operasjonell støtte og ikke primær modellinput for modellen |
 
 - Planunderlaget er dokumentert i både prosjektstyringsplanen og `MS_Project.mpp`.
 - Repoet inneholder rådata i `004 data`, renset pris-/volumdatasett i `006 analysis/01_datagrunnlag`, foreløpig strukturert og kvalitetssjekket voyage-data, samt modellinput og modellimplementasjon i `006 analysis/02_modellutvikling`.
@@ -38,6 +38,7 @@ Denne filen er generert fra:
 - Supplerende 2025-data for åtte anonymiserte fartøyfiler er mottatt i `004 data` og dokumentert i `006 analysis/01_datagrunnlag/01_datainnsamling/tilleggsdata_2025.md`.
 - `Datasplit trening/test` ligger nå som egen fullført aktivitet i `MS_Project.mpp` med dato 2026-01-23.
 - Gjeldende `MS_Project.mpp` viser nå 100 % fullført for `Definere restriksjoner` og `implementere modell`, og tidligere statusavvik er lukket.
+- Kapittel 7 (Analyse) i `005 report/rapport.md` er strukturert med fire delkapitler (7.1 Driverbilde og månedlig variasjon, 7.2 Havnefordeling og tidsstabilitet, 7.3 Robusthet i havnevalget, 7.4 Effekten av modellens linearitet) og verifisert mot artefaktene i `006 analysis/03_analyse`.
 
 [Til toppen](#innholdsfortegnelse)
 
@@ -80,8 +81,10 @@ For å markere `Teste modell` som fullført bør dere minst ha:
 
 ### Etterpå
 
-- `Resultattolkning` kan starte med basiskjøring og sensitivitetsanalyse som resultatgrunnlag.
-- Etter `Resultattolkning` følger rapportering av resultater og diskusjon.
+- `Resultattolkning` er gjennomført i repo med kapittel 7 (Analyse) ferdigstilt etter to uavhengige reviewer.
+- `Skrive resultater` (kapittel 8) er allerede påbegynt med basiskjøring og sensitivitetsanalyse, men kan trenge en kort innledning og oppsummering.
+- `Diskusjon` (kapittel 9) har et utkast om operativ realisme og havnekonsentrasjon, men må utvides med kobling til problemstilling, litteratur, usikkerhet og praktiske implikasjoner.
+- `Konklusjon` (kapittel 10) er fortsatt tom og må svare direkte på problemstillingen.
 
 [Til toppen](#innholdsfortegnelse)
 
@@ -123,7 +126,7 @@ Forklaring:
 | Modellutvikling | Teste modell | 2026-04-21–2026-04-28 | Fullført i repo | `██` |
 | Analyse | Basiskjøring | 2026-04-29–2026-05-01 | Fullført i repo | `██` |
 | Analyse | Sensitivitetsanalyse | 2026-05-02–2026-05-06 | Fullført i repo | `██` |
-| Analyse | Resultattolkning | 2026-05-07–2026-05-11 | Kommende | `··` |
+| Analyse | Resultattolkning | 2026-05-07–2026-05-11 | Fullført i repo | `██` |
 | Rapportering | Skrive resultater | 2026-05-09–2026-05-14 | Kommende | `··` |
 | Rapportering | Diskusjon | 2026-05-12–2026-05-17 | Kommende | `··` |
 | Rapportering | Ferdigstille rapport | 2026-05-18–2026-05-23 | Kommende | `··` |
@@ -156,7 +159,7 @@ gantt
     section Analyse
     Basiskjøring                   :done, c1, 2026-04-29, 2026-05-01
     Sensitivitetsanalyse           :done, c2, 2026-05-02, 2026-05-06
-    Resultattolkning               :c3, 2026-05-07, 2026-05-11
+    Resultattolkning               :done, c3, 2026-05-07, 2026-05-11
 
     section Rapportering og avslutning
     Skrive resultater              :d1, 2026-05-09, 2026-05-14
@@ -187,7 +190,7 @@ gantt
 | Modellutvikling | Teste modell | 2026-04-21 | 2026-04-28 | Fullført | MPP viser 100 %, og solver-uavhengig simulering er valgt som endelig valideringsgrunnlag; testnotat og outputfiler foreligger |
 | Analyse | Basiskjøring | 2026-04-29 | 2026-05-01 | Fullført i repo | Basiskjøring er gjennomført med modellen og dokumentert i `006 analysis/03_analyse/01_basiskjoring` |
 | Analyse | Sensitivitetsanalyse | 2026-05-02 | 2026-05-06 | Fullført i repo | 19 scenarioer er kjørt og dokumentert i `006 analysis/03_analyse/02_sensitivitetsanalyse` |
-| Analyse | Resultattolkning | 2026-05-07 | 2026-05-11 | Kommende | Avhenger av `Sensitivitetsanalyse` |
+| Analyse | Resultattolkning | 2026-05-07 | 2026-05-11 | Fullført i repo | Kapittel 7 i `005 report/rapport.md` er strukturert med 7.1–7.4, verifisert mot artefakter og strammet etter to uavhengige reviewer |
 | Rapportering | Skrive resultater | 2026-05-09 | 2026-05-14 | Kommende | Starter etter første resultatgrunnlag |
 | Rapportering | Diskusjon | 2026-05-12 | 2026-05-17 | Kommende | Avhenger av `Skrive resultater` |
 | Rapportering | Ferdigstille rapport | 2026-05-18 | 2026-05-23 | Kommende | Avhenger av `Diskusjon` |
@@ -502,5 +505,30 @@ Tekstplanen nevner endelig innlevering **2026-05-31**, mens `MS_Project.mpp` vis
 - Forklar sensitivitetsresultatene nøkternt i diskusjonen, særlig forskjellen mellom basisscenarioet og stresscenarioene.
 - Hold voyage-dataene som operasjonell støtte i rapporten, ikke som modellrestriksjoner.
 - Kontroller at rapportkapittel 7 og 8 skiller tydelig mellom analyse, resultat og diskusjon før teksten bygges videre.
+
+### Manuell merknad 2026-04-29
+
+#### Ferdigstilt
+
+- Kapittel 7 (Analyse) i `005 report/rapport.md` er strukturert om til ren modelloppførselsanalyse med fire delkapitler: 7.1 Driverbilde og månedlig variasjon, 7.2 Havnefordeling og tidsstabilitet, 7.3 Robusthet i havnevalget, 7.4 Effekten av modellens linearitet.
+- Tabell 7.1 (havnefordeling per år) er lagt til og verifisert celle for celle mot `006 analysis/03_analyse/01_basiskjoring/output/res_baseline_model_v1_by_month.csv`.
+- Figur 7.1 (månedlig estimert besparelse) er flyttet til kapittel 8.1 som Figur 8.1, og påfølgende figurer i kapittel 8 er omnummerert til 8.2 og 8.3.
+- Operative diskusjonspunkter (operativ realisme av 4,98 %-differansen, risikospredning ved P003-konsentrasjon, voyage-data som operasjonell kontekst) er flyttet fra kapittel 7 til kapittel 9.
+- Begrepsbruken er harmonisert i kapittel 7 og 8 ved å bruke `modellkostnad` i stedet for blandet bruk av `beregnet kostnad`.
+- En tallfeil i 7.3 om P003 +10 %-scenarioet ble identifisert i en uavhengig review og rettet: P003 reduseres fra 44 til 2 valgte måneder, og 59 omfordelte måneder fordeles 36 til P002, 16 til P001 og 7 til P004.
+- Henvisning til Figur 8.3 er lagt til fra 7.3 slik at sensitivitetsdiskusjonen peker leseren mot tornadovisualiseringen.
+- Kapittel 9 (Diskusjon) har fått et første utkast som dekker operativ realisme og havnekonsentrasjon.
+- Aktiviteten `Resultattolkning` er faglig fullført i repo og kan markeres som ferdig i `MS_Project.mpp`.
+
+#### Åpne punkter til neste arbeidsøkt
+
+- Skriv ut kapittel 9 (Diskusjon) med kobling til problemstilling, litteratur (Stopford, Fox & Burks, Song & Panayides), usikkerhet og praktiske implikasjoner for Odfjell Tankers.
+- Skriv kapittel 10 (Konklusjon) som svarer direkte på problemstillingen og løfter fram viktigste funn.
+- Vurder om kapittel 8 (Resultat) trenger en kort innledning til 8.0 og en oppsummeringssetning før diskusjonen.
+- Oppdater `Sammendrag` og `Abstract` etter at kapittel 9 og 10 er på plass.
+
+#### Anbefalt oppdatering i MS Project
+
+- Marker som fullført: `Resultattolkning`
 
 [Til toppen](#innholdsfortegnelse)
