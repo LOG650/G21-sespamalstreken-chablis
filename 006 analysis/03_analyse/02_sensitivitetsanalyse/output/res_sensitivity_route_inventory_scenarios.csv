@@ -1,0 +1,4 @@
+external_price_multiplier,external_price,total_model_cost,cost_change_vs_baseline,cost_change_pct_vs_baseline,priced_cost,external_cost,model_purchase_qty,model_external_qty,external_share_of_consumption
+1.1,671.32,24679387.9,-1946276.88,-0.073098,10406690.7,14272697.2,18857.451,21260.619,0.468863
+1.25,762.86,26625664.78,0.0,0.0,10406690.7,16218974.08,18857.451,21260.619,0.468863
+1.5,915.44,29869459.58,3243794.8,0.12183,10406690.7,19462768.88,18857.451,21260.619,0.468863

@@ -1,0 +1,108 @@
+{
+  "generated_at": "2026-04-29T21:56:21.762434+00:00",
+  "source_files": {
+    "baseline_summary": "006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_summary.json",
+    "baseline_by_vessel": "006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_by_vessel.csv",
+    "baseline_by_port": "006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_by_port.csv",
+    "sensitivity_summary": "006 analysis/03_analyse/02_sensitivitetsanalyse/output/res_sensitivity_route_inventory_summary.json",
+    "sensitivity_scenarios": "006 analysis/03_analyse/02_sensitivitetsanalyse/output/res_sensitivity_route_inventory_scenarios.csv"
+  },
+  "coverage": {
+    "priced_leg_count": 42,
+    "leg_count": 486,
+    "priced_leg_share": 0.08641975308641975,
+    "purchased_leg_count": 28,
+    "priced_share_of_consumption": 0.415866,
+    "external_share_of_consumption": 0.468863,
+    "inventory_share_of_consumption": 0.11527099999999996,
+    "vessels_with_no_priced_ports": [
+      "C004-3",
+      "C005-1"
+    ],
+    "vessels_with_high_external_share": [
+      "C001-1",
+      "C004-3",
+      "C005-1"
+    ],
+    "high_external_share_threshold": 0.8
+  },
+  "vessel_findings": {
+    "top_priced_purchase_vessel": {
+      "vessel_file_id": "C001-2",
+      "model_purchase_qty": 6961.16,
+      "priced_share_of_consumption": 0.9704
+    },
+    "top_external_vessel": {
+      "vessel_file_id": "C001-1",
+      "model_external_qty": 5329.45,
+      "external_share_of_consumption": 0.8387
+    },
+    "top_external_share_vessel": {
+      "vessel_file_id": "C001-1",
+      "model_external_qty": 5329.45,
+      "external_share_of_consumption": 0.8387
+    }
+  },
+  "port_findings": {
+    "top_purchase_port": {
+      "port": "P003",
+      "purchase_qty": 13441.28,
+      "priced_cost": 7287615.34
+    },
+    "zero_purchase_ports": [
+      "P002"
+    ]
+  },
+  "sensitivity_findings": {
+    "baseline_total_model_cost": 26625664.78,
+    "min_total_model_cost": 24679387.9,
+    "max_total_model_cost": 29869459.58,
+    "total_cost_range": 5190071.68,
+    "low_scenario_multiplier": 1.1,
+    "high_scenario_multiplier": 1.5,
+    "external_cost_share_of_total": 0.6091481363568794,
+    "plan_stable_in_tested_scenarios": true,
+    "unique_model_purchase_qty_values": [
+      18857.451
+    ],
+    "unique_model_external_qty_values": [
+      21260.619
+    ]
+  },
+  "consistency_checks": [
+    {
+      "check": "Kjøpsmengde er lik i alle proxy-scenarioer",
+      "status": "OK",
+      "value": [
+        18857.451
+      ],
+      "expected": "én unik verdi"
+    },
+    {
+      "check": "Ekstern/ukjent mengde er lik i alle proxy-scenarioer",
+      "status": "OK",
+      "value": [
+        21260.619
+      ],
+      "expected": "én unik verdi"
+    },
+    {
+      "check": "Kostnadsspenn stemmer med laveste og høyeste scenario",
+      "status": "OK",
+      "value": 5190071.68,
+      "expected": 5190071.68
+    },
+    {
+      "check": "Dekningsandeler overstiger ikke totalforbruk",
+      "status": "OK",
+      "value": 0.884729,
+      "expected": "<= 1"
+    },
+    {
+      "check": "Minst ett fartøy har høy ekstern/ukjent andel",
+      "status": "OK",
+      "value": 3,
+      "expected": "> 0"
+    }
+  ]
+}

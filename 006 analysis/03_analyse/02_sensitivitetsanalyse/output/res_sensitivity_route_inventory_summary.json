@@ -1,0 +1,104 @@
+{
+  "generated_at": "2026-04-29T21:25:34.531321+00:00",
+  "analysis_name": "route_inventory_proxy_sensitivity",
+  "scenario_count": 3,
+  "expected_multipliers": [
+    1.1,
+    1.25,
+    1.5
+  ],
+  "baseline_multiplier": 1.25,
+  "baseline_total_model_cost": 26625664.78,
+  "min_total_model_cost": 24679387.9,
+  "max_total_model_cost": 29869459.58,
+  "total_cost_range": 5190071.68,
+  "source_files": {
+    "model_sensitivity": {
+      "path": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_proxy_sensitivity.csv",
+      "mtime": "2026-04-29T19:51:01.278542+00:00",
+      "sha256": "3b5f69b8df3ce4af6122a2d61693f21b977c481212cca9d979524c5f73033ba3"
+    },
+    "baseline_summary": {
+      "path": "006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_summary.json",
+      "mtime": "2026-04-29T20:58:24.861771+00:00",
+      "sha256": "b624db0e335cab72b148572020579538cb2f91aa1b7a83b6ab18dd19cd645d88"
+    }
+  },
+  "output_files": {
+    "summary": "006 analysis/03_analyse/02_sensitivitetsanalyse/output/res_sensitivity_route_inventory_summary.json",
+    "scenarios": "006 analysis/03_analyse/02_sensitivitetsanalyse/output/res_sensitivity_route_inventory_scenarios.csv",
+    "metadata": "006 analysis/03_analyse/02_sensitivitetsanalyse/metadata/res_sensitivity_route_inventory_summary.md",
+    "total_cost_figure": "006 analysis/03_analyse/02_sensitivitetsanalyse/figures/fig_sensitivity_total_cost.png",
+    "cost_components_figure": "006 analysis/03_analyse/02_sensitivitetsanalyse/figures/fig_sensitivity_cost_components.png"
+  },
+  "checks": [
+    {
+      "check": "Forventede proxyfaktorer finnes",
+      "status": "OK",
+      "value": [
+        1.1,
+        1.25,
+        1.5
+      ],
+      "expected": [
+        1.1,
+        1.25,
+        1.5
+      ]
+    },
+    {
+      "check": "Basisscenario stemmer med basiskjøring",
+      "status": "OK",
+      "value": 26625664.78,
+      "expected": 26625664.78
+    },
+    {
+      "check": "Alle scenarioer har konsistent totalkostnad",
+      "status": "OK",
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Alle scenarioer har konsistent eksternkostnad",
+      "status": "OK",
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Kjøps- og eksternmengde er stabil på tvers av scenarioer",
+      "status": "OK",
+      "value": 0,
+      "expected": 0
+    },
+    {
+      "check": "Outputfil er skrevet: 006 analysis/03_analyse/02_sensitivitetsanalyse/output/res_sensitivity_route_inventory_summary.json",
+      "status": "OK",
+      "value": "skrevet",
+      "expected": "skrevet"
+    },
+    {
+      "check": "Outputfil er skrevet: 006 analysis/03_analyse/02_sensitivitetsanalyse/output/res_sensitivity_route_inventory_scenarios.csv",
+      "status": "OK",
+      "value": "skrevet",
+      "expected": "skrevet"
+    },
+    {
+      "check": "Outputfil er skrevet: 006 analysis/03_analyse/02_sensitivitetsanalyse/metadata/res_sensitivity_route_inventory_summary.md",
+      "status": "OK",
+      "value": "skrevet",
+      "expected": "skrevet"
+    },
+    {
+      "check": "Outputfil er skrevet: 006 analysis/03_analyse/02_sensitivitetsanalyse/figures/fig_sensitivity_total_cost.png",
+      "status": "OK",
+      "value": "skrevet",
+      "expected": "skrevet"
+    },
+    {
+      "check": "Outputfil er skrevet: 006 analysis/03_analyse/02_sensitivitetsanalyse/figures/fig_sensitivity_cost_components.png",
+      "status": "OK",
+      "value": "skrevet",
+      "expected": "skrevet"
+    }
+  ]
+}

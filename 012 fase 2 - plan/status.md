@@ -66,7 +66,8 @@ Modelltesten er kjørt med `006 analysis/02_modellutvikling/05_teste_modell/src/
 | Aktivitet | Status | Fil |
 | --- | --- | --- |
 | Basiskjøring | Fullført | `006 analysis/03_analyse/01_basiskjoring/README.md` |
-| Sensitivitetsanalyse | Neste steg | `006 analysis/03_analyse/02_sensitivitetsanalyse` |
+| Sensitivitetsanalyse | Fullført | `006 analysis/03_analyse/02_sensitivitetsanalyse/README.md` |
+| Resultattolkning | Lukket | `006 analysis/03_analyse/03_resultattolkning/README.md` |
 
 Ny basiskjøring er gjennomført med `006 analysis/03_analyse/01_basiskjoring/src/run_baseline_route_inventory.py`. Aktiviteten bruker hovedscenarioet fra den operative rute- og beholdningsmodellen med ekstern proxyfaktor 1,25, og skriver rapportvennlige aggregater per fartøyfil, modellhavn og måned.
 
@@ -81,7 +82,35 @@ Resultatene er lagret i:
 - `006 analysis/03_analyse/01_basiskjoring/figures/fig_baseline_monthly_split.png`
 - `006 analysis/03_analyse/01_basiskjoring/metadata/res_baseline_route_inventory_summary.md`
 
+Sensitivitetsanalyse er gjennomført med `006 analysis/03_analyse/02_sensitivitetsanalyse/src/run_route_inventory_sensitivity.py`. Analysen bruker proxyfaktorene 1,10, 1,25 og 1,50 for ekstern/ukjent bunkring, og bekrefter at basisscenarioet 1,25 stemmer med basiskjøringen. Total modellkostnad varierer fra 24 679 387,90 til 29 869 459,58, med et kostnadsspenn på 5 190 071,68.
+
+Sensitivitetsanalysen er lukket etter review. Aktiviteten dokumenterer eksplisitt at analysen er en smal én-veis proxysensitivitet, og begge figurene er koblet inn i rapporten.
+
+Resultatene er lagret i:
+
+- `006 analysis/03_analyse/02_sensitivitetsanalyse/output/res_sensitivity_route_inventory_summary.json`
+- `006 analysis/03_analyse/02_sensitivitetsanalyse/output/res_sensitivity_route_inventory_scenarios.csv`
+- `006 analysis/03_analyse/02_sensitivitetsanalyse/figures/fig_sensitivity_total_cost.png`
+- `006 analysis/03_analyse/02_sensitivitetsanalyse/figures/fig_sensitivity_cost_components.png`
+- `006 analysis/03_analyse/02_sensitivitetsanalyse/metadata/res_sensitivity_route_inventory_summary.md`
+
+Resultattolkning er gjennomført med `006 analysis/03_analyse/03_resultattolkning/src/interpret_route_inventory_results.py`. Tolkningsnotatet samler hovedfunn om datadekning, fartøyforskjeller, havnefordeling og proxyfølsomhet.
+
+Resultattolkningen er oppdatert etter review. Skriptet validerer nå programmatisk at kjøpsmengde og ekstern/ukjent mengde er stabile i proxy-scenarioene, beregner restandel fra startbeholdning og beholdningsflyt, rapporterer ekstern kostnadsandel, skiller tydeligere mellom observasjon og tolkning, og skriver egne konsistenssjekker i tolkningsnotatet.
+
+Aktiviteten er lukket etter review og oppdatering av rapport- og statuskoblinger.
+
+Kapittel 8 i `005 report/rapport.md` er fylt ut med hovedresultat, resultat per fartøyfil, resultat per modellhavn og sensitivitetsresultat. Tabellnummereringen er oppdatert slik at havnefordelingen er Tabell 8.3 og sensitivitetsanalysen er Tabell 8.4.
+
+Kapittel 9 Diskusjon og kapittel 10 Konklusjon er fylt ut med vurdering av funnene opp mot problemstilling, modellbegrensninger, datadekning og praktisk bruk for PowerHorse.
+
+Resultatene er lagret i:
+
+- `006 analysis/03_analyse/03_resultattolkning/output/res_route_inventory_interpretation.json`
+- `006 analysis/03_analyse/03_resultattolkning/metadata/res_route_inventory_interpretation.md`
+
 ## Neste steg
 
-- Viderefør analysefasen med sensitivitetsanalyse og resultattolkning basert på den operative hovedmodellen og ny basiskjøring.
+- Oppdater sammendrag, abstract og innholdsfortegnelse slik at de samsvarer med ferdig analyse, diskusjon og konklusjon.
+- Gjennomfør helhetlig rapportrevisjon med særlig kontroll av kapitteloverganger, figur- og tabellhenvisninger, referanser og konsistent begrepsbruk.
 - Oppdater rapporten dersom senere modellkjøringer endrer hovedresultatene.
