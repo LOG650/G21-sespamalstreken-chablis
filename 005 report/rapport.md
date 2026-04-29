@@ -516,30 +516,38 @@ Pyomo-implementasjonen dokumenterer hvordan modellen kan løses som en lineær o
 
 ## 7.0 Analyse
 
-Modelltesten ble gjennomført som en solver-uavhengig simulering av modellen. Testen bruker de samme grunnleggende parameterne som modellen: havn, måned, vektet gjennomsnittspris, samlet månedlig behov og tilgjengelighet. For hver måned velger simuleringen den billigste havnen som har prisgrunnlag i perioden, og legger hele det definerte månedlige behovet til denne havnen.
+Analysen tolker modelloppførselen i basiskjøringen og sensitivitetsanalysen, og knytter resultatene presentert i kapittel 8 til modellformuleringen i kapittel 6. Simuleringsoppsettet som ligger til grunn er beskrevet i 6.9; her drøftes hva mønstrene i resultatet sier om hvordan modellen oppfører seg.
 
-Denne testformen er egnet fordi modellen er aggregert og lineær, og fordi restriksjonssettet foreløpig ikke inneholder fartøyspesifikke kapasitets-, beholdnings- eller ruterestriksjoner. I en slik modell vil den kostnadsminimerende løsningen i praksis være å dekke behovet i billigste tilgjengelige havn per måned. Simuleringen tester derfor om datagrunnlaget, parameterfilene og beslutningslogikken henger sammen før modellen brukes videre i basiskjøring.
+### 7.1 Driverbilde og månedlig variasjon
 
-Testen ga 61 valgte månedsløsninger, som samsvarer med analyseperioden fra `2020-01` til `2025-01`. De viktigste resultatene fra testkjøringen brukes videre som grunnlag for basiskjøring og resultatpresentasjon.
+Differansen mellom modellkostnad og historisk kostnad i basiskjøringen følger direkte av modellens beslutningslogikk: i hver måned legges hele behovet til havnen med lavest observert pris i perioden. Den samlede besparelsen er derfor ikke en jevn effekt over tid, men en sum av månedlige utslag som varierer i størrelse. Figur 8.1 viser denne månedlige variasjonen, og analysen tilsier at noen enkeltmåneder bidrar med betydelig større prisforskjeller enn andre, særlig i 2022 da prisnivået og spennet mellom havnene var høyere.
 
-Resultatgrunnlaget viser en total beregnet modellkostnad på 473 953 291,65, med valgt volum, valgt pris og beregnet kostnad per måned og havn. Testen viser at modellen gir et komplett og reproduserbart resultat for alle måneder i analyseperioden.
+### 7.2 Havnefordeling og tidsstabilitet
 
-Analytisk betyr dette at modellen kan brukes som et første beslutningsstøtteverktøy for å vurdere hvordan historiske prisforskjeller mellom havnene påvirker samlet drivstoffkostnad. Samtidig må resultatet tolkes innenfor modellens avgrensninger. Simuleringen tar ikke hensyn til fartøyenes faktiske ruter, beholdning om bord, minimumsbuffer, tankkapasitet eller kontraktsbindinger. De supplerende voyage-dataene brukes derfor som operasjonell støtte i vurderingen av modellens begrensninger, ikke som harde restriksjoner i denne modellen.
+P003 velges i 44 av 61 måneder, men dominansen er ikke jevnt fordelt over analyseperioden. Tabell 7.1 viser at P003 er enerådende i 2024, mens P002 er hyppigst valgt i 2021 og deler 2022 og 2023 med P003. I 2020 er bare tre havner tilgjengelige i datasettet, fordi P002 mangler observasjoner i samtlige av disse månedene. Dette begrenser hvilke alternativer modellen har å velge mellom i den første delen av perioden.
 
-Basiskjøringen viser at den aggregerte modellen beregner en lavere kostnad enn historisk praksis i datagrunnlaget. Differansen på 24 860 239,60, tilsvarende 4,98 %, kan tolkes som et indikativt kostnadspotensial dersom månedlig volum i ettertid fordeles til billigste observerte tilgjengelige havn. Resultatet betyr likevel ikke at samme besparelse uten videre kunne vært realisert operativt. Den historiske kostnaden reflekterer trolig også hensyn som modellen ikke fanger opp, blant annet rutevalg, leveringssikkerhet, kontrakter, lagerbeholdning og praktisk tilgjengelighet.
+| År | P001 | P002 | P003 | P004 |
+| --- | --- | --- | --- | --- |
+| 2020 | 1 | 0 | 10 | 1 |
+| 2021 | 0 | 7 | 5 | 0 |
+| 2022 | 0 | 3 | 9 | 0 |
+| 2023 | 1 | 4 | 7 | 0 |
+| 2024 | 0 | 0 | 12 | 0 |
+| 2025 | 0 | 0 | 1 | 0 |
 
-Figur 7.1 viser at den samlede differansen ikke bør tolkes som en jevn månedlig effekt, men som summen av varierende utslag gjennom analyseperioden.
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 7.1 Antall måneder hver havn velges i basiskjøringen, fordelt per år.</i></small></p>
 
-<div align="center">
-  <img src="../006 analysis/03_analyse/03_resultattolkning/figures/fig_result_monthly_saving.png" alt="Månedlig estimert besparelse i basiskjøringen" width="80%">
-  <p align="center" style="font-size: 0.9em;"><small><i>Figur 7.1 Månedlig estimert besparelse i basiskjøringen sammenlignet med historisk kostnad.</i></small></p>
-</div>
+Tidsmønsteret tilsier at havnevalget i hovedsak drives av relative prisforskjeller mellom havnene, og at fordelingen forskyver seg når prisbildet endres. En havn som dominerer i én periode behøver derfor ikke å dominere i en annen, selv om datagrunnlaget ellers er likt.
 
-Fordelingen av valgte havner gir en viktig del av tolkningen. Modellen velger P003 i 44 av 61 måneder, P002 i 14 måneder, P001 i 2 måneder og P004 i 1 måned. Dette viser at resultatet i stor grad drives av relative prisforskjeller mellom havnene, særlig at P003 ofte fremstår som billigste alternativ i det historiske prisgrunnlaget. Samtidig innebærer en slik konsentrasjon at modellen i liten grad sprer risiko mellom havner. Dette er analytisk konsistent med modellformuleringen, men det peker også på hvorfor resultatet må vurderes opp mot operasjonelle begrensninger før det kan brukes som praktisk anbefaling.
+### 7.3 Robusthet i havnevalget
 
-Sensitivitetsanalysen støtter denne tolkningen. Når alle priser eller all etterspørsel økes med 10 %, øker modellkostnaden med 47 395 329,17 mot basis. At disse to scenarioene gir samme utslag, følger av at modellen er lineær og uten kapasitets- eller beholdningsrestriksjoner: en prosentvis økning i pris eller volum skalerer kostnaden på samme måte. De kombinerte stresscenarioene gir derfor størst utslag, med 573 483 482,90 ved pris og etterspørsel +10 % og 383 902 166,24 ved pris og etterspørsel -10 %. Havnespesifikke scenarioer viser samtidig at endringer i P003 og P002 påvirker modellen mest, fordi disse havnene ofte blir valgt når relative prisforskjeller endres.
+Sensitivitetsanalysen synliggjør hvor små marginene i havnevalget er. En prisøkning på 10 % i P003 omfordeler 42 av de 44 P003-månedene til andre havner, fordelt med 36 til P002, 7 til P004 og 16 til P001. Tilsvarende flytter en prisreduksjon på 10 % i P001 valget til P001 i 46 nye måneder, selv om P001 i utgangspunktet bare velges i 2. Dette tyder på at flere havner ofte ligger nær billigste alternativ, og at modellen er sensitiv for moderate skift i de relative prisene.
 
-Samlet viser analysen at modellen er følsom for prisnivå, volum og relative prisforskjeller mellom havnene, men på en måte som er forventet for en aggregert lineær modell. Resultatene gir derfor mest verdi som strukturert beslutningsstøtte og som grunnlag for å identifisere hvor prisforskjeller kan ha betydning. De bør ikke leses som en full operativ fasit for faktisk bunkringsplanlegging.
+### 7.4 Effekten av modellens linearitet
+
+At en pristilvekst på 10 % og en etterspørselsvekst på 10 % gir identisk utslag på samlet modellkostnad, følger direkte av at modellen er lineær og ikke har kapasitets- eller beholdningsrestriksjoner. Hver måned er et selvstendig kostnadsledd $p_{h,t} \cdot x_{h,t}$, og en proporsjonal endring i én av faktorene skalerer leddet på samme måte. Lineariteten forklarer også hvorfor de kombinerte stresscenarioene gir størst utslag: pris- og volumeffekten multipliseres, og avviket mot basis blir derfor større enn summen av enkelteffektene.
+
+Samlet beskriver analysen en modell som oppfører seg konsistent med formuleringen i kapittel 6. Den minimerer aggregert kostnad ved å følge relative prisforskjeller mellom havnene, og den er følsom for endringer i nettopp disse forskjellene. Hva resultatet betyr for praktisk bunkringsplanlegging diskuteres i kapittel 9.
 
 ---
 
@@ -560,11 +568,18 @@ Basiskjøringen gir en beregnet modellkostnad på 473 953 291,65, sammenlignet m
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell 8.1 Basiskjøring sammenlignet med historisk praksis.</i></small></p>
 
+Differansen er ikke jevnt fordelt over analyseperioden. Figur 8.1 viser den månedlige besparelsen mot historisk kostnad og synliggjør hvor mye størrelsen på utslaget varierer fra måned til måned.
+
+<div align="center">
+  <img src="../006 analysis/03_analyse/03_resultattolkning/figures/fig_result_monthly_saving.png" alt="Månedlig estimert besparelse i basiskjøringen" width="80%">
+  <p align="center" style="font-size: 0.9em;"><small><i>Figur 8.1 Månedlig estimert besparelse i basiskjøringen sammenlignet med historisk kostnad.</i></small></p>
+</div>
+
 Fordelingen av valgte havner viser at modellen oftest legger månedlig behov til P003, mens P002 brukes i 14 måneder og de øvrige havnene bare i få perioder.
 
 <div align="center">
   <img src="../006 analysis/03_analyse/02_sensitivitetsanalyse/figures/fig_result_baseline_selected_ports.png" alt="Antall måneder hver havn velges i basiskjøringen" width="80%">
-  <p align="center" style="font-size: 0.9em;"><small><i>Figur 8.1 Antall måneder hver havn velges i basiskjøringen.</i></small></p>
+  <p align="center" style="font-size: 0.9em;"><small><i>Figur 8.2 Antall måneder hver havn velges i basiskjøringen.</i></small></p>
 </div>
 
 Resultatene er lagret som interne analyseartefakter i repoet og brukes her som grunnlag for tabellene og figurene i resultatkapittelet.
@@ -577,11 +592,11 @@ Basisscenarioet i sensitivitetsanalysen gir samme beregnede modellkostnad som ba
 
 Havnespesifikke scenarioer viser at modellen er særlig følsom for prisendringer i P003 og P002. En prisreduksjon på 10 % i P003 reduserer beregnet kostnad med 42 900 536,07 mot basis, mens tilsvarende prisreduksjon i P002 reduserer beregnet kostnad med 30 826 133,17. Dette skyldes at modellen i flere måneder flytter valgt havn når relative prisforskjeller endres.
 
-Figur 8.2 viser de største utslagene i sensitivitetsanalysen samlet. Figuren viser både stresscenarioene og enkeltendringene som påvirker modellkostnaden mest.
+Figur 8.3 viser de største utslagene i sensitivitetsanalysen samlet. Figuren viser både stresscenarioene og enkeltendringene som påvirker modellkostnaden mest.
 
 <div align="center">
   <img src="../006 analysis/03_analyse/02_sensitivitetsanalyse/figures/fig_result_sensitivity_tornado.png" alt="Tornadodiagram over største utslag i sensitivitetsanalysen" width="80%">
-  <p align="center" style="font-size: 0.9em;"><small><i>Figur 8.2 Største kostnadsutslag i sensitivitetsanalysen målt mot basis.</i></small></p>
+  <p align="center" style="font-size: 0.9em;"><small><i>Figur 8.3 Største kostnadsutslag i sensitivitetsanalysen målt mot basis.</i></small></p>
 </div>
 
 Resultatene er lagret som interne analyseartefakter i repoet og brukes her som grunnlag for oppsummeringen av sensitivitetsanalysen.
@@ -589,6 +604,10 @@ Resultatene er lagret som interne analyseartefakter i repoet og brukes her som g
 ---
 
 ## 9.0 Diskusjon
+
+Modellresultatet i kapittel 8 viser et kontrollerbart kostnadspotensial sammenlignet med historisk praksis, men dette potensialet må tolkes innenfor modellens avgrensninger. Den historiske kostnaden i datagrunnlaget gjenspeiler trolig også hensyn som modellen ikke fanger opp, blant annet rutevalg, leveringssikkerhet, kontrakter, lagerbeholdning og praktisk tilgjengelighet. Differansen på 4,98 % bør derfor leses som et indikativt potensial dersom månedlig volum i ettertid fordeles til billigste observerte tilgjengelige havn, ikke som en besparelse som uten videre kunne vært realisert operativt.
+
+Konsentrasjonen av valg på én havn, der P003 velges i 44 av 61 måneder, er analytisk konsistent med modellformuleringen, men innebærer i praksis liten risikospredning. For en faktisk bunkringsplanlegging må slike konsentrasjoner vurderes opp mot kontraktsbindinger og leveringssikkerhet før modellen kan brukes som anbefaling. Analysen i 7.3 viser samtidig at marginene mellom havnene ofte er små, og at moderate prisendringer kan flytte mange månedlige valg. Dette forsterker at modellen i sin nåværende form mest egner seg som strukturert beslutningsstøtte og som grunnlag for videre arbeid med en mer detaljert operativ modell. De supplerende voyage-dataene brukes derfor her som operasjonell kontekst for å peke på hvilke forhold en senere fartøybasert modell bør håndtere som harde restriksjoner.
 
 ---
 
