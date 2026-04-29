@@ -123,7 +123,7 @@ Oppgaver som er unntatt offentlighet eller båndlagt vil ikke bli publisert.
 ## 1.0 Innledning 
 
 
-Drivstoffkostnader er en av de største og mest variable kostnadskomponentene i maritim drift. Shippingnæringen er generelt preget av betydelig volatilitet, både i fraktrater og innsatsfaktorer som drivstoff, noe som gjør kostnadsstyring særlig krevende (Stopford, 2009). For et rederi som Odfjell Tankers, der bunkring skjer løpende for en stor global flåte, kan selv moderate prisforskjeller per enhet gi store utslag i totale kostnader over tid.
+Drivstoffkostnader er en av de største og mest variable kostnadskomponentene i maritim drift. Shippingnæringen er generelt preget av betydelig volatilitet, både i fraktrater og innsatsfaktorer som drivstoff, noe som gjør kostnadsstyring særlig krevende (Stopford, 2008). For et rederi som Odfjell Tankers, der bunkring skjer løpende for en stor global flåte, kan selv moderate prisforskjeller per enhet gi store utslag i totale kostnader over tid.
 
 Beslutningene tas samtidig i en operativ virkelighet preget av prisvariasjon mellom havner, ulike innkjøpsformer og behov for å balansere kostnad, tilgjengelighet, kvalitet og regulatoriske rammer (FuelEU Guidance Document for Shipping Companies, 2025). Dette gjør bunkringsbeslutninger til et relevant område for beslutningsstøtte basert på data og optimering. Temaet er aktuelt fordi historiske transaksjonsdata gir mulighet til å undersøke om det finnes systematiske mønstre i pris og volum som kan utnyttes bedre enn i en mer erfaringsbasert beslutningsprosess. Dersom slike mønstre kan dokumenteres og knyttes til en enkel og transparent modell, kan analysen gi Odfjell Tankers et bedre grunnlag for å vurdere hvor bunkring bør skje under gitte forutsetninger.
 
@@ -137,7 +137,7 @@ Rapporten er strukturert slik at case og historiske data presenteres før den ma
 
 Hvordan kan en lineær optimaliseringsmodell bidra til å minimere totale drivstoffkostnader for Odfjell Tankers ved bruk av historiske pris- og volumdata fra de fire mest brukte bunkringshavnene?
 
-Gitt den høye volatiliteten i drivstoffkostnader i shippingmarkedet (Stopford, 2009), er det relevant å undersøke hvordan bunkringsbeslutninger kan struktureres og støttes gjennom en optimaliseringsmodell.
+Gitt den høye volatiliteten i drivstoffkostnader i shippingmarkedet (Stopford, 2008), er det relevant å undersøke hvordan bunkringsbeslutninger kan struktureres og støttes gjennom en optimaliseringsmodell.
 
 ### 1.2 Delproblemer (valgfri)
 
@@ -167,16 +167,11 @@ Disse antagelsene er nødvendige for å kunne arbeide videre med pris- og volumd
 
 Litteraturgrunnlaget for denne rapporten ligger i skjæringspunktet mellom operasjonsanalyse, lineær programmering og maritim beslutningsstøtte. Det mest relevante fra litteraturen er ikke nødvendigvis studier som er identiske med dette caset, men bidrag som viser hvordan kostnadsminimering, ressursallokering og modellbasert beslutningsstøtte kan brukes i praktiske driftsmiljøer.
 
-### Husk en referanse har to hensikter:
-
-1. Kreditere resultatet til de som fant det.
-2. Gi leseren en mulighet til å sjekke opp en påstand eller fakta som du bygger rapporten din på.
-
 Innen operasjonsanalyse er lineær programmering et etablert rammeverk for å formulere problemer der en aktør ønsker å minimere kostnader eller maksimere nytte under et sett av begrensninger (Fox og Burks, 2024). Denne litteraturen er relevant fordi bunkringsproblemet kan forstås nettopp som et slikt valgproblem: et gitt drivstoffbehov skal dekkes ved å fordele innkjøp mellom alternative havner og perioder med ulike priser.
 
 Litteratur om logistikk og maritim planlegging peker samtidig på at modeller sjelden bør vurderes isolert fra operativ kontekst (Song og Panayides, 2021; Venkataraman og Pinto, 2018). I praksis vil forhold som tilgjengelighet, kapasitet, forbruk, ruter og kontrakter påvirke hvilke løsninger som faktisk er gjennomførbare. Dette er relevant for denne rapporten fordi pris- og volumdatasettet ikke inneholder alle slike variabler. Dermed må modellens rolle avgrenses til å være et analytisk beslutningsstøtteverktøy, ikke en fullstendig operativ sannhetsmodell.
 
-Et annet relevant litteraturspor handler om modellvalidering og bruk av historiske data begrensninger (Fox og Burks, 2024). Her er et sentralt poeng at modeller bør testes mot observerte data og vurderes opp mot realistiske driftsforhold. Dette støtter rapportens videre opplegg med en eksplisitt datasplitt mellom treningsdata og testdata, slik at modellutvikling og modellvurdering ikke blandes sammen.
+Et annet relevant litteraturspor handler om modellvalidering, bruk av historiske data og håndtering av begrensninger (Fox og Burks, 2024). Her er et sentralt poeng at modeller bør testes mot observerte data og vurderes opp mot realistiske driftsforhold. Dette støtter rapportens videre opplegg med en eksplisitt datasplitt mellom treningsdata og testdata, slik at modellutvikling og modellvurdering ikke blandes sammen.
 
 Denne rapporten plasserer seg dermed i en anvendt tradisjon, der etablerte prinsipper fra lineær programmering og modellbasert analyse benyttes for å støtte praktiske beslutninger i en operativ maritim kontekst. Metoden anvendes på et konkret case med et begrenset, men reelt datagrunnlag fra Odfjell Tankers. Dette er i tråd med hvordan analyseverktøy ofte brukes i praksis innen maritim økonomi og drift, hvor modellbaserte tilnærminger inngår som beslutningsstøtte heller enn som fullstendige operasjonelle løsninger (Grammenos, 2026). Den viktigste faglige ambisjonen er derfor ikke å introdusere ny teori, men å vise hvordan etablerte metoder kan anvendes systematisk på et praktisk beslutningsproblem.
 
@@ -186,7 +181,7 @@ Denne rapporten plasserer seg dermed i en anvendt tradisjon, der etablerte prins
 
 ### Lineær programmering som teoretisk rammeverk
 
-Lineær programmering er en matematisk metode for å finne den beste løsningen på et problem der både målfunksjonen og restriksjonene kan uttrykkes lineært (Fox og Burks, 2024). Et standard lineært programmeringsproblem består av beslutningsvariabler, en målfunksjon og et sett av begrensninger. I denne oppgaven er teorien relevant fordi bunkringsbeslutninger kan forstås som et valg mellom alternative havner og perioder, der målet er å minimere totale kostnader. Dette er i tråd med klassisk optimeringslitteratur, hvor slike problemer formuleres som kostnadsminimering under gitte restriksjoner (Fox og Burks, 2024). I denne sammenhengen innebærer dette at bunkringsproblemet kan formuleres som et kostnadsminimeringsproblem, der drivstoff kjøpes i ulike havner til varierende priser under gitte kapasitets- og etterspørselsbetingelser.
+Lineær programmering er en matematisk metode for å finne den beste løsningen på et problem der både målfunksjonen og restriksjonene kan uttrykkes lineært (Fox og Burks, 2024). Et standard lineært programmeringsproblem består av beslutningsvariabler, en målfunksjon og et sett av begrensninger. I denne oppgaven er teorien relevant fordi bunkringsbeslutninger kan forstås som et kostnadsminimeringsproblem, der drivstoff kjøpes i ulike havner til varierende priser under gitte kapasitets- og etterspørselsbetingelser.
 
 Det teoretiske poenget med lineær programmering i denne sammenhengen er at metoden gjør det mulig å gå fra en intuitiv problemforståelse til en eksplisitt og etterprøvbar beslutningsmodell. Når modellens antagelser og restriksjoner er tydelige, kan både styrker og begrensninger diskuteres på en faglig ryddig måte. Dette gjør lineær programmering særlig egnet som grunnlag for beslutningsstøtte i situasjoner med flere alternative handlingsvalg og tydelige kostnadsforskjeller.
 
