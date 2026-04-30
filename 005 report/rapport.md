@@ -1,10 +1,10 @@
-# G21 - Sespamalstreken Chablis
+﻿# G21 - Sespamalstreken Chablis
 
 **Tittel: Optimalisering av bunkringsbeslutninger i Odfjell Tankers basert på historiske data**
 
 **Forfattere : Elisabeth Kirkeland Orlien og Kaylee Floden**
 
-**Totalt antall sider inkludert forsiden:**
+**Totalt antall sider inkludert forsiden:** 
 
 **Molde, Innleveringsdato: 31.05.2026**
 
@@ -18,6 +18,8 @@ Du/dere fyller ut erklæringen ved å klikke i ruten til høyre for den enkelte 
 
 **1.** Jeg/vi erklærer herved at min/vår besvarelse er mitt/vårt eget arbeid, og at jeg/vi ikke har brukt andre kilder eller har mottatt annen hjelp enn det som er nevnt i besvarelsen.
 
+**Avkrysning:** ja
+
 **2.** Jeg/vi erklærer videre at denne besvarelsen:
 - ikke har vært brukt til annen eksamen ved annen avdeling/universitet/høgskole innenlands eller utenlands.
 - ikke refererer til andres arbeid uten at det er oppgitt.
@@ -25,13 +27,25 @@ Du/dere fyller ut erklæringen ved å klikke i ruten til høyre for den enkelte 
 - har alle referansene oppgitt i litteraturlisten.
 - ikke er en kopi, duplikat eller avskrift av andres arbeid eller besvarelse.
 
+**Avkrysning:** ja
+
 **3.** Jeg/vi er kjent med at brudd på ovennevnte er å betrakte som fusk og kan medføre annullering av eksamen og utestengelse fra universiteter og høgskoler i Norge, jf. Universitets- og høgskoleloven §§4-7 og 4-8 og Forskrift om eksamen §§14 og 15.
+
+**Avkrysning:** ja
 
 **4.** Jeg/vi er kjent med at alle innleverte oppgaver kan bli plagiatkontrollert i URKUND, se Retningslinjer for elektronisk innlevering og publisering av studiepoenggivende studentoppgaver
 
+**Avkrysning:** ja
+
 **5.** Jeg/vi er kjent med at høgskolen vil behandle alle saker hvor det forligger mistanke om fusk etter høgskolens retningslinjer for behandling av saker om fusk
 
+**Avkrysning:** ja
+
 **6.** Jeg/vi har satt oss inn i regler og retningslinjer i bruk av kilder og referanser på biblioteket sine nettsider
+
+**Avkrysning:** ja
+
+**Bruk av KI-verktøy.** Studentene har ansvar for de faglige valgene, vurderingene og kvalitetssikringen i rapporten. KI er brukt som et kraftig verktøy for analyse, koding og dokumentasjon, men ikke som erstatning for egen faglig forståelse eller ansvar. Denne arbeidsfordelingen skal sikre at prosjektgruppen utvikler egen forståelse samtidig som KIs kapasitet utnyttes på en kontrollert og dokumenterbar måte.
 
 ---
 
@@ -41,18 +55,19 @@ Du/dere fyller ut erklæringen ved å klikke i ruten til høyre for den enkelte 
 
 Forskningsprosjekt som innebærer behandling av personopplysninger iht. Personopplysningsloven skal meldes til Norsk senter for forskningsdata, NSD, for vurdering.
 
-**Har oppgaven vært vurdert av NSD?** ☐ ja ☐ nei
+**Har oppgaven vært vurdert av NSD?** ☐ ja ☒ nei
 
 - **Hvis ja:** Referansenummer: 
-- **Hvis nei:** Jeg/vi erklærer at oppgaven ikke omfattes av Personopplysningsloven: 
+- **Hvis nei:** Jeg/vi erklærer at oppgaven ikke omfattes av Personopplysningsloven: Oppgaven behandler ikke personopplysninger. Datagrunnlaget består av anonymiserte/pseudonymiserte drifts-, voyage-, havne- og bunkringsdata, og kan ikke knyttes til identifiserbare enkeltpersoner.
 
 ### Helseforskningsloven
 
 Dersom prosjektet faller inn under Helseforskningsloven, skal det også søkes om forhåndsgodkjenning fra Regionale komiteer for medisinsk og helsefaglig forsikningsetikk, REK, i din region.
 
-**Har oppgaven vært til behandling hos REK?** ☐ ja ☐ nei
+**Har oppgaven vært til behandling hos REK?** ☐ ja ☒ nei
 
 - **Hvis ja:** Referansenummer:
+- **Hvis nei:** Oppgaven er ikke et medisinsk eller helsefaglig forskningsprosjekt. Den omhandler logistikk, bunkringsdata og optimering av drivstoffkostnader, og faller derfor utenfor helseforskningsloven.
 
 ---
 
@@ -70,12 +85,15 @@ Alle oppgaver som fyller kriteriene vil bli registrert og publisert i Brage HiM 
 
 Oppgaver som er unntatt offentlighet eller båndlagt vil ikke bli publisert.
 
-**Jeg/vi gir herved Høgskolen i Molde en vederlagsfri rett til å gjøre oppgaven tilgjengelig for elektronisk publisering:** ☐ ja ☐ nei
+**Jeg/vi gir herved Høgskolen i Molde en vederlagsfri rett til å gjøre oppgaven tilgjengelig for elektronisk publisering:** ☐ ja ☒ nei
 
-**Er oppgaven båndlagt (konfidensiell)?** ☐ ja ☐ nei
+Oppgaven bygger på data og informasjon mottatt fra Odfjell Tankers under konfidensialitetsavtale. Selv om dataene er anonymisert/pseudonymisert i rapporten, ønsker prosjektgruppen ikke at oppgaven publiseres elektronisk.
+
+**Er oppgaven båndlagt (konfidensiell)?** ☒ ja ☐ nei
 (Båndleggingsavtale må fylles ut)
 
-- **Hvis ja:** Kan oppgaven publiseres når båndleggingsperioden er over? ☐ ja ☐ nei
+- **Hvis ja:** Kan oppgaven publiseres når båndleggingsperioden er over? ☐ ja ☒ nei
+- **Båndlegging:** Ikke tidsavgrenset / i henhold til konfidensialitetsavtale med Odfjell Tankers. Rapporten skal forbli båndlagt og kun deles med Odfjell Tankers etter avtale. Eventuell senere publisering eller deling må avklares særskilt med Odfjell Tankers.
 
 **Dato:**
 
@@ -133,6 +151,7 @@ The results show that the model is most operationally useful when vessel routes 
 - 7.1 Dekning fra prisede modellhavner
 - 7.2 Fartøyforskjeller
 - 7.3 Kostnadsdriver og proxypris
+- 7.4 Operativ validering mot observerte bunkringshendelser
 - 8.0 Resultat
 - 8.1 Hovedresultat
 - 8.2 Resultat per fartøyfil
@@ -553,6 +572,25 @@ Sensitivitetsanalysen viser at kostnadsnivået er følsomt for proxyprisen, men 
   <p align="center" style="font-size: 0.9em;"><small><i>Figur 7.2 Total modellkostnad ved ulike proxyfaktorer for ekstern/ukjent bunkring.</i></small></p>
 </div>
 
+### 7.4 Operativ validering mot observerte bunkringshendelser
+
+Som en ekstra kontroll er modellresultatene sammenlignet med observerte ROB-baserte bunkringshendelser i de strukturerte voyage-dataene. En observert bunkringshendelse er her hentet fra feltet `bunkering_inferred`, og observert mengde er estimert som positiv beholdningsøkning etter justering for forbruk på etappen. Dette er ikke en full økonomisk backtest mot faktiske innkjøpspriser, men en operativ kontroll av om modellens bunkringsmengder og beholdningsutvikling ligger i en rimelig størrelsesorden.
+
+| Kontrollmål | Verdi |
+| --- | ---: |
+| Voyage-etapper kontrollert | 486 |
+| Observerte bunkringshendelser | 76 |
+| Modellhendelser med bunkring | 89 |
+| Overlappende hendelser | 16 |
+| Estimert observert bunkringsmengde | 39 879,61 |
+| Modellert total bunkringsmengde | 40 118,07 |
+| Modellert mengde som andel av observert estimat | 100,60 % |
+| Gjennomsnittlig absolutt avvik mot observert slutt-ROB | 476,06 |
+
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 7.1 Operativ validering av modellert bunkring mot observerte ROB-baserte bunkringshendelser.</i></small></p>
+
+Valideringen viser at modellen ikke gjenskaper de samme bunkringstidspunktene som observert praksis. Dette er forventet, fordi modellen søker en kostnadsminimerende løsning og ikke er trent til å kopiere historiske beslutninger. Samtidig er samlet modellert bunkringsmengde svært nær estimert observert bunkringsmengde. Det styrker tolkningen av modellen som operativt rimelig på aggregert nivå, selv om timing og havnedekning fortsatt må vurderes faglig før praktisk bruk.
+
 ---
 
 ## 8.0 Resultat
@@ -674,6 +712,8 @@ Hovedmodellen svarer på problemstillingen ved å formulere bunkringsbeslutninge
 
 Modellen bidrar med en konkret bunkringsplan under operative restriksjoner. Den viser hvor mye som bør fylles i prisede havner, hvordan beholdningen utvikler seg gjennom ruten, og hvor modellen må bruke ekstern/ukjent bunkring fordi prisgrunnlaget ikke dekker ruten. Dermed gir modellen både en kostnadsminimerende beslutning og en kvantitativ diagnose av datagapet.
 
+Den operative valideringen mot ROB-baserte bunkringshendelser viser samtidig at modellen ligger nær observert praksis på samlet volum, men ikke på timing. Modellen beregner 40 118,07 i samlet bunkringsmengde mot et observert estimat på 39 879,61, men overlapper bare med 16 av 76 observerte bunkringshendelser. Dette styrker vurderingen av at modellen er rimelig på aggregert nivå, samtidig som den ikke bør tolkes som en historisk rekonstruksjon av faktiske bunkringsbeslutninger.
+
 ### 9.1 Praktiske og faglige implikasjoner
 
 Det viktigste bidraget er at modellen viser hvor Odfjell kan bruke prisede modellhavner i en konkret ruteplan. For fartøyfiler som `C001-2` og `C002-1` gir modellen betydelige kjøp i prisede havner og dermed en direkte bunkringsplan. For `C004-3` og `C005-1` finnes ingen prisede modellhavner i ruten, og modellen kan derfor ikke anbefale konkret kjøp i `P001`-`P004` for disse fartøyfilene. Dette viser at modellens verdi varierer med overlappet mellom rutedata og prisgrunnlag.
@@ -766,3 +806,5 @@ Zhen, L., Wang, S., & Zhuge, D. (2017). Dynamic programming for optimal ship ref
 | UN/Locode | United Nations Code for Trade and Transport Locations | Opprinnelig havnekodeformat før pseudonymisering |
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell C.1 Akronymer og forkortelser brukt i rapporten.</i></small></p>
+
+

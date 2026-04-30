@@ -7,3 +7,4 @@ Denne mappen samler analyseaktiviteter som bygger på den operative hovedmodelle
 - `01_basiskjoring`: rapportvennlig basiskjøring og aggregering av hovedscenarioet fra den operative rute- og beholdningsmodellen.
 - `02_sensitivitetsanalyse`: analyse av hvordan total modellkostnad endres når proxykostnaden for ekstern/ukjent bunkring varieres.
 - `03_resultattolkning`: samlet tolkningsnotat basert på basiskjøring og sensitivitetsanalyse.
+- `04_operativ_validering`: kontroll av modellens bunkringsmengder og hendelser mot observerte ROB-baserte bunkringshendelser i voyage-dataene.

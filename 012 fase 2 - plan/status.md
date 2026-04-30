@@ -68,6 +68,7 @@ Modelltesten er kjørt med `006 analysis/02_modellutvikling/05_teste_modell/src/
 | Basiskjøring | Fullført | `006 analysis/03_analyse/01_basiskjoring/README.md` |
 | Sensitivitetsanalyse | Fullført | `006 analysis/03_analyse/02_sensitivitetsanalyse/README.md` |
 | Resultattolkning | Lukket | `006 analysis/03_analyse/03_resultattolkning/README.md` |
+| Operativ validering | Fullført | `006 analysis/03_analyse/04_operativ_validering/README.md` |
 
 Ny basiskjøring er gjennomført med `006 analysis/03_analyse/01_basiskjoring/src/run_baseline_route_inventory.py`. Aktiviteten bruker hovedscenarioet fra den operative rute- og beholdningsmodellen med ekstern proxyfaktor 1,25, og skriver rapportvennlige aggregater per fartøyfil, modellhavn og måned.
 
@@ -111,6 +112,15 @@ Resultatene er lagret i:
 - `006 analysis/03_analyse/03_resultattolkning/output/res_route_inventory_price_level_sensitivity.csv`
 - `006 analysis/03_analyse/03_resultattolkning/metadata/res_route_inventory_interpretation.md`
 
+Operativ validering er gjennomført med `006 analysis/03_analyse/04_operativ_validering/src/validate_against_observed_bunkering.py`. Analysen sammenligner modellens bunkringshendelser og totale bunkringsmengder med observerte ROB-baserte bunkringshendelser i voyage-dataene. Valideringen viser 76 observerte bunkringshendelser, 89 modellhendelser og 16 overlappende hendelser. Samlet modellert bunkringsmengde er 40 118,07 mot et observert ROB-basert estimat på 39 879,61, altså 100,60 % av observert estimat. Dette er lagt inn i kapittel 7.4 i rapporten.
+
+Resultatene er lagret i:
+
+- `006 analysis/03_analyse/04_operativ_validering/output/res_operational_validation_summary.json`
+- `006 analysis/03_analyse/04_operativ_validering/output/res_operational_validation_by_vessel.csv`
+- `006 analysis/03_analyse/04_operativ_validering/output/res_operational_validation_by_leg.csv`
+- `006 analysis/03_analyse/04_operativ_validering/metadata/res_operational_validation_summary.md`
+
 ## Neste steg
 
 - Sammendrag, abstract og innholdsfortegnelse er oppdatert slik at de samsvarer med ferdig analyse, diskusjon og konklusjon.
@@ -119,8 +129,10 @@ Resultatene er lagret i:
 - Kapittel 5.1 er oppdatert med en eksplisitt metodeoversikt som navngir datavask, deskriptiv analyse, lineær programmering, konsistenskontroll, sensitivitetsanalyse og anvendbarhetsklassifisering som metodene brukt i rapporten.
 - Rapportteksten er ryddet slik at datagrunnlaget omtales med utgangspunkt i rådata; konkrete henvisninger til prosesserte datafiler og interne analyseartefakter er fjernet fra brødteksten.
 - Publiseringsavtalen er rettet med korrekt henvisning til åndsverkloven, og `003 references/Åndsverkloven.md` er lagt til som kildenotat.
+- Egenerklæringen er oppdatert med en presisering av at studentene har ansvar for faglige valg og kvalitetssikring, mens KI er brukt som verktøy for analyse, koding og dokumentasjon.
+- Personvern-, helseforsknings- og publiseringsfeltene i rapportens innledende skjema er fylt ut: NSD/Sikt nei, REK nei, elektronisk publisering nei, og oppgaven er markert som båndlagt/konfidensiell i henhold til avtale med Odfjell Tankers.
 - Helhetlig rapportrevisjon etter egenvurdering v2 er gjennomført i `005 report/rapport.md`. Revisjonen forklarer ekstern/ukjent bunkring ved første nevning, utvider litteraturkapitlet med peer-reviewed bunkrings- og refueling-litteratur, legger inn validitet/reliabilitet/etikk i metodekapitlet, rydder kapittel 7/8, flytter modellbidrag til diskusjonen, presiserer proxyfaktor 1,25 og $t(l)$, fjerner interne implementeringsfeltnavn fra rapporttekst, og utvider konklusjonen med begrensninger og videre arbeid.
 - Nye peer-reviewed kilder fra rapportrevisjonen er lagt inn som egne Markdown-filer i `003 references`, én fil per referanse, med kort relevansvurdering, DOI og bibliografioppføring.
 - Neste arbeidssteg er en siste formell innleveringskontroll av forsidefelter, ordtelling, egenerklæring, publiseringsavtale og endelig PDF/Word-format.
-- Dersom gruppen ønsker enda mer operativ anvendelse, bør neste analyseaktivitet være validering av modellens anbefalinger mot faktiske historiske bunkringsbeslutninger og faglig vurdering fra Odfjell Tankers.
+- Dersom gruppen ønsker enda mer operativ anvendelse, bør neste analyseaktivitet være faglig vurdering fra Odfjell Tankers av om modellens anbefalte kjøp er praktisk gjennomførbare.
 - Oppdater rapporten dersom senere modellkjøringer endrer hovedresultatene.

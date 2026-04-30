@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-04-30T19:35:41.200469+00:00",
+  "analysis_name": "operational_validation_against_observed_bunkering",
+  "source_files": {
+    "voyage_legs": "006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_voyage_legs_2025.csv",
+    "model_by_leg": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_by_leg.csv"
+  },
+  "output_files": {
+    "summary": "006 analysis/03_analyse/04_operativ_validering/output/res_operational_validation_summary.json",
+    "by_vessel": "006 analysis/03_analyse/04_operativ_validering/output/res_operational_validation_by_vessel.csv",
+    "by_leg": "006 analysis/03_analyse/04_operativ_validering/output/res_operational_validation_by_leg.csv",
+    "metadata": "006 analysis/03_analyse/04_operativ_validering/metadata/res_operational_validation_summary.md"
+  },
+  "leg_count": 486,
+  "vessel_file_count": 8,
+  "observed_bunker_events": 76,
+  "model_bunker_events": 89,
+  "overlap_bunker_events": 16,
+  "event_precision": 0.1797752808988764,
+  "event_recall": 0.21052631578947367,
+  "observed_bunker_qty_estimate": 39879.61,
+  "model_total_bunker_qty": 40118.07,
+  "model_purchase_qty": 18857.46,
+  "model_external_qty": 21260.61,
+  "model_qty_to_observed_qty_ratio": 1.0059794967904652,
+  "priced_legs_with_observed_bunkering": 5,
+  "priced_legs_with_model_purchase": 28,
+  "mean_absolute_inventory_end_difference": 476.0647736625515,
+  "top_observed_bunker_vessel": "C001-2",
+  "top_model_bunker_vessel": "C001-2",
+  "method_note": "Observerte bunkringsmengder er estimert fra ROB-endring + forbruk per etappe. Dette er en operativ kontroll av timing og volum, ikke en økonomisk backtest av faktisk innkjøpskostnad."
+}
