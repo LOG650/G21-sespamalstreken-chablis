@@ -1,0 +1,9 @@
+vessel_file_id,vessel_class,leg_count,priced_leg_count,purchased_leg_count,total_consumption,model_purchase_qty,model_external_qty,priced_share_of_consumption,external_share_of_consumption,applicability_class,recommended_follow_up
+C001-1,C001,63,3,3,6354.45,316.20,5329.45,0.0498,0.8387,C,Krever mer prisdata før modellen kan gi konkrete kjøpsforslag for ruten.
+C001-2,C001,57,16,11,7173.35,6961.16,138.19,0.9704,0.0193,A,"Direkte anvendbar innenfor dagens prisgrunnlag, men bør fagvalideres før operativ bruk."
+C002-1,C002,53,12,6,7256.64,5754.57,956.27,0.7930,0.1318,A,"Direkte anvendbar innenfor dagens prisgrunnlag, men bør fagvalideres før operativ bruk."
+C003-1,C003,44,3,2,4537.68,1896.12,2051.64,0.4179,0.4521,B,"Delvis anvendbar; modellen gir noen konkrete kjøpsforslag, men datagapet er fortsatt vesentlig."
+C004-1,C004,55,3,3,5809.90,1945.63,3017.75,0.3349,0.5194,B,"Delvis anvendbar; modellen gir noen konkrete kjøpsforslag, men datagapet er fortsatt vesentlig."
+C004-2,C004,55,5,3,5743.17,1983.77,2870.67,0.3454,0.4998,B,"Delvis anvendbar; modellen gir noen konkrete kjøpsforslag, men datagapet er fortsatt vesentlig."
+C004-3,C004,68,0,0,6074.55,0.00,4974.15,0.0000,0.8189,C,Krever mer prisdata før modellen kan gi konkrete kjøpsforslag for ruten.
+C005-1,C005,91,0,0,2395.30,0.00,1922.50,0.0000,0.8026,C,Krever mer prisdata før modellen kan gi konkrete kjøpsforslag for ruten.

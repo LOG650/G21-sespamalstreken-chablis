@@ -64,7 +64,7 @@ Dersom prosjektet faller inn under Helseforskningsloven, skal det også søkes o
 
 ### Fullmakt til elektronisk publisering av oppgaven
 
-Forfatter(ne) har opphavsrett til oppgaven. Det betyr blant annet enerett til å gjøre verket tilgjengelig for allmennheten (Åndsvwerloven. §2).
+Forfatter(ne) har opphavsrett til oppgaven. Det betyr blant annet enerett til å gjøre verket tilgjengelig for allmennheten (åndsverkloven § 2).
 
 Alle oppgaver som fyller kriteriene vil bli registrert og publisert i Brage HiM med forfatter(ne)s godkjennelse.
 
@@ -89,7 +89,7 @@ Oppgaver som er unntatt offentlighet eller båndlagt vil ikke bli publisert.
 
 Denne rapporten undersøker hvordan en lineær optimaliseringsmodell kan brukes som beslutningsstøtte for å minimere drivstoffkostnader hos Odfjell Tankers. Analysen bygger på historiske bunkringsdata for LSF i fire prisede modellhavner, kombinert med operative voyage-, forbruks- og beholdningsdata. Datagrunnlaget brukes først til å beskrive historisk pris- og volumutvikling, og deretter til å formulere en kostnadsminimerende bunkringsmodell med restriksjoner for rutesekvens, tankkapasitet og ikke-negativ beholdning.
 
-Hovedmodellen behandler 486 voyage-etapper for åtte anonymiserte fartøyfiler. I basisscenarioet kjøper modellen 18 857,45 enheter i prisede modellhavner og fører 21 260,62 enheter som ekstern/ukjent bunkring. Dette tilsvarer at 41,59 % av modellert forbruk dekkes gjennom prisede modellhavner, mens 46,89 % faller utenfor dagens prisgrunnlag. Total modellkostnad i basisscenarioet er 26 625 664,78. Sensitivitetsanalysen viser at total modellkostnad varierer med 5 190 071,68 når proxykostnaden for ekstern/ukjent bunkring endres fra faktor 1,10 til 1,50, men kjøpsplanen er stabil i de testede scenarioene.
+Hovedmodellen behandler 486 voyage-etapper for åtte anonymiserte fartøyfiler. I basisscenarioet kjøper modellen 18 857,45 enheter i prisede modellhavner og fører 21 260,62 enheter som ekstern/ukjent bunkring. Ekstern/ukjent bunkring betyr her drivstoffbehov som ikke kan dekkes gjennom de prisede modellhavnene i rapportens datagrunnlag, og som derfor kostnadssettes med en proxypris. Dette tilsvarer at 41,59 % av modellert forbruk dekkes gjennom prisede modellhavner, mens 46,89 % faller utenfor dagens prisgrunnlag. Total modellkostnad i basisscenarioet er 26 625 664,78. Sensitivitetsanalysen viser at total modellkostnad varierer med 5 190 071,68 når proxykostnaden for ekstern/ukjent bunkring endres fra faktor 1,10 til 1,50, men kjøpsplanen er stabil i de testede scenarioene.
 
 Resultatene viser at modellen gir mest operativ verdi der fartøyenes ruter overlapper med de prisede modellhavnene. Samtidig viser den eksterne/ukjente andelen et tydelig datagap: modellen er egnet som transparent analyse- og beslutningsstøtte, men bredere prisdekning og videre validering er nødvendig før den kan brukes som full operativ planleggingsmodell.
 
@@ -99,7 +99,7 @@ Resultatene viser at modellen gir mest operativ verdi der fartøyenes ruter over
 
 This report examines how a linear optimization model can support fuel cost minimization for Odfjell Tankers. The analysis is based on historical LSF bunkering data from four priced model ports, combined with operational voyage, consumption and inventory data. The data are first used to describe historical price and volume patterns, and then to formulate a cost-minimizing bunkering model with constraints for route sequence, tank capacity and non-negative inventory.
 
-The main model covers 486 voyage legs across eight anonymized vessel files. In the baseline scenario, the model purchases 18,857.45 units in priced model ports and assigns 21,260.62 units to external/unknown bunkering. This means that 41.59% of modeled consumption is covered through priced model ports, while 46.89% falls outside the current price coverage. The total model cost in the baseline scenario is 26,625,664.78. The sensitivity analysis shows that total model cost varies by 5,190,071.68 when the proxy cost for external/unknown bunkering changes from factor 1.10 to 1.50, while the purchase plan remains stable in the tested scenarios.
+The main model covers 486 voyage legs across eight anonymized vessel files. In the baseline scenario, the model purchases 18,857.45 units in priced model ports and assigns 21,260.62 units to external/unknown bunkering. External/unknown bunkering means fuel demand that cannot be covered through the priced model ports in the report's data basis and is therefore priced with a proxy cost. This means that 41.59% of modeled consumption is covered through priced model ports, while 46.89% falls outside the current price coverage. The total model cost in the baseline scenario is 26,625,664.78. The sensitivity analysis shows that total model cost varies by 5,190,071.68 when the proxy cost for external/unknown bunkering changes from factor 1.10 to 1.50, while the purchase plan remains stable in the tested scenarios.
 
 The results show that the model is most operationally useful when vessel routes overlap with the priced model ports. At the same time, the external/unknown share provides a clear diagnosis of the data gap. The model is therefore suitable as transparent analytical decision support, but broader price coverage and further validation are needed before it can be used as a full operational planning model.
 
@@ -107,50 +107,51 @@ The results show that the model is most operationally useful when vessel routes 
 
 ## Innholdsfortegnelse
 
-1.0 Innledning  
-1.1 Problemstilling  
-1.2 Delproblemer  
-1.3 Avgrensinger  
-1.4 Antagelser  
-2.0 Litteratur  
-3.0 Teori  
-4.0 Casebeskrivelse  
-4.1 Odfjell Tankers og beslutningssituasjonen  
-4.2 Historisk utvikling i volum og pris  
-4.3 Sesongmønster i bunkringsdataene  
-4.4 Konsekvenser av begrenset beslutningsgrunnlag  
-4.5 Utfordringer ved begrenset beslutningsgrunnlag  
-5.0 Metode og data  
-5.1 Metode  
-5.2 Data  
-6.0 Modellering  
-6.1 Datagrunnlag og beslutningsnivå  
-6.2 Sett, parametere og beslutningsvariabler  
-6.3 Målfunksjon  
-6.4 Restriksjoner  
-6.5 Modellfiler og validering  
-6.6 Avgrensninger  
-7.0 Analyse  
-7.1 Dekning fra prisede modellhavner  
-7.2 Fartøyforskjeller  
-7.3 Kostnadsdriver og proxypris  
-7.4 Modellens bidrag  
-8.0 Resultat  
-8.1 Hovedresultat  
-8.2 Resultat per fartøyfil  
-8.3 Resultat per modellhavn  
-8.4 Sensitivitet for ekstern proxypris  
-9.0 Diskusjon  
-10.0 Konklusjon  
-11.0 Bibliografi  
-12.0 Vedlegg  
+- 1.0 Innledning
+- 1.1 Problemstilling
+- 1.2 Delproblemer
+- 1.3 Avgrensinger
+- 1.4 Antagelser
+- 2.0 Litteratur
+- 3.0 Teori
+- 4.0 Casebeskrivelse
+- 4.1 Odfjell Tankers og beslutningssituasjonen
+- 4.2 Historisk utvikling i volum og pris
+- 4.3 Sesongmønster i bunkringsdataene
+- 4.4 Konsekvenser for planlegging og kostnadsstyring
+- 5.0 Metode og data
+- 5.1 Metode
+- 5.2 Data
+- 6.0 Modellering
+- 6.1 Datagrunnlag og beslutningsnivå
+- 6.2 Sett, parametere og beslutningsvariabler
+- 6.3 Målfunksjon
+- 6.4 Restriksjoner
+- 6.5 Modellfiler og validering
+- 6.6 Avgrensninger
+- 7.0 Analyse
+- 7.1 Dekning fra prisede modellhavner
+- 7.2 Fartøyforskjeller
+- 7.3 Kostnadsdriver og proxypris
+- 8.0 Resultat
+- 8.1 Hovedresultat
+- 8.2 Resultat per fartøyfil
+- 8.3 Anvendbarhet per fartøyfil
+- 8.4 Resultat per modellhavn
+- 8.5 Sensitivitet for ekstern proxypris
+- 9.0 Diskusjon
+- 9.1 Praktiske og faglige implikasjoner
+- 9.2 Begrensninger og videre bruk
+- 10.0 Konklusjon
+- 11.0 Bibliografi
+- 12.0 Vedlegg
 
 ---
 
 ## 1.0 Innledning 
 
 
-Drivstoffkostnader er en av de største og mest variable kostnadskomponentene i maritim drift. Shippingnæringen er generelt preget av betydelig volatilitet, både i fraktrater og innsatsfaktorer som drivstoff, noe som gjør kostnadsstyring særlig krevende (Stopford, 2008). For et rederi som Odfjell Tankers, der bunkring skjer løpende for en stor global flåte, kan selv moderate prisforskjeller per enhet gi store utslag i totale kostnader over tid.
+Drivstoffkostnader er en av de største og mest variable kostnadskomponentene i maritim drift. Shippingnæringen er generelt preget av betydelig volatilitet, både i fraktrater og innsatsfaktorer som drivstoff, noe som gjør kostnadsstyring særlig krevende (Stopford, 2008). For et rederi som Odfjell Tankers, der bunkring skjer løpende for en stor global flåte, kan selv moderate prisforskjeller per enhet gi store utslag i totale kostnader over tid. Casebedriften oppgir at innkjøpene gjelder rundt 70 tankskip og om lag 400 000 metriske tonn marint drivstoff i 2025, med en samlet verdi på rundt 250 millioner USD. Dette gjør bunkringsbeslutninger til et beslutningsområde der bedre datastøtte kan ha betydelig økonomisk relevans.
 
 Beslutningene tas samtidig i en operativ virkelighet preget av prisvariasjon mellom havner, ulike innkjøpsformer og behov for å balansere kostnad, tilgjengelighet, kvalitet og regulatoriske rammer (FuelEU Guidance Document for Shipping Companies, 2025). Dette gjør bunkringsbeslutninger til et relevant område for beslutningsstøtte basert på data og optimering. Temaet er aktuelt fordi historiske transaksjonsdata gir mulighet til å undersøke om det finnes systematiske mønstre i pris og volum som kan utnyttes bedre enn i en mer erfaringsbasert beslutningsprosess. Dersom slike mønstre kan dokumenteres og knyttes til en enkel og transparent modell, kan analysen gi Odfjell Tankers et bedre grunnlag for å vurdere hvor bunkring bør skje under gitte forutsetninger.
 
@@ -186,21 +187,27 @@ Selv om den operative bunkringsvirkeligheten omfatter flere drivstofftyper, kont
 
 Rapporten bygger på flere eksplisitte antagelser. For det første antas det at historiske prisobservasjoner gir et rimelig grunnlag for å beskrive relative prisforskjeller mellom modellhavnene. For det andre antas det at pris- og volumdatasettet som er mottatt fra Odfjell Tankers allerede er grunnleggende kvalitetssjekket av dataleverandøren, selv om prosjektgruppen ikke har mottatt en separat datakvalitetsrapport for dette datasettet. For det tredje antas det at `ROB_Fuel_Total`, rapportert forbruk og oppgitt bunkerskapasitet kan brukes som operative modellparametere for de anonymiserte 2025-fartøyfilene.
 
-Disse antagelsene er nødvendige for å kunne arbeide videre med pris- og volumdatasettet, men de innebærer også begrensninger. Analysen må derfor tolkes som et beslutningsstøttende modellforsøk og ikke som en full operativ anbefaling uten videre validering.
+Disse antagelsene er nødvendige for å kunne arbeide videre med pris- og volumdatasettet, men de innebærer også begrensninger. Historiske prisforskjeller mellom havnene kan ikke uten videre tolkes som sikre framtidige prisforskjeller. Manglende uavhengig datakvalitetsrapport gjør også at eventuelle feil, mangler eller registreringsforskjeller i datasettet kan bli videreført inn i analysen. I tillegg innebærer bruken av `ROB_Fuel_Total`, rapportert forbruk og bunkerskapasitet som modellparametere at modellen forenkler den operative virkeligheten. Analysen må derfor tolkes som et beslutningsstøttende modellforsøk og ikke som en full operativ anbefaling uten videre validering.
 
 ---
 
 ## 2.0 Litteratur
 
-Litteraturgrunnlaget for denne rapporten ligger i skjæringspunktet mellom operasjonsanalyse, lineær programmering og maritim beslutningsstøtte. Det mest relevante fra litteraturen er ikke nødvendigvis studier som er identiske med dette caset, men bidrag som viser hvordan kostnadsminimering, ressursallokering og modellbasert beslutningsstøtte kan brukes i praktiske driftsmiljøer.
+Litteraturgrunnlaget for denne rapporten ligger i skjæringspunktet mellom operasjonsanalyse, lineær programmering, bunkringsbeslutninger og maritim beslutningsstøtte. Kapittelet brukes til å plassere rapporten i forskningsfeltet, mens kapittel 3 avgrenser de teoretiske begrepene som brukes i modelleringen.
 
-Innen operasjonsanalyse er lineær programmering et etablert rammeverk for å formulere problemer der en aktør ønsker å minimere kostnader eller maksimere nytte under et sett av begrensninger (Fox og Burks, 2024). Denne litteraturen er relevant fordi bunkringsproblemet kan forstås nettopp som et slikt valgproblem: et gitt drivstoffbehov skal dekkes ved å fordele innkjøp mellom alternative havner og perioder med ulike priser.
+Innen operasjonsanalyse er lineær programmering et etablert rammeverk for å formulere problemer der en aktør ønsker å minimere kostnader eller maksimere nytte under et sett av begrensninger (Fox & Burks, 2024). Denne litteraturen er relevant fordi bunkringsproblemet kan forstås som et valgproblem: et gitt drivstoffbehov skal dekkes ved å fordele innkjøp mellom alternative havner og perioder med ulike priser.
 
-Litteratur om logistikk og maritim planlegging peker samtidig på at modeller sjelden bør vurderes isolert fra operativ kontekst (Song og Panayides, 2021; Venkataraman og Pinto, 2018). I praksis vil forhold som tilgjengelighet, kapasitet, forbruk, ruter og kontrakter påvirke hvilke løsninger som faktisk er gjennomførbare. Dette er relevant for denne rapporten fordi pris- og volumdatasettet ikke inneholder alle slike variabler. Dermed må modellens rolle avgrenses til å være et analytisk beslutningsstøtteverktøy, ikke en fullstendig operativ sannhetsmodell.
+Forskningslitteraturen om bunkring viser at problemet ofte behandles som en kombinasjon av rute-, beholdnings- og innkjøpsbeslutninger. Besbes og Savin (2009) formulerer bunkringsbeslutninger som et problem der refueling-kostnader må minimeres under tilfeldig prisutvikling og begrenset tankkapasitet. Zhen et al. (2017) studerer optimal skipsbunkring med stokastisk drivstofforbruk og stokastiske havnepriser, og viser hvordan beslutningen om hvor og hvor mye som skal bunkres kan behandles som en dynamisk beslutningsregel. Wang og Meng (2015) utvider dette perspektivet til robuste bunkringsbeslutninger i liner-nettverk, der både hastighet, bunkring og usikkert forbruk påvirker totalkostnaden.
 
-Et annet relevant litteraturspor handler om modellvalidering, bruk av historiske data og håndtering av begrensninger (Fox og Burks, 2024). Her er et sentralt poeng at modeller bør testes mot observerte data og vurderes opp mot realistiske driftsforhold. Dette støtter rapportens videre opplegg med eksplisitte datakontroller, reproduserbare modellkjøringer og sensitivitetsanalyse. Kronologisk train/test-splitt brukes som dokumentasjon av datagrunnlaget og som et mulig grunnlag for senere modellvurdering, men hovedresultatene i denne rapporten bygger på den operative hovedmodellen og dens interne validering.
+Andre bidrag viser at bunkring sjelden kan isoleres fra øvrige operative beslutninger. Sheng et al. (2015) kobler refueling-policy og hastighetsvalg i linerfart, mens Du et al. (2015) bruker robust optimering for å håndtere usikkerhet i drivstofforbruk over en rundreise. Nyere arbeid på trampfart viser også at bunkringsbeslutninger kan integreres med rute- og planleggingsproblemer, slik at modellen må håndtere både hvor drivstoff kjøpes og hvordan ruten gjennomføres (Omholt-Jensen et al., 2025).
 
-Denne rapporten plasserer seg dermed i en anvendt tradisjon, der etablerte prinsipper fra lineær programmering og modellbasert analyse benyttes for å støtte praktiske beslutninger i en operativ maritim kontekst. Metoden anvendes på et konkret case med et begrenset, men reelt datagrunnlag fra Odfjell Tankers. Dette er i tråd med hvordan analyseverktøy ofte brukes i praksis innen maritim økonomi og drift, hvor modellbaserte tilnærminger inngår som beslutningsstøtte heller enn som fullstendige operasjonelle løsninger (Grammenos, 2026). Den viktigste faglige ambisjonen er derfor ikke å introdusere ny teori, men å vise hvordan etablerte metoder kan anvendes systematisk på et praktisk beslutningsproblem.
+Denne litteraturen har to konsekvenser for rapporten. For det første støtter den at bunkringsbeslutninger kan analyseres som et optimeringsproblem med pris, kapasitet, rute og forbruk som sentrale parametere. For det andre viser den at mer avanserte modeller ofte inkluderer usikkerhet, hastighet, rutevalg, kontrakter og flere drivstofftyper. Rapportens modell er enklere: rutesekvensen tas som gitt, prisgrunnlaget er avgrenset til fire modellhavner, og ekstern/ukjent bunkring brukes for å synliggjøre datagap.
+
+Det faglige hullet rapporten adresserer er derfor ikke mangel på optimeringsmodeller for bunkring generelt. Hullet ligger i den praktiske overgangen fra et begrenset historisk transaksjonsdatasett til en transparent og etterprøvbar beslutningsstøttemodell for et konkret redericase. Rapportens bidrag er å vise hvordan historiske prisdata, voyage-data, forbruk, beholdning og kapasitet kan kobles i en lineær rute- og lagerbasert modell, samtidig som modellen klassifiserer hvor resultatene er direkte anvendbare og hvor datadekningen fortsatt er for svak.
+
+Litteratur om logistikk og maritim planlegging peker samtidig på at modeller bør vurderes i lys av operativ kontekst (Song & Panayides, 2021; Venkataraman & Pinto, 2018). I praksis vil forhold som tilgjengelighet, kapasitet, forbruk, ruter, kontrakter og regelverk påvirke hvilke løsninger som faktisk er gjennomførbare. Dette er relevant for denne rapporten fordi pris- og volumdatasettet ikke inneholder alle slike variabler. Dermed må modellens rolle avgrenses til å være et analytisk beslutningsstøtteverktøy, ikke en fullstendig operativ sannhetsmodell.
+
+Denne rapporten plasserer seg dermed i en anvendt tradisjon, der etablerte prinsipper fra lineær programmering og modellbasert analyse benyttes for å støtte praktiske beslutninger i en operativ maritim kontekst. Metoden anvendes på et konkret case med et begrenset, men reelt datagrunnlag fra Odfjell Tankers. Dette er i tråd med hvordan analyseverktøy ofte brukes i praksis innen maritim økonomi og drift, hvor modellbaserte tilnærminger inngår som beslutningsstøtte heller enn som fullstendige operasjonelle løsninger (Grammenos, 2026).
 
 ---
 
@@ -208,25 +215,25 @@ Denne rapporten plasserer seg dermed i en anvendt tradisjon, der etablerte prins
 
 ### Lineær programmering som teoretisk rammeverk
 
-Lineær programmering er en matematisk metode for å finne den beste løsningen på et problem der både målfunksjonen og restriksjonene kan uttrykkes lineært (Fox og Burks, 2024). Et standard lineært programmeringsproblem består av beslutningsvariabler, en målfunksjon og et sett av begrensninger. I denne oppgaven er teorien relevant fordi bunkringsbeslutninger kan forstås som et kostnadsminimeringsproblem, der drivstoff kjøpes i ulike havner til varierende priser under gitte kapasitets- og etterspørselsbetingelser.
+Lineær programmering er en matematisk metode for å finne den beste løsningen på et problem der både målfunksjonen og restriksjonene kan uttrykkes lineært (Fox & Burks, 2024). Et standard lineært programmeringsproblem består av beslutningsvariabler, en målfunksjon og et sett av begrensninger. I denne oppgaven er teorien relevant fordi bunkringsbeslutninger kan forstås som et kostnadsminimeringsproblem, der drivstoff kjøpes i ulike havner til varierende priser under gitte kapasitets- og etterspørselsbetingelser.
 
 Det teoretiske poenget med lineær programmering i denne sammenhengen er at metoden gjør det mulig å gå fra en intuitiv problemforståelse til en eksplisitt og etterprøvbar beslutningsmodell. Når modellens antagelser og restriksjoner er tydelige, kan både styrker og begrensninger diskuteres på en faglig ryddig måte. Dette gjør lineær programmering særlig egnet som grunnlag for beslutningsstøtte i situasjoner med flere alternative handlingsvalg og tydelige kostnadsforskjeller.
 
 ### Beslutningsvariabler, parametere og restriksjoner
 
-Et sentralt teoretisk skille i optimeringslitteraturen går mellom beslutningsvariabler og parametere (Fox og Burks, 2024). Beslutningsvariablene beskriver hva modellen skal velge, mens parametrene beskriver størrelser som antas gitt. I denne rapporten brukes dette skillet for å definere bunkret volum som beslutningsvariabel, mens pris, behov og tilgjengelighet behandles som parametere i modellen.
+Et sentralt teoretisk skille i optimeringslitteraturen går mellom beslutningsvariabler og parametere (Fox & Burks, 2024). Beslutningsvariablene beskriver hva modellen skal velge, mens parametrene beskriver størrelser som antas gitt. I denne rapporten brukes dette skillet for å definere bunkret volum som beslutningsvariabel, mens pris, behov og tilgjengelighet behandles som parametere i modellen.
 
 Restriksjoner er like viktige som målfunksjonen, fordi de avgjør hvilke løsninger som er gyldige. Teoretisk sett er dette nødvendig for at en modell ikke bare skal finne den billigste løsningen, men den billigste løsningen innenfor de rammene som er definert. I praksis betyr det at modellens verdi avhenger av hvor godt restriksjonene representerer den faktiske beslutningssituasjonen.
 
 ### Modellforenkling og operativ relevans
 
-All anvendt modellering innebærer forenklinger (Song og Panayides, 2021; Venkataraman og Pinto, 2018). En modell er derfor ikke en kopi av virkeligheten, men en analytisk representasjon av utvalgte forhold som anses viktigst for beslutningen. I denne oppgaven er dette særlig relevant fordi datagrunnlaget ikke inneholder alle operative variabler som i prinsippet burde inngå i en full bunkringsmodell. Dette er særlig relevant i maritime beslutningssituasjoner, hvor operasjonelle forhold ofte begrenser hvilke løsninger som faktisk er gjennomførbare (Song og Panayides, 2021; Venkataraman og Pinto, 2018).
+All anvendt modellering innebærer forenklinger (Song & Panayides, 2021; Venkataraman & Pinto, 2018). En modell er derfor ikke en kopi av virkeligheten, men en analytisk representasjon av utvalgte forhold som anses viktigst for beslutningen. I denne oppgaven er dette særlig relevant fordi datagrunnlaget ikke inneholder alle operative variabler som i prinsippet burde inngå i en full bunkringsmodell. Dette er særlig relevant i maritime beslutningssituasjoner, hvor operasjonelle forhold ofte begrenser hvilke løsninger som faktisk er gjennomførbare (Song & Panayides, 2021; Venkataraman & Pinto, 2018).
 
 Teoretisk innebærer dette at modellen må forstås som en deterministisk og operasjonell lager-/rutemodell. Den arbeider på fartøy- og etappenivå, men bruker historiske prisobservasjoner som grunnlag for kostnadsparameterne. Dette gjør modellen mer beslutningsnær enn en ren månedsaggregert modell, men stiller samtidig krav om at prisproxyer og manglende havnedekning dokumenteres tydelig.
 
 ### Datagrunnlag og modellkontroll
 
-Når historiske data brukes til modellering, oppstår det en risiko for at modellen tolkes for sterkt dersom datagrunnlag, forutsetninger og kontroller ikke skilles tydelig. Et vanlig prinsipp i analyse og modellutvikling er derfor å dokumentere hvilke data som brukes til utvikling, hvilke data som holdes tilbake for senere kontroll, og hvilke kontroller som faktisk er gjennomført (Fox og Burks, 2024). I denne rapporten er dette prinsippet relevant fordi både prisdata og voyage-data er dokumentert med kronologisk train/test-splitt, samtidig som hovedmodellen kontrolleres gjennom interne konsistenssjekker og sensitivitetsanalyse.
+Når historiske data brukes til modellering, oppstår det en risiko for at modellen tolkes for sterkt dersom datagrunnlag, forutsetninger og kontroller ikke skilles tydelig. Et vanlig prinsipp i analyse og modellutvikling er derfor å dokumentere hvilke data som brukes til utvikling, hvilke data som holdes tilbake for senere kontroll, og hvilke kontroller som faktisk er gjennomført (Fox & Burks, 2024). I denne rapporten er dette prinsippet relevant fordi både prisdata og voyage-data er dokumentert med kronologisk train/test-splitt, samtidig som hovedmodellen kontrolleres gjennom interne konsistenssjekker og sensitivitetsanalyse.
 
 Den teoretiske begrunnelsen for kronologisk splitt er at senere observasjoner ikke skal blandes inn i tidligere analysegrunnlag. I denne rapporten brukes splitten primært som datadokumentasjon og for å gjøre videre validering mulig. Selve vurderingen av hovedmodellen skjer gjennom kontroll av at rutesekvens, forbruk, beholdning, kapasitet og kjøpsmuligheter behandles konsistent i modellresultatene. Samlet sett gir dette et teoretisk grunnlag for å formulere bunkringsproblemet som et optimeringsproblem, der kostnadsminimering skjer under gitte operative og datamessige begrensninger. Dette danner utgangspunktet for modellformuleringen som presenteres i neste kapittel.
 
@@ -242,9 +249,9 @@ Odfjell Tankers opererer i en maritim kontekst der bunkringsbeslutninger må tas
 
 Den operative beslutningssituasjonen er bredere enn det datasettet i denne rapporten direkte dekker. Ifølge kontaktpersonen med ansvar for innkjøp av marint drivstoff kjøper Odfjell Tankers drivstoff til rundt 70 tankskip som opererer globalt. I 2025 utgjorde dette om lag 400 000 metriske tonn, med en samlet verdi på rundt 250 millioner USD. Dette illustrerer at selv små forbedringer i innkjøpsbeslutningene kan få betydelige økonomiske konsekvenser over tid.
 
-I den daglige driften brukes flere drivstofftyper. Hovedtyngden består av `VLSFO` (`Very Low Sulphur Fuel Oil`), mens flåten også bruker `LSGO` (`Low Sulphur Gasoil`) og noe biodrivstoff (`Everything You Need To Know About Marine Fuels`, u.å.). I denne rapporten fungerer `LSGO` og biodrivstoff likevel bare som bakgrunnsinformasjon. Det mottatte analysegrunnlaget dekker kun transaksjoner for drivstofftypen `LSF`, og det er denne kategorien som ligger til grunn for videre analyse og modellering.
+I den daglige driften brukes flere drivstofftyper. Hovedtyngden består av `VLSFO` (`Very Low Sulphur Fuel Oil`), mens flåten også bruker `LSGO` (`Low Sulphur Gasoil`) og noe biodrivstoff (*Everything You Need to Know About Marine Fuels*, u.å.). I denne rapporten fungerer `LSGO` og biodrivstoff likevel bare som bakgrunnsinformasjon. Det mottatte analysegrunnlaget dekker kun transaksjoner for drivstofftypen `LSF`, og det er denne kategorien som ligger til grunn for videre analyse og modellering. I rapporten behandles derfor `LSF` som datasettets registrerte produktkategori, mens `VLSFO` omtales som den bredere operative drivstoffkategorien i casebeskrivelsen.
 
-Bruken av biodrivstoff er heller ikke bare et kommersielt valg, men må sees i lys av regulatoriske krav knyttet til utslipp og etterlevelse av europeisk regelverk (`FuelEU Guidance Document for Shipping Companies`, 2025). Drivstoffvalget påvirkes dermed i praksis både av pris, tilgjengelighet, kvalitet og regulatoriske rammer. Den faktiske beslutningssituasjonen er derfor mer sammensatt enn den avgrensede analysen i denne rapporten.
+Bruken av biodrivstoff er heller ikke bare et kommersielt valg, men må sees i lys av regulatoriske krav knyttet til utslipp og etterlevelse av europeisk regelverk (*FuelEU Guidance Document for Shipping Companies*, 2025). Drivstoffvalget påvirkes dermed i praksis både av pris, tilgjengelighet, kvalitet og regulatoriske rammer. Den faktiske beslutningssituasjonen er derfor mer sammensatt enn den avgrensede analysen i denne rapporten.
 
 Innkjøpene skjer også under ulike markedsbetingelser. I noen havner har selskapet kontrakt med en leverandør for å sikre tilgjengelighet og/eller kvalitet, mens drivstoff i andre havner kjøpes i spotmarkedet. Dette betyr at bunkringsbeslutninger i praksis ikke bare handler om å velge lavest mulig pris, men også om å håndtere leveringssikkerhet, kvalitet og markedsforhold.
 
@@ -260,14 +267,14 @@ Figur 4.1 viser samlet bunkret volum måned for måned gjennom hele analyseperio
 
 <div align="center">
   <img src="../006%20analysis/01_datagrunnlag/04_deskriptiv_analyse/figures/fig_bunker_total_qty_by_month.png" alt="Historisk bunkret volum per måned" width="80%">
-  <p align="center" style="font-size: 0.9em;"><i>Figur 4.1 Samlet bunkret volum for hver enkelt måned i perioden 2020-01 til 2025-01.</i></p>
+  <p align="center" style="font-size: 0.9em;"><small><i>Figur 4.1 Samlet bunkret volum for hver enkelt måned i perioden 2020-01 til 2025-01.</i></small></p>
 </div>
 
 Prisnivået varierer også tydelig mellom havnene. Figur 4.2 viser vektet gjennomsnittspris per havn for hver enkelt måned i perioden. Også her er figuren en tidsserie, der hver observasjon er knyttet til en konkret måned mellom januar 2020 og januar 2025. Figuren viser at havnene ikke bare har ulike gjennomsnittspriser, men også ulike prisbaner over tid. Dette er et sentralt premiss for videre modellering, fordi det innebærer at havnevalg kan påvirke totale bunkringskostnader.
 
 <div align="center">
   <img src="../006%20analysis/01_datagrunnlag/04_deskriptiv_analyse/figures/fig_bunker_weighted_price_by_port_month.png" alt="Pris per havn og måned" width="80%">
-  <p align="center" style="font-size: 0.9em;"><i>Figur 4.2 Vektet gjennomsnittspris per havn for hver enkelt måned i perioden 2020-01 til 2025-01.</i></p>
+  <p align="center" style="font-size: 0.9em;"><small><i>Figur 4.2 Vektet gjennomsnittspris per havn for hver enkelt måned i perioden 2020-01 til 2025-01.</i></small></p>
 </div>
 
 Tabell 4.1 oppsummerer forskjellene mellom havnene og dokumenterer både aktivitetsnivå og prisnivå i analyseperioden.
@@ -281,7 +288,7 @@ Tabell 4.1 oppsummerer forskjellene mellom havnene og dokumenterer både aktivit
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell 4.1 Oversikt over aktivitetsnivå og prisnivå for de fire mest brukte havnene i analyseperioden.</i></small></p>
 
-`Tabell 4.1` viser at `P004` er den mest brukte havnen målt i antall observasjoner, mens `P003` har lavest vektet gjennomsnittspris. `P002` fremstår som den dyreste havnen i utvalget og har dessuten færre måneder med observasjoner enn de øvrige havnene. Dette understøtter at både prisnivå og datadekning varierer mellom havnene.
+Tabell 4.1 viser at `P004` er den mest brukte havnen målt i antall observasjoner, mens `P003` har lavest vektet gjennomsnittspris. `P002` fremstår som den dyreste havnen i utvalget og har dessuten færre måneder med observasjoner enn de øvrige havnene. Dette understøtter at både prisnivå og datadekning varierer mellom havnene.
 
 ### 4.3 Sesongmønster i bunkringsdataene
 
@@ -289,16 +296,14 @@ For å vurdere om det finnes et mønster som gjentar seg gjennom kalenderåret, 
 
 <div align="center">
   <img src="../006%20analysis/01_datagrunnlag/04_deskriptiv_analyse/figures/fig_bunker_season_profile.png" alt="Sesongprofil for volum og pris" width="80%">
-  <p align="center" style="font-size: 0.9em;"><i>Figur 4.3 Gjennomsnittlig volum og pris per kalendermåned, aggregert på tvers av perioden 2020-01 til 2025-01.</i></p>
+  <p align="center" style="font-size: 0.9em;"><small><i>Figur 4.3 Gjennomsnittlig volum og pris per kalendermåned, aggregert på tvers av perioden 2020-01 til 2025-01.</i></small></p>
 </div>
 
 Figuren viser at aktivitetsnivået i gjennomsnitt er høyest rundt mars og juli, mens prisnivået i gjennomsnitt er relativt høyt i februar, mars og juni og lavere i mai og desember. Mønsteret er ikke så sterkt at det alene kan forklare alle beslutninger, men det viser at både volum og pris varierer systematisk nok til at sesong bør beskrives eksplisitt i caset.
 
-### 4.4 Konsekvenser av begrenset beslutningsgrunnlag
+### 4.4 Konsekvenser for planlegging og kostnadsstyring
 
 Når prisene varierer mellom havner og over tid, mens volumet samtidig svinger gjennom analyseperioden, øker behovet for et mer strukturert beslutningsgrunnlag. Uten en systematisk sammenstilling av slike mønstre risikerer virksomheten å basere bunkringsbeslutninger på enkelthendelser eller lokal erfaring alene. Det betyr ikke at historiske data kan erstatte operativ vurdering, men det betyr at historiske transaksjoner kan brukes til å synliggjøre hvor det finnes et potensial for kostnadsreduksjon og bedre prioritering mellom havner.
-
-### 4.5 Utfordringer ved begrenset beslutningsgrunnlag
 
 Selv om selskapet allerede bruker beslutningsstøtte for deler av bunkringsarbeidet, er beslutningssituasjonen fortsatt kompleks fordi ulike drivstofftyper, kontraktsforhold, spotkjøp og regulatoriske krav gjør at ikke alle valg kan støttes på samme måte. Den underliggende utfordringen i bedriften er derfor bredere enn bare historiske prisforskjeller. Når beslutningsgrunnlaget ikke kobler pris, rute, forbruk, beholdning og kapasitet systematisk, blir beslutninger lettere preget av kortsiktige vurderinger og mindre av etterprøvbar analyse. Dette kan føre til at bunkring skjer i havner som i ettertid viser seg å være relativt dyre, eller at volum fordeles på en måte som ikke utnytter prisvariasjonene godt nok.
 
@@ -314,11 +319,28 @@ I en virksomhet som Odfjell Tankers får dette betydning utover enkeltkjøp. Nå
 
 Studien er gjennomført som en kvantitativ caseanalyse av Odfjell Tankers, der historiske bunkringstransaksjoner og operative voyage-data brukes som grunnlag for å utvikle en optimeringsmodell for beslutningsstøtte. Arbeidet er lagt opp i seks steg: innlesing og kvalitetssikring av rådata, rensing og strukturering av pris- og volumdatasettet, deskriptiv analyse av historiske mønstre, strukturering av operative voyage-, forbruks-, ROB- og kapasitetsdata, formulering og implementering av en lineær rute- og lagerbasert hovedmodell, og til slutt basiskjøring, sensitivitetsanalyse og resultattolkning.
 
+Metodisk kombinerer rapporten datavask og strukturering, deskriptiv grafisk analyse, lineær programmering, intern konsistenskontroll, sensitivitetsanalyse og anvendbarhetsklassifisering. Tabell 5.1 viser hvordan disse metodene brukes i de ulike delene av arbeidet.
+
+| Del av arbeidet | Metode brukt | Formål |
+| --- | --- | --- |
+| Datagrunnlag | Innlesing, rensing og strukturering av historiske bunkringsdata og operative voyage-data | Etablere konsistente inputdata for analyse og modellering |
+| Beskrivende analyse | Tidsseriefigurer, sesongprofil og aggregerte tabeller | Dokumentere historisk utvikling, variasjon og mønstre i volum og pris |
+| Modellering | Lineær kostnadsminimeringsmodell med rute-, beholdnings- og kapasitetsrestriksjoner | Oversette bunkringsbeslutningen til et matematisk optimeringsproblem |
+| Løsning | Numerisk lineær programmering med `scipy.optimize.linprog` | Beregne kostnadsminimerende bunkringsmengder gitt modellens restriksjoner |
+| Kontroll | Datakvalitetskontroll, interne konsistenssjekker og sensitivitetsanalyse | Vurdere om datagrunnlag, modellresultater og sentrale antagelser er rimelige |
+| Anvendelse | Anvendbarhetsklassifisering per fartøyfil | Vise hvor modellen kan gi direkte beslutningsstøtte, og hvor mer data trengs |
+
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.1 Oversikt over metoder brukt i analyse- og modellarbeidet.</i></small></p>
+
+Metoder som maskinlæring, tidsserieprognoser, EOQ-modeller, køteori, simulering og multikriteriemetoder er ikke brukt i denne rapporten. Årsaken er at problemstillingen er formulert som et deterministisk kostnadsminimeringsproblem med gitt rutesekvens, ikke som et prognoseproblem, et rutevalgsproblem, en klassisk lagerpolitikk eller en flermålsbeslutning. Valget av lineær programmering gir derfor en mer direkte kobling mellom problemstillingen, tilgjengelige data og modellens beslutningsvariabler.
+
 Rådataene er behandlet i en reproduserbar renseprosess. Her standardiseres datoer og numeriske felt, samtidig som volum- og prisvariabler harmoniseres ved å bruke `Invoiced Qty` og `Invoice Price` som hovedkilder, med fallback til `Ordered Qty` og `Order Price` når fakturerte verdier mangler. Observasjoner med ikke-positivt volum eller ikke-positiv pris forkastes for å unngå at ugyldige transaksjoner påvirker analysen og de estimerte modellparametrene.
 
 Etter rensing ble dataene strukturert i to nivåer. Først ble et renset transaksjonsdatasett etablert. Deretter ble transaksjonene aggregert per havn og måned for å skape et enklere og mer robust analysegrunnlag for modellen. Dette aggregatet gir blant annet total mengde, antall transaksjoner, vektet gjennomsnittspris, minimums- og maksimumspris, samt antall unike fartøy og leverandører per kombinasjon av havn og måned. Metodevalget innebærer en bevisst forenkling av den operative virkeligheten, men gir et transparent og reproduserbart grunnlag for kostnadsminimeringsmodellen.
 
 Prosjektgruppen har i tillegg mottatt supplerende operative 2025-data for åtte anonymiserte fartøyfiler fordelt på klassene `C001` til `C005`. Råfilene inneholder blant annet dato, rapporttype, seilt distanse, tidsbruk, voyage fra/til, voyage-nummer, forbruksfelt og `ROB_Fuel_Total`. Voyage-havnene var opprinnelig oppgitt som UN/Locode, men er pseudonymisert i analysearbeidet slik at havner vises som `Pxxx` og voyage-numre som `VGxxx`. Det er også oppgitt tankkapasitet per fartøyklasse og informasjon om at selskapet har bunkerskontrakt i Singapore og Sør-Korea, samt VLSFO-kontrakt i Rotterdam. Tilleggsdataene brukes direkte i den operative hovedmodellen til å modellere forbruk, ROB, tankkapasitet og havnetilgjengelighet, mens pris- og volumdatasettet fortsatt er kilden til dokumenterte prisparametere.
+
+Validitet, reliabilitet og etikk er vurdert som del av metodeopplegget. Intern validitet styrkes ved at modellen bygger direkte på observerte voyage-data, dokumenterte rensevalg og eksplisitte konsistenssjekker, men ekstern validitet er begrenset fordi modellen bare dekker én drivstoffkategori, fire prisede modellhavner og åtte anonymiserte fartøyfiler. Reliabiliteten styrkes gjennom reproduserbare skript, faste inputregler og sensitivitetsanalyse av proxykostnaden, men resultatene vil fortsatt være følsomme for endringer i prisdekning, rutegrunnlag og antagelser om ekstern/ukjent bunkring. Etisk er databehandlingen avgrenset til operasjonelle bedriftsdata uten personanalyse. Havner, fartøy og voyage-numre er pseudonymisert for å redusere risikoen for å eksponere kommersielt eller operasjonelt sensitiv informasjon. Siden prosjektet ikke behandler personopplysninger som forskningsdata, vurderes personvernet som lite berørt, men konfidensialitet rundt bedriftsdata er likevel et viktig hensyn.
 
 ### 5.2 Data
 
@@ -326,7 +348,7 @@ Datagrunnlaget består av historiske bunkringstransaksjoner fra råfilen mottatt
 
 Selve analysegrunnlaget omfatter kun transaksjoner for drivstofftypen `LSF`, slik denne er registrert i rådataene. Andre drivstofftyper som `LSGO` og biodrivstoff er relevante for å forstå den bredere operative beslutningssituasjonen i Odfjell Tankers, men de inngår ikke i datasettet som brukes i denne oppgaven og påvirker derfor heller ikke modellgrunnlaget direkte.
 
-Tabell 5.1 oppsummerer pris- og volumdatasettet som brukes som modellens primære datagrunnlag.
+Tabell 5.2 oppsummerer pris- og volumdatasettet som brukes som modellens primære datagrunnlag.
 
 | Element | Verdi |
 | --- | --- |
@@ -339,11 +361,11 @@ Tabell 5.1 oppsummerer pris- og volumdatasettet som brukes som modellens primær
 | Havner inkludert | P001, P002, P003, P004 |
 | Antall måneder | 61 |
 
-<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.1 Oppsummering av pris- og volumdatasettet som brukes som modellgrunnlag.</i></small></p>
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.2 Oppsummering av pris- og volumdatasettet som brukes som modellgrunnlag.</i></small></p>
 
 Det opprinnelige datasettet inneholder 1389 observasjoner. Gjennomgangen viser at de sentrale identifikasjonsfeltene er komplette, men at enkelte verdi- og prisfelt har mangler eller ugyldige verdier. Det finnes 10 observasjoner uten `Invoice Price`, 10 observasjoner uten `Invoiced Qty`, 2 observasjoner uten `Supplier`, samt 8 observasjoner med ikke-positivt volum. Etter rensing ble 1381 observasjoner beholdt, mens 8 observasjoner ble forkastet på grunn av ikke-positivt volum. Rensingen er en del av prosjektgruppens metodearbeid og endrer ikke hvilken fil som er rapportens opprinnelige datakilde.
 
-Tabell 5.2 dokumenterer rensevalg og datakvalitet i materialet.
+Tabell 5.3 dokumenterer rensevalg og datakvalitet i materialet.
 
 | Kontrollpunkt | Antall / regel | Konsekvens |
 | --- | --- | --- |
@@ -356,7 +378,7 @@ Tabell 5.2 dokumenterer rensevalg og datakvalitet i materialet.
 | Manglende `Supplier` | 2 observasjoner | Har liten betydning for modellen |
 | Endelig antall beholdte observasjoner | 1381 | Brukes videre i renset og aggregert datasett |
 
-<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.2 Oversikt over rensevalg, fallback-regler og vurdert datakvalitet i materialet.</i></small></p>
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.3 Oversikt over rensevalg, fallback-regler og vurdert datakvalitet i materialet.</i></small></p>
 
 For analyse- og modelleringsformål er rådataene strukturert på to nivåer: rensede transaksjoner på detaljnivå og et månedlig aggregat per havn. Aggregatet består av 229 havn-måned-kombinasjoner fordelt over 61 måneder. For hver kombinasjon beregnes blant annet antall transaksjoner, total mengde, vektet gjennomsnittspris, enkel gjennomsnittspris, minimums- og maksimumspris, samt antall unike fartøy og leverandører. Dette er beregninger gjort fra rådataene, ikke egne eksterne datakilder.
 
@@ -368,7 +390,7 @@ De supplerende voyage-råfilene fra 2025 er også splittet kronologisk 80/20 fø
 
 En oppsummering av materialet viser tydelige forskjeller mellom havnene. `P004` er den mest brukte havnen målt i antall observasjoner, mens `P003` har lavest vektet gjennomsnittspris i utvalget. `P002` fremstår som den dyreste havnen. Dette indikerer at havnevalg har potensial til å påvirke totale drivstoffkostnader og støtter relevansen av å utvikle en optimeringsmodell basert på datasettet.
 
-Tabell 5.3 oppsummerer den strukturerte havneinformasjonen som videreføres til modellgrunnlaget.
+Tabell 5.4 oppsummerer den strukturerte havneinformasjonen som videreføres til modellgrunnlaget.
 
 | Havn | Antall observasjoner | Total mengde | Vektet gjennomsnittspris | Antall måneder med observasjon |
 | --- | --- | --- | --- | --- |
@@ -377,11 +399,11 @@ Tabell 5.3 oppsummerer den strukturerte havneinformasjonen som videreføres til 
 | P003 | 369 | 253591.20 | 540.84 | 61 |
 | P004 | 517 | 320932.69 | 577.04 | 61 |
 
-<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.3 Strukturert havneoversikt brukt videre i modellgrunnlaget.</i></small></p>
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.4 Strukturert havneoversikt brukt videre i modellgrunnlaget.</i></small></p>
 
 Etter den første datavasken er det mottatt et supplerende datasett med åtte anonymiserte fartøyfiler fra 2025. Filene ligger i `004 data` og er navngitt etter fartøyklasse og løpenummer, for eksempel `C001 - 1.csv`. Det samlede tilleggsdatasettet har 3893 rapporteringsrader fra 2025-01-01 til 2025-12-30. De opprinnelige havnekodene er erstattet med 70 interne P-koder, og voyage-numrene er erstattet med 244 interne VG-koder. Siden filene inneholder forbruk, seilt distanse, rapporterte voyage-koder og `ROB_Fuel_Total`, brukes de direkte til å etablere rutesekvens, forbruksbehov, startbeholdning og havnetilgjengelighet i hovedmodellen.
 
-Tabell 5.4 oppsummerer de oppgitte tankkapasitetene for de anonymiserte fartøyklassene. Tallene er oppgitt som verifiserte 2025-tall fra dataleverandøren og brukes som kapasitetsrestriksjoner i hovedmodellen.
+Tabell 5.5 oppsummerer de oppgitte tankkapasitetene for de anonymiserte fartøyklassene. Tallene er oppgitt som verifiserte 2025-tall fra dataleverandøren og brukes som kapasitetsrestriksjoner i hovedmodellen.
 
 | Fartøyklasse | Bunkerskapasitet |
 | --- | --- |
@@ -391,9 +413,9 @@ Tabell 5.4 oppsummerer de oppgitte tankkapasitetene for de anonymiserte fartøyk
 | C004 | 1,907.080 m3 |
 | C005 | 1,024.531 m3 |
 
-<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.4 Verifisert bunkerskapasitet per anonymisert fartøyklasse brukt som kapasitetsparameter i hovedmodellen.</i></small></p>
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.5 Verifisert bunkerskapasitet per anonymisert fartøyklasse brukt som kapasitetsparameter i hovedmodellen.</i></small></p>
 
-Tabell 5.5 oppsummerer de supplerende voyage-dataene. Tabellen dokumenterer omfang, kvalitet og hvordan dataene brukes i den operative hovedmodellen. Voyage-dataene gir ikke prisparametere, men de inngår direkte i modellens rutesekvens, forbruksbehov, startbeholdning, havnetilgjengelighet og kapasitetsrestriksjoner.
+Tabell 5.6 oppsummerer de supplerende voyage-dataene. Tabellen dokumenterer omfang, kvalitet og hvordan dataene brukes i den operative hovedmodellen. Voyage-dataene gir ikke prisparametere, men de inngår direkte i modellens rutesekvens, forbruksbehov, startbeholdning, havnetilgjengelighet og kapasitetsrestriksjoner.
 
 | Element | Verdi | Bruk i rapporten |
 | --- | --- | --- |
@@ -410,7 +432,7 @@ Tabell 5.5 oppsummerer de supplerende voyage-dataene. Tabellen dokumenterer omfa
 | Nullforbruk | 40 | Begrensning |
 | Modellrolle | Direkte operasjonell modellinput | Rute, forbruk, ROB, kapasitet og havnetilgjengelighet |
 
-<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.5 Oppsummering av supplerende voyage-data brukt i operasjonell hovedmodell.</i></small></p>
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.6 Oppsummering av supplerende voyage-data brukt i operasjonell hovedmodell.</i></small></p>
 
 Datakvaliteten i det opprinnelige pris- og volumdatasettet vurderes som tilstrekkelig for modellen, men datasettet har klare begrensninger. Det omfatter bare fire havner og én drivstofftype, og inneholder ikke eksplisitte variabler for minimumsbeholdning, faktisk drivstofforbruk mellom havner, havnesekvens eller kontraktsmessige bindinger. Tilleggsdataene reduserer noen av disse manglene, særlig for tankkapasitet, forbruk og voyage-sekvens.
 
@@ -432,7 +454,7 @@ Hvor mye bør hvert fartøy bunkre i prisede modellhavner gjennom den observerte
 
 Hovedinput til modellen er avledet fra rådataene for voyage, kapasitet og historiske bunkringstransaksjoner. Voyage-grunnlaget gir 486 etapper for åtte anonymiserte fartøyfiler, med forbruk, observert ROB, rutehavner og måned. Kapasitetsgrunnlaget gir øvre grense for bunkersbeholdning per fartøyklasse. Prisgrunnlaget gir historiske priser for `P001`, `P002`, `P003` og `P004`.
 
-Modellen bruker bare prisede modellhavner når disse faktisk finnes i etappens `available_ports_P00X`. Havner utenfor `P001`-`P004` får ikke egne estimerte priser. Når fartøyets behov ikke kan dekkes gjennom prisede modellhavner innenfor rute- og kapasitetsbegrensningene, brukes en egen variabel for ekstern eller ukjent bunkring. Denne variabelen gjør modellen løsbar, men synliggjør samtidig hvor datagrunnlaget ikke er tilstrekkelig for full kostnadsoptimering.
+Modellen bruker bare prisede modellhavner når de er observert tilgjengelige i den aktuelle etappens rute. Havner utenfor `P001`-`P004` får ikke egne estimerte priser. Når fartøyets behov ikke kan dekkes gjennom prisede modellhavner innenfor rute- og kapasitetsbegrensningene, brukes en egen variabel for ekstern eller ukjent bunkring. Denne variabelen gjør modellen løsbar, men synliggjør samtidig hvor datagrunnlaget ikke er tilstrekkelig for full kostnadsoptimering.
 
 ### 6.2 Sett, parametere og beslutningsvariabler
 
@@ -451,7 +473,7 @@ De viktigste parameterne er:
 - $p_{h,t}$ = pris for modellhavn $h$ i måned $t$
 - $p^U$ = proxykostnad for ekstern/ukjent bunkring
 
-Prisparameteren bruker faktisk månedlig pris der den finnes. Dersom ruten har en modellhavn i en 2025-måned uten eksakt prisobservasjon, brukes historisk vektet snittpris for havnen. Disse snittprisene er P001: 578,75, P002: 610,29, P003: 540,84 og P004: 577,04. Ekstern/ukjent bunkring kostnadssettes til 1,25 ganger høyeste historiske havnesnitt, altså 762,86 per enhet i hovedkjøringen.
+Prisparameteren bruker faktisk månedlig pris der den finnes. Dersom ruten har en modellhavn i en 2025-måned uten eksakt prisobservasjon, brukes historisk vektet snittpris for havnen. Disse snittprisene er P001: 578,75, P002: 610,29, P003: 540,84 og P004: 577,04. Ekstern/ukjent bunkring kostnadssettes til 1,25 ganger høyeste historiske havnesnitt, altså 762,86 per enhet i hovedkjøringen. Faktoren 1,25 er ikke estimert fra et eget marked for eksterne havner, men valgt som en nøytral basisverdi midt i sensitivitetsspennet 1,10-1,50. Dermed fungerer hovedscenarioet som et referansepunkt, mens sensitivitetsanalysen viser hvor mye kostnadsnivået påvirkes av denne antagelsen.
 
 Beslutningsvariablene er:
 
@@ -467,7 +489,7 @@ Målet er å minimere samlet modellert drivstoffkostnad:
 
 $\min Z = \sum_{v \in V}\sum_{l \in L_v}\sum_{h \in H} p_{h,t(l)}x_{v,l,h} + \sum_{v \in V}\sum_{l \in L_v} p^U u_{v,l}$
 
-Målfunksjonen gjør at modellen prioriterer prisede modellhavner når de er tilgjengelige og økonomisk gunstige, men fortsatt kan dekke behovet når ruten mangler priset havn. Siden ekstern/ukjent bunkring har høyere proxypris enn modellhavnene, blir den brukt som et kostnadsatt alternativ når prisgrunnlaget ikke dekker den operative ruten.
+Her betegner $t(l)$ kalendermåneden etappe $l$ tilhører. Målfunksjonen gjør at modellen prioriterer prisede modellhavner når de er tilgjengelige og økonomisk gunstige, men fortsatt kan dekke behovet når ruten mangler priset havn. Siden ekstern/ukjent bunkring har høyere proxypris enn modellhavnene, blir den brukt som et kostnadsatt alternativ når prisgrunnlaget ikke dekker den operative ruten.
 
 ### 6.4 Restriksjoner
 
@@ -481,7 +503,7 @@ Modellen kan bare bunkre i priset modellhavn når havnen er observert i ruten:
 
 $x_{v,l,h} = 0 \quad \text{hvis } a_{v,l,h}=0$
 
-Dette håndheves teknisk ved at det bare opprettes kjøpsvariabler for modellhavner som finnes i `available_ports_P00X` på den aktuelle etappen. Dermed kan modellen ikke flytte et fartøy til en billig havn som ikke er del av den observerte ruten.
+Dette håndheves i implementeringen ved at det bare opprettes kjøpsvariabler for modellhavner som er observert tilgjengelige på den aktuelle etappen. Dermed kan modellen ikke flytte et fartøy til en billig havn som ikke er del av den observerte ruten.
 
 ### 6.5 Modellimplementering og validering
 
@@ -507,7 +529,7 @@ Basiskjøringen bruker hovedscenarioet fra den operative modellen med ekstern pr
 
 Voyage-dataene inneholder 486 etapper. Av disse har 42 etapper minst én av modellhavnene `P001`, `P002`, `P003` eller `P004` tilgjengelig i ruten. Modellen gjennomfører faktisk kjøp i priset havn på 28 etapper. Dette viser at modellen ikke automatisk kjøper hver gang en priset havn er tilgjengelig, men vurderer kjøpet mot beholdning, kapasitet og senere forbruk.
 
-Samlet forbruk i modellgrunnlaget er 45 345,04. Av dette dekkes 18 857,45 gjennom kjøp i prisede modellhavner. Det tilsvarer 41,59 % av forbruket. Resten dekkes av startbeholdning og ekstern/ukjent bunkring. Ekstern/ukjent bunkring utgjør 21 260,62, tilsvarende 46,89 % av samlet forbruk. Dette er ikke et modellbrudd, men et uttrykk for at ruten ofte går via havner som ikke har prisdata i prosjektets prisgrunnlag.
+Den månedlige fordelingen i Figur 7.1 viser hvordan modellen veksler mellom prisede modellhavner og ekstern/ukjent bunkring gjennom året. Perioder med høy ekstern/ukjent mengde tolkes som perioder der ruten i liten grad overlapper med de fire prisede modellhavnene, ikke som feil i optimeringen. Startbeholdningen forklarer også at summen av kjøp i prisede havner og ekstern/ukjent bunkring ikke nødvendigvis er lik samlet forbruk på fartøy- eller totalsnivå.
 
 <div align="center">
   <img src="../006%20analysis/03_analyse/01_basiskjoring/figures/fig_baseline_monthly_split.png" alt="Månedlig fordeling mellom kjøp i prisede havner og ekstern ukjent bunkring" width="80%">
@@ -516,24 +538,20 @@ Samlet forbruk i modellgrunnlaget er 45 345,04. Av dette dekkes 18 857,45 gjenno
 
 ### 7.2 Fartøyforskjeller
 
-Modellen gir mest konkret beslutningsstøtte for fartøyfiler som faktisk møter prisede modellhavner i ruten. `C001-2` har 16 etapper med priset havn tilgjengelig og får 6 961,16 i modellert kjøp i prisede havner. `C002-1` får 5 754,57, mens `C004-2` får 1 983,77. For `C004-3` og `C005-1` finnes ingen etapper med priset modellhavn tilgjengelig, og modellen kan derfor ikke anbefale konkret kjøp i `P001`-`P004` for disse rutene.
+Modellen gir mest konkret beslutningsstøtte for fartøyfiler som faktisk møter prisede modellhavner i ruten. Fartøyfiler med mange prisede etapper får en mer konkret kjøpsplan, mens fartøyfiler uten slike etapper i praksis bare får synliggjort datagapet. For `C004-3` og `C005-1` finnes ingen etapper med priset modellhavn tilgjengelig, og modellen kan derfor ikke anbefale konkret kjøp i `P001`-`P004` for disse rutene.
 
 Dette er et viktig operasjonelt funn. Modellen kan brukes direkte der ruten overlapper med prisgrunnlaget, men den viser også hvilke fartøy og ruter som krever bedre prisdata før Odfjell kan få full automatisert innkjøpsstøtte.
 
 ### 7.3 Kostnadsdriver og proxypris
 
-Hovedkjøringen bruker en ekstern proxypris på 762,86 per enhet, beregnet som 1,25 ganger høyeste historiske havnesnitt blant modellhavnene. Total modellkostnad blir 26 625 664,78. Av dette er 10 406 690,70 kostnad i prisede modellhavner, mens 16 218 974,08 er kostnad for ekstern/ukjent bunkring.
+Hovedkjøringen bruker en ekstern proxypris på 762,86 per enhet, beregnet som 1,25 ganger høyeste historiske havnesnitt blant modellhavnene. Fordi proxyprisen er høyere enn prisene i modellhavnene, fungerer ekstern/ukjent bunkring som en kostbar reservekategori. Modellen bruker den derfor primært når den ikke kan dekke forbruket gjennom prisede modellhavner innenfor rute- og kapasitetsbegrensningene.
 
-Sensitivitetsanalysen viser at total modellkostnad er følsom for proxyprisen, men at selve kjøpsplanen er stabil i de testede scenarioene. Ved faktor 1,10 blir total modellkostnad 24 679 387,90. Ved faktor 1,50 blir den 29 869 459,58. Mengden kjøp i prisede havner og ekstern/ukjent mengde er uendret i disse scenarioene, fordi proxyprisen fortsatt er høyere enn prisene i modellhavnene.
+Sensitivitetsanalysen viser at kostnadsnivået er følsomt for proxyprisen, men at selve kjøpsplanen er stabil i de testede scenarioene. Mengden kjøp i prisede havner og ekstern/ukjent mengde er uendret i disse scenarioene, fordi proxyprisen fortsatt er høyere enn prisene i modellhavnene.
 
 <div align="center">
   <img src="../006%20analysis/03_analyse/02_sensitivitetsanalyse/figures/fig_sensitivity_total_cost.png" alt="Total modellkostnad per proxyfaktor" width="80%">
   <p align="center" style="font-size: 0.9em;"><small><i>Figur 7.2 Total modellkostnad ved ulike proxyfaktorer for ekstern/ukjent bunkring.</i></small></p>
 </div>
-
-### 7.4 Modellens bidrag
-
-Modellen bidrar med en konkret bunkringsplan under operative restriksjoner. Den viser hvor mye som bør fylles i prisede havner, hvordan beholdningen utvikler seg gjennom ruten, og hvor modellen må bruke ekstern/ukjent bunkring fordi prisgrunnlaget ikke dekker ruten. Dermed gir modellen både en kostnadsminimerende beslutning og en kvantitativ diagnose av datagapet.
 
 ---
 
@@ -583,9 +601,30 @@ Tabell 8.2 viser resultatene per fartøyfil. Fartøyfilene har ulik tilgang til 
 
 Fartøyfilene `C001-1`, `C004-3` og `C005-1` har minst 80 % ekstern/ukjent andel av forbruket. `C001-2` skiller seg motsatt ut med 97,04 % av forbruket dekket gjennom kjøp i prisede modellhavner og bare 1,93 % ekstern/ukjent andel.
 
-### 8.3 Resultat per modellhavn
+Summen av kjøp i prisede havner og ekstern/ukjent bunkring blir ikke alltid 100 % av forbruket for hver fartøyfil. Differansen kommer fra startbeholdning og beholdningsflyt gjennom ruten, som også dekker deler av forbruket i modellen.
 
-Tabell 8.3 viser hvordan modellert kjøp i prisede havner fordeler seg mellom modellhavnene. `P003` står for størst kjøpsmengde i hovedscenarioet, mens `P002` er en del av modellhavnsettet, men får ingen modellert kjøp i basiskjøringen.
+### 8.3 Anvendbarhet per fartøyfil
+
+For å gjøre resultatene mer praktisk anvendbare er fartøyfilene klassifisert etter hvor direkte modellen kan brukes som beslutningsstøtte med dagens prisgrunnlag. Klasse A betyr at modellen har lav ekstern/ukjent andel og minst én priset etappe. Klasse B betyr at modellen gir delvis beslutningsstøtte, men at datagapet fortsatt er vesentlig. Klasse C betyr at modellen først og fremst viser behov for bedre prisdekning før konkrete anbefalinger kan brukes operativt.
+
+| Fartøyfil | Prisede etapper | Kjøp i prisede havner | Ekstern/ukjent andel | Klasse | Operativ tolkning |
+| --- | ---: | ---: | ---: | --- | --- |
+| C001-1 | 3 | 316,20 | 83,87 % | C | Krever mer prisdata |
+| C001-2 | 16 | 6 961,16 | 1,93 % | A | Direkte anvendbar innenfor dagens prisgrunnlag |
+| C002-1 | 12 | 5 754,57 | 13,18 % | A | Direkte anvendbar innenfor dagens prisgrunnlag |
+| C003-1 | 3 | 1 896,12 | 45,21 % | B | Delvis anvendbar |
+| C004-1 | 3 | 1 945,63 | 51,94 % | B | Delvis anvendbar |
+| C004-2 | 5 | 1 983,77 | 49,98 % | B | Delvis anvendbar |
+| C004-3 | 0 | 0,00 | 81,89 % | C | Krever mer prisdata |
+| C005-1 | 0 | 0,00 | 80,26 % | C | Krever mer prisdata |
+
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 8.3 Anvendbarhetsklassifisering per fartøyfil basert på datadekning og ekstern/ukjent andel.</i></small></p>
+
+Klassifiseringen gir to fartøyfiler i klasse A, tre i klasse B og tre i klasse C. Dette betyr at modellen allerede gir mest direkte beslutningsstøtte for `C001-2` og `C002-1`, mens `C001-1`, `C004-3` og `C005-1` først og fremst viser hvor Odfjell bør prioritere bedre prisdekning før modellen kan brukes operativt for tilsvarende ruter.
+
+### 8.4 Resultat per modellhavn
+
+Tabell 8.4 viser hvordan modellert kjøp i prisede havner fordeler seg mellom modellhavnene. `P003` står for størst kjøpsmengde i hovedscenarioet, mens `P002` er en del av modellhavnsettet, men får ingen modellert kjøp i basiskjøringen.
 
 | Modellhavn | Kjøpsrader | Kjøpsmengde | Kostnad i priset havn | Vektet faktisk kjøpspris |
 | --- | ---: | ---: | ---: | ---: |
@@ -594,11 +633,13 @@ Tabell 8.3 viser hvordan modellert kjøp i prisede havner fordeler seg mellom mo
 | P003 | 15 | 13 441,28 | 7 287 615,34 | 542,18 |
 | P004 | 12 | 4 850,57 | 2 798 985,35 | 577,04 |
 
-<p align="center" style="font-size: 0.9em;"><small><i>Tabell 8.3 Modellert kjøp fordelt på prisede modellhavner.</i></small></p>
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 8.4 Modellert kjøp fordelt på prisede modellhavner.</i></small></p>
 
-### 8.4 Sensitivitet for ekstern proxypris
+At `P002` ikke får modellert kjøp er et resultat av modellens kostnadsminimering innenfor observerte ruter. Havnens historiske vektede gjennomsnittspris er høyest i modellhavnsettet, og når andre prisede alternativer eller beholdning kan dekke behovet, velger modellen derfor ikke kjøp i `P002` i basisscenarioet.
 
-Tabell 8.4 viser sensitivitetsanalysen for proxykostnaden på ekstern/ukjent bunkring. Kjøpsmengdene er stabile i de tre scenarioene, men total modellkostnad endres med proxyprisen. Kostnadsspennet mellom laveste og høyeste scenario er 5 190 071,68.
+### 8.5 Sensitivitet for ekstern proxypris
+
+Tabell 8.5 viser sensitivitetsanalysen for proxykostnaden på ekstern/ukjent bunkring. Kjøpsmengdene er stabile i de tre scenarioene, men total modellkostnad endres med proxyprisen. Kostnadsspennet mellom laveste og høyeste scenario er 5 190 071,68.
 
 | Proxyfaktor | Ekstern pris | Total modellkostnad | Kostnad i prisede havner | Ekstern kostnad |
 | ---: | ---: | ---: | ---: | ---: |
@@ -606,7 +647,7 @@ Tabell 8.4 viser sensitivitetsanalysen for proxykostnaden på ekstern/ukjent bun
 | 1,25 | 762,86 | 26 625 664,78 | 10 406 690,70 | 16 218 974,08 |
 | 1,50 | 915,44 | 29 869 459,58 | 10 406 690,70 | 19 462 768,88 |
 
-<p align="center" style="font-size: 0.9em;"><small><i>Tabell 8.4 Sensitivitetsanalyse for ekstern/ukjent bunkringskostnad.</i></small></p>
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 8.5 Sensitivitetsanalyse for ekstern/ukjent bunkringskostnad.</i></small></p>
 
 <div align="center">
   <img src="../006%20analysis/03_analyse/02_sensitivitetsanalyse/figures/fig_sensitivity_cost_components.png" alt="Kostnadskomponenter per proxyfaktor" width="80%">
@@ -615,21 +656,45 @@ Tabell 8.4 viser sensitivitetsanalysen for proxykostnaden på ekstern/ukjent bun
 
 Sensitivitetsresultatet viser at kostnad i prisede havner er 10 406 690,70 i alle de tre scenarioene, mens ekstern kostnad varierer fra 14 272 697,20 til 19 462 768,88. I basisscenarioet utgjør ekstern/ukjent kostnad 60,91 % av total modellkostnad. Dette følger av at mengdene er uendret i scenarioene, mens prisen på ekstern/ukjent bunkring endres.
 
+Som en ekstra robusthetskontroll er det også beregnet en enkel prisnivå-sensitivitet for modellhavnene, der kjøpsplanen holdes uendret og kostnaden i `P001`-`P004` justeres med $\pm 10$ %. Denne analysen tester ikke en ny optimal kjøpsplan, men viser hvor følsomt kostnadsnivået er for generelle prisendringer i de prisede modellhavnene.
+
+| Scenario | Endring i modellhavnpris | Kostnad i prisede havner | Ekstern kostnad | Total modellkostnad | Endring mot basis |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Modellhavnpris -10 % | -10 % | 9 366 021,63 | 16 218 974,08 | 25 584 995,71 | -1 040 669,07 |
+| Basis | 0 % | 10 406 690,70 | 16 218 974,08 | 26 625 664,78 | 0,00 |
+| Modellhavnpris +10 % | 10 % | 11 447 359,77 | 16 218 974,08 | 27 666 333,85 | 1 040 669,07 |
+
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 8.6 Kostnadssensitivitet ved lik prosentvis endring i modellhavnprisene, med uendret kjøpsplan.</i></small></p>
+
 ---
 
 ## 9.0 Diskusjon
 
 Hovedmodellen svarer på problemstillingen ved å formulere bunkringsbeslutningen som et operasjonelt kostnadsminimeringsproblem. Den bruker faktisk rutesekvens, forbruk, ROB og tankkapasitet, og gir dermed beslutningsstøtte for hvor mye som bør bunkres i prisede modellhavner og hvor stor del av behovet som fortsatt faller utenfor prisgrunnlaget. Sammenlignet med en ren historisk prisanalyse gir modellen derfor et mer operasjonelt beslutningsgrunnlag: den kobler prisdata til hvor fartøyene faktisk seiler, hvor mye de forbruker, og hvilke beholdningsgrenser de har.
 
+Modellen bidrar med en konkret bunkringsplan under operative restriksjoner. Den viser hvor mye som bør fylles i prisede havner, hvordan beholdningen utvikler seg gjennom ruten, og hvor modellen må bruke ekstern/ukjent bunkring fordi prisgrunnlaget ikke dekker ruten. Dermed gir modellen både en kostnadsminimerende beslutning og en kvantitativ diagnose av datagapet.
+
+### 9.1 Praktiske og faglige implikasjoner
+
 Det viktigste bidraget er at modellen viser hvor Odfjell kan bruke prisede modellhavner i en konkret ruteplan. For fartøyfiler som `C001-2` og `C002-1` gir modellen betydelige kjøp i prisede havner og dermed en direkte bunkringsplan. For `C004-3` og `C005-1` finnes ingen prisede modellhavner i ruten, og modellen kan derfor ikke anbefale konkret kjøp i `P001`-`P004` for disse fartøyfilene. Dette viser at modellens verdi varierer med overlappet mellom rutedata og prisgrunnlag.
+
+Anvendbarhetsklassifiseringen gjør denne forskjellen mer operativ. `C001-2` og `C002-1` klassifiseres som klasse A fordi de har lav ekstern/ukjent andel og flere kjøp i prisede modellhavner. Disse resultatene er de mest direkte anvendbare innenfor dagens datagrunnlag, men bør fortsatt fagvalideres før de brukes i faktisk beslutningstaking. `C003-1`, `C004-1` og `C004-2` klassifiseres som klasse B, der modellen gir delvis beslutningsstøtte, mens `C001-1`, `C004-3` og `C005-1` klassifiseres som klasse C fordi datagapet er for stort til at modellen alene kan gi konkrete operative anbefalinger.
 
 Ekstern/ukjent bunkring må tolkes som et datagap, ikke som et nytt havnevalg. Når 46,89 % av forbruket faller i denne kategorien, betyr det at modellen er operasjonell, men at verdien for Odfjell øker betydelig dersom prisdata utvides til flere rutehavner og perioder. Dette er også tydelig på fartøynivå: `C001-1`, `C004-3` og `C005-1` har minst 80 % ekstern/ukjent andel. Modellen gir dermed både en kostnadsminimerende plan innenfor tilgjengelige data og et konkret beslutningsgrunnlag for hvilke data som bør samles inn videre.
 
-Resultatene støtter teorigrunnlaget om lineær programmering som et egnet verktøy for kostnadsminimering under restriksjoner. Modellen finner ikke bare billigste historiske havn, men må balansere kostnad mot beholdning, kapasitet og etapperekkefølge. Dette er viktig fordi lav pris alene ikke gir en gjennomførbar beslutning dersom fartøyet ikke er i nærheten av den aktuelle havnen, eller dersom tankkapasiteten ikke tillater kjøpet. Modellen gjør dermed forutsetningene etterprøvbare og skiller tydelig mellom beslutningsvariabler og parametere.
+At `P002` ikke får modellert kjøp, selv om havnen inngår i modellhavnsettet, er et interessant funn. Den mest nærliggende forklaringen er at `P002` både har høyest historisk vektet gjennomsnittspris i utvalget og begrenset nytte i de observerte rute- og beholdningssituasjonene. Modellen velger derfor heller `P003`, `P004` eller `P001` når disse er tilgjengelige, eller bruker eksisterende beholdning der det er mulig. Dette illustrerer at modellhavnstatus alene ikke er nok; havnen må også være gunstig i kombinasjonen av pris, rute, timing og tankkapasitet.
 
-Samtidig har modellen flere begrensninger som påvirker hvor langt resultatene kan tolkes. Prisgrunnlaget er avgrenset til `P001`-`P004`, og havner utenfor dette settet får ikke egne prisestimater. Ekstern/ukjent bunkring er derfor kostnadsatt med en proxy, ikke observert som et faktisk innkjøpsalternativ. Sensitivitetsanalysen viser at total modellkostnad varierer med 5 190 071,68 mellom proxyfaktor 1,10 og 1,50, mens kjøpsplanen er stabil i de testede scenarioene. Dette betyr at kostnadsnivået er følsomt for proxyantagelsen, men at anbefalt kjøpsmønster i prisede havner ikke endres så lenge ekstern proxypris ligger over modellhavnprisene.
+Resultatene støtter teorigrunnlaget om lineær programmering som et egnet verktøy for kostnadsminimering under restriksjoner. Modellen finner ikke bare billigste historiske havn, men må balansere kostnad mot beholdning, kapasitet og etapperekkefølge. Dette er viktig fordi lav pris alene ikke gir en gjennomførbar beslutning dersom fartøyet ikke er i nærheten av den aktuelle havnen, eller dersom tankkapasiteten ikke tillater kjøpet. Funnene samsvarer også med bunkringslitteraturen, der refueling-beslutninger typisk forstås som en kombinasjon av pris, rute, kapasitet og usikkerhet (Besbes & Savin, 2009; Wang & Meng, 2015; Zhen et al., 2017). Rapporten skiller seg fra flere av disse bidragene ved å holde rute og hastighet faste, og heller bruke modellen til å dokumentere hva som faktisk kan optimeres med begrenset prisdekning.
 
-For praktisk bruk hos Odfjell Tankers bør modellen derfor forstås som et beslutningsstøttende analyseverktøy, ikke som en full produksjonsmodell. Den kan peke på hvilke prisede modellhavner som er relevante i observerte ruter, hvilke fartøy som har størst datagap, og hvor bedre prisdekning vil ha størst verdi. Før modellen kan brukes operativt i større skala, bør den utvides med flere havner, mer presise drivstoff- og kontraktskoblinger, minimumsbeholdning og eventuelt flere sensitiviteter på kapasitet, ROB og havnepriser.
+Teoretisk bidrar rapporten derfor ikke med en ny generell optimeringsmetode, men med en anvendt modellkobling mellom historiske transaksjonsdata og operasjonelle voyage-data. Anvendbarhetsklassifiseringen i klasse A, B og C fungerer som et metodisk tillegg fordi den gjør modellens gyldighetsområde eksplisitt. Policy-messig peker resultatene på at intern datastyring, prisdekning og standardisert registrering av bunkringsalternativer kan være like viktige som selve optimeringsalgoritmen dersom modellen skal brukes som beslutningsstøtte i større skala.
+
+### 9.2 Begrensninger og videre bruk
+
+Samtidig har modellen flere begrensninger som påvirker hvor langt resultatene kan tolkes. Prisgrunnlaget er avgrenset til `P001`-`P004`, og havner utenfor dette settet får ikke egne prisestimater. Ekstern/ukjent bunkring er derfor kostnadsatt med en proxy, ikke observert som et faktisk innkjøpsalternativ. Sensitivitetsanalysen viser at total modellkostnad varierer med 5 190 071,68 mellom proxyfaktor 1,10 og 1,50, mens kjøpsplanen er stabil i de testede scenarioene. En lik prisendring på $\pm 10$ % i modellhavnene gir et kostnadsspenn på 2 081 338,14 når kjøpsplanen holdes uendret. Dette betyr at kostnadsnivået er følsomt både for proxyantagelsen og prisnivået i modellhavnene, men at anbefalt kjøpsmønster i prisede havner ikke endres i de scenarioene som er testet.
+
+For praktisk bruk hos Odfjell Tankers bør modellen derfor forstås som et beslutningsstøttende analyseverktøy, ikke som en full produksjonsmodell. En enkel bruksprosess kan være å oppdatere pris- og voyage-data, kjøre modellen, kontrollere ekstern/ukjent andel per fartøyfil, vurdere anbefalte kjøp i prisede havner og deretter bruke resultatet som støtte i innkjøpsbeslutningen. Dersom en rute havner i klasse A kan modellen gi et konkret beslutningsgrunnlag innenfor dagens prisdekning. Dersom ruten havner i klasse B eller C bør resultatet først og fremst brukes til å identifisere datagap og behov for faglig avklaring.
+
+Før modellen kan brukes operativt i større skala, bør den utvides med flere havner, mer presise drivstoff- og kontraktskoblinger, minimumsbeholdning og eventuelt flere sensitiviteter på kapasitet, ROB og havnepriser. Det viktigste neste steget er å validere anbefalingene mot faktiske historiske bunkringsbeslutninger og mot fagpersoner hos Odfjell Tankers. Slik kan selskapet vurdere om modellens forslag er praktisk gjennomførbare, og om modellen bør inngå som fast beslutningsstøtte i bunkringsarbeidet.
 
 ---
 
@@ -639,27 +704,47 @@ Problemstillingen var hvordan en lineær optimaliseringsmodell kan bidra til å 
 
 Hovedmodellen behandler 486 voyage-etapper for åtte anonymiserte fartøyfiler. I hovedscenarioet kjøper modellen 18 857,45 enheter i prisede modellhavner og fører 21 260,62 enheter som ekstern/ukjent bunkring. Total modellkostnad blir 26 625 664,78. Kjøp i prisede modellhavner dekker 41,59 % av modellert forbruk, mens ekstern/ukjent bunkring utgjør 46,89 %.
 
-Det viktigste funnet er at modellen gir mest operativ verdi der fartøyenes ruter overlapper med prisgrunnlaget. `C001-2` og `C002-1` får betydelige kjøp i prisede havner, mens `C004-3` og `C005-1` ikke har prisede modellhavner tilgjengelig i ruten. Dette viser både modellens beslutningsverdi og begrensningen i dagens datadekning.
+Det viktigste funnet er at modellen gir mest operativ verdi der fartøyenes ruter overlapper med prisgrunnlaget. Anvendbarhetsklassifiseringen viser at `C001-2` og `C002-1` er direkte anvendbare innenfor dagens prisgrunnlag, mens `C003-1`, `C004-1` og `C004-2` er delvis anvendbare. `C001-1`, `C004-3` og `C005-1` krever mer prisdata før modellen kan gi konkrete operative kjøpsforslag. Dette viser både modellens beslutningsverdi og begrensningen i dagens datadekning.
 
-Sensitivitetsanalysen viser at total modellkostnad er følsom for proxykostnaden på ekstern/ukjent bunkring, men at kjøpsplanen er stabil i de testede scenarioene. Modellen bør derfor brukes som et transparent analysegrunnlag og som støtte for videre datainnsamling, ikke som en endelig operativ anbefaling uten bredere prisdekning og videre validering.
+Sensitivitetsanalysen viser at total modellkostnad er følsom for proxykostnaden på ekstern/ukjent bunkring og for prisnivået i modellhavnene, men at kjøpsplanen er stabil i de testede scenarioene. Modellen kan derfor brukes som et transparent beslutningsgrunnlag på ruter med tilstrekkelig prisdekning, og som støtte for videre datainnsamling der ekstern/ukjent andel er høy. Full operativ anvendelse krever fortsatt bredere prisdekning, validering mot faktiske historiske bunkringsbeslutninger og faglig vurdering fra Odfjell Tankers.
+
+Rapportens metodiske bidrag er å vise hvordan historiske transaksjonsdata kan kobles til en operasjonell rute- og lagerbasert lineær modell under tydelige databegrensninger. Anvendbarhetsklassifiseringen gjør modellens gyldighetsområde eksplisitt ved å skille mellom ruter der modellen kan gi direkte beslutningsstøtte, og ruter der resultatet først og fremst dokumenterer et datagap.
+
+Begrensningene ligger særlig i at modellen bare dekker fire prisede modellhavner, én registrert drivstoffkategori og et avgrenset sett anonymiserte voyage-data. Ekstern/ukjent bunkring er kostnadsatt med en proxy, og modellen inkluderer ikke kontraktsvilkår, minimumsbeholdning, kvalitet, leverandørrisiko, hastighetsvalg eller regulatoriske drivstoffkrav som harde restriksjoner. Resultatene bør derfor tolkes som beslutningsstøtte og modellert potensial, ikke som en full operativ kjøpsinstruks.
+
+Videre arbeid bør utvide prisgrunnlaget til flere havner og drivstofftyper, validere modellens forslag mot faktiske historiske beslutninger og la fagpersoner hos Odfjell Tankers vurdere om anbefalingene er praktisk gjennomførbare. Det vil også være relevant å teste minimumsbeholdning, kontraktsbindinger, alternative proxypriser og mer dynamiske prisprognoser dersom modellen skal utvikles videre mot operativ bruk.
 
 ---
 
 ## 11.0 Bibliografi
 
-*Everything You Need To Know About Marine Fuels*. (u.å.). PDF-dokument i `003 references/Everything You Need To Know About Marine Fuels.pdf`.
+Besbes, O., & Savin, S. (2009). Going bunkers: The joint route selection and refueling problem. *Manufacturing & Service Operations Management, 11*(4), 694-711. https://doi.org/10.1287/msom.1080.0249
+
+Du, Y., Meng, Q., & Wang, Y. (2015). Budgeting fuel consumption of container ship over round-trip voyage through robust optimization. *Transportation Research Record, 2477*(1), 68-75. https://doi.org/10.3141/2477-08
+
+*Everything You Need to Know About Marine Fuels*. (u.å.). PDF-dokument i `003 references/Everything You Need To Know About Marine Fuels.pdf`.
 
 *FuelEU Guidance Document for Shipping Companies*. (2025, 8. oktober). PDF-dokument i `003 references/fueleu_guidance_document_for_shipping_companies_2025-10-08.pdf`.
 
-Fox, W. P., & Burks, R. E. (2024). *Modeling Operations Research and Business Analytics*. 1st ed. CRC Press.
+Fox, W. P., & Burks, R. E. (2024). *Modeling operations research and business analytics* (1. utg.). CRC Press.
 
-Grammenos, C. T. (2026). *The Handbook of Maritime Economics and Business*. 3rd ed. Routledge.
+Grammenos, C. T. (Red.). (2026). *The handbook of maritime economics and business* (3. utg.). Informa Law from Routledge.
 
-Song, D.-W., & Panayides, P. (2021). *Maritime Logistics: A Guide to Contemporary Shipping and Port Management*. 3rd ed. Kogan Page.
+Lov om opphavsrett til åndsverk mv. (åndsverkloven). (2018). LOV-2018-06-15-40. Lovdata. https://lovdata.no/LTI/lov/2018-06-15-40
 
-Stopford, M. (2008). *Maritime Economics*. 3rd ed. Routledge.
+Omholt-Jensen, S., Fagerholt, K., & Meisel, F. (2025). Fleet repositioning in the tramp ship routing and scheduling problem with bunker optimization: A matheuristic solution approach. *European Journal of Operational Research, 321*(1), 88-106. https://doi.org/10.1016/j.ejor.2024.09.029
 
-Venkataraman, R. R., & Pinto, J. K. (2018). *Operations Management: Managing Global Supply Chains*. 2nd ed. SAGE Publications, Inc.
+Sheng, X., Chew, E. P., & Lee, L. H. (2015). (s, S) policy model for liner shipping refueling and sailing speed optimization problem. *Transportation Research Part E: Logistics and Transportation Review, 76*, 76-92. https://doi.org/10.1016/j.tre.2014.12.001
+
+Song, D.-W., & Panayides, P. (2021). *Maritime logistics: A guide to contemporary shipping and port management* (3. utg.). Kogan Page.
+
+Stopford, M. (2008). *Maritime economics* (3. utg.). Routledge.
+
+Venkataraman, R. R., & Pinto, J. K. (2018). *Operations management: Managing global supply chains* (2. utg.). SAGE Publications.
+
+Wang, S., & Meng, Q. (2015). Robust bunker management for liner shipping networks. *European Journal of Operational Research, 243*(3), 789-797. https://doi.org/10.1016/j.ejor.2014.12.049
+
+Zhen, L., Wang, S., & Zhuge, D. (2017). Dynamic programming for optimal ship refueling decision. *Transportation Research Part E: Logistics and Transportation Review, 100*, 63-74. https://doi.org/10.1016/j.tre.2016.12.013
 
 ---
 
@@ -669,12 +754,15 @@ Venkataraman, R. R., & Pinto, J. K. (2018). *Operations Management: Managing Glo
 
 **Vedlegg B.** `fueleu_guidance_document_for_shipping_companies_2025-10-08.pdf` brukes som støttedokument for omtalen av regulatoriske rammer og hvorfor biodrivstoff også må forstås i lys av utslippskrav.
 
-**Vedlegg C.** Sensitivitetsanalyse for proxykostnaden på ekstern/ukjent bunkring i den operative hovedmodellen. Beløp er oppgitt i datasettets kostnadsenheter.
+**Vedlegg C.** Akronymer og sentrale forkortelser brukt i rapporten.
 
-| Proxyfaktor | Ekstern pris | Total modellkostnad | Kostnad i prisede havner | Ekstern kostnad | Kjøp i prisede havner | Ekstern/ukjent mengde |
-| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 1,10 | 671,32 | 24 679 387,90 | 10 406 690,70 | 14 272 697,20 | 18 857,45 | 21 260,62 |
-| 1,25 | 762,86 | 26 625 664,78 | 10 406 690,70 | 16 218 974,08 | 18 857,45 | 21 260,62 |
-| 1,50 | 915,44 | 29 869 459,58 | 10 406 690,70 | 19 462 768,88 | 18 857,45 | 21 260,62 |
+| Akronym | Forklaring | Bruk i rapporten |
+| --- | --- | --- |
+| LSF | Low Sulphur Fuel | Drivstofftypen i analysegrunnlaget |
+| VLSFO | Very Low Sulphur Fuel Oil | Operativ hovedtype hos Odfjell, omtalt som casebakgrunn |
+| LSGO | Low Sulphur Gasoil | Drivstofftype omtalt som casebakgrunn |
+| ROB | Remaining On Board | Rapportert beholdning brukt som modellparameter |
+| LP | Lineær programmering | Matematisk metode for kostnadsminimering |
+| UN/Locode | United Nations Code for Trade and Transport Locations | Opprinnelig havnekodeformat før pseudonymisering |
 
-<p align="center" style="font-size: 0.9em;"><small><i>Tabell C.1 Sensitivitetsanalyse for ekstern/ukjent bunkringskostnad.</i></small></p>
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell C.1 Akronymer og forkortelser brukt i rapporten.</i></small></p>

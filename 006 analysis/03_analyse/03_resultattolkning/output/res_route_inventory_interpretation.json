@@ -1,11 +1,17 @@
 {
-  "generated_at": "2026-04-29T21:56:21.762434+00:00",
+  "generated_at": "2026-04-30T18:46:07.647167+00:00",
   "source_files": {
     "baseline_summary": "006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_summary.json",
     "baseline_by_vessel": "006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_by_vessel.csv",
     "baseline_by_port": "006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_by_port.csv",
     "sensitivity_summary": "006 analysis/03_analyse/02_sensitivitetsanalyse/output/res_sensitivity_route_inventory_summary.json",
     "sensitivity_scenarios": "006 analysis/03_analyse/02_sensitivitetsanalyse/output/res_sensitivity_route_inventory_scenarios.csv"
+  },
+  "output_files": {
+    "interpretation": "006 analysis/03_analyse/03_resultattolkning/output/res_route_inventory_interpretation.json",
+    "applicability_by_vessel": "006 analysis/03_analyse/03_resultattolkning/output/res_route_inventory_applicability_by_vessel.csv",
+    "price_level_sensitivity": "006 analysis/03_analyse/03_resultattolkning/output/res_route_inventory_price_level_sensitivity.csv",
+    "metadata": "006 analysis/03_analyse/03_resultattolkning/metadata/res_route_inventory_interpretation.md"
   },
   "coverage": {
     "priced_leg_count": 42,
@@ -25,6 +31,141 @@
       "C005-1"
     ],
     "high_external_share_threshold": 0.8
+  },
+  "applicability": {
+    "class_definition": {
+      "A": "Direkte anvendbar: ekstern/ukjent andel under 25 % og minst én priset etappe.",
+      "B": "Delvis anvendbar: ekstern/ukjent andel fra 25 % til 75 % og minst én priset etappe.",
+      "C": "Krever mer data: ekstern/ukjent andel over 75 % eller ingen prisede etapper."
+    },
+    "class_counts": {
+      "A": 2,
+      "B": 3,
+      "C": 3
+    },
+    "direct_applicability_vessels": [
+      "C001-2",
+      "C002-1"
+    ],
+    "more_data_vessels": [
+      "C001-1",
+      "C004-3",
+      "C005-1"
+    ],
+    "rows": [
+      {
+        "vessel_file_id": "C001-1",
+        "vessel_class": "C001",
+        "leg_count": "63",
+        "priced_leg_count": "3",
+        "purchased_leg_count": "3",
+        "total_consumption": "6354.45",
+        "model_purchase_qty": "316.20",
+        "model_external_qty": "5329.45",
+        "priced_share_of_consumption": "0.0498",
+        "external_share_of_consumption": "0.8387",
+        "applicability_class": "C",
+        "recommended_follow_up": "Krever mer prisdata før modellen kan gi konkrete kjøpsforslag for ruten."
+      },
+      {
+        "vessel_file_id": "C001-2",
+        "vessel_class": "C001",
+        "leg_count": "57",
+        "priced_leg_count": "16",
+        "purchased_leg_count": "11",
+        "total_consumption": "7173.35",
+        "model_purchase_qty": "6961.16",
+        "model_external_qty": "138.19",
+        "priced_share_of_consumption": "0.9704",
+        "external_share_of_consumption": "0.0193",
+        "applicability_class": "A",
+        "recommended_follow_up": "Direkte anvendbar innenfor dagens prisgrunnlag, men bør fagvalideres før operativ bruk."
+      },
+      {
+        "vessel_file_id": "C002-1",
+        "vessel_class": "C002",
+        "leg_count": "53",
+        "priced_leg_count": "12",
+        "purchased_leg_count": "6",
+        "total_consumption": "7256.64",
+        "model_purchase_qty": "5754.57",
+        "model_external_qty": "956.27",
+        "priced_share_of_consumption": "0.7930",
+        "external_share_of_consumption": "0.1318",
+        "applicability_class": "A",
+        "recommended_follow_up": "Direkte anvendbar innenfor dagens prisgrunnlag, men bør fagvalideres før operativ bruk."
+      },
+      {
+        "vessel_file_id": "C003-1",
+        "vessel_class": "C003",
+        "leg_count": "44",
+        "priced_leg_count": "3",
+        "purchased_leg_count": "2",
+        "total_consumption": "4537.68",
+        "model_purchase_qty": "1896.12",
+        "model_external_qty": "2051.64",
+        "priced_share_of_consumption": "0.4179",
+        "external_share_of_consumption": "0.4521",
+        "applicability_class": "B",
+        "recommended_follow_up": "Delvis anvendbar; modellen gir noen konkrete kjøpsforslag, men datagapet er fortsatt vesentlig."
+      },
+      {
+        "vessel_file_id": "C004-1",
+        "vessel_class": "C004",
+        "leg_count": "55",
+        "priced_leg_count": "3",
+        "purchased_leg_count": "3",
+        "total_consumption": "5809.90",
+        "model_purchase_qty": "1945.63",
+        "model_external_qty": "3017.75",
+        "priced_share_of_consumption": "0.3349",
+        "external_share_of_consumption": "0.5194",
+        "applicability_class": "B",
+        "recommended_follow_up": "Delvis anvendbar; modellen gir noen konkrete kjøpsforslag, men datagapet er fortsatt vesentlig."
+      },
+      {
+        "vessel_file_id": "C004-2",
+        "vessel_class": "C004",
+        "leg_count": "55",
+        "priced_leg_count": "5",
+        "purchased_leg_count": "3",
+        "total_consumption": "5743.17",
+        "model_purchase_qty": "1983.77",
+        "model_external_qty": "2870.67",
+        "priced_share_of_consumption": "0.3454",
+        "external_share_of_consumption": "0.4998",
+        "applicability_class": "B",
+        "recommended_follow_up": "Delvis anvendbar; modellen gir noen konkrete kjøpsforslag, men datagapet er fortsatt vesentlig."
+      },
+      {
+        "vessel_file_id": "C004-3",
+        "vessel_class": "C004",
+        "leg_count": "68",
+        "priced_leg_count": "0",
+        "purchased_leg_count": "0",
+        "total_consumption": "6074.55",
+        "model_purchase_qty": "0.00",
+        "model_external_qty": "4974.15",
+        "priced_share_of_consumption": "0.0000",
+        "external_share_of_consumption": "0.8189",
+        "applicability_class": "C",
+        "recommended_follow_up": "Krever mer prisdata før modellen kan gi konkrete kjøpsforslag for ruten."
+      },
+      {
+        "vessel_file_id": "C005-1",
+        "vessel_class": "C005",
+        "leg_count": "91",
+        "priced_leg_count": "0",
+        "purchased_leg_count": "0",
+        "total_consumption": "2395.30",
+        "model_purchase_qty": "0.00",
+        "model_external_qty": "1922.50",
+        "priced_share_of_consumption": "0.0000",
+        "external_share_of_consumption": "0.8026",
+        "applicability_class": "C",
+        "recommended_follow_up": "Krever mer prisdata før modellen kan gi konkrete kjøpsforslag for ruten."
+      }
+    ]
   },
   "vessel_findings": {
     "top_priced_purchase_vessel": {
@@ -67,6 +208,42 @@
     ],
     "unique_model_external_qty_values": [
       21260.619
+    ],
+    "price_level_sensitivity_cost_range": 2081338.1400000006,
+    "price_level_sensitivity_rows": [
+      {
+        "scenario": "modellhavnpris_minus_10_pct",
+        "model_port_price_change": "-0.1000",
+        "priced_cost": "9366021.63",
+        "external_cost": "16218974.08",
+        "total_model_cost": "25584995.71",
+        "cost_change_vs_baseline": "-1040669.07",
+        "model_purchase_qty": "18857.451",
+        "model_external_qty": "21260.619",
+        "interpretation": "Kostnadssensitivitet med uendret kjøpsplan."
+      },
+      {
+        "scenario": "baseline",
+        "model_port_price_change": "0.0000",
+        "priced_cost": "10406690.70",
+        "external_cost": "16218974.08",
+        "total_model_cost": "26625664.78",
+        "cost_change_vs_baseline": "0.00",
+        "model_purchase_qty": "18857.451",
+        "model_external_qty": "21260.619",
+        "interpretation": "Kostnadssensitivitet med uendret kjøpsplan."
+      },
+      {
+        "scenario": "modellhavnpris_plus_10_pct",
+        "model_port_price_change": "0.1000",
+        "priced_cost": "11447359.77",
+        "external_cost": "16218974.08",
+        "total_model_cost": "27666333.85",
+        "cost_change_vs_baseline": "1040669.07",
+        "model_purchase_qty": "18857.451",
+        "model_external_qty": "21260.619",
+        "interpretation": "Kostnadssensitivitet med uendret kjøpsplan."
+      }
     ]
   },
   "consistency_checks": [
@@ -103,6 +280,22 @@
       "status": "OK",
       "value": 3,
       "expected": "> 0"
+    },
+    {
+      "check": "Alle fartøyfiler har anvendbarhetsklasse",
+      "status": "OK",
+      "value": 8,
+      "expected": 8
+    },
+    {
+      "check": "Prisnivå-sensitivitet inneholder baseline",
+      "status": "OK",
+      "value": [
+        "modellhavnpris_minus_10_pct",
+        "baseline",
+        "modellhavnpris_plus_10_pct"
+      ],
+      "expected": "baseline"
     }
   ]
 }

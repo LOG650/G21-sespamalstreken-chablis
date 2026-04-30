@@ -2,7 +2,7 @@
 
 Dette notatet samler hovedfunn fra basiskjøring og sensitivitetsanalyse. Det er et støtteartefakt for rapportens analyse-, resultat- og diskusjonskapitler.
 
-Generert: 2026-04-29T21:56:21.762434+00:00
+Generert: 2026-04-30T18:46:07.647167+00:00
 
 ## Hovedfunn
 
@@ -12,6 +12,9 @@ Generert: 2026-04-29T21:56:21.762434+00:00
 - Startbeholdning og beholdningsflyt dekker den resterende andelen på 11,53 %.
 - Fartøy uten prisede modellhavner i ruten: C004-3, C005-1.
 - Fartøy med minst 80 % ekstern/ukjent andel: C001-1, C004-3, C005-1.
+- Anvendbarhetsklasser: A=2, B=3, C=3.
+- Direkte anvendbare fartøyfiler etter arbeidsklassifiseringen: C001-2, C002-1.
+- Fartøyfiler som krever mer prisdata før konkret operativ bruk: C001-1, C004-3, C005-1.
 
 ## Fartøy og havner
 
@@ -28,6 +31,13 @@ Generert: 2026-04-29T21:56:21.762434+00:00
 - Ekstern/ukjent kostnad utgjør 60,91 % av total modellkostnad i basisscenarioet.
 - Laveste scenario er proxyfaktor 1,1; høyeste scenario er proxyfaktor 1,5.
 - Kjøpsplanen er stabil i de testede proxy-scenarioene; analysen viser derfor kostnadseffekt, ikke endret anbefalt plan.
+- En lik prisendring på +/- 10 % i modellhavnene gir et kostnadsspenn på 2 081 338,14 når kjøpsplanen holdes uendret.
+
+## Anvendbarhet
+
+Fartøyfilene er klassifisert etter hvor direkte modellresultatet kan brukes som beslutningsstøtte. Klasse A betyr at modellen har lav ekstern/ukjent andel og minst én priset etappe. Klasse B betyr at modellen gir delvis beslutningsstøtte, men at datagapet fortsatt er vesentlig. Klasse C betyr at modellen først og fremst viser behov for bedre prisdekning før anbefalingen kan brukes operativt.
+
+Anvendbarhetsklassifiseringen er en praktisk arbeidsklassifisering og ikke en operativ godkjenning. Den skal hjelpe Odfjell med å se hvor modellen kan gi konkrete bunkringsforslag med dagens data, og hvor videre datainnsamling bør prioriteres.
 
 ## Tolkning
 
@@ -46,3 +56,5 @@ Proxyfaktor 1,25 er en arbeidsantagelse for ekstern/ukjent bunkring. Sensitivite
 - OK: Kostnadsspenn stemmer med laveste og høyeste scenario (verdi: 5190071.68, forventet: 5190071.68).
 - OK: Dekningsandeler overstiger ikke totalforbruk (verdi: 0.884729, forventet: <= 1).
 - OK: Minst ett fartøy har høy ekstern/ukjent andel (verdi: 3, forventet: > 0).
+- OK: Alle fartøyfiler har anvendbarhetsklasse (verdi: 8, forventet: 8).
+- OK: Prisnivå-sensitivitet inneholder baseline (verdi: ['modellhavnpris_minus_10_pct', 'baseline', 'modellhavnpris_plus_10_pct'], forventet: baseline).

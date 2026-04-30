@@ -1,6 +1,6 @@
 # Status fase 2
 
-Oppdatert: 2026-04-29
+Oppdatert: 2026-04-30
 
 ## Innhold
 
@@ -96,17 +96,19 @@ Resultatene er lagret i:
 
 Resultattolkning er gjennomført med `006 analysis/03_analyse/03_resultattolkning/src/interpret_route_inventory_results.py`. Tolkningsnotatet samler hovedfunn om datadekning, fartøyforskjeller, havnefordeling og proxyfølsomhet.
 
-Resultattolkningen er oppdatert etter review. Skriptet validerer nå programmatisk at kjøpsmengde og ekstern/ukjent mengde er stabile i proxy-scenarioene, beregner restandel fra startbeholdning og beholdningsflyt, rapporterer ekstern kostnadsandel, skiller tydeligere mellom observasjon og tolkning, og skriver egne konsistenssjekker i tolkningsnotatet.
+Resultattolkningen er oppdatert etter review og senere anvendbarhetsarbeid. Skriptet validerer nå programmatisk at kjøpsmengde og ekstern/ukjent mengde er stabile i proxy-scenarioene, beregner restandel fra startbeholdning og beholdningsflyt, rapporterer ekstern kostnadsandel, skiller tydeligere mellom observasjon og tolkning, skriver egne konsistenssjekker i tolkningsnotatet, klassifiserer fartøyfiler etter operativ anvendbarhet og beregner en enkel prisnivå-sensitivitet for modellhavnene.
 
 Aktiviteten er lukket etter review og oppdatering av rapport- og statuskoblinger.
 
-Kapittel 8 i `005 report/rapport.md` er fylt ut med hovedresultat, resultat per fartøyfil, resultat per modellhavn og sensitivitetsresultat. Tabellnummereringen er oppdatert slik at havnefordelingen er Tabell 8.3 og sensitivitetsanalysen er Tabell 8.4.
+Kapittel 8 i `005 report/rapport.md` er fylt ut med hovedresultat, resultat per fartøyfil, anvendbarhetsklassifisering, resultat per modellhavn og sensitivitetsresultat. Tabellnummereringen er oppdatert slik at anvendbarhetsklassifiseringen er Tabell 8.3, havnefordelingen er Tabell 8.4 og proxy-sensitivitetsanalysen er Tabell 8.5.
 
-Kapittel 9 Diskusjon og kapittel 10 Konklusjon er fylt ut med vurdering av funnene opp mot problemstilling, modellbegrensninger, datadekning og praktisk bruk for PowerHorse.
+Kapittel 8 i `005 report/rapport.md` er videre utvidet med anvendbarhetsklassifisering per fartøyfil og prisnivå-sensitivitet for modellhavnene. Kapittel 9 Diskusjon og kapittel 10 Konklusjon er oppdatert med vurdering av funnene opp mot problemstilling, modellbegrensninger, datadekning og praktisk bruk for Odfjell Tankers.
 
 Resultatene er lagret i:
 
 - `006 analysis/03_analyse/03_resultattolkning/output/res_route_inventory_interpretation.json`
+- `006 analysis/03_analyse/03_resultattolkning/output/res_route_inventory_applicability_by_vessel.csv`
+- `006 analysis/03_analyse/03_resultattolkning/output/res_route_inventory_price_level_sensitivity.csv`
 - `006 analysis/03_analyse/03_resultattolkning/metadata/res_route_inventory_interpretation.md`
 
 ## Neste steg
@@ -114,6 +116,11 @@ Resultatene er lagret i:
 - Sammendrag, abstract og innholdsfortegnelse er oppdatert slik at de samsvarer med ferdig analyse, diskusjon og konklusjon.
 - Kapittel 1-5 er kontrollert mot den operative hovedmodellen og justert slik at metode, teori, case og data omtaler voyage-data, ROB, forbruk, tankkapasitet, modellhavner og ekstern/ukjent bunkring konsistent med valgt modellvei.
 - Kapittel 5 presiserer nå at train/test-splitten brukes som datadisiplin og mulig senere robusthetskontroll, ikke som klassisk evaluering av en prediktiv modell.
+- Kapittel 5.1 er oppdatert med en eksplisitt metodeoversikt som navngir datavask, deskriptiv analyse, lineær programmering, konsistenskontroll, sensitivitetsanalyse og anvendbarhetsklassifisering som metodene brukt i rapporten.
 - Rapportteksten er ryddet slik at datagrunnlaget omtales med utgangspunkt i rådata; konkrete henvisninger til prosesserte datafiler og interne analyseartefakter er fjernet fra brødteksten.
-- Neste arbeidssteg er helhetlig rapportrevisjon med særlig kontroll av kapitteloverganger, figur- og tabellhenvisninger, referanser og konsistent begrepsbruk.
+- Publiseringsavtalen er rettet med korrekt henvisning til åndsverkloven, og `003 references/Åndsverkloven.md` er lagt til som kildenotat.
+- Helhetlig rapportrevisjon etter egenvurdering v2 er gjennomført i `005 report/rapport.md`. Revisjonen forklarer ekstern/ukjent bunkring ved første nevning, utvider litteraturkapitlet med peer-reviewed bunkrings- og refueling-litteratur, legger inn validitet/reliabilitet/etikk i metodekapitlet, rydder kapittel 7/8, flytter modellbidrag til diskusjonen, presiserer proxyfaktor 1,25 og $t(l)$, fjerner interne implementeringsfeltnavn fra rapporttekst, og utvider konklusjonen med begrensninger og videre arbeid.
+- Nye peer-reviewed kilder fra rapportrevisjonen er lagt inn som egne Markdown-filer i `003 references`, én fil per referanse, med kort relevansvurdering, DOI og bibliografioppføring.
+- Neste arbeidssteg er en siste formell innleveringskontroll av forsidefelter, ordtelling, egenerklæring, publiseringsavtale og endelig PDF/Word-format.
+- Dersom gruppen ønsker enda mer operativ anvendelse, bør neste analyseaktivitet være validering av modellens anbefalinger mot faktiske historiske bunkringsbeslutninger og faglig vurdering fra Odfjell Tankers.
 - Oppdater rapporten dersom senere modellkjøringer endrer hovedresultatene.

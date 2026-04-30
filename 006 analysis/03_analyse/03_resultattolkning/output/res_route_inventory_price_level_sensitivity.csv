@@ -1,0 +1,4 @@
+scenario,model_port_price_change,priced_cost,external_cost,total_model_cost,cost_change_vs_baseline,model_purchase_qty,model_external_qty,interpretation
+modellhavnpris_minus_10_pct,-0.1000,9366021.63,16218974.08,25584995.71,-1040669.07,18857.451,21260.619,Kostnadssensitivitet med uendret kjøpsplan.
+baseline,0.0000,10406690.70,16218974.08,26625664.78,0.00,18857.451,21260.619,Kostnadssensitivitet med uendret kjøpsplan.
+modellhavnpris_plus_10_pct,0.1000,11447359.77,16218974.08,27666333.85,1040669.07,18857.451,21260.619,Kostnadssensitivitet med uendret kjøpsplan.

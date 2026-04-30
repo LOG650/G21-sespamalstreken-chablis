@@ -2,7 +2,7 @@
 
 Denne aktiviteten samler tolkbare hovedfunn fra basiskjøring og sensitivitetsanalyse.
 
-Etter review er aktiviteten utvidet med programmatisk validering av om kjøpsplanen er stabil i sensitivitetsanalysen, beregning av restandel fra startbeholdning og beholdningsflyt, skille mellom observasjoner og tolkning, og egne konsistenssjekker i tolkningsnotatet.
+Etter review er aktiviteten utvidet med programmatisk validering av om kjøpsplanen er stabil i sensitivitetsanalysen, beregning av restandel fra startbeholdning og beholdningsflyt, skille mellom observasjoner og tolkning, egne konsistenssjekker i tolkningsnotatet, anvendbarhetsklassifisering per fartøyfil og en enkel prisnivå-sensitivitet for modellhavnene.
 
 Aktiviteten er lukket etter review og oppdatering av rapport- og statuskoblinger.
 
@@ -19,4 +19,6 @@ Skriptet leser resultater fra:
 
 - `src/interpret_route_inventory_results.py`: reproduserbart skript for resultattolkning.
 - `output/res_route_inventory_interpretation.json`: maskinlesbar oppsummering av tolkbare funn.
+- `output/res_route_inventory_applicability_by_vessel.csv`: anvendbarhetsklassifisering per fartøyfil.
+- `output/res_route_inventory_price_level_sensitivity.csv`: kostnadssensitivitet ved lik prosentvis endring i modellhavnprisene.
 - `metadata/res_route_inventory_interpretation.md`: norsk tolkningsnotat med hovedfunn, tolkning og konsistenssjekker.

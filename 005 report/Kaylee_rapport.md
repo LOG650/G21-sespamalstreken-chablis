@@ -84,6 +84,29 @@ En viktig observasjon er at ikke alle havner har transaksjoner i alle måneder. 
 
 De månedlige prisene varierer også betydelig mellom perioder. For eksempel har `P003` en observert laveste vektede månedspris på 189.34 i april 2020 og en høyeste på 913.00 i juni 2022. Tilsvarende varierer `P004` fra 220.33 i mai 2020 til 1087.85 i juli 2022. Dette understøtter at både havnevalg og tidspunkt kan ha stor betydning for totale bunkringskostnader.
 
+### 5.3 Risikoanalyse
+
+Prosjektet inneholder både prosjektrisiko og analyserisiko. Prosjektrisiko handler om forhold som kan påvirke gjennomføringen, for eksempel datatilgang, tidsbruk, modellimplementering og avhengighet til eksterne avklaringer. Analyserisiko handler om forhold som kan påvirke kvaliteten og tolkningen av resultatene, for eksempel datakvalitet, modellforenklinger og usikkerhet i prisparametere. I denne rapporten er risikoanalysen særlig relevant fordi modellen bygger på et avgrenset historisk datagrunnlag og brukes som beslutningsstøtte, ikke som en full operativ produksjonsmodell.
+
+Risikoene er vurdert kvalitativt etter sannsynlighet og konsekvens. Vurderingen bygger på risikoregisteret fra prosjektstyringsplanen, men er her rettet mot hva risikoene betyr for analysearbeidet og rapportens konklusjoner. Tabell 5.1 viser de viktigste risikoene for datagrunnlag, modellering og resultattolkning.
+
+| Risiko | Sannsynlighet | Konsekvens | Betydning for analysen | Risikoreduserende tiltak |
+| --- | --- | --- | --- | --- |
+| Historiske data er ufullstendige | Middels | Høy | Modellen kan bare optimalisere innenfor havner, perioder og variabler som faktisk er dokumentert i datasettet. Manglende havnedekning kan føre til at deler av bunkringsbehovet må behandles som ekstern eller ukjent bunkring. | Avgrense modellen til dokumenterte havner, synliggjøre datagap og skille tydelig mellom observerte modellhavner og ekstern/ukjent bunkring. |
+| Datakvaliteten er usikker | Middels | Høy | Feil, manglende verdier eller registreringsforskjeller kan påvirke prisnivå, volumgrunnlag og modellparametere. | Gjennomføre datavask, kontrollere manglende og ikke-positive verdier, dokumentere rensevalg og bruke eksplisitte antagelser der datagrunnlaget ikke er komplett. |
+| Modellstrukturen blir for kompleks | Middels | Middels | En for detaljert modell kan bli vanskelig å implementere, validere og forklare innenfor prosjektets rammer. | Starte med en deterministisk lineær grunnmodell og bare inkludere restriksjoner som støttes av tilgjengelige data. |
+| Modellen gir teknisk gyldige, men operativt ufullstendige resultater | Middels | Høy | Resultatene kan bli misforstått som direkte anbefalinger, selv om modellen mangler enkelte operative forhold som kontrakter, full havnedekning, drivstoffspesifikasjon og minimumsbeholdning. | Tolke modellen som beslutningsstøtte, ikke fasit. Dokumentere begrensninger og vurdere resultatene opp mot datadekning og operative antagelser. |
+| Sensitivitetsanalysen dekker for få parametere | Middels | Middels | Usikkerhet i andre parametere enn proxykostnaden kan være undervurdert, for eksempel kapasitet, startbeholdning, forbruk og havnepriser. | Avgrense sensitivitetsanalysen tydelig og peke på hvilke parametere som bør testes i videre arbeid. |
+| Forsinkede avklaringer fra oppdragsgiver eller veiledere | Lav | Middels | Manglende avklaringer kan føre til at prosjektgruppen må gjøre flere egne antagelser. | Kontakte relevante personer tidlig, dokumentere åpne spørsmål og merke usikre forhold som antagelser i rapporten. |
+
+<p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.1 Prioriterte risikoer for datagrunnlag, modellering og resultattolkning.</i></small></p>
+
+Den samlede vurderingen er at de mest kritiske risikoene ikke primært er tekniske, men datamessige og tolkningsmessige. Dersom historiske data er ufullstendige eller enkelte variabler ikke er direkte observerbare, kan modellen fortsatt være matematisk korrekt, men resultatene får et snevrere gyldighetsområde. Dette er særlig viktig i denne oppgaven fordi prisgrunnlaget er avgrenset til fire modellhavner og én drivstofftype. Risikoen håndteres derfor gjennom eksplisitte avgrensninger, datakvalitetskontroller, dokumenterte modellantagelser og en tydelig tolkning av ekstern/ukjent bunkring som et datagap.
+
+Risikoanalysen påvirker også valg av metode. En lineær grunnmodell er valgt fordi den gir en transparent og etterprøvbar formulering av beslutningsproblemet. Mer avanserte metoder kunne i prinsippet inkludert flere usikre forhold, men ville samtidig krevd et mer komplett og validert datagrunnlag. For dette prosjektet vurderes det derfor som bedre å bruke en enklere modell med tydelige begrensninger enn en mer kompleks modell der flere forutsetninger måtte vært skjult i estimater.
+
+Resultatene bør på denne bakgrunnen tolkes som et strukturert beslutningsgrunnlag. Modellen kan vise hvordan observerte prisforskjeller, forbruk og kapasitet påvirker bunkringsvalg innenfor det tilgjengelige datagrunnlaget. Den kan derimot ikke alene eliminere operativ risiko knyttet til framtidige priser, kontraktsvilkår, faktisk havnetilgjengelighet eller endringer i ruteplaner. En eventuell videreutvikling bør derfor kombinere bredere datainnsamling med flere sensitivitetsanalyser og operativ validering sammen med fagpersoner hos Odfjell Tankers.
+
 ---
 
 ## 6.0 Modellering
