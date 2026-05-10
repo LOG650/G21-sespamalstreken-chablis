@@ -1,0 +1,32 @@
+{
+  "analysis_name": "naive_fill_to_capacity_benchmark",
+  "benchmark_rule": "Fyll til kapasitet i billigste tilgjengelige prisede modellhavn på etappen. Dersom beholdning fortsatt ikke dekker forbruket, brukes ekstern/ukjent bunkring.",
+  "external_price": 762.864622,
+  "vessel_file_count": 8,
+  "leg_count": 486,
+  "priced_leg_count": 42,
+  "purchased_leg_count": 42,
+  "total_consumption": 45345.04,
+  "benchmark_purchase_qty": 22747.297,
+  "benchmark_external_qty": 21260.619,
+  "priced_share_of_consumption": 0.501649,
+  "external_share_of_consumption": 0.468863,
+  "priced_cost": 12707348.69,
+  "external_cost": 16218974.08,
+  "total_benchmark_cost": 28926322.77,
+  "model_total_cost": 26625664.78,
+  "cost_difference_benchmark_minus_model": 2300657.99,
+  "cost_difference_pct_of_benchmark": 0.079535,
+  "source_files": {
+    "voyage_legs": "006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_voyage_legs_2025.csv",
+    "capacity": "006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_vessel_class_capacity.csv",
+    "prices": "006 analysis/01_datagrunnlag/03_strukturering_av_datasett/data/tab_bunker_monthly_by_port.csv",
+    "model_summary": "006 analysis/02_modellutvikling/04_implementere_modell/output/res_route_inventory_summary.json"
+  },
+  "output_files": {
+    "summary": "006 analysis/03_analyse/05_benchmark/output/res_naive_benchmark_summary.json",
+    "by_vessel": "006 analysis/03_analyse/05_benchmark/output/res_naive_benchmark_by_vessel.csv",
+    "by_leg": "006 analysis/03_analyse/05_benchmark/output/res_naive_benchmark_by_leg.csv",
+    "metadata": "006 analysis/03_analyse/05_benchmark/metadata/res_naive_benchmark_summary.md"
+  }
+}

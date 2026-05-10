@@ -1,6 +1,6 @@
 # Status fase 2
 
-Oppdatert: 2026-04-30
+Oppdatert: 2026-05-10
 
 ## Innhold
 
@@ -69,6 +69,7 @@ Modelltesten er kjørt med `006 analysis/02_modellutvikling/05_teste_modell/src/
 | Sensitivitetsanalyse | Fullført | `006 analysis/03_analyse/02_sensitivitetsanalyse/README.md` |
 | Resultattolkning | Lukket | `006 analysis/03_analyse/03_resultattolkning/README.md` |
 | Operativ validering | Fullført | `006 analysis/03_analyse/04_operativ_validering/README.md` |
+| Naiv benchmark etter peer review | Fullført | `006 analysis/03_analyse/05_benchmark/README.md` |
 
 Ny basiskjøring er gjennomført med `006 analysis/03_analyse/01_basiskjoring/src/run_baseline_route_inventory.py`. Aktiviteten bruker hovedscenarioet fra den operative rute- og beholdningsmodellen med ekstern proxyfaktor 1,25, og skriver rapportvennlige aggregater per fartøyfil, modellhavn og måned.
 
@@ -121,6 +122,15 @@ Resultatene er lagret i:
 - `006 analysis/03_analyse/04_operativ_validering/output/res_operational_validation_by_leg.csv`
 - `006 analysis/03_analyse/04_operativ_validering/metadata/res_operational_validation_summary.md`
 
+Naiv benchmark er gjennomført med `006 analysis/03_analyse/05_benchmark/src/run_naive_benchmark.py` etter peer review. Benchmarken bruker en enkel fyll-til-kapasitet-regel i billigste tilgjengelige prisede modellhavn, og er ikke en rekonstruksjon av faktisk Odfjell-praksis. Total benchmarkkostnad er 28 926 322,77 mot LP-modellens 26 625 664,78, altså 2 300 657,99 lavere modellkostnad for LP innenfor samme datagrunnlag.
+
+Resultatene er lagret i:
+
+- `006 analysis/03_analyse/05_benchmark/output/res_naive_benchmark_summary.json`
+- `006 analysis/03_analyse/05_benchmark/output/res_naive_benchmark_by_vessel.csv`
+- `006 analysis/03_analyse/05_benchmark/output/res_naive_benchmark_by_leg.csv`
+- `006 analysis/03_analyse/05_benchmark/metadata/res_naive_benchmark_summary.md`
+
 ## Neste steg
 
 - Sammendrag, abstract og innholdsfortegnelse er oppdatert slik at de samsvarer med ferdig analyse, diskusjon og konklusjon.
@@ -133,6 +143,8 @@ Resultatene er lagret i:
 - Personvern-, helseforsknings- og publiseringsfeltene i rapportens innledende skjema er fylt ut: NSD/Sikt nei, REK nei, elektronisk publisering nei, og oppgaven er markert som båndlagt/konfidensiell i henhold til avtale med Odfjell Tankers.
 - Helhetlig rapportrevisjon etter egenvurdering v2 er gjennomført i `005 report/rapport.md`. Revisjonen forklarer ekstern/ukjent bunkring ved første nevning, utvider litteraturkapitlet med peer-reviewed bunkrings- og refueling-litteratur, legger inn validitet/reliabilitet/etikk i metodekapitlet, rydder kapittel 7/8, flytter modellbidrag til diskusjonen, presiserer proxyfaktor 1,25 og $t(l)$, fjerner interne implementeringsfeltnavn fra rapporttekst, og utvider konklusjonen med begrensninger og videre arbeid.
 - Nye peer-reviewed kilder fra rapportrevisjonen er lagt inn som egne Markdown-filer i `003 references`, én fil per referanse, med kort relevansvurdering, DOI og bibliografioppføring.
-- Neste arbeidssteg er en siste formell innleveringskontroll av forsidefelter, ordtelling, egenerklæring, publiseringsavtale og endelig PDF/Word-format.
+- Rapporten er revidert etter ekstern peer review fra G20. Revisjonen spisser problemstillingen, begrunner deterministisk LP tydeligere, fjerner duplikattabell, legger inn enhets-/kostnadstabell, presiserer proxypris som intern arbeidsantagelse, legger inn naiv benchmark, styrker diskusjon/konklusjon og rydder formalia.
+- Tilsendte PDF-er fra Odfjell Tankers er flyttet inn i rapportmappen som egne innleveringsvedlegg: `005 report/Vedlegg A - Everything You Need To Know About Marine Fuels.pdf` og `005 report/Vedlegg B - FuelEU Guidance Document for Shipping Companies.pdf`. Rapportens hovedtekst, bibliografi og vedleggskapittel henviser nå til Vedlegg A og Vedlegg B i stedet for interne `003 references`-stier.
+- Neste arbeidssteg er en siste formell innleveringskontroll av forsidefelter, studiepoeng, veileder, ordtelling, forfattererklæring, publiseringsavtale og endelig PDF/Word-format.
 - Dersom gruppen ønsker enda mer operativ anvendelse, bør neste analyseaktivitet være faglig vurdering fra Odfjell Tankers av om modellens anbefalte kjøp er praktisk gjennomførbare.
 - Oppdater rapporten dersom senere modellkjøringer endrer hovedresultatene.
