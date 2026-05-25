@@ -1,0 +1,59 @@
+% Deaktiver automatisk seksjonsnummerering (rapporten har manuell nummerering)
+\setcounter{secnumdepth}{-1}
+
+% TOC viser headinger paa nivaa 1-3 (section, subsection, subsubsection).
+% Front-matter-headinger (forside, sammendrag, abstract, innholdsfortegnelse
+% osv.) markeres med {.unnumbered} i markdown slik at pandoc emitterer
+% \section*{} / \subsection*{} som ikke legges til i .toc.
+\setcounter{tocdepth}{3}
+
+% Tilpasset \tableofcontents som skipper den innebygde "Innhold"-tittelen
+% (vi beholder vaar egen "## Innholdsfortegnelse"-heading fra markdown) og
+% bruker enkel linjeavstand i selve TOC-listen for kompakt utseende.
+\usepackage{setspace}
+\makeatletter
+\newcommand{\tocnotitle}{%
+  \begingroup
+  \setstretch{1}%
+  \@starttoc{toc}%
+  \endgroup
+}
+\makeatother
+
+% Tilpasset overskriftsstil for å gjøre tittel og kapitler tydelig større enn brødtekst
+\usepackage{titlesec}
+\titleformat{\section}{\fontsize{20pt}{24pt}\selectfont\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{20pt}{12pt}
+\titleformat{\subsection}{\fontsize{16pt}{20pt}\selectfont\bfseries}{}{0pt}{}
+\titlespacing*{\subsection}{0pt}{18pt}{10pt}
+\titleformat{\subsubsection}{\fontsize{14pt}{17pt}\selectfont\bfseries}{}{0pt}{}
+\titlespacing*{\subsubsection}{0pt}{14pt}{8pt}
+
+% Sidetall nederst på siden
+\pagestyle{plain}
+
+% Bedre figurplassering og bildehåndtering
+\usepackage{float}
+\usepackage{graphicx}
+
+% Bruk manuell nummerering i figurtekst og tabelltekst (f.eks. "Figur 4.1") og
+% deaktiver LaTeX sin automatiske "Figur N:"- og "Tabell N:"-prefiks.
+\usepackage{caption}
+\captionsetup{labelformat=empty,font={small,it},justification=centering}
+
+% Sentrer alle figurer som standard
+\makeatletter
+\g@addto@macro\@floatboxreset\centering
+\makeatother
+
+% Forhindre at brødtekst sprenger marg ved lange URL-er
+\usepackage{xurl}
+
+% Avkrysningsbokser: Calibri har ikke ballot-box-glyfer, og Segoe UI Symbol
+% inneholder dem ikke alltid avhengig av installasjon. Bruk derfor LaTeX-egne
+% symboler fra wasysym (tom, krysset, avkrysset boks) som garantert rendres.
+\usepackage{wasysym}
+\usepackage{newunicodechar}
+\newunicodechar{☐}{\Square}
+\newunicodechar{☒}{\XBox}
+\newunicodechar{☑}{\CheckedBox}
