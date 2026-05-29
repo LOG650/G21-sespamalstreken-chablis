@@ -1,6 +1,6 @@
 # Status fase 2
 
-Oppdatert: 2026-05-10
+Oppdatert: 2026-05-29
 
 ## Innhold
 
@@ -145,6 +145,7 @@ Resultatene er lagret i:
 - Nye peer-reviewed kilder fra rapportrevisjonen er lagt inn som egne Markdown-filer i `003 references`, én fil per referanse, med kort relevansvurdering, DOI og bibliografioppføring.
 - Rapporten er revidert etter ekstern peer review fra G20. Revisjonen spisser problemstillingen, begrunner deterministisk LP tydeligere, fjerner duplikattabell, legger inn enhets-/kostnadstabell, presiserer proxypris som intern arbeidsantagelse, legger inn naiv benchmark, styrker diskusjon/konklusjon og rydder formalia.
 - Tilsendte PDF-er fra Odfjell Tankers er flyttet inn i rapportmappen som egne innleveringsvedlegg: `005 report/Vedlegg A - Everything You Need To Know About Marine Fuels.pdf` og `005 report/Vedlegg B - FuelEU Guidance Document for Shipping Companies.pdf`. Rapportens hovedtekst, bibliografi og vedleggskapittel henviser nå til Vedlegg A og Vedlegg B i stedet for interne `003 references`-stier.
-- Neste arbeidssteg er en siste formell innleveringskontroll av forsidefelter, studiepoeng, veileder, ordtelling, forfattererklæring, publiseringsavtale og endelig PDF/Word-format.
-- Dersom gruppen ønsker enda mer operativ anvendelse, bør neste analyseaktivitet være faglig vurdering fra Odfjell Tankers av om modellens anbefalte kjøp er praktisk gjennomførbare.
+- Siste formelle innleveringskontroll er gjennomført i `005 report/rapport.md` og `005 report/rapport.pdf`. Forsidefelter, studiepoeng, veileder, ordtelling, forfattererklæring, publiseringsavtale, båndlegging og PDF-generering er kontrollert. Plassholderen for båndleggingsavtale er erstattet med henvisning til Vedlegg F, og ordtallet er oppdatert til ca. 11 000.
+- Endelig PDF er bygget på nytt med `005 report/build-pdf.ps1`. Sluttfilen `005 report/rapport.pdf` har 242 sider totalt: 45 sider rapportkropp, Vedlegg A 35 sider, Vedlegg B 152 sider, Vedlegg D 6 sider, Vedlegg E 1 side og Vedlegg F 3 sider. Forsiden viser 45 sider for rapportkroppen inkludert forsiden.
+- Faglig vurdering fra Odfjell Tankers tas ikke inn før innlevering fordi gruppen ikke forventer svar i tide. Punktet står derfor som videre arbeid/ekstern validering, ikke som en åpen innleveringsblokkering.
 - Oppdater rapporten dersom senere modellkjøringer endrer hovedresultatene.

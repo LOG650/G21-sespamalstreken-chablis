@@ -57,7 +57,7 @@ def ensure_figure_dir() -> None:
 def save_figure(filename: str) -> Path:
     path = FIG_DIR / filename
     plt.tight_layout()
-    plt.savefig(path, dpi=220, bbox_inches="tight")
+    plt.savefig(path, dpi=300, bbox_inches="tight")
     plt.close()
     return path
 
@@ -84,7 +84,7 @@ def plot_total_volume_by_month(monthly_rows: list[dict[str, str]]) -> Path:
     )
     ax.set_title("Samlet bunkret volum per måned")
     ax.set_xlabel("Måned")
-    ax.set_ylabel("Volum")
+    ax.set_ylabel("Volum (tonn)")
     ax.grid(alpha=0.25, linestyle="--")
     tick_positions = x_values[::2]
     tick_labels = [date.strftime("%Y-%m") for date in tick_positions]
@@ -117,7 +117,7 @@ def plot_weighted_price_by_port(monthly_rows: list[dict[str, str]]) -> Path:
     tick_labels = [date.strftime("%Y-%m") for date in tick_positions]
     ax.set_title("Vektet gjennomsnittspris per havn og måned")
     ax.set_xlabel("Måned")
-    ax.set_ylabel("Pris")
+    ax.set_ylabel("Pris (USD/tonn)")
     ax.set_xticks(tick_positions)
     ax.set_xticklabels(tick_labels, rotation=45, ha="right")
     ax.grid(alpha=0.25, linestyle="--")
@@ -149,15 +149,19 @@ def plot_season_profile(monthly_rows: list[dict[str, str]]) -> Path:
         weighted_prices.append(price_sum_by_calendar_month[month] / weight if weight else 0.0)
 
     fig, ax1 = plt.subplots(figsize=(13, 5.8))
-    bars = ax1.bar(month_names, avg_volumes, color="#328CC1", alpha=0.85)
+    bars = ax1.bar(month_names, avg_volumes, color="#328CC1", alpha=0.85, label="Gjennomsnittlig volum")
     ax1.set_title("Sesongprofil for volum og pris\nGjennomsnitt per kalendermåned, 2020-01 til 2025-01")
     ax1.set_xlabel("Kalendermåned")
-    ax1.set_ylabel("Gjennomsnittlig volum")
+    ax1.set_ylabel("Gjennomsnittlig volum (tonn)")
     ax1.grid(axis="y", alpha=0.25, linestyle="--")
 
     ax2 = ax1.twinx()
-    ax2.plot(month_names, weighted_prices, color="#D95F02", linewidth=2.2, marker="o")
-    ax2.set_ylabel("Vektet gjennomsnittspris")
+    ax2.plot(month_names, weighted_prices, color="#D95F02", linewidth=2.2, marker="o", label="Vektet gjennomsnittspris")
+    ax2.set_ylabel("Vektet gjennomsnittspris (USD/tonn)")
+
+    handles1, labels1 = ax1.get_legend_handles_labels()
+    handles2, labels2 = ax2.get_legend_handles_labels()
+    ax1.legend(handles1 + handles2, labels1 + labels2, frameon=False, loc="upper right")
 
     ax1.bar_label(bars, fmt="%.0f", padding=2, fontsize=8)
     return save_figure("fig_bunker_season_profile.png")

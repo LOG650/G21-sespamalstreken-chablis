@@ -1,14 +1,25 @@
-﻿# G21 - Sespamalstreken Chablis
+﻿\begin{titlepage}
+\thispagestyle{empty}
+\noindent{\small\textcolor{gray}{G21 - Sespåmålstreken Chablis}\hfill\textcolor{gray}{Høgskolen i Molde}}
 
-**Tittel: Optimalisering av bunkringsbeslutninger i Odfjell Tankers basert på historiske data**
+\vspace*{\fill}
+\begin{center}
+{\fontsize{20pt}{24pt}\selectfont\bfseries Optimalisering av bunkringsbeslutninger i Odfjell Tankers basert på historiske data}
 
-**Forfattere : Elisabeth Kirkeland Orlien og Kaylee Floden**
+\vspace{2cm}
+{\large LOG650 Forskningsprosjekt: Logistikk og kunstig intelligens}
 
-**Totalt antall sider inkludert forsiden:** 
+\vspace{1.2cm}
+{\large Elisabeth Kirkeland Orlien\\ Kaylee Floden}
 
-**Molde, Innleveringsdato: 31.05.2026**
+\vspace{1.2cm}
+{\large Molde, 31.05.2026}
 
----
+\vspace{1.2cm}
+{\large ZZBODYPAGESZZ sider (rapport) – ZZTOTALPAGESZZ medregnet vedlegg}
+\end{center}
+\vspace*{\fill}
+\end{titlepage}
 
 ## Obligatorisk egenerklæring/gruppeerklæring
 
@@ -90,14 +101,14 @@ Oppgaver som er unntatt offentlighet eller båndlagt vil ikke bli publisert.
 Oppgaven bygger på data og informasjon mottatt fra Odfjell Tankers under konfidensialitetsavtale. Selv om dataene er anonymisert/pseudonymisert i rapporten, ønsker prosjektgruppen ikke at oppgaven publiseres elektronisk.
 
 **Er oppgaven båndlagt (konfidensiell)?** ☒ ja ☐ nei
-(Båndleggingsavtale må fylles ut)
+(Konfidensialitetsavtaler er vedlagt som Vedlegg F.)
 
 - **Hvis ja:** Kan oppgaven publiseres når båndleggingsperioden er over? ☐ ja ☒ nei
 - **Båndlegging:** Ikke tidsavgrenset / i henhold til konfidensialitetsavtale med Odfjell Tankers. Rapporten skal forbli båndlagt og kun deles med Odfjell Tankers etter avtale. Eventuell senere publisering eller deling må avklares særskilt med Odfjell Tankers.
 
 **Dato:** 31.05.2026
 
-**Antall ord:** ca. 11 974
+**Antall ord:** ca. 11 000
 
 **Forfattererklæring:** Elisabeth Kirkeland Orlien og Kaylee Floden
 
@@ -433,8 +444,8 @@ Tabell 5.5 oppsummerer enheter og kostnadsgrunnlag i rapporten. Tabellen er vikt
 | Casevolum | Metriske tonn | Bakgrunnstall oppgitt av casebedriften |
 | Modellert forbruk, kjøp og ekstern/ukjent bunkring | Modellens mengdeenheter | Hentet fra forbruks-, ROB- og bunkringsfeltene; behandles konsistent internt i modellen |
 | Bunkerskapasitet | m3 | Verifiserte 2025-tall fra dataleverandøren; ikke avklart om tallene er total eller operativ kapasitet |
-| Pris og kostnad | Datasettets kostnadsenheter | Beregnet fra prisfeltene i bunkringsdatasettet; valuta er ikke uavhengig verifisert i rapportgrunnlaget |
-| Ekstern/ukjent proxypris | Datasettets kostnadsenheter per modellert enhet | Intern arbeidsantagelse beregnet som 1,25 ganger høyeste historiske havnesnitt |
+| Pris og kostnad | USD per metrisk tonn | Beregnet fra prisfeltene i bunkringsdatasettet; tolket som USD ut fra prisnivå og caseopplysninger (kap. 1 og 4) |
+| Ekstern/ukjent proxypris | USD per metrisk tonn | Intern arbeidsantagelse beregnet som 1,25 ganger høyeste historiske havnesnitt |
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell 5.5 Enheter og kostnadsgrunnlag brukt i rapport og modell.</i></small></p>
 
@@ -510,23 +521,29 @@ Alle beslutningsvariabler er ikke-negative.
 
 ### 6.3 Målfunksjon
 
-Målet er å minimere samlet modellert drivstoffkostnad:
+Målet er å minimere samlet modellert drivstoffkostnad, vist i ligning (6.1):
 
-$\min Z = \sum_{v \in V}\sum_{l \in L_v}\sum_{h \in H} p_{h,t(l)}x_{v,l,h} + \sum_{v \in V}\sum_{l \in L_v} p^U u_{v,l}$
+\begin{equation}
+\min Z = \sum_{v \in V}\sum_{l \in L_v}\sum_{h \in H} p_{h,t(l)}x_{v,l,h} + \sum_{v \in V}\sum_{l \in L_v} p^U u_{v,l} \tag{6.1}
+\end{equation}
 
 Her betegner $t(l)$ kalendermåneden etappe $l$ tilhører. Målfunksjonen gjør at modellen prioriterer prisede modellhavner når de er tilgjengelige og økonomisk gunstige, men fortsatt kan dekke behovet når ruten mangler priset havn. Siden ekstern/ukjent bunkring har høyere proxypris enn modellhavnene, blir den brukt som et kostnadsatt alternativ når prisgrunnlaget ikke dekker den operative ruten.
 
 ### 6.4 Restriksjoner
 
-Beholdningsbalansen kobler beslutningene sammen over tid:
+Beholdningsbalansen kobler beslutningene sammen over tid og er gitt i ligning (6.2):
 
-$I_{v,l} = I_{v,l-1} + \sum_{h \in H} x_{v,l,h} + u_{v,l} - c_{v,l}$
+\begin{equation}
+I_{v,l} = I_{v,l-1} + \sum_{h \in H} x_{v,l,h} + u_{v,l} - c_{v,l} \tag{6.2}
+\end{equation}
 
 For første etappe brukes observert startbeholdning $I_{v,0}$ som inngang til balansen. Beholdningen må være ikke-negativ etter hver etappe, og både beholdning etter bunkring og beholdning etter forbruk kan ikke overstige fartøyets kapasitet $K_v$.
 
-Modellen kan bare bunkre i priset modellhavn når havnen er observert i ruten:
+Modellen kan bare bunkre i priset modellhavn når havnen er observert i ruten, jf. ligning (6.3):
 
-$x_{v,l,h} = 0 \quad \text{hvis } a_{v,l,h}=0$
+\begin{equation}
+x_{v,l,h} = 0 \quad \text{hvis } a_{v,l,h}=0 \tag{6.3}
+\end{equation}
 
 Dette håndheves i implementeringen ved at det bare opprettes kjøpsvariabler for modellhavner som er observert tilgjengelige på den aktuelle etappen. Dermed kan modellen ikke flytte et fartøy til en billig havn som ikke er del av den observerte ruten.
 
@@ -602,7 +619,7 @@ Valideringen viser at modellen ikke gjenskaper de samme bunkringstidspunktene so
 
 ## 8.0 Resultat
 
-Dette kapittelet presenterer resultatene fra den operative hovedmodellen, en naiv benchmark, basiskjøringen og sensitivitetsanalysen. Alle beløp er oppgitt i datasettets kostnadsenheter. Kapittelet presenterer funnene nøkternt; vurdering av implikasjoner og begrensninger gjøres i diskusjonskapitlet.
+Dette kapittelet presenterer resultatene fra den operative hovedmodellen, en naiv benchmark, basiskjøringen og sensitivitetsanalysen. Alle beløp er oppgitt i USD (jf. kapittel 1 og 4). Kapittelet presenterer funnene nøkternt; vurdering av implikasjoner og begrensninger gjøres i diskusjonskapitlet.
 
 ### 8.1 Hovedresultat
 
@@ -833,5 +850,3 @@ Zhen, L., Wang, S., & Zhuge, D. (2017). Dynamic programming for optimal ship ref
 **Vedlegg E.** KI-erklæring (HiMolde). Signert erklæring om bruk av kunstig intelligens i arbeidet med rapporten, gjengitt som eget PDF-vedlegg.
 
 **Vedlegg F.** Konfidensialitetsavtaler. Signerte konfidensialitetsavtaler mellom prosjektgruppen, Høgskolen i Molde og Odfjell SE, som regulerer tilgangen til og bruken av Odfjells data i rapporten. Gjengitt som eget PDF-vedlegg.
-
-

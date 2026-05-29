@@ -378,12 +378,12 @@ def write_monthly_split_figure(by_month: list[dict[str, object]]) -> None:
     plt.plot(months, external_qty, marker="o", label="Ekstern/ukjent bunkring")
     plt.title("Basiskjøring: månedlig fordeling av bunkring")
     plt.xlabel("Måned")
-    plt.ylabel("Mengde")
+    plt.ylabel("Mengde (tonn)")
     plt.xticks(rotation=45, ha="right")
     plt.grid(axis="y", alpha=0.3)
     plt.legend()
     plt.tight_layout()
-    plt.savefig(BASELINE_MONTHLY_SPLIT_FIG, dpi=160)
+    plt.savefig(BASELINE_MONTHLY_SPLIT_FIG, dpi=300)
     plt.close()
 
 

@@ -265,7 +265,7 @@ def write_figures(scenarios: list[dict[str, object]]) -> None:
     plt.plot(labels, total_costs, marker="o", color="#1f77b4")
     for label, total_cost in zip(labels, total_costs):
         plt.annotate(
-            f"{total_cost / 1_000_000:.1f} mill.",
+            f"{total_cost / 1_000_000:.1f}".replace(".", ",") + " mill.",
             (label, total_cost),
             textcoords="offset points",
             xytext=(0, 8),
@@ -274,10 +274,10 @@ def write_figures(scenarios: list[dict[str, object]]) -> None:
         )
     plt.title("Sensitivitet: total modellkostnad")
     plt.xlabel("Proxyfaktor for ekstern/ukjent bunkring")
-    plt.ylabel("Total modellkostnad")
+    plt.ylabel("Total modellkostnad (USD)")
     plt.grid(axis="y", alpha=0.3)
     plt.tight_layout()
-    plt.savefig(FIG_TOTAL_COST, dpi=160)
+    plt.savefig(FIG_TOTAL_COST, dpi=300)
     plt.close()
 
     x_positions = range(len(labels))
@@ -292,7 +292,7 @@ def write_figures(scenarios: list[dict[str, object]]) -> None:
     )
     for index, (priced_cost, external_cost) in enumerate(zip(priced_costs, external_costs)):
         plt.annotate(
-            f"{(priced_cost + external_cost) / 1_000_000:.1f} mill.",
+            f"{(priced_cost + external_cost) / 1_000_000:.1f}".replace(".", ",") + " mill.",
             (index, priced_cost + external_cost),
             textcoords="offset points",
             xytext=(0, 4),
@@ -301,12 +301,12 @@ def write_figures(scenarios: list[dict[str, object]]) -> None:
         )
     plt.title("Sensitivitet: kostnadskomponenter")
     plt.xlabel("Proxyfaktor for ekstern/ukjent bunkring")
-    plt.ylabel("Modellkostnad")
+    plt.ylabel("Modellkostnad (USD)")
     plt.xticks(list(x_positions), labels)
     plt.grid(axis="y", alpha=0.3)
     plt.legend()
     plt.tight_layout()
-    plt.savefig(FIG_COST_COMPONENTS, dpi=160)
+    plt.savefig(FIG_COST_COMPONENTS, dpi=300)
     plt.close()
 
 

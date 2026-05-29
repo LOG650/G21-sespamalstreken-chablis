@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-29T21:25:34.531321+00:00",
+  "generated_at": "2026-05-29T21:54:53.539481+00:00",
   "analysis_name": "route_inventory_proxy_sensitivity",
   "scenario_count": 3,
   "expected_multipliers": [
@@ -20,8 +20,8 @@
     },
     "baseline_summary": {
       "path": "006 analysis/03_analyse/01_basiskjoring/output/res_baseline_route_inventory_summary.json",
-      "mtime": "2026-04-29T20:58:24.861771+00:00",
-      "sha256": "b624db0e335cab72b148572020579538cb2f91aa1b7a83b6ab18dd19cd645d88"
+      "mtime": "2026-05-29T21:54:51.939015+00:00",
+      "sha256": "ae127253a1bca9939b8a5e4d545d78c86bb4efebc66fcd768049197b4068460c"
     }
   },
   "output_files": {

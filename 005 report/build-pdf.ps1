@@ -33,7 +33,7 @@ function Get-PdfPageCount {
 }
 
 function Invoke-RapportBuild {
-  param([int]$TotalPages = 0)
+  param([int]$TotalPages = 0, [int]$MergedPages = 0)
 
   $content = Get-Content -Path $src -Raw -Encoding UTF8
 
@@ -80,15 +80,16 @@ function Invoke-RapportBuild {
   )
   $content = $frontMatter + $body
 
-  # 5) Fyll inn totalt antall sider paa forsiden naar TotalPages er angitt.
-  #    Bruk [ \t]* (ikke \s*) for aa unngaa aa spise opp den blanke linjen
-  #    mellom denne og "Molde, Innleveringsdato".
+  # 5) Fyll inn sidetall paa forsiden via plassholdere i titlepage-blokken.
+  #    ZZBODYPAGESZZ  = sidetall for rapportkroppen (forside + kapitler)
+  #    ZZTOTALPAGESZZ = sidetall for hele dokumentet inkludert vedlegg
+  #    Plassholderne er understrek-frie slik at de ikke trigger LaTeX-mattemodus
+  #    dersom de naar xelatex urort i pass 1 (foer tallene er kjent).
   if ($TotalPages -gt 0) {
-    $content = [System.Text.RegularExpressions.Regex]::Replace(
-      $content,
-      '(\*\*Totalt antall sider inkludert forsiden:\*\*)[ \t]*(\r?\n)',
-      ('$1 {0}$2' -f $TotalPages)
-    )
+    $content = $content -replace 'ZZBODYPAGESZZ', $TotalPages
+  }
+  if ($MergedPages -gt 0) {
+    $content = $content -replace 'ZZTOTALPAGESZZ', $MergedPages
   }
 
   Set-Content -Path $work -Value $content -Encoding UTF8 -NoNewline
@@ -250,13 +251,13 @@ Write-Output ("       body={0}  vedleggA={1}  vedleggB={2}  vedleggD={3}  vedleg
 
 # === Pass 2: bygg paa nytt med body-sidetall (rapporten alene) paa forsiden ===
 Write-Output "[2/3] Bygger paa nytt med 'Totalt antall sider'=$bodyPages paa forsiden"
-Invoke-RapportBuild -TotalPages $bodyPages
+Invoke-RapportBuild -TotalPages $bodyPages -MergedPages $mergedPages
 $newBody = Get-PdfPageCount $pdf
 if ($newBody -ne $bodyPages) {
   Write-Warning "Body-sidetall endret seg fra $bodyPages til $newBody. Justerer og bygger igjen."
   $bodyPages = $newBody
   $mergedPages = $bodyPages + $pagesA + $pagesB + $pagesD + $pagesE + $pagesF
-  Invoke-RapportBuild -TotalPages $bodyPages
+  Invoke-RapportBuild -TotalPages $bodyPages -MergedPages $mergedPages
 }
 
 # === Pass 3: merge rapport + vedlegg A + vedlegg B + vedlegg D + vedlegg E + vedlegg F ===
