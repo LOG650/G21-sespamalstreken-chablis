@@ -57,3 +57,10 @@
 \newunicodechar{☐}{\Square}
 \newunicodechar{☒}{\XBox}
 \newunicodechar{☑}{\CheckedBox}
+
+% Kodeblokker (Vedlegg D): bryt lange linjer slik at de ikke renner ut av
+% margen, og bruk litt mindre monospace-skrift for kompakt kodelisting.
+% fvextra lastes etter pandoc sine highlighting-makroer (fancyvrb) og lapper
+% Verbatim-miljoet med stotte for linjebryting.
+\usepackage{fvextra}
+\fvset{breaklines=true,breakanywhere=true,fontsize=\small}

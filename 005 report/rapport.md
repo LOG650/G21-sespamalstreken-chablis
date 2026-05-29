@@ -828,4 +828,10 @@ Zhen, L., Wang, S., & Zhuge, D. (2017). Dynamic programming for optimal ship ref
 
 <p align="center" style="font-size: 0.9em;"><small><i>Tabell C.1 Akronymer og forkortelser brukt i rapporten.</i></small></p>
 
+**Vedlegg D.** Python-modellkode. Sentral kildekode for den operasjonelle rute- og lagermodellen, gjengitt som eget PDF-vedlegg (utdrag fra `run_route_inventory_model.py`). Den fullstendige kildekoden ligger i prosjektmappen `006 analysis`.
+
+**Vedlegg E.** KI-erklæring (HiMolde). Signert erklæring om bruk av kunstig intelligens i arbeidet med rapporten, gjengitt som eget PDF-vedlegg.
+
+**Vedlegg F.** Konfidensialitetsavtaler. Signerte konfidensialitetsavtaler mellom prosjektgruppen, Høgskolen i Molde og Odfjell SE, som regulerer tilgangen til og bruken av Odfjells data i rapporten. Gjengitt som eget PDF-vedlegg.
+
 
