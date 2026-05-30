@@ -241,7 +241,15 @@ function Invoke-VedleggFBuild {
 Write-Output "[1/3] Bygger rapportkjernen (uten total paa forsiden) + Vedlegg D + Vedlegg F"
 Invoke-RapportBuild
 Invoke-VedleggDBuild
-Invoke-VedleggFBuild
+# Vedlegg F bygges fra konfidensielle kildebilder som ikke alltid er sjekket ut.
+# Mangler bildene, men finnes den ferdige PDF-en, gjenbrukes den i stedet for aa feile.
+if (Test-Path (Join-Path $reportDir "Confidentiality agreement, HiMolde.jpg")) {
+  Invoke-VedleggFBuild
+} elseif (Test-Path $vedleggF) {
+  Write-Output "  Hopper over Vedlegg F-bygg (kildebilder mangler); bruker eksisterende $vedleggF"
+} else {
+  throw "Mangler bade kildebilder og ferdig Vedlegg F-PDF"
+}
 $bodyPages = Get-PdfPageCount $pdf
 $pagesA    = Get-PdfPageCount $vedleggA
 $pagesB    = Get-PdfPageCount $vedleggB
