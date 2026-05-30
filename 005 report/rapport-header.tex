@@ -64,3 +64,69 @@
 % Verbatim-miljoet med stotte for linjebryting.
 \usepackage{fvextra}
 \fvset{breaklines=true,breakanywhere=true,fontsize=\small}
+
+% ===================== Layout og lesbarhet =====================
+
+% Tydelig avstand mellom avsnitt (blokkavsnitt uten foerstelinjeinnrykk).
+% Linjeavstand 1.5 settes av pandoc (linestretch); parskip gir et synlig
+% skille mellom avsnitt slik at de ikke flyter sammen.
+\usepackage{parskip}
+\setlength{\parskip}{0.5em plus 0.15em minus 0.1em}
+
+% Hold figurer paa plass i leserekkefoelgen (ikke flyt til bunnen av en side
+% der de kan bli klemt/kuttet). Flyttes samlet til neste side hvis det ikke er
+% plass. Krever float-pakken (lastet over).
+\floatplacement{figure}{H}
+
+% Bedre justering og faerre uheldige orddelinger. microtype gir protrusion
+% i xelatex; hoeyere hyphenpenalty + emergencystretch gjoer at lange ord
+% heller flyttes samlet enn aa brytes paa en uheldig maate.
+\usepackage{microtype}
+\tolerance=2000
+\emergencystretch=3em
+\hyphenpenalty=2000
+\hbadness=2000
+
+% Unngaa enkeltlinjer (widows) og foreldreloese linjer (orphans).
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
+
+% Orddeling for norske sammensatte ord. "bunkringskostnader" holdes samlet
+% (loeser den loese "kostnader" mellom Figur 4.1 og 4.2), mens lange ord i
+% smale tabellkolonner faar definerte brytepunkter saa de ikke overflyter.
+% Registreres ved \begin{document} slik at de gjelder hoveddokumentets spraak
+% (pandoc setter norsk via polyglossia/babel foerst da).
+\AtBeginDocument{\hyphenation{bunkringskostnader Modell-havn-pris Data-grunn-lag}}
+
+% Diskret tabellstyling: litt mer radhoeyde og lysegraa annenhver datarad,
+% slik at radene er lettere aa foelge. Beholder booktabs-strekene fra pandoc.
+% \rowcolors krever xcolor lastet med table-opsjon (sikres i build-pdf.ps1).
+\usepackage{colortbl}
+\definecolor{tablerowgray}{gray}{0.95}
+% Tabeller settes litt mindre enn broedtekst med smalere kolonneluft. Det gir
+% mer plass i bredden (saa overskrifter som "Ekstern/ukjent" ikke kuttes) og
+% lavere rader (saa tabeller sjeldnere maa deles over to sider). Lysegraa
+% annenhver datarad for lesbarhet; booktabs-streker beholdes.
+% Bare relevant naar longtable faktisk er lastet (dvs. dokumenter med tabeller).
+% Vedlegg D har ingen tabeller og laster ikke longtable; da skal dette skippes.
+\makeatletter
+% Definer aktiv "/" (skriver "/" og tillater linjeskift etter) paa toppnivaa,
+% slik at den tokeniseres riktig. Aktiveres bare inne i tabeller nedenfor.
+\chardef\sl@shchar=`\/
+{\catcode`\/=\active \gdef/{\sl@shchar\penalty\z@}}
+\@ifpackageloaded{longtable}{%
+  \let\oldlongtable\longtable
+  \let\endoldlongtable\endlongtable
+  \renewenvironment{longtable}{%
+    \small
+    \setlength{\tabcolsep}{4pt}%
+    % I tabeller: tillat aggressiv orddeling og linjeskift etter "/", slik at
+    % lange overskrifter (f.eks. "Ekstern/ukjent") brytes i stedet for aa
+    % overflyte kolonnen og bli malt over av neste celles bakgrunn.
+    \hyphenpenalty=50\exhyphenpenalty=50\tolerance=9999\emergencystretch=2em
+    \catcode`\/=\active
+    \rowcolors{2}{white}{tablerowgray}%
+    \oldlongtable}{\endoldlongtable}%
+}{}
+\makeatother

@@ -122,7 +122,9 @@ Hovedmodellen behandler 486 voyage-etapper for åtte anonymiserte fartøyfiler. 
 
 Resultatene viser at modellen gir mest operativ verdi der fartøyenes ruter overlapper med de prisede modellhavnene. Samtidig viser den eksterne/ukjente andelen et tydelig datagap: modellen er egnet som transparent analyse- og beslutningsstøtte, men bredere prisdekning og videre validering er nødvendig før den kan brukes som full operativ planleggingsmodell.
 
----
+```{=latex}
+\newpage
+```
 
 ## Abstract
 
@@ -132,7 +134,9 @@ The main model covers 486 voyage legs across eight anonymized vessel files. In t
 
 The results show that the model is most operationally useful when vessel routes overlap with the priced model ports. At the same time, the external/unknown share provides a clear diagnosis of the data gap. The model is therefore suitable as transparent analytical decision support, but broader price coverage and further validation are needed before it can be used as a full operational planning model.
 
----
+```{=latex}
+\newpage
+```
 
 ## Innholdsfortegnelse
 
@@ -143,6 +147,10 @@ The results show that the model is most operationally useful when vessel routes 
 - 1.4 Antagelser
 - 2.0 Litteratur
 - 3.0 Teori
+- 3.1 Lineær programmering som teoretisk rammeverk
+- 3.2 Beslutningsvariabler, parametere og restriksjoner
+- 3.3 Modellforenkling og operativ relevans
+- 3.4 Datagrunnlag og modellkontroll
 - 4.0 Casebeskrivelse
 - 4.1 Odfjell Tankers og beslutningssituasjonen
 - 4.2 Historisk utvikling i volum og pris
@@ -243,7 +251,7 @@ Rapporten plasserer seg dermed i en anvendt tradisjon der etablerte prinsipper f
 
 Mens litteraturkapitlet plasserer rapporten i forskningsfeltet, definerer dette kapitlet de teoretiske begrepene som faktisk brukes i modelleringen: lineær programmering, skillet mellom beslutningsvariabler og parametere, modellforenkling og prinsipper for datagrunnlag og modellkontroll.
 
-### Lineær programmering som teoretisk rammeverk
+### 3.1 Lineær programmering som teoretisk rammeverk
 
 Lineær programmering er en matematisk metode for å finne den beste løsningen på et problem der både målfunksjonen og restriksjonene kan uttrykkes lineært (Fox & Burks, 2024). Et standard lineært programmeringsproblem består av beslutningsvariabler, en målfunksjon og et sett av begrensninger. I denne oppgaven er teorien relevant fordi bunkringsbeslutninger kan forstås som et kostnadsminimeringsproblem, der drivstoff kjøpes i ulike havner til varierende priser under gitte kapasitets- og etterspørselsbetingelser.
 
@@ -259,7 +267,7 @@ To teoretiske egenskaper er særlig relevante for denne rapporten. For det førs
 
 Det teoretiske poenget med lineær programmering i denne sammenhengen er at metoden tvinger frem en eksplisitt og etterprøvbar beslutningsmodell. Når modellens antagelser og restriksjoner er tydelige, kan både styrker og begrensninger diskuteres på en faglig ryddig måte. Dette gjør metoden særlig egnet som grunnlag for beslutningsstøtte i situasjoner med flere alternative handlingsvalg og tydelige kostnadsforskjeller.
 
-### Beslutningsvariabler, parametere og restriksjoner
+### 3.2 Beslutningsvariabler, parametere og restriksjoner
 
 Et sentralt teoretisk skille i optimeringslitteraturen går mellom beslutningsvariabler og parametere (Fox & Burks, 2024). Beslutningsvariablene beskriver hva modellen skal velge, mens parametrene beskriver størrelser som antas gitt. I denne rapporten brukes dette skillet for å definere bunkret volum som beslutningsvariabel, mens pris, behov og tilgjengelighet behandles som parametere i modellen.
 
@@ -267,13 +275,13 @@ Restriksjoner er like viktige som målfunksjonen, fordi de avgjør hvilke løsni
 
 En sentral restriksjonstype i denne rapporten er beholdningsbalansen, som teoretisk er et flytbevaringsprinsipp: beholdningen ved slutten av en etappe er lik inngående beholdning pluss bunkring minus forbruk. Dette er den samme balanselogikken som ligger til grunn for klassiske lager- og refueling-modeller, og knytter modellen til lagerteorien omtalt i kapittel 2 uten at en eksplisitt `(s, S)`-politikk estimeres.
 
-### Modellforenkling og operativ relevans
+### 3.3 Modellforenkling og operativ relevans
 
 All anvendt modellering innebærer forenklinger (Song & Panayides, 2021; Venkataraman & Pinto, 2018). En modell er ikke en kopi av virkeligheten, men en analytisk representasjon av forhold som anses viktigst for beslutningen. I maritime beslutningssituasjoner er dette særlig påtrengende fordi operasjonelle forhold ofte begrenser hvilke løsninger som lar seg gjennomføre, og fordi datagrunnlaget sjelden dekker alle variabler som i prinsippet burde inngå i en full bunkringsmodell.
 
 Teoretisk innebærer dette at modellen må forstås som en deterministisk lager- og rutemodell på fartøy- og etappenivå. Den bruker historiske prisobservasjoner som grunnlag for kostnadsparameterne, og er dermed mer beslutningsnær enn en ren månedsaggregert modell, men stiller samtidig krav om at prisproxyer og manglende havnedekning dokumenteres tydelig.
 
-### Datagrunnlag og modellkontroll
+### 3.4 Datagrunnlag og modellkontroll
 
 Når historiske data brukes til modellering, oppstår det en risiko for at modellen tolkes for sterkt dersom datagrunnlag, forutsetninger og kontroller ikke skilles tydelig. Et vanlig prinsipp er derfor å dokumentere hvilke data som brukes til utvikling, hvilke som holdes tilbake for senere kontroll, og hvilke kontroller som faktisk er gjennomført (Fox & Burks, 2024). Dette prinsippet er retningsgivende for både train/test-splitten av pris- og voyage-data og for de interne konsistenssjekkene og sensitivitetsanalysen som beskrives nærmere i kapittel 5.
 
@@ -367,8 +375,12 @@ Studien er gjennomført som en kvantitativ caseanalyse av Odfjell Tankers, der h
 
 Metodisk kombinerer rapporten datavask og strukturering, deskriptiv grafisk analyse, lineær programmering, intern konsistenskontroll, sensitivitetsanalyse og anvendbarhetsklassifisering. Tabell 5.1 viser hvordan disse metodene brukes i de ulike delene av arbeidet.
 
+```{=latex}
+\newpage
+```
+
 | Del av arbeidet | Metode brukt | Formål |
-| :-------- | :------------------------------------ | :---------------------------- |
+| :--------------- | :-------------------------------- | :---------------------------- |
 | Datagrunnlag | Innlesing, rensing og strukturering av historiske bunkringsdata og operative voyage-data | Etablere konsistente inputdata for analyse og modellering |
 | Beskrivende analyse | Tidsseriefigurer, sesongprofil og aggregerte tabeller | Dokumentere historisk utvikling, variasjon og mønstre i volum og pris |
 | Modellering | Lineær kostnadsminimeringsmodell med rute-, beholdnings- og kapasitetsrestriksjoner | Oversette bunkringsbeslutningen til et matematisk optimeringsproblem |
@@ -722,7 +734,7 @@ Sensitivitetsanalysen viser at kostnadsnivået er følsomt for proxyprisen, mens
 Som en ekstra robusthetskontroll er det også beregnet en enkel prisnivå-sensitivitet for modellhavnene, der kjøpsplanen holdes uendret og kostnaden i `P001`-`P004` justeres med $\pm 10$ %. Denne analysen tester ikke en ny optimal kjøpsplan, men viser hvor følsomt kostnadsnivået er for generelle prisendringer i de prisede modellhavnene.
 
 | Scenario | Endring i modellhavnpris | Kostnad i prisede havner | Ekstern kostnad | Total modellkostnad | Endring mot basis |
-| --- | ---: | ---: | ---: | ---: | ---: |
+| ------ | ---: | ---: | ---: | ---: | ---: |
 | Modellhavnpris -10 % | -10 % | 9 366 021,63 | 16 218 974,08 | 25 584 995,71 | -1 040 669,07 |
 | Basis | 0 % | 10 406 690,70 | 16 218 974,08 | 26 625 664,78 | 0,00 |
 | Modellhavnpris +10 % | 10 % | 11 447 359,77 | 16 218 974,08 | 27 666 333,85 | 1 040 669,07 |
@@ -841,7 +853,9 @@ Wang, S., & Meng, Q. (2015). Robust bunker management for liner shipping network
 
 Zhen, L., Wang, S., & Zhuge, D. (2017). Dynamic programming for optimal ship refueling decision. *Transportation Research Part E: Logistics and Transportation Review, 100*, 63-74. https://doi.org/10.1016/j.tre.2016.12.013
 
----
+```{=latex}
+\newpage
+```
 
 ## 11.0 Vedlegg
 

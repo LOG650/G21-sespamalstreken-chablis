@@ -99,6 +99,7 @@ function Invoke-RapportBuild {
   Write-Output "  Pandoc: markdown -> LaTeX"
   $pandocArgs = @(
     $work,
+    "--from=markdown+autolink_bare_uris",
     "-V", "geometry:margin=2.5cm",
     "-V", "fontsize=12pt",
     "-V", "linestretch=1.5",
@@ -115,6 +116,13 @@ function Invoke-RapportBuild {
   )
   & pandoc @pandocArgs
   if ($LASTEXITCODE -ne 0) { throw "pandoc avsluttet med feilkode $LASTEXITCODE" }
+
+  # Sett xcolor sin table-opsjon FOER pandoc-malen laster xcolor, slik at
+  # \rowcolors (lysegraa annenhver tabellrad, jf. rapport-header.tex) er
+  # definert. Settes rett etter \documentclass i den genererte .tex-filen.
+  $texSrc = Get-Content -Path $tex -Raw -Encoding UTF8
+  $texSrc = $texSrc -replace '(\\documentclass(?:\[[^\]]*\])?\{[^}]*\})', "`$1`n\PassOptionsToPackage{table}{xcolor}"
+  Set-Content -Path $tex -Value $texSrc -Encoding UTF8 -NoNewline
 
   $texName = [System.IO.Path]::GetFileName($tex)
   $texBase = [System.IO.Path]::GetFileNameWithoutExtension($tex)
