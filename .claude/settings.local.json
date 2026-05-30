@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(iconv -f cp1252 -t utf-8 '/c/Users/janso/OneDrive/Desktop/LOG650/G21-sespamalstreken-chablis/004 data/Bunker Lifting List\\(Worksheet1\\) \\(1\\).csv')",
-      "Bash(git pull *)"
+      "Bash(git pull *)",
+      "PowerShell(& \"C:\\\\Users\\\\kayle\\\\Desktop\\\\LOG650\\\\G21-sespamalstreken-chablis\\\\005 report\\\\build-pdf.ps1\")"
     ]
   }
 }
