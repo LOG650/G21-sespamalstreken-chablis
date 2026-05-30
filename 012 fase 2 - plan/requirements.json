@@ -42,7 +42,7 @@
       "eier": "Analyse",
       "leveranse": "Anbefalt bunkringsstrategi",
       "testtilfelle": "Resultater viser optimal havn og volum",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "DK-01",
@@ -242,7 +242,7 @@
       "eier": "Analyse",
       "leveranse": "Sammenligning med historiske beslutninger",
       "testtilfelle": "Modellresultater sammenlignes med historiske bunkringer",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "AN-03",
@@ -252,7 +252,7 @@
       "eier": "Analyse",
       "leveranse": "Kostnadsbesparelsesestimat",
       "testtilfelle": "Beregning av potensielle besparelser",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "VAL-01",
@@ -272,7 +272,7 @@
       "eier": "Analyse",
       "leveranse": "Realismevurdering",
       "testtilfelle": "Resultater vurderes opp mot operasjonelle forhold",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "VAL-03",
@@ -282,7 +282,7 @@
       "eier": "Rapportering",
       "leveranse": "Diskusjon av modellbegrensninger",
       "testtilfelle": "Begrensninger beskrevet i rapport",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "VAL-04",
@@ -292,7 +292,7 @@
       "eier": "Analyse",
       "leveranse": "Sammenligningsanalyse mellom modell og historiske data",
       "testtilfelle": "Beregne totale drivstoffkostnader for historiske beslutninger og modellens anbefalinger",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "LEV-01",
@@ -332,7 +332,7 @@
       "eier": "Rapportering",
       "leveranse": "Resultatkapittel",
       "testtilfelle": "Modellresultater presentert",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "LEV-05",
@@ -352,7 +352,7 @@
       "eier": "Rapportering",
       "leveranse": "Diskusjon",
       "testtilfelle": "Implikasjoner for Odfjell diskutert",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "LEV-07",
@@ -372,7 +372,7 @@
       "eier": "Prosjektgruppen",
       "leveranse": "Teoretisk rammeverk",
       "testtilfelle": "Referanser til operasjonsanalyse",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "KVAL-02",
@@ -402,7 +402,7 @@
       "eier": "Rapportering",
       "leveranse": "Strukturert akademisk rapport",
       "testtilfelle": "Rapport følger vitenskapelig struktur",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "KVAL-05",
@@ -412,7 +412,7 @@
       "eier": "Rapportering",
       "leveranse": "Diskusjon av modellens begrensninger",
       "testtilfelle": "Antakelser og begrensninger diskutert i diskusjonskapittel",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "SUK-01",
@@ -422,7 +422,7 @@
       "eier": "Analyse",
       "leveranse": "Tolkningsbare resultater",
       "testtilfelle": "Resultater kan forklares",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "SUK-02",
@@ -432,7 +432,7 @@
       "eier": "Analyse",
       "leveranse": "Kostnadsbesparelsesestimat",
       "testtilfelle": "Besparelse kan kvantifiseres",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "SUK-03",
@@ -442,7 +442,7 @@
       "eier": "Analyse",
       "leveranse": "Beslutningsstøtte",
       "testtilfelle": "Modell gir konkrete anbefalinger",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     },
     {
       "id": "SUK-04",
@@ -452,7 +452,7 @@
       "eier": "Rapportering",
       "leveranse": "Diskusjon av videre arbeid",
       "testtilfelle": "Videre utviklingsmuligheter beskrevet",
-      "teststatus": "Planned"
+      "teststatus": "Completed"
     }
   ]
 }

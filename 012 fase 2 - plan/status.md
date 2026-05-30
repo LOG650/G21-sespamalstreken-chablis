@@ -1,6 +1,6 @@
 # Status fase 2
 
-Oppdatert: 2026-05-29
+Oppdatert: 2026-05-30
 
 ## Innhold
 
@@ -147,5 +147,6 @@ Resultatene er lagret i:
 - Tilsendte PDF-er fra Odfjell Tankers er flyttet inn i rapportmappen som egne innleveringsvedlegg: `005 report/Vedlegg A - Everything You Need To Know About Marine Fuels.pdf` og `005 report/Vedlegg B - FuelEU Guidance Document for Shipping Companies.pdf`. Rapportens hovedtekst, bibliografi og vedleggskapittel henviser nå til Vedlegg A og Vedlegg B i stedet for interne `003 references`-stier.
 - Siste formelle innleveringskontroll er gjennomført i `005 report/rapport.md` og `005 report/rapport.pdf`. Forsidefelter, studiepoeng, veileder, ordtelling, forfattererklæring, publiseringsavtale, båndlegging og PDF-generering er kontrollert. Plassholderen for båndleggingsavtale er erstattet med henvisning til Vedlegg F, og ordtallet er oppdatert til ca. 11 000.
 - Endelig PDF er bygget på nytt med `005 report/build-pdf.ps1`. Sluttfilen `005 report/rapport.pdf` har 242 sider totalt: 45 sider rapportkropp, Vedlegg A 35 sider, Vedlegg B 152 sider, Vedlegg D 6 sider, Vedlegg E 1 side og Vedlegg F 3 sider. Forsiden viser 45 sider for rapportkroppen inkludert forsiden.
+- Kravregisteret i `012 fase 2 - plan/requirements.json` er oppdatert mot faktisk gjennomført arbeid. Alle 44 krav står nå med `teststatus` lik `Completed`.
 - Faglig vurdering fra Odfjell Tankers tas ikke inn før innlevering fordi gruppen ikke forventer svar i tide. Punktet står derfor som videre arbeid/ekstern validering, ikke som en åpen innleveringsblokkering.
 - Oppdater rapporten dersom senere modellkjøringer endrer hovedresultatene.
