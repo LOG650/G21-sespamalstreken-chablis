@@ -51,12 +51,14 @@ function Invoke-RapportBuild {
   }
   $content = $figRegex.Replace($content, $figEval)
 
-  # 2) Konverter HTML tabelltekster til pandoc tabell-captions
+  # 2) Konverter HTML tabelltekster til en sentrert, liten kursiv linje UNDER
+  #    tabellen (LOG650-praksis, jf. kompendiet 6.2), i stedet for en pandoc
+  #    tabell-caption som xelatex ellers plasserer paa toppen av tabellen.
   $tabRegex = [System.Text.RegularExpressions.Regex]::new(
     '<p\s+align="center"[^>]*><small><i>(Tabell[^<]+)</i></small></p>',
     [System.Text.RegularExpressions.RegexOptions]::Singleline
   )
-  $content = $tabRegex.Replace($content, ': $1')
+  $content = $tabRegex.Replace($content, '\begin{center}{\small\itshape $1}\end{center}')
 
   # 3) Bytt ut manuell TOC-bullet-liste med LaTeX \tocnotitle
   $nl = "`n"

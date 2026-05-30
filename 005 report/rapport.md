@@ -192,7 +192,7 @@ Rapporten presenterer case og datagrunnlag før modellen formuleres, slik at mod
 
 I hvilken grad kan en deterministisk lineær kostnadsmodell, avgrenset til fire prisede modellhavner, én drivstoffkategori og åtte anonymiserte fartøyfiler, gi etterprøvbar beslutningsstøtte for fordeling av bunkring i Odfjell Tankers' rutestruktur?
 
-Gitt den høye volatiliteten i drivstoffkostnader i shippingmarkedet (Stopford, 2008), er det relevant å undersøke hvordan bunkringsbeslutninger kan struktureres og støttes gjennom en optimaliseringsmodell.
+Gitt den høye volatiliteten i drivstoffkostnader i shippingmarkedet, er det relevant å undersøke hvordan bunkringsbeslutninger kan struktureres og støttes gjennom en optimaliseringsmodell.
 
 ### 1.2 Delproblemer
 
@@ -776,13 +776,15 @@ Problemstillingen var i hvilken grad en deterministisk lineær kostnadsmodell, a
 
 Modellens praktiske verdi er todelt. Innenfor ruter med tilstrekkelig prisdekning fungerer den preskriptivt og foreslår en kostnadsminimerende bunkringsplan; utenfor disse rutene fungerer den diagnostisk og kvantifiserer hvor stor del av beslutningsproblemet som ikke kan løses innenfor dagens datagrunnlag. At 46,89 % av modellert forbruk føres som ekstern/ukjent bunkring, gir et konkret mål på hvor stor denne diagnostiske rollen er.
 
-Anvendbarhetsklassifiseringen oversetter dette skillet til konkret operasjonell anvendbarhet. Modellen gir direkte beslutningsstøtte for `C001-2` og `C002-1` (klasse A), delvis støtte med vesentlig datagap for `C003-1`, `C004-1` og `C004-2` (klasse B), og dokumenterer først og fremst behov for utvidet prisdekning for `C001-1`, `C004-3` og `C005-1` (klasse C).
+Anvendbarhetsklassifiseringen oversetter dette skillet til konkret operasjonell anvendbarhet: to fartøyfiler får direkte beslutningsstøtte (klasse A), tre delvis støtte med vesentlig datagap (klasse B), og tre dokumenterer først og fremst behov for utvidet prisdekning (klasse C).
 
 Rapportens metodiske bidrag er anvendbarhetsklassifiseringen som operativt skille mellom modellens preskriptive og diagnostiske rolle. Klassifiseringen gjør modellens gyldighetsområde eksplisitt og kan ha relevans også i andre anvendte optimeringscaser der datadekningen varierer systematisk mellom objekter.
 
 Begrensningene i analysen er først og fremst datadrevne. Prisgrunnlaget dekker bare fire modellhavner og én registrert drivstoffkategori, og ekstern/ukjent bunkring er kostnadsatt med en proxy som ikke er forankret i et uavhengig markedsgrunnlag. Modellen inkluderer heller ikke kontraktsvilkår, minimumsbeholdning, kvalitet, leverandørrisiko, hastighetsvalg eller regulatoriske drivstoffkrav som harde restriksjoner, og resultatene må derfor leses som beslutningsstøtte og modellert potensial, ikke som en full operativ kjøpsinstruks.
 
 Det viktigste neste steget er ekstern validering: anbefalingene må prøves mot faktiske historiske bunkringsbeslutninger og vurderes av fagpersoner hos Odfjell Tankers før modellen kan inngå som fast beslutningsstøtte i bunkringsarbeidet. Modellutvidelser — flere havner, drivstofftyper, minimumsbeholdning og mer dynamiske prisprognoser — er relevante, men sekundære i forhold til denne valideringen.
+
+Innenfor sitt definerte gyldighetsområde gir modellen likevel et transparent og etterprøvbart beslutningsgrunnlag, og anvendbarhetsklassifiseringen gjør modellens anvendbarhet og avgrensning eksplisitt.
 
 ---
 
